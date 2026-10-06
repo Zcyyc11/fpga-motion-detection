@@ -22,9 +22,18 @@
 .gen/
 *.rpt.tmp
 
+# 整个 Vivado 工程目录：build_vivado.tcl 能从头重建，不该入库。
+# （不加这条，一次 `git add .` 就会把 .xpr / .srcs / IP 生成物全提上去）
+build/vivado/
+
+# xsim 仿真构建目录 + 逐帧中间图（PPM 每张几百 KB × 20+ 张，随时可重跑脚本再生）
+sim/xsim.dir/
+sim/wave/*.ppm
+
 # ---------- 例外：我们自己要留的日志与产物 ----------
 !board/logs/**
 !build/reports/**
+!build/bitstream/**
 !board/overlay/**
 !board/logs/*.log
 
