@@ -1,0 +1,90 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Tue Oct  6 17:56:33 2026
+| Host         : LAPTOP-RRVGFMON running 64-bit major release  (build 9200)
+| Command      : report_clocks -file D:/FPGA/fpga-motion-detection/build/reports/synth_clocks.rpt
+| Design       : board_top
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Clock Report
+
+
+Attributes
+  P: Propagated
+  G: Generated
+  A: Auto-derived
+  R: Renamed
+  V: Virtual
+  I: Inverted
+  S: Pin phase-shifted with Latency mode
+
+Clock           Period(ns)  Waveform(ns)    Attributes  Sources
+sys_clk_pin     8.000       {0.000 4.000}   P           {sys_clk}
+CLKFBIN         13.468      {0.000 6.734}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.Deskew/O}
+FeedbackClkOut  13.468      {0.000 6.734}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKFBOUT}
+PixelClkIO      13.468      {0.000 5.387}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.PixelClkBuffer/O}
+PixelClkInX5    2.694       {0.000 1.347}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKOUT0}
+clk_fb          32.000      {0.000 16.000}  P,G,A       {u_clk/u_mmcm/CLKFBOUT}
+clk_pix_raw     13.468      {0.000 6.734}   P,G,A       {u_clk/u_mmcm/CLKOUT0}
+
+
+====================================================
+Generated Clocks
+====================================================
+
+Generated Clock     : CLKFBIN
+Master Source       : u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.Deskew/I
+Master Clock        : FeedbackClkOut
+Divide By           : 1
+Generated Sources   : {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.Deskew/O}
+
+Generated Clock     : FeedbackClkOut
+Master Source       : u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKIN1
+Master Clock        : clk_pix_raw
+Multiply By         : 1
+Generated Sources   : {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKFBOUT}
+
+Generated Clock     : PixelClkIO
+Master Source       : u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.PixelClkBuffer/I
+Master Clock        : PixelClkInX5
+Edges               : {1 2 3}
+Edge Shifts(ns)     : {0.000 4.040 10.774}
+Generated Sources   : {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.PixelClkBuffer/O}
+
+Generated Clock     : PixelClkInX5
+Master Source       : u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKIN1
+Master Clock        : clk_pix_raw
+Multiply By         : 5
+Generated Sources   : {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKOUT0}
+
+Generated Clock     : clk_fb
+Master Source       : u_clk/u_mmcm/CLKIN1
+Master Clock        : sys_clk_pin
+Edges               : {1 2 3}
+Edge Shifts(ns)     : {0.000 12.000 24.000}
+Generated Sources   : {u_clk/u_mmcm/CLKFBOUT}
+
+Generated Clock     : clk_pix_raw
+Master Source       : u_clk/u_mmcm/CLKIN1
+Master Clock        : sys_clk_pin
+Edges               : {1 2 3}
+Edge Shifts(ns)     : {0.000 2.734 5.468}
+Generated Sources   : {u_clk/u_mmcm/CLKOUT0}
+
+
+
+====================================================
+User Uncertainty
+====================================================
+
+
+
+====================================================
+User Jitter
+====================================================
+
+
