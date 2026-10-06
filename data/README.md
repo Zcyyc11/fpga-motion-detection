@@ -10,10 +10,23 @@
 | 文件 | 是什么 |
 |---|---|
 | `make_test_clip.py` | 合成片段生成器（确定性、无随机数）。改 `--dx` / `--frames` 可造不同速度、不同长度的对照片段 |
-| `synth_720p.avi` | 生成结果：720p / 60 帧 / 白色矩形每帧右移 16 px。**无损 FFV1**，82 KB |
+| `synth_720p.avi` | **无损母版**：720p / 60 帧 / 白色矩形每帧右移 16 px，FFV1 编码，82 KB。**代码与 RTL 仿真只读这份** |
+| `synth_720p_view.mp4` | **可观看版**：同一段内容的 H.264 MP4，给人眼看的。有损，**不可当黄金参考的输入** |
 | `synth_720p_groundtruth.csv` | 逐帧真值 `frame,cx,cy,x,y,w,h` |
 | `synth_720p_clipinfo.txt` | 生成参数 + 视频 SHA256 —— 用来核验"是同一份输入" |
 | `synth_720p_golden.csv` | 黄金参考逐帧输出：真值 + 三种差分模式的质心 |
+| `make_figures.py` | 出图脚本，把偏差画成图（复用 `src/ps/golden_ref.py` 的算子） |
+
+### 为什么有两个视频文件（别搞混）
+
+| | 编码 | 用途 | 能不能双击播放 |
+|---|---|---|---|
+| `synth_720p.avi` | FFV1（无损） | 喂代码 / 喂 xsim 仿真 | ❌ Windows 自带播放器报 `0xc00d5212` |
+| `synth_720p_view.mp4` | H.264（有损） | 给人看 | ✅ |
+
+无损是为了**像素级可复现**——黄金参考和 RTL 仿真必须看到同一份数据，所以不能用有损编码。
+但 FFV1 格式 Windows 播放器不认，于是生成器会顺手再转一份 H.264 MP4 专门给人看。
+转换由 `imageio-ffmpeg` 提供的 ffmpeg 完成（见 `src/ps/requirements.txt`）。
 
 ### 真值是怎么来的
 
@@ -27,7 +40,9 @@
 ## 怎么用
 
 ```bash
-python make_test_clip.py            # 生成片段（默认参数）
+python make_test_clip.py            # 生成片段（含 *_view.mp4 可观看版）
+python make_test_clip.py --no-view  # 只要无损母版
+python make_figures.py              # 把偏差画成图
 python ../../src/ps/golden_ref.py   # 跑黄金参考，输出三路偏差对照
 ```
 

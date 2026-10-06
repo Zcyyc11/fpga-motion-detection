@@ -12,27 +12,40 @@
 设计（全部确定性，无随机数）
 ----------------------------
 黑色背景 720p，一个纯白矩形从左向右匀速平移，每帧位移恒定。
+走到右边界后**回绕到起始位置**，于是可以任意加长帧数而目标不出画。
+回绕规则与 RTL(`src/rtl/pattern_gen.v`)、`src/ps/rtl_golden.py` 是同一套：
+    x = (x + dx + OBJ_W > W) ? X0 : x + dx
 720p 是我们的锁定分辨率；位移量默认 16 px/帧，是为了让帧差得到的
 "边缘细带"明显宽于形态学核 —— 铁律：**核边长必须 < 每帧位移**，否则细带被腐蚀掉，
 一帧都检测不到（详见 data/README.md「纪律」）。
 
 输出
 ----
-  synth_720p.avi / .mp4        视频本体（优先无损 FFV1；不可用则退化 mp4v）
+  synth_720p.avi / .mp4        视频母版（优先无损 FFV1；不可用则退化 mp4v）
+  synth_720p_view.mp4          可观看版本（H.264），给人看的
   synth_720p_groundtruth.csv   逐帧真值：frame, cx, cy, x, y, w, h
                                （质心直接由白色像素求均值得到 —— 无坐标约定歧义）
   synth_720p_clipinfo.txt      生成参数 + 视频 SHA256，供他人核验"是同一份输入"
 
+★ 为什么有两个视频文件（别搞混）
+--------------------------------
+  avi(FFV1)  无损，像素级可复现 → **给代码和 RTL 仿真用**，黄金参考只许读它
+  view.mp4   H.264 有损 → **只给人眼看**，Windows 自带播放器一定放得开
+  （FFV1 是开源无损编码，但 Windows 自带播放器不支持，双击会报 0xc00d5212）
+
 用法
 ----
-  python make_test_clip.py                    # 用默认参数生成
+  python make_test_clip.py                    # 用默认参数生成（含可观看版本）
   python make_test_clip.py --dx 8 --frames 90 # 换参数做对照实验
+  python make_test_clip.py --no-view          # 只要母版，不要 MP4
 """
 
 import argparse
 import csv
 import hashlib
 import os
+import shutil
+import subprocess
 import sys
 
 import numpy as np
@@ -59,23 +72,74 @@ def open_writer(base_path, fps, size):
     raise RuntimeError("找不到可用的视频编码器（FFV1 / mp4v 都打不开）")
 
 
+def find_ffmpeg():
+    """找 ffmpeg：优先 imageio-ffmpeg 自带的那份，其次 PATH。"""
+    try:
+        import imageio_ffmpeg
+        return imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:
+        return shutil.which("ffmpeg")
+
+
+def write_view_mp4(src_path, out_path):
+    """把无损母版另存一份 H.264 MP4，专门给人眼观看。
+
+    ★ 为什么必须分开：母版用 FFV1（无损、像素级可复现，给代码和 RTL 仿真读），
+      但 Windows 自带播放器不认 FFV1（报 0xc00d5212）。H.264 是 Windows 一定认的格式，
+      只是**有损**，所以这份只许看、不许当黄金参考的输入。
+    没装 ffmpeg 就跳过，不影响母版生成。
+    """
+    ff = find_ffmpeg()
+    if not ff:
+        print("提示  : 没找到 ffmpeg，跳过可观看版本（可 pip install imageio-ffmpeg 补上）")
+        return None
+    cmd = [ff, "-y", "-hide_banner", "-loglevel", "warning",
+           "-i", src_path,
+           "-c:v", "libx264", "-pix_fmt", "yuv420p",
+           "-crf", "18", "-preset", "medium", "-movflags", "+faststart",
+           out_path]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if r.returncode != 0 or not os.path.exists(out_path):
+        print("提示  : ffmpeg 转码失败，跳过可观看版本")
+        if r.stderr.strip():
+            print("        " + r.stderr.strip().splitlines()[-1][:160])
+        return None
+    return out_path
+
+
+def x_at(i, dx, w=W, obj_w=OBJ_W, x0=X0):
+    """第 i 帧目标左边缘 —— 与 RTL(pattern_gen.v)/rtl_golden.py 同一套回绕规则。
+
+    x = (x + dx + obj_w > w) ? x0 : x + dx   （第 0 帧 = x0）
+    三端都照这一行写，避免"一边绕、一边不绕"的静默分叉。
+    """
+    x = x0
+    for _ in range(i):
+        nx = x + dx
+        x = x0 if (nx + obj_w > w) else nx
+    return x
+
+
 def main():
     ap = argparse.ArgumentParser(description="生成真值已知的合成测试片段")
     ap.add_argument("--outdir", default=os.path.dirname(os.path.abspath(__file__)))
     ap.add_argument("--frames", type=int, default=N_FRAMES)
     ap.add_argument("--dx", type=int, default=DX)
     ap.add_argument("--name", default="synth_720p")
+    ap.add_argument("--view", dest="view", action="store_true", default=True,
+                    help="额外生成 H.264 可观看版本（默认开）")
+    ap.add_argument("--no-view", dest="view", action="store_false",
+                    help="只要无损母版，不生成可观看版本")
     args = ap.parse_args()
 
     os.makedirs(args.outdir, exist_ok=True)
     n, dx = args.frames, args.dx
 
-    # 边界自检：别让目标跑出画面
-    last_x = X0 + dx * (n - 1)
-    if last_x + OBJ_W > W:
-        print("!! 参数越界：末帧目标右边缘 %d > 画面宽 %d，请减小 --dx 或 --frames"
-              % (last_x + OBJ_W, W))
-        return 1
+    # 边界自检：回绕规则保证目标不出画，这里只报告一共回绕了几次
+    xs_plan = [x_at(i, dx) for i in range(n)]
+    n_wrap = sum(1 for i in range(1, n) if xs_plan[i] < xs_plan[i - 1])
+    print("回绕  : %d 帧内回绕 %d 次（目标始终完整在画面内，右边缘 ≤ %d）"
+          % (n, n_wrap, W))
 
     base = os.path.join(args.outdir, args.name)
     vw, vpath, vtag = open_writer(base, FPS, (W, H))
@@ -84,7 +148,7 @@ def main():
     rows = []
     for i in range(n):
         img = np.zeros((H, W, 3), np.uint8)
-        x = X0 + dx * i
+        x = x_at(i, dx)
         # 用 (x, y) ~ (x+OBJ_W-1, y+OBJ_H-1)，使白色区域恰好是 OBJ_W x OBJ_H 个像素
         cv2.rectangle(img, (x, Y0), (x + OBJ_W - 1, Y0 + OBJ_H - 1), (255, 255, 255), -1)
         vw.write(img)
@@ -116,6 +180,7 @@ def main():
         f.write("帧数        : %d  (时长 %.2f s)\n" % (n, n / float(FPS)))
         f.write("目标        : 纯白矩形 %d x %d px，黑底\n" % (OBJ_W, OBJ_H))
         f.write("运动        : 水平匀速，每帧位移 %d px（垂直不动）\n" % dx)
+        f.write("回绕        : 右边缘到头后退回左边缘 X0（本段回绕 %d 次）\n" % n_wrap)
         f.write("起始位置    : 左边缘 x=%d, 顶边 y=%d\n" % (X0, Y0))
         f.write("编码        : %s\n" % vtag)
         f.write("-" * 52 + "\n")
@@ -130,6 +195,13 @@ def main():
 
     print("真值  : %s  (%d 行)" % (truth, len(rows)))
     print("说明  : %s" % info)
+
+    if args.view:
+        vout = write_view_mp4(vpath, base + "_view.mp4")
+        if vout:
+            print("可观看: %s  (%.1f KB, H.264 MP4 —— 给人眼看，别当黄金参考输入)"
+                  % (vout, os.path.getsize(vout) / 1024.0))
+
     print("视频  : %d bytes (%.1f KB)  sha256=%s"
           % (vbytes, vbytes / 1024.0, h.hexdigest()[:16] + "..."))
     print("校验  : 第 0 帧中心 (%.1f, %.1f)   末帧中心 (%.1f, %.1f)"

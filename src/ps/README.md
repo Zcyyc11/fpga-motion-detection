@@ -5,6 +5,7 @@
 | 文件 | 作用 |
 |---|---|
 | `golden_ref.py` | OpenCV 黄金参考实现（同一段视频跑同一算法的软件版），逐帧输出运动质心 |
+| `cdnet_demo.py` | 在 **CDnet 2014 真实素材**上跑帧差法，与人工真值逐像素比对，输出 精确率/召回率/F1 + 三方对比图 |
 | `requirements.txt` | PC 开发期依赖清单。opencv 锁 4.x（与 PYNQ 镜像同代）；**板卡镜像自带 numpy/opencv，上板不必再装** |
 
 > 待实现：`load_overlay.py`（加载 `.bit` 并校验，含 `ignore_version=True`）、
@@ -30,3 +31,29 @@
 
 黄金参考**要跑在板卡 PS 端**，用 PYNQ 镜像自带的 numpy / opencv ——
 同一块板、同一段输入、同一分辨率，比对才公平。PC 上跑只作开发期验证与偏差量化。
+
+## 两类测试素材，分工不同（别混）
+
+| 素材 | 干什么用 | 能回答什么 |
+|---|---|---|
+| 合成片段 `data/golden/synth_720p.avi` | **尺子**：只有我们知道每帧标准答案 | "偏差多少像素"——**几何精度**（定量） |
+| 真实素材 CDnet 2014（仓外） | **考场**：真实噪声 / 光照 / 动态背景 | "到底能不能用"——**失效模式**（定量+定性） |
+
+两者不可互相替代：合成片段干净得测不出失效，真实素材没有精确的几何答案。
+
+### `cdnet_demo.py` 的两条纪律（数据集的规矩）
+
+1. **只用 `temporalROI.txt` 给定区间内的帧** —— 区间外是预热/收尾，画面还没动，
+   算进去等于刷分。脚本已自动读取并遵守。
+2. **真值标签里只有 `0`（静态）与 `255`（运动）参与计分**；
+   `50`（硬阴影）/ `85`（ROI 外）/ `170`（不确定运动）一律排除
+   —— 阴影和"说不清"的像素不该拿来罚算法。
+
+用法：
+
+```bash
+python cdnet_demo.py --seq D:\FPGA\datasets\cdnet2014\baseline\pedestrians
+python cdnet_demo.py --seq D:\FPGA\datasets\cdnet2014\dynamicBackground\canoe
+```
+
+> 素材说明见 `data/captures/README.md` 与 `D:\FPGA\datasets\cdnet2014\README.md`。

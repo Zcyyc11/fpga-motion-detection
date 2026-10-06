@@ -11,5 +11,15 @@
 #   - 安装：pip install -r requirements.txt
 #   - 本机开发环境位于 D:\FPGA\.venvs\motion（venv 建在仓库之外，不入库）
 
+# --- 黄金参考本身 ---
 numpy==2.2.6
 opencv-python==4.12.0.88
+
+# --- 出图用（data/golden/make_figures.py、src/ps/cdnet_demo.py）---
+# 中文标签需要系统里有 Microsoft YaHei / SimHei 字体（Windows 自带）。
+matplotlib==3.10.8
+
+# --- 生成测试片段用（data/golden/make_test_clip.py）---
+# 提供 ffmpeg 可执行文件，用来把无损母版另存一份 H.264 MP4 供人眼观看。
+# 缺了它脚本照样跑，只是不产出 *_view.mp4（Windows 自带播放器放不开 FFV1 母版）。
+imageio-ffmpeg==0.6.0
