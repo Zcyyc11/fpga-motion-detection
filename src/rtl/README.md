@@ -22,7 +22,6 @@
 | `morph3x3.v` | ⑦ 形态学 | 3×3 单步腐蚀/膨胀；零扩展、居中锚点、每帧独立 |
 | `bbox.v` | ⑧ 包围盒 | 全局并集框 x1/y1/x2/y2 + 面积门限 |
 | `overlay.v` | ⑨ 叠加 | 把包围盒画回画面（红框）+ 左上角状态灯（绿=检出） |
-| `gray.v` | ① 预处理 | RGB → 灰度（BT.601 整数近似）；**仅 HDMI 输入通路使用，当前未接入** |
 | `md_pipeline.v` | 整机 | 把①~⑨串成一条流水线，输出视频 + 包围盒 + 掩码探针 |
 
 ## 板级（`board/`）
@@ -38,7 +37,7 @@
 |---|---|
 | `timing_ctrl.v` | `video_timing.v` |
 | `hdmi_in_ctrl.v` | **未实现**（HDMI 输入侧尚未接入） |
-| `gray_conv.v` | `gray.v` |
+| `gray_conv.v` | **未实现** —— 曾以 `gray.v` 存在过，但**全仓没有任何模块例化它**（只是被 `*.v` 通配符搭便车编进仿真与综合），已于 2026-10-06 移出仓库；接 HDMI 输入时需重写（BT.601 整数近似，不复杂） |
 | `frame_buffer.v` | `frame_buf.v` + `downsample2x2.v`（压缩与缓存拆成两个模块） |
 | `frame_diff.v` | `diff_stage.v`（帧差与背景建模共用，靠 `MODE_BG` 切换） |
 | `thresh_bin.v` | `threshold.v` |

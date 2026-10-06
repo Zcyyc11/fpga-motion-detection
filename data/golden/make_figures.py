@@ -126,7 +126,7 @@ def fig_error(boxes, res):
     ax.text(frames[-1], -8, "  −8 px  (= d/2, d=16)", color=C_BAD,
             va="center", ha="left", fontsize=10)
     ax.set_xlabel("帧号", fontsize=11)
-    ax.set_ylabel("质心 x 方向偏差（像素）", fontsize=11)
+    ax.set_ylabel("外接框中心 x 方向偏差（像素）", fontsize=11)
     ax.set_title("逐帧偏差：基线恒定偏 −8 像素，两种改法都压在 0", fontsize=13)
     ax.set_ylim(-11, 3)
     ax.set_xlim(frames[0] - 1, frames[-1] + 14)

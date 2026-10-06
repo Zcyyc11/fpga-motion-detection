@@ -93,7 +93,11 @@ foreach p {CONFIG.kClkRange CONFIG.kClkPrimitive CONFIG.kGenerateSerialClk CONFI
 # ---------------------------------------------------------------- 3) 加源码与约束
 add_files -norecurse [concat [glob -nocomplain [file join $RTL_DIR *.v]] \
                               [glob -nocomplain [file join $RTL_BOARD *.v]]]
-add_files -fileset constrs_1 -norecurse [glob -nocomplain [file join $BOARD_DIR *.xdc]]
+# 约束文件**只加真正生效的那一份**。board/ 下另有 pynq-z2_v1.0_official.xdc ——
+# 那是官方原件的完整留存，**整份都是注释行**（按需取消注释），用途是逐条对照、不是生效约束。
+# ★ 之前这里用 `glob *.xdc`，会把那份注释件也塞进 constrs_1：虽然是空操作（一行有效约束都没有），
+#   但会让人误以为工程里有两份约束在生效，排查引脚/时序问题时先被自己误导一轮。
+add_files -fileset constrs_1 -norecurse [file join $BOARD_DIR pynq_z2_hdmi_out.xdc]
 set_property top $TOP [current_fileset]
 update_compile_order -fileset sources_1
 puts "加入的 RTL："

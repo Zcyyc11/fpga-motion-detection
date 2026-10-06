@@ -2,7 +2,6 @@ D:/FPGA/fpga-motion-detection/src/rtl/bbox.v
 D:/FPGA/fpga-motion-detection/src/rtl/diff_stage.v
 D:/FPGA/fpga-motion-detection/src/rtl/downsample2x2.v
 D:/FPGA/fpga-motion-detection/src/rtl/frame_buf.v
-D:/FPGA/fpga-motion-detection/src/rtl/gray.v
 D:/FPGA/fpga-motion-detection/src/rtl/md_pipeline.v
 D:/FPGA/fpga-motion-detection/src/rtl/morph3x3.v
 D:/FPGA/fpga-motion-detection/src/rtl/morph_open.v
