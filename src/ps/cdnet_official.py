@@ -65,6 +65,7 @@ def main():
             raise lab.no_sequence_error(root, src)
         lab.describe_data_root(root, src)
         keys = lab.select_sequences(allseq, args.seq)
+        lab.precheck_sequences(allseq, keys)
     except lab.DataRootError as e:
         sys.stderr.write("\n[数据未就绪] %s\n\n" % e)
         return 1

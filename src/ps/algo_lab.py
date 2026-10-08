@@ -164,6 +164,49 @@ def no_sequence_error(root, src):
         % (root, src))
 
 
+def precheck_sequences(allseq, targets):
+    """★ 跑之前先检查每条序列的**输入与真值**齐不齐。
+
+    为什么必须提前查：
+      · 缺 input/ 或 groundtruth/ → 会在跑一半时炸成一大段 Python traceback，
+        队友根本看不出"是我数据没下全"；
+      · 更隐蔽的是：真值图片读不出来时 cv2.imread 返回 None，旧代码**静默继续**，
+        拿着 None 当标签算分 —— 不报错，但分数是错的。
+    所以这里一次性把缺什么列清楚，然后抛错退出（退出码非 0）。
+    """
+    problems = []
+    for nm in targets:
+        d = allseq[nm]
+        miss = []
+        if not os.path.isfile(os.path.join(d, "temporalROI.txt")):
+            miss.append("temporalROI.txt（缺失）")
+        for sub, label in (("input", "input/"), ("groundtruth", "groundtruth/")):
+            p = os.path.join(d, sub)
+            if not os.path.isdir(p):
+                miss.append("%s（缺失）" % label)
+            elif not os.listdir(p):
+                miss.append("%s（空目录）" % label)
+        if miss:
+            problems.append((nm, d, miss))
+    if not problems:
+        return
+    lines = ["以下序列的数据不完整，跑不出可信的分数："]
+    for nm, d, miss in problems:
+        lines.append("  %s" % nm)
+        lines.append("      目录：%s" % d)
+        lines.append("      缺：%s" % "、".join(miss))
+    lines += [
+        "",
+        "  CDnet2014 每条序列应该是这样的结构：",
+        "      <序列>\\temporalROI.txt     ← 帧号区间",
+        "              \\input\\*.jpg       ← 输入帧图",
+        "              \\groundtruth\\*.png ← 真值图",
+        "  多半是数据集没解压完整，或下载时漏了某个类别。",
+        "  确认无误可先跑 `python src/ps/algo_lab.py --data-root \"...\" --list` 看看。",
+    ]
+    raise DataRootError("\n".join(lines))
+
+
 # --------------------------------------------------------------------------
 # 与硬件一致的 2×2 前缀
 # --------------------------------------------------------------------------
@@ -552,6 +595,7 @@ def main():
                 print("   ", k)
             return 0
         targets = select_sequences(allseq, args.seq)
+        precheck_sequences(allseq, targets)
     except DataRootError as e:
         sys.stderr.write("\n[数据未就绪] %s\n\n" % e)
         return 1
