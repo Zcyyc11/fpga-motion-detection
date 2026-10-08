@@ -365,6 +365,15 @@ def main():
     #   不加后缀的话，`--source algo` 会把 clean 版的同名产物直接覆盖，跑一次就没了。
     TAG = "" if args.source == "clean" else "_" + str(args.source)
 
+    # ★ --outdir 指向的目录可能还不存在。**必须先建**：
+    #   cv2.VideoWriter 不会自动创建目录，open(..., "w") 也会直接抛
+    #   FileNotFoundError —— 表现为"跑完了但产物没出来、退出码 1"，很难查。
+    try:
+        os.makedirs(args.outdir, exist_ok=True)
+    except OSError as e:
+        sys.stderr.write("\n[输出目录不可用] %s\n  --outdir=%s\n\n" % (e, args.outdir))
+        return 1
+
     truth = load_truth(os.path.splitext(args.clip)[0] + "_groundtruth.csv")
     cap = cv2.VideoCapture(args.clip)
     if not cap.isOpened():
@@ -602,7 +611,7 @@ def main():
     print("逐帧结果          : %s" % csvp)
     if vw is not None:
         print("可视化            : %s（绿细框=真值，红粗框=我们检出的，带 id 与瞬时速度）"
-              % os.path.join(args.outdir, "track_result.mp4"))
+              % os.path.join(args.outdir, "track_result%s.mp4" % TAG))
     return 0
 
 
