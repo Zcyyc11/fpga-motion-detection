@@ -361,6 +361,10 @@ def main():
     ap.add_argument("--dwell", type=float, default=3.0, help="停留多少秒算滞留")
     args = ap.parse_args()
 
+    # ★ 产物文件名按检测模式带后缀：clean 保持原名，algo 加 _algo。
+    #   不加后缀的话，`--source algo` 会把 clean 版的同名产物直接覆盖，跑一次就没了。
+    TAG = "" if args.source == "clean" else "_" + str(args.source)
+
     truth = load_truth(os.path.splitext(args.clip)[0] + "_groundtruth.csv")
     cap = cv2.VideoCapture(args.clip)
     if not cap.isOpened():
@@ -371,7 +375,9 @@ def main():
 
     vw = None
     if args.video:
-        vpath = os.path.join(args.outdir, "track_result.mp4")
+        # ★ 输出名按模式带后缀（clean 用原名，algo 加 _algo）。
+        #   否则 `--source algo` 会把 clean 版的产物直接覆盖掉，跑一次就没了。
+        vpath = os.path.join(args.outdir, "track_result%s.mp4" % TAG)
         vw = cv2.VideoWriter(vpath, cv2.VideoWriter_fourcc(*"mp4v"), fps, (W, H))
 
     masks = None
@@ -579,7 +585,7 @@ def main():
             if len(rule.events) > 12:
                 print("  ...（共 %d 条，全量见 CSV）" % len(rule.events))
         if rule.events:
-            evp = os.path.join(args.outdir, "alarm_events.csv")
+            evp = os.path.join(args.outdir, "alarm_events%s.csv" % TAG)
             with open(evp, "w", newline="", encoding="utf-8") as fh:
                 w = csv.writer(fh)
                 w.writerow(["frame", "tid", "kind", "cx", "cy", "detail"])
@@ -588,7 +594,7 @@ def main():
                     w.writerow([ev["frame"], ev["tid"], ev["kind"], ev["cx"], ev["cy"], detail])
             print("告警流水          : %s" % evp)
 
-    csvp = os.path.join(args.outdir, "multi_track_results.csv")
+    csvp = os.path.join(args.outdir, "multi_track_results%s.csv" % TAG)
     with open(csvp, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["frame", "n_gt", "n_det", "merged", "n_tracks", "id_switches_cum"])

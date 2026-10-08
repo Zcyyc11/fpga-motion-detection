@@ -34,7 +34,13 @@ import cv2
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdnet_demo as cd          # noqa: E402
 
-DATA_ROOT = r"D:\FPGA\datasets\cdnet2014"
+# ★ 数据集位置：**不要写死**。
+#   本机默认 D:\FPGA\datasets\cdnet2014；换机器/换盘时用环境变量覆盖：
+#     Windows:  set MOTION_CDNET_ROOT=D:\path\to\cdnet2014
+#     Linux:    export MOTION_CDNET_ROOT=/path/to/cdnet2014
+#   找不到时 discover() 返回空字典，脚本会一条序列都列不出来 —— 不会崩，但什么都跑不了。
+#   数据集体积约 0.96 GB / 5.2 万文件，**不能进 git**，所以只能靠本地放置 + 这个变量。
+DATA_ROOT = os.environ.get("MOTION_CDNET_ROOT", r"D:\FPGA\datasets\cdnet2014")
 ALIAS = {                       # 旧名字 -> 类别/序列
     "pedestrians": "baseline/pedestrians",
     "canoe": "dynamicBackground/canoe",
@@ -58,6 +64,26 @@ def discover():
             if os.path.isfile(os.path.join(sp, "temporalROI.txt")):
                 out["%s/%s" % (cat, seq)] = sp
     return out
+
+
+def print_no_data_hint():
+    """一条序列都扫不到时，把「为什么」和「怎么修」直接说出来 —— 不静默失败。"""
+    print("")
+    print("！没有找到任何 CDnet 序列")
+    print("  当前查找位置：%s" % DATA_ROOT)
+    print("  该位置%s" % ("存在，但里面没有子目录带 temporalROI.txt"
+                        if os.path.isdir(DATA_ROOT) else "不存在"))
+    print("  怎么修（两种任选）：")
+    print("    1) 把 CDnet2014 数据集放到上面那个位置；")
+    print("    2) 换机器/换盘时，用环境变量指过去：")
+    print("         Windows:  set MOTION_CDNET_ROOT=D:\\path\\to\\cdnet2014")
+    print("         Linux:    export MOTION_CDNET_ROOT=/path/to/cdnet2014")
+    print("  数据集约 0.96 GB / 5.2 万个文件，**不能进 git**，只能本地放置。")
+    print("  没有数据集时仍可跑的：")
+    print("    · 跟踪与告警    python multi_track.py --source algo --alarm --line-x 640")
+    print("    · RTL 仿真      python build\\scripts\\run_sim.py")
+    print("    · 看已归档的评测结果：src/ps/cdnet_official_results*.csv（不需要数据集）")
+    print("")
 
 
 # --------------------------------------------------------------------------
@@ -438,9 +464,11 @@ def main():
         print("可用序列 (%d)：" % len(allseq))
         for k in sorted(allseq):
             print("   ", k)
+        if not allseq:
+            print_no_data_hint()
         return 0
     if not allseq:
-        print("没扫到序列：%s" % DATA_ROOT)
+        print_no_data_hint()
         return 1
 
     if args.seq == "all":

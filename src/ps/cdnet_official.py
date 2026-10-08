@@ -54,6 +54,10 @@ def main():
 
     cands = lab.SETS[args.set] if args.set else CANDS
     allseq = lab.discover()
+    if not allseq:
+        # ★ 别静默输出一张空表 —— 那会让队友以为是算法坏了，其实是数据没到位
+        lab.print_no_data_hint()
+        return 1
     keys = sorted(allseq) if args.seq == "all" else \
         [lab.ALIAS.get(s.strip(), s.strip()) for s in args.seq.split(",") if s.strip()]
 

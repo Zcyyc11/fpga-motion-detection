@@ -49,9 +49,12 @@ plt.rcParams["axes.unicode_minus"] = False
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdnet_demo as cd          # noqa: E402  复用 ROI 读取 / 指标 的规矩
 
+# ★ 同 algo_lab.py：数据集位置用环境变量覆盖，别写死本机路径。
+#   set MOTION_CDNET_ROOT=D:\path\to\cdnet2014
+_ROOT = os.environ.get("MOTION_CDNET_ROOT", r"D:\FPGA\datasets\cdnet2014")
 SEQ = {
-    "pedestrians": r"D:\FPGA\datasets\cdnet2014\baseline\pedestrians",
-    "canoe": r"D:\FPGA\datasets\cdnet2014\dynamicBackground\canoe",
+    "pedestrians": os.path.join(_ROOT, "baseline", "pedestrians"),
+    "canoe": os.path.join(_ROOT, "dynamicBackground", "canoe"),
 }
 
 THRESH_REF1 = 70     # 参考作品 #1 里硬编码的阈值（2×2 和域）
