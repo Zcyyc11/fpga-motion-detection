@@ -84,12 +84,13 @@ build\scripts\build_vivado.bat 0
 | 目录 | 放什么 |
 |---|---|
 | `src/rtl/` | 自研算法流水线 **11 个 `.v`**（含整机 `md_pipeline.v`）+ `board/` 板级外壳 **2 个 `.v`** |
-| `src/ps/` | PS 侧**对照用**脚本 —— 黄金参考 / 硬件模型 / 数据集 A-B，**不是作品实现** |
+| `src/ps/` | ① 硬件模型的**黄金参考**（对照用）② **算法实验台** `algo_lab.py` + `cdnet_official.py`（PC 侧迭代算法，结果 CSV 就是成绩表的证据链）③ `multi_track.py`（多目标 + 跟踪 + 越界告警） |
 | `src/hls/` | 空目录，只留「为什么不走 HLS」的说明 |
 | `sim/` | testbench、仿真产物、与硬件模型的对照报告 |
 | `build/` | 可复现构建脚本、综合实现报告、bitstream |
 | `board/` | 板级约束（**生效的只有 `pynq_z2_hdmi_out.xdc`**）、overlay 与实测日志（待补） |
 | `data/` | 黄金参考（合成片段 + 逐帧真值）与采集素材说明 |
+| `docs/` | **给队友看的**：`入门.md`（30 分钟跑通）、`接口冻结表.md`（改接口前必读） |
 | `skill/` · `report/` | 技能包 · 设计报告与大模型协作记录 |
 
 ## 6. 环境要求
