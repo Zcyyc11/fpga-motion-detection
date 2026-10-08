@@ -18,9 +18,12 @@
 
 用法
 ----
-  python cdnet_demo.py --seq <序列目录>
-  python cdnet_demo.py --seq D:\\FPGA\\datasets\\cdnet2014\\dynamicBackground\\canoe
-  python cdnet_demo.py --seq <序列目录> --frames 150 --thresh 25 --kernel 3
+  本脚本直接收**单个序列目录**（含 input/ 与 groundtruth/），不读全局数据根 ——
+  想按类别批量扫、算总成绩，请用 algo_lab.py / cdnet_official.py（那边有 --data-root）。
+
+  可在仓库根目录给（Windows 路径含空格要加引号）：
+  python src\\ps\\cdnet_demo.py --seq "E:\\我的数据\\cdnet2014\\dynamicBackground\\canoe"
+  python src\\ps\\cdnet_demo.py --seq <序列目录> --frames 150 --thresh 25 --kernel 3
 """
 
 import argparse

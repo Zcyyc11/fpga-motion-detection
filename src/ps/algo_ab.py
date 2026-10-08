@@ -48,14 +48,20 @@ plt.rcParams["axes.unicode_minus"] = False
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdnet_demo as cd          # noqa: E402  复用 ROI 读取 / 指标 的规矩
+import algo_lab as lab           # noqa: E402  复用**唯一**的数据根解析（--data-root / CDNET_ROOT）
 
-# ★ 同 algo_lab.py：数据集位置用环境变量覆盖，别写死本机路径。
-#   set MOTION_CDNET_ROOT=D:\path\to\cdnet2014
-_ROOT = os.environ.get("MOTION_CDNET_ROOT", r"D:\FPGA\datasets\cdnet2014")
-SEQ = {
-    "pedestrians": os.path.join(_ROOT, "baseline", "pedestrians"),
-    "canoe": os.path.join(_ROOT, "dynamicBackground", "canoe"),
-}
+# ★ 数据根不再有默认值。algo_ab 只做两条序列的 A/B，但根目录必须和 algo_lab 用同一套解析，
+#   否则两个入口会指向不同的数据集 —— 那比只改一处更糟。
+#   SEQ 在 main() 里按运行时解析出来的根填（见 resolve_seq_dir）。
+SEQ = {}
+
+
+def resolve_seq_dir(root):
+    """把 (pedestrians, canoe) 两条序列的目录按给定数据根拼出来。"""
+    return {
+        "pedestrians": os.path.join(root, "baseline", "pedestrians"),
+        "canoe": os.path.join(root, "dynamicBackground", "canoe"),
+    }
 
 THRESH_REF1 = 70     # 参考作品 #1 里硬编码的阈值（2×2 和域）
 KSIZE = 3            # 形态学核边长
@@ -157,14 +163,35 @@ def summarize(rows):
 
 
 def main():
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(
+        description="帧差法 vs 背景建模 A/B（只改第 2 步）｜ 需要 CDnet2014 数据集")
+    lab.add_data_root_arg(ap)          # ← 与 algo_lab / cdnet_official 同一套解析
     ap.add_argument("--seq", default="both", choices=["both", "pedestrians", "canoe"])
     ap.add_argument("--frames", type=int, default=0)
     ap.add_argument("--alpha", type=float, default=0.02)
     ap.add_argument("--sweep", action="store_true")
     args = ap.parse_args()
 
+    # ★ 数据根没配好就明确报错退出，不静默
+    try:
+        root, src = lab.resolve_data_root(args.data_root)
+        SEQ.update(resolve_seq_dir(root))
+        lab.describe_data_root(root, src)
+    except lab.DataRootError as e:
+        sys.stderr.write("\n[数据未就绪] %s\n\n" % e)
+        return 1
+
+    missing = [k for k, v in SEQ.items() if not os.path.isdir(v)]
+    if missing:
+        sys.stderr.write(
+            "\n[数据缺失] 下列序列目录不存在：\n%s\n"
+            "  数据根（来源 %s）：%s\n"
+            "  algo_ab 固定跑 baseline/pedestrians 与 dynamicBackground/canoe 两条。\n\n"
+            % ("\n".join("  %-12s %s" % (k, SEQ[k]) for k in missing), src, root))
+        return 1
+
     targets = list(SEQ) if args.seq == "both" else [args.seq]
+    print("选中序列 %d 条：%s" % (len(targets), ", ".join(targets)))
     print("阈值 = %d（照抄参考作品 #1 的硬编码值，2×2 和域）｜形态学核 = %d"
           % (THRESH_REF1, KSIZE))
     print()

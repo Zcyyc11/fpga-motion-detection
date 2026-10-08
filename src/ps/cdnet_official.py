@@ -46,23 +46,33 @@ CANDS = [lab.V0, lab.V4, lab.V7, lab.V10, lab.V11, lab.V12]
 
 
 def main():
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(
+        description="CDnet 官方口径评测（整段汇总 + 类别平均）｜ 需要 CDnet2014 数据集")
+    lab.add_data_root_arg(ap)     # ← 与 algo_lab 共用同一套解析，优先级一致
     ap.add_argument("--seq", default="all")
     ap.add_argument("--frames", type=int, default=0)
     ap.add_argument("--set", default="", help="用 algo_lab 里的变体集名（如 r5）；默认用 CANDS")
     args = ap.parse_args()
 
     cands = lab.SETS[args.set] if args.set else CANDS
-    allseq = lab.discover()
-    if not allseq:
-        # ★ 别静默输出一张空表 —— 那会让队友以为是算法坏了，其实是数据没到位
-        lab.print_no_data_hint()
+
+    # ★ 数据根没配好 / 目录不存在 / 没序列 / 点名的序列不存在 —— 一律非零退出，
+    #   绝不静默输出一张"看起来跑完了"的空表。
+    try:
+        root, src = lab.resolve_data_root(args.data_root)
+        allseq = lab.discover(root)
+        if not allseq:
+            raise lab.no_sequence_error(root, src)
+        lab.describe_data_root(root, src)
+        keys = lab.select_sequences(allseq, args.seq)
+    except lab.DataRootError as e:
+        sys.stderr.write("\n[数据未就绪] %s\n\n" % e)
         return 1
-    keys = sorted(allseq) if args.seq == "all" else \
-        [lab.ALIAS.get(s.strip(), s.strip()) for s in args.seq.split(",") if s.strip()]
 
     print("=" * 98)
     print("CDnet 官方口径（整段汇总 + 类别平均）｜ ★ = 该序列在官方口径下的最佳变体")
+    print("=" * 98)
+    print("选中序列 %d 条：%s" % (len(keys), ", ".join(keys)))
     print("=" * 98)
     per_cat = {}          # label -> {cat: [f1...]}
     rows_csv = []

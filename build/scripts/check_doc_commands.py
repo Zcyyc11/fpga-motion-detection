@@ -24,6 +24,7 @@ import argparse
 import io
 import os
 import re
+import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -33,6 +34,8 @@ REPO = os.path.abspath(os.path.join(HERE, "..", ".."))
 CMD_RE = re.compile(r"python\s+([A-Za-z0-9_./\\-]+\.py)((?:\s+--?[A-Za-z0-9_-]+)*)")
 # 匹配脚本里定义的参数
 ARG_RE = re.compile(r"add_argument\(\s*[\"'](--[A-Za-z0-9_-]+)[\"']")
+# 兜底：源码任意位置出现的 "--xxx" 字面量（覆盖动态 add_argument 的情况）
+QUOTED_ARG_RE = re.compile(r"[\"'](--[A-Za-z0-9_-]+)[\"']")
 
 SKIP_DIRS = {".git", ".Xil", "__pycache__", "build/vivado", "datasets",
              "sim/xsim.dir", ".pytest_cache"}
@@ -52,13 +55,110 @@ def repo_files(ext):
     return sorted(out)
 
 
+def candidate_pythons():
+    """试哪个解释器来跑 --help。
+
+    ★ 不能只用 sys.executable —— 本校验器自己跑在一个"没装 numpy/opencv"的
+    环境里，拿它跑目标脚本会在 import 阶段就挂，--help 永远拿不到。
+    所以按优先级试：环境变量指定 → 仓库根的 .venv（入门文档第 1 步就是教人建它）
+    → 当前解释器 → PATH 里的 python。
+    """
+    c = []
+    env = os.environ.get("MOTION_PYTHON")
+    if env:
+        c.append(env)
+    c.append(os.path.join(REPO, ".venv", "Scripts", "python.exe"))
+    c.append(os.path.join(REPO, ".venv", "bin", "python"))
+    c.append(sys.executable)
+    c.append("python")
+    seen, out = set(), []
+    for x in c:
+        if x not in seen:
+            seen.add(x)
+            out.append(x)
+    return out
+
+
+def params_from_help(path):
+    """★ 最可靠：真跑一次 --help，从 argparse 生成的 usage 行里取参数。
+
+    为什么不能只看源码：参数可能由公共函数动态装上（例如 algo_lab.add_data_root_arg
+    给几个入口统一加 --data-root），调用方源码里没有 add_argument("--data-root" 字面量。
+    只看 usage 行还有个好处：help 文本里提到的 --xxx 不会混进来（argparse 的 usage
+    只列真实存在的参数），避免假阳性。
+
+    全部解释器都跑不起来时返回 None，交给源码解析兜底。
+    """
+    for py in candidate_pythons():
+        try:
+            r = subprocess.run([py, path, "--help"],
+                               capture_output=True, text=True, timeout=120,
+                               encoding="utf-8", errors="replace",
+                               cwd=os.path.dirname(path))
+        except Exception:
+            continue
+        out = (r.stdout or "") + (r.stderr or "")
+        if "usage:" not in out:
+            continue
+        # usage 段：从 "usage:" 到第一个空行（argparse 可能换行）
+        usage, grab = [], False
+        for line in out.split("\n"):
+            if line.startswith("usage:"):
+                grab = True
+                usage.append(line)
+                continue
+            if grab:
+                if not line.strip():
+                    break
+                usage.append(line)
+        if usage:
+            return set(re.findall(r"(--[A-Za-z0-9_-]+)", "\n".join(usage))), "实际 --help"
+    return None, None
+
+
+def dynamic_params(script_path):
+    """展开脚本里调的 add_xxx_arg(ap) 形式的公共参数安装函数。
+
+    例：cdnet_official.py 调 lab.add_data_root_arg(ap)，函数定义在 algo_lab.py，
+        所以 --data-root 在 cdnet_official.py 的源码里找不到字面量。这里去同目录
+    的其它 .py 里找到该函数定义，把它内部 add_argument 的参数收进来。
+    """
+    try:
+        src = io.open(script_path, encoding="utf-8", errors="replace").read()
+    except Exception:
+        return set()
+    called = set(re.findall(r"\b(add_[a-z0-9_]+_arg)\s*\(", src))
+    if not called:
+        return set()
+    out = set()
+    d = os.path.dirname(script_path)
+    for name in os.listdir(d):
+        if not name.endswith(".py"):
+            continue
+        try:
+            s = io.open(os.path.join(d, name), encoding="utf-8",
+                        errors="replace").read()
+        except Exception:
+            continue
+        for fn in called:
+            m = re.search(r"def\s+%s\s*\([^)]*\)\s*:(.*?)(?=\ndef |\nclass |\Z)"
+                          % re.escape(fn), s, re.S)
+            if m:
+                out |= set(ARG_RE.findall(m.group(1)))
+    return out
+
+
 def script_params(path):
-    """读脚本源码，抽出它定义的全部 --参数。"""
+    """返回 (参数集, 来源说明)。优先实际 --help，其次源码正则 + 动态函数展开。"""
+    from_help, how = params_from_help(path)
+    if from_help:
+        return from_help, how
     try:
         src = io.open(path, encoding="utf-8", errors="replace").read()
     except Exception:
-        return None
-    return set(ARG_RE.findall(src))
+        return None, None
+    params = set(ARG_RE.findall(src)) | dynamic_params(path)
+    return params, "源码解析（--help 跑不起来）"
 
 
 def find_by_basename(base):
@@ -99,6 +199,7 @@ def main():
     cache = {}
 
     errors = []
+    loose_hits = []
     checked = 0
 
     for md in repo_files(".md"):
@@ -121,11 +222,13 @@ def main():
 
                 if full not in cache:
                     cache[full] = script_params(full)
-                params = cache[full]
+                params, how = cache[full]
                 if params is None:
                     continue
 
-                # 该脚本完全没定义参数 → 命令行参数无从谈起，跳过（多半是 demo 脚本）
+                if how.startswith("源码正则"):
+                    loose_hits.append("%s（--help 跑不起来，靠源码正则）"
+                                     % os.path.basename(raw_script))
                 if not params:
                     continue
 
@@ -133,22 +236,25 @@ def main():
                     if u not in params:
                         errors.append(
                             "%s:%d  ★ %s **没有**参数 %s\n"
-                            "        （该脚本定义的参数：%s）"
+                            "        （该脚本实际支持的参数：%s）"
                             % (rel_md, i, os.path.basename(raw_script), u,
-                               ", ".join(sorted(params)))
-                        )
+                               ", ".join(sorted(params))))
 
     print("检查了 %d 条命令（来自 %d 个 .md）" % (checked, len(repo_files(".md"))))
+    if loose_hits:
+        uniq = sorted(set(loose_hits))
+        print("  （%d 个脚本的 --help 跑不起来，靠源码正则兜底，可靠性稍低：%s）"
+              % (len(uniq), "、".join(uniq)))
     if errors:
         print("")
         print("★ 发现 %d 个问题：" % len(errors))
         for e in errors:
             print("   " + e)
         print("")
-        print("修法：打开对应脚本，看它 argparse 里的真实参数名，别照记忆抄。")
+        print("修法：跑一下该脚本的 --help，看它到底支持哪些参数，别照记忆抄。")
         return 1
 
-    print("✅ 文档里所有命令的参数都真实存在")
+    print("✅ 文档里所有命令的参数都真实存在（依据：各脚本实际的 --help 输出）")
     return 0
 
 

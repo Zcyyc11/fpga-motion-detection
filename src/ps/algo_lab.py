@@ -34,13 +34,15 @@ import cv2
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdnet_demo as cd          # noqa: E402
 
-# ★ 数据集位置：**不要写死**。
-#   本机默认 D:\FPGA\datasets\cdnet2014；换机器/换盘时用环境变量覆盖：
-#     Windows:  set MOTION_CDNET_ROOT=D:\path\to\cdnet2014
-#     Linux:    export MOTION_CDNET_ROOT=/path/to/cdnet2014
-#   找不到时 discover() 返回空字典，脚本会一条序列都列不出来 —— 不会崩，但什么都跑不了。
-#   数据集体积约 0.96 GB / 5.2 万文件，**不能进 git**，所以只能靠本地放置 + 这个变量。
-DATA_ROOT = os.environ.get("MOTION_CDNET_ROOT", r"D:\FPGA\datasets\cdnet2014")
+# ★★ 数据根目录：**刻意不给默认值**。
+#   原先这里硬编码 `D:\FPGA\datasets\cdnet2014` —— 换个机器/换个人跑就静默找不到数据，
+#   而且"能跑但跑不出结果"最难查。现在按优先级解析，**没配就明确报错**：
+#       1) 命令行   --data-root <目录>      （优先级最高）
+#       2) 环境变量 CDNET_ROOT
+#       3) 都没有   → 报错并说明怎么配（不猜、不静默）
+#   数据集约 0.96 GB / 5.2 万个文件，**不进 git**（GitHub 单文件上限 100 MB），只能本地放置。
+ENV_DATA_ROOT = "CDNET_ROOT"      # 环境变量名
+
 ALIAS = {                       # 旧名字 -> 类别/序列
     "pedestrians": "baseline/pedestrians",
     "canoe": "dynamicBackground/canoe",
@@ -49,14 +51,74 @@ ALIAS = {                       # 旧名字 -> 类别/序列
 THRESH_REF1 = 70      # 参考作品 #1 硬编码阈值（2×2 和域）
 
 
+class DataRootError(Exception):
+    """数据根没配好 / 不存在 / 里没有序列。入口统一 catch 后返回**非零**退出码。"""
+
+
+def add_data_root_arg(parser):
+    """给 argparse 装上 --data-root。所有评测入口共用，避免各写一套。"""
+    parser.add_argument(
+        "--data-root", default=None,
+        help="CDnet2014 数据根目录（指向**含类别目录**的那一级，"
+             "里面是 baseline/ badWeather/ ...）。优先级高于环境变量 %s。"
+             "支持中文与空格路径（shell 里记得加引号）。" % ENV_DATA_ROOT)
+    return parser
+
+
+def resolve_data_root(explicit=None):
+    """解析最终的数据根目录。
+
+    优先级：--data-root > 环境变量 CDNET_ROOT > 报错。
+    返回 (绝对路径, 来源说明)。失败一律抛 DataRootError —— 绝不返回一个猜的路径。
+    """
+    if explicit is not None and str(explicit).strip():
+        raw, src = str(explicit).strip(), "命令行 --data-root"
+    else:
+        raw = os.environ.get(ENV_DATA_ROOT, "").strip()
+        src = "环境变量 %s" % ENV_DATA_ROOT if raw else ""
+
+    if not raw:
+        raise DataRootError(
+            "没有指定 CDnet 数据根目录。**本项目刻意不给默认值**"
+            "（这里曾经硬编码某个人的磁盘路径，换机器就静默跑不了）。\n"
+            "  二选一：\n"
+            "    1) 命令行：    python 本脚本.py --data-root \"D:\\我的数据\\cdnet2014\"\n"
+            "    2) 环境变量：  set %s=D:\\我的数据\\cdnet2014\n"
+            "  ★ 目录要指向**含类别目录**的那一级，结构应该是：\n"
+            "        cdnet2014\\baseline\\highway\\temporalROI.txt\n"
+            "                          \\input\\...\n"
+            "                          \\groundtruth\\...\n"
+            "  数据集约 0.96 GB / 5.2 万个文件，不进 git（GitHub 单文件上限 100 MB）。"
+            % ENV_DATA_ROOT)
+
+    # 支持 %VAR% 与 ~，再转绝对路径（相对路径随 cwd 变，最容易踩）
+    root = os.path.abspath(os.path.expandvars(os.path.expanduser(raw)))
+
+    if not os.path.isdir(root):
+        raise DataRootError(
+            "数据根目录不存在：%s\n  （来源：%s）\n"
+            "  注意要指向**含类别目录**的那一级，不是它的子目录或上级目录。"
+            % (root, src))
+    return root, src
+
+
+def describe_data_root(root, src):
+    """按要求把'最终用了哪个目录、来源是什么'打出来。"""
+    print("数据根目录：%s" % root)
+    print("  来源：%s" % src)
+
+
 # --------------------------------------------------------------------------
-def discover():
-    """扫出所有可用序列：<类别>/<序列> -> 目录。"""
+def discover(root):
+    """扫出所有可用序列：<类别>/<序列> -> 目录。
+
+    root 由 resolve_data_root() 给出，**刻意不给默认值** —— 免得调用方
+    不小心悄悄用了一个猜测的路径。返回空字典表示"目录在但里面没有序列"，
+    调用方必须自己判空并报错，不许当成"跑完了，0 条序列"。
+    """
     out = {}
-    if not os.path.isdir(DATA_ROOT):
-        return out
-    for cat in sorted(os.listdir(DATA_ROOT)):
-        cpath = os.path.join(DATA_ROOT, cat)
+    for cat in sorted(os.listdir(root)):
+        cpath = os.path.join(root, cat)
         if not os.path.isdir(cpath) or cat.startswith("_"):
             continue
         for seq in sorted(os.listdir(cpath)):
@@ -66,24 +128,40 @@ def discover():
     return out
 
 
-def print_no_data_hint():
-    """一条序列都扫不到时，把「为什么」和「怎么修」直接说出来 —— 不静默失败。"""
-    print("")
-    print("！没有找到任何 CDnet 序列")
-    print("  当前查找位置：%s" % DATA_ROOT)
-    print("  该位置%s" % ("存在，但里面没有子目录带 temporalROI.txt"
-                        if os.path.isdir(DATA_ROOT) else "不存在"))
-    print("  怎么修（两种任选）：")
-    print("    1) 把 CDnet2014 数据集放到上面那个位置；")
-    print("    2) 换机器/换盘时，用环境变量指过去：")
-    print("         Windows:  set MOTION_CDNET_ROOT=D:\\path\\to\\cdnet2014")
-    print("         Linux:    export MOTION_CDNET_ROOT=/path/to/cdnet2014")
-    print("  数据集约 0.96 GB / 5.2 万个文件，**不能进 git**，只能本地放置。")
-    print("  没有数据集时仍可跑的：")
-    print("    · 跟踪与告警    python multi_track.py --source algo --alarm --line-x 640")
-    print("    · RTL 仿真      python build\\scripts\\run_sim.py")
-    print("    · 看已归档的评测结果：src/ps/cdnet_official_results*.csv（不需要数据集）")
-    print("")
+def select_sequences(allseq, want):
+    """按 --seq 选目标序列（"all" 或逗号分隔的 类别/序列，旧名走 ALIAS）。
+
+    任何"点名了却不存在的序列"都直接抛错，**不静默跳过**。
+    """
+    if want == "all":
+        return sorted(allseq)
+    targets = []
+    for raw in [s.strip() for s in want.split(",") if s.strip()]:
+        key = ALIAS.get(raw, raw)
+        if key not in allseq:
+            raise DataRootError(
+                "指定的序列不存在：%r\n  可用序列（%d 条）：\n    %s\n"
+                "  用 --list 可以随时看这份列表。"
+                % (raw, len(allseq), "\n    ".join(sorted(allseq))))
+        targets.append(key)
+    return targets
+
+
+def no_sequence_error(root, src):
+    """目录在、但里面没有可用序列。返回一个异常对象，交给入口统一报错退出。"""
+    return DataRootError(
+        "目录存在，但一个可用序列都没扫到：%s\n  （来源：%s）\n"
+        "  一个序列要能被认出来，必须满足：\n"
+        "      <root>\\<类别>\\<序列>\\temporalROI.txt     ← 这个文件是标志\n"
+        "      <root>\\<类别>\\<序列>\\input\\...            ← 帧图\n"
+        "      <root>\\<类别>\\<序列>\\groundtruth\\...      ← 真值\n"
+        "  常见原因：① 指到了太深一层（应该是含类别目录的那一级）"
+        "② 指到了父目录 ③ 数据集没解压完整。\n"
+        "  没有数据集时仍可跑的：\n"
+        "    · 跟踪与告警   python src/ps/multi_track.py --source algo --alarm --line-x 640\n"
+        "    · RTL 仿真     python build/scripts/run_sim.py（需要 Vivado）\n"
+        "    · 看已归档的评测结果：src/ps/cdnet_official_results*.csv（不需要数据集）"
+        % (root, src))
 
 
 # --------------------------------------------------------------------------
@@ -450,7 +528,9 @@ def load_cached(seqdir, warmup=100, frames=0):
 
 
 def main():
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(
+        description="算法改进实验台（逐帧平均口径）｜ 需要 CDnet2014 数据集")
+    add_data_root_arg(ap)          # ← --data-root，优先级高于环境变量 CDNET_ROOT
     ap.add_argument("--seq", default="all",
                     help="all 或用逗号分隔 类别/序列（也接受旧名 pedestrians/canoe）")
     ap.add_argument("--set", default=DEFAULT_SET, choices=sorted(SETS))
@@ -459,34 +539,28 @@ def main():
     ap.add_argument("--list", action="store_true", help="只列出可用序列")
     args = ap.parse_args()
 
-    allseq = discover()
-    if args.list:
-        print("可用序列 (%d)：" % len(allseq))
-        for k in sorted(allseq):
-            print("   ", k)
+    # ---- 数据根目录：解析失败就明确报错退出，绝不静默跑一个"0 条序列"的空表 ----
+    try:
+        root, src = resolve_data_root(args.data_root)
+        allseq = discover(root)
         if not allseq:
-            print_no_data_hint()
-        return 0
-    if not allseq:
-        print_no_data_hint()
+            raise no_sequence_error(root, src)
+        describe_data_root(root, src)
+        if args.list:
+            print("可用序列 (%d)：" % len(allseq))
+            for k in sorted(allseq):
+                print("   ", k)
+            return 0
+        targets = select_sequences(allseq, args.seq)
+    except DataRootError as e:
+        sys.stderr.write("\n[数据未就绪] %s\n\n" % e)
         return 1
-
-    if args.seq == "all":
-        targets = sorted(allseq)
-    else:
-        targets = []
-        for raw in [s.strip() for s in args.seq.split(",") if s.strip()]:
-            key = ALIAS.get(raw, raw)
-            if key not in allseq:
-                print("未知序列 %r；--list 看可用列表" % raw)
-                return 1
-            targets.append(key)
 
     variants = SETS[args.set]
     print("=" * 92)
     print("算法改进实验台（逐帧平均口径）｜ 2×2 压缩域 ｜ 真值排除 50/85/170 ｜ 变体集 = %s"
           % args.set)
-    print("序列 %d 条：%s" % (len(targets), ", ".join(targets)))
+    print("选中序列 %d 条：%s" % (len(targets), ", ".join(targets)))
     print("=" * 92)
     sys.stdout.flush()
 
