@@ -33,6 +33,7 @@ import cv2
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdnet_demo as cd          # noqa: E402
+import cdnet_io as cio           # noqa: E402  唯一的数据读取/校验实现
 
 # ★★ 数据根目录：**刻意不给默认值**。
 #   原先这里硬编码 `D:\FPGA\datasets\cdnet2014` —— 换个机器/换个人跑就静默找不到数据，
@@ -50,9 +51,17 @@ ALIAS = {                       # 旧名字 -> 类别/序列
 
 THRESH_REF1 = 70      # 参考作品 #1 硬编码阈值（2×2 和域）
 
+# 背景模型开机预热帧数。预热帧不计分，且**允许没有真值**
+# （CDnet 官方只标注 temporalROI 区间内）。这个数只在此处定义一次。
+DEFAULT_WARMUP = 100
 
-class DataRootError(Exception):
-    """数据根没配好 / 不存在 / 里没有序列。入口统一 catch 后返回**非零**退出码。"""
+
+class DataRootError(cio.DataError):
+    """数据根没配好 / 不存在 / 里没有序列。入口统一 catch 后返回**非零**退出码。
+
+    继承 cio.DataError，所以入口只要 catch 基类，就能同时接住
+    "根目录不对" 和 "序列数据不全" 两类问题 —— 不用记两个异常名。
+    """
 
 
 def add_data_root_arg(parser):
@@ -164,47 +173,42 @@ def no_sequence_error(root, src):
         % (root, src))
 
 
-def precheck_sequences(allseq, targets):
-    """★ 跑之前先检查每条序列的**输入与真值**齐不齐。
+def precheck_sequences(allseq, targets, warmup=100, frames=0, decode=False):
+    """★ 开跑之前，按「本次实际要用的帧号」检查每条序列 —— 不齐就不开跑。
 
-    为什么必须提前查：
-      · 缺 input/ 或 groundtruth/ → 会在跑一半时炸成一大段 Python traceback，
-        队友根本看不出"是我数据没下全"；
-      · 更隐蔽的是：真值图片读不出来时 cv2.imread 返回 None，旧代码**静默继续**，
-        拿着 None 当标签算分 —— 不报错，但分数是错的。
-    所以这里一次性把缺什么列清楚，然后抛错退出（退出码非 0）。
+    为什么必须提前查，而且必须查到帧号这一层
+    ----------------------------------------
+    旧版只查「input/ 与 groundtruth/ 目录存在且非空」，于是三种情况全都漏过去：
+      · groundtruth 里有 1098 张图、唯独少了第 305 帧那一张 → 预检通过，
+        程序正常返回 0，还打印出一张看起来很正常的成绩表 —— **分数是错的**；
+      · 一张真值图损坏 → 旧代码用 np.zeros_like 填一张「全背景」当真值，
+        等于告诉算法「这帧没有目标」，召回率被悄悄吃掉，全程零报错；
+      · 一张输入图损坏 → 旧代码 continue 跳过去，后面的帧整体前移，
+        帧号与真值错位，分数同样是错的，也不报错。
+    这三种都比「直接崩溃」危险：崩溃你会去查数据，静默错分你会去调参数。
+
+    现在的规则（与 cdnet_io.load_seq 共用同一份实现，不会两边跑偏）
+    --------------------------------------------------------------
+      · 按本次运行**实际要用的帧号**逐帧查，不是「目录非空」就算过；
+      · 预热帧（帧号 < ROI 起点）**允许**没有真值 —— CDnet 官方本就只标注
+        ROI 区间内，不能无依据地要求预热阶段也有真值；
+      · 计分帧的真值**必须**存在、能解码、尺寸与输入一致；
+      · 缺帧、坏帧一律抛错，**不填零、不跳帧**。
     """
-    problems = []
+    bad = []
     for nm in targets:
-        d = allseq[nm]
-        miss = []
-        if not os.path.isfile(os.path.join(d, "temporalROI.txt")):
-            miss.append("temporalROI.txt（缺失）")
-        for sub, label in (("input", "input/"), ("groundtruth", "groundtruth/")):
-            p = os.path.join(d, sub)
-            if not os.path.isdir(p):
-                miss.append("%s（缺失）" % label)
-            elif not os.listdir(p):
-                miss.append("%s（空目录）" % label)
-        if miss:
-            problems.append((nm, d, miss))
-    if not problems:
+        try:
+            cio.validate_sequence(allseq[nm], warmup=warmup, frames=frames,
+                                  decode=decode)
+        except cio.DataError as e:
+            bad.append('%s  ->  %s' % (nm, e))
+    if not bad:
         return
-    lines = ["以下序列的数据不完整，跑不出可信的分数："]
-    for nm, d, miss in problems:
-        lines.append("  %s" % nm)
-        lines.append("      目录：%s" % d)
-        lines.append("      缺：%s" % "、".join(miss))
-    lines += [
-        "",
-        "  CDnet2014 每条序列应该是这样的结构：",
-        "      <序列>\\temporalROI.txt     ← 帧号区间",
-        "              \\input\\*.jpg       ← 输入帧图",
-        "              \\groundtruth\\*.png ← 真值图",
-        "  多半是数据集没解压完整，或下载时漏了某个类别。",
-        "  确认无误可先跑 `python src/ps/algo_lab.py --data-root \"...\" --list` 看看。",
-    ]
-    raise DataRootError("\n".join(lines))
+    head = ("跑之前先查数据，%d 条序列过不了（每一条都得修好，才能出可信的分数）：\n\n"
+            % len(bad))
+    tail = ("\n\n  ★ 这些问题不会靠「多跑几次」消失，也不会靠调参数变好 —— 只能补数据。\n"
+            "  ★ 也不会生成成绩表：数据不齐时的分数没有意义，写出来只会误导后面的人。")
+    raise DataRootError(head + "\n\n".join(bad) + tail)
 
 
 # --------------------------------------------------------------------------
@@ -557,15 +561,15 @@ DEFAULT_SET = "r5"
 
 
 def load_cached(seqdir, warmup=100, frames=0):
-    """frames = 计分帧数（不含预热）；0 = 整段 ROI。"""
-    roi = cd.read_roi(seqdir)
-    assert roi, "缺 temporalROI.txt: %s" % seqdir
-    r0, r1 = roi
-    first = max(1, r0 - warmup)
-    nw = r0 - first
-    count = (frames + nw) if frames > 0 else (r1 - first + 1)
-    grays, labels, _ = cd.load_seq(seqdir, first, count)
-    nw = min(nw, max(0, len(grays) - 1))
+    """frames = 计分帧数（不含预热）；0 = 整段 ROI。
+
+    帧号怎么切**只有 cdnet_io.frame_plan 一处定义**，这里只是照它去读。
+    读的过程本身是严格的：缺帧/坏帧/真值缺失都会抛 cio.DataError，
+    不会静默跳帧、也不会用全零图顶替真值。
+    """
+    plan = cio.frame_plan(seqdir, warmup, frames)
+    roi, first, nw, count = plan["roi"], plan["first"], plan["nwarm"], plan["count"]
+    grays, labels, _ = cio.load_seq(seqdir, first, count, nwarm=nw)
     c2 = [compress2x2(g) for g in grays]
     return roi, nw, grays, c2, labels
 
@@ -580,6 +584,11 @@ def main():
     ap.add_argument("--frames", type=int, default=0)
     ap.add_argument("--ref", action="store_true")
     ap.add_argument("--list", action="store_true", help="只列出可用序列")
+    ap.add_argument("--strict-data-check", action="store_true",
+                    help="开跑前**逐帧真解码**地查一遍数据（比默认快查慢约 70 倍："
+                         "900 帧 21.8 s vs 0.3 s）。下完数据集想确认没有坏文件时用它。"
+                         "默认只查存在性 + 文件头；真正的解码/尺寸校验在读取那一遍照样做，"
+                         "坏了照样报错退出。")
     args = ap.parse_args()
 
     # ---- 数据根目录：解析失败就明确报错退出，绝不静默跑一个"0 条序列"的空表 ----
@@ -595,9 +604,11 @@ def main():
                 print("   ", k)
             return 0
         targets = select_sequences(allseq, args.seq)
-        precheck_sequences(allseq, targets)
-    except DataRootError as e:
-        sys.stderr.write("\n[数据未就绪] %s\n\n" % e)
+        # ★ 按本次实际要用的帧号逐帧查（不是"目录非空"就算过）
+        precheck_sequences(allseq, targets, warmup=DEFAULT_WARMUP,
+                           frames=args.frames, decode=args.strict_data_check)
+    except cio.DataError as e:
+        sys.stderr.write("\n[数据未就绪 / 数据不完整] %s\n\n" % e)
         return 1
 
     variants = SETS[args.set]
@@ -612,7 +623,15 @@ def main():
     rows_out = []
     for nm in targets:
         t0 = time.time()
-        roi, nw, grays, c2, labels = load_cached(allseq[nm], frames=args.frames)
+        try:
+            roi, nw, grays, c2, labels = load_cached(allseq[nm], frames=args.frames)
+        except cio.DataError as e:
+            # ★ 中途发现数据有问题：立刻停，且**不写成绩表** ——
+            #   半套数据的分数看起来很正常，写出来只会误导后面的人。
+            sys.stderr.write("\n[数据不可用] %s\n\n"
+                             "  已跑完的序列结果**没有写出**（成绩表只在一整套都跑通时才生成）。\n"
+                             % e)
+            return 1
         print("\n### %s  (ROI %d~%d, 计分 %d 帧, 预热 %d)" % (nm, roi[0], roi[1], len(c2) - nw, nw))
         print("  %-34s %9s %9s %9s" % ("变体", "精确率", "召回率", "F1"))
         print("  " + "-" * 66)

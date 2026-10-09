@@ -28,6 +28,7 @@ plt.rcParams["axes.unicode_minus"] = False
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdnet_demo as cd            # noqa: E402
 import algo_ab as ab               # noqa: E402
+import cdnet_io as cio             # noqa: E402
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                    "..", "..", "data", "golden")
@@ -43,21 +44,50 @@ def overlay(bgr, mask, color=(60, 175, 95), amount=0.75):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--seq", default="canoe", choices=list(ab.SEQ))
+    ab.lab.add_data_root_arg(ap)     # ← 与其它评测入口同一套解析
+    ap.add_argument("--seq", default="canoe",
+                    help="pedestrians 或 canoe（★ 需要 CDnet 数据集）")
     ap.add_argument("--frame", type=int, default=0, help="1 基帧号；0=自动挑一个")
     ap.add_argument("--alpha", type=float, default=0.005)
-    ap.add_argument("--warmup", type=int, default=100)
+    ap.add_argument("--warmup", type=int, default=100,
+                    help="最多预热多少帧（至少 1）；不足时缩短到第 1 帧")
     args = ap.parse_args()
+    if args.frame < 0:
+        ap.error("--frame 必须 >= 0（0 表示自动选择）")
+    if args.warmup < 1:
+        ap.error("--warmup 必须 >= 1，帧差法需要目标帧的前一帧")
 
-    seqdir = ab.SEQ[args.seq]
-    roi = cd.read_roi(seqdir)
-    target = args.frame or (roi[0] + roi[1]) // 2
-    first = max(1, target - args.warmup)
-
-    grays, labels, names = cd.load_seq(seqdir, first, args.warmup + 1)
+    # ★ 以前这里写 choices=list(ab.SEQ)，而 ab.SEQ 要等 algo_ab.main() 跑起来才填，
+    #   导入期它是**空表** ⇒ argparse 一律报"invalid choice"，退出码 2。
+    #   也就是说这条入口从来就没真正跑通过，只是没人发现。
+    #   现在改成先解析数据根、再自己校验序列名。
+    try:
+        root, src = ab.lab.resolve_data_root(args.data_root)
+        seqs = ab.resolve_seq_dir(root)
+        ab.lab.describe_data_root(root, src)
+    except ab.lab.DataRootError as e:
+        sys.stderr.write("\n[数据未就绪] %s\n\n" % e)
+        return 1
+    if args.seq not in seqs:
+        sys.stderr.write("\n[数据未就绪] 没有序列 %r，可选：%s\n\n"
+                         % (args.seq, "、".join(sorted(seqs))))
+        return 1
+    seqdir = seqs[args.seq]
+    try:
+        roi = cio.read_roi(seqdir)
+        target = args.frame or (roi[0] + roi[1]) // 2
+        if target < 2:
+            raise cio.DataError("目标帧必须 >= 2：第 1 帧没有前一帧，无法计算帧差")
+        first = max(1, target - args.warmup)
+        nwarm = target - first
+        # 只有最后一帧是"目标帧"，前面的都是预热帧 —— 预热帧允许没有真值。
+        grays, labels, names = cio.load_seq(seqdir, first, nwarm + 1, nwarm=nwarm)
+        bgr = cio.imread(os.path.join(seqdir, "input", names[-1]))
+    except cio.DataError as e:
+        sys.stderr.write("\n[数据不可用] %s\n\n" % e)
+        return 1
     n = len(grays) - 1
     g_cur, g_prev = grays[-1], grays[-2]
-    bgr = cv2.imread(os.path.join(seqdir, "input", names[-1]))
 
     c2 = [ab.compress2x2(g) for g in grays]
     bg = c2[0].astype(np.float32)

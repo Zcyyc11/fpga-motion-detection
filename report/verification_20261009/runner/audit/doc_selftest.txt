@@ -1,0 +1,19 @@
+自检（临时 md，不进仓库）：
+   ① 第一条参数拼错要能抓到                                PASS
+   ② 后面的参数拼错要能抓到                                PASS
+   ③ 标了反例的错命令不能误报                               PASS
+   ④ 中文/空格路径不能误判                                PASS
+   ⑤ 续行里的 --frames/--ref 要能解析到（且不报错）            PASS
+   ⑥ 合法引号值后接非法参数必须报错                            PASS
+   ⑦ PowerShell 续行非法参数必须报错                      PASS
+   ⑧ 行内代码外的说明不能误报                               PASS
+
+  捕获到的错误（应为 ①②⑥⑦ 四条）：
+    t.md:3  ★ multi_track.py **没有**参数 --soruce
+            （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+    t.md:4  ★ multi_track.py **没有**参数 --nonexistent-flag
+            （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+    t.md:9  ★ multi_track.py **没有**参数 --quoted-bad
+            （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+    t.md:10  ★ multi_track.py **没有**参数 --powershell-bad
+            （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）

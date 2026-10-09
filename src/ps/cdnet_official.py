@@ -26,6 +26,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdnet_demo as cd          # noqa: E402
 import algo_lab as lab           # noqa: E402  复用**唯一**的流水线 frame_metrics
+import cdnet_io as cio           # noqa: E402  复用**唯一**的数据校验
 
 
 def score(rows):
@@ -52,6 +53,9 @@ def main():
     ap.add_argument("--seq", default="all")
     ap.add_argument("--frames", type=int, default=0)
     ap.add_argument("--set", default="", help="用 algo_lab 里的变体集名（如 r5）；默认用 CANDS")
+    ap.add_argument("--strict-data-check", action="store_true",
+                    help="开跑前**逐帧真解码**地查一遍数据（比默认快查慢约 70 倍）。"
+                         "下完数据集想确认没有坏文件时用它。")
     args = ap.parse_args()
 
     cands = lab.SETS[args.set] if args.set else CANDS
@@ -65,9 +69,10 @@ def main():
             raise lab.no_sequence_error(root, src)
         lab.describe_data_root(root, src)
         keys = lab.select_sequences(allseq, args.seq)
-        lab.precheck_sequences(allseq, keys)
-    except lab.DataRootError as e:
-        sys.stderr.write("\n[数据未就绪] %s\n\n" % e)
+        lab.precheck_sequences(allseq, keys, warmup=lab.DEFAULT_WARMUP,
+                               frames=args.frames, decode=args.strict_data_check)
+    except cio.DataError as e:
+        sys.stderr.write("\n[数据未就绪 / 数据不完整] %s\n\n" % e)
         return 1
 
     print("=" * 98)
@@ -79,7 +84,14 @@ def main():
     rows_csv = []
     for nm in keys:
         cat = nm.split("/")[0]
-        roi, nw, grays, c2, labels = lab.load_cached(allseq[nm], frames=args.frames)
+        try:
+            roi, nw, grays, c2, labels = lab.load_cached(allseq[nm], frames=args.frames)
+        except cio.DataError as e:
+            # ★ 中途数据出问题：立刻停，**不写成绩表**（半套数据的分数看着很正常，最害人）
+            sys.stderr.write("\n[数据不可用] %s\n\n"
+                             "  已跑完的序列结果**没有写出**（成绩表只在一整套都跑通时才生成）。\n"
+                             % e)
+            return 1
         print("\n### %s  (ROI %d~%d, 计分 %d 帧)" % (nm, roi[0], roi[1], len(c2) - nw))
         print("  %-32s %10s | %9s %9s %9s" % ("变体", "逐帧平均F1", "P(汇总)", "R(汇总)", "F1(汇总)"))
         print("  " + "-" * 78)

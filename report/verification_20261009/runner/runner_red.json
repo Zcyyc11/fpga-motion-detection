@@ -1,0 +1,398 @@
+[
+  {
+    "name": "healthy",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\healthy\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "second_run_is_distinct_and_preserves_first",
+    "passed": false
+  },
+  {
+    "name": "mixed",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\mixed\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "compile",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\compile\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "elaborate",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\elaborate\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "engine",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\engine\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "engine_caps",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\engine_caps\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "bracket_error",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\bracket_error\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "fatal",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\fatal\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "lower_fatal",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\lower_fatal\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "error",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\error\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "x_chinese",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\x_chinese\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "x_numeric",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\x_numeric\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "no_x_check",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\no_x_check\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "no_done",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\no_done\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "nonzero",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\nonzero\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "timeout",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\timeout\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "no_output",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\no_output\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "no_csv",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\no_csv\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "empty_csv",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\empty_csv\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "csv_x",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\csv_x\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "duplicate",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\duplicate\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "gap",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\gap\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "reverse",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\reverse\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "bad_bytes",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\bad_bytes\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "missing_settings",
+    "passed": true,
+    "rc": 10,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\missing_settings\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "failed_settings",
+    "passed": true,
+    "rc": 11,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\failed_settings\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "scratch_file",
+    "passed": false,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\scratch_file\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "invalid_top",
+    "passed": true,
+    "rc": 1,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\invalid_top\\中文 source space\\build\\scripts\\run_sim.py",
+      "--top",
+      "../tb_md_pipeline"
+    ],
+    "results": []
+  },
+  {
+    "name": "expect12",
+    "passed": false,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\expect12\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "12"
+    ],
+    "results": []
+  },
+  {
+    "name": "expect11",
+    "passed": false,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\expect11\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "11"
+    ],
+    "results": []
+  },
+  {
+    "name": "negative_count",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_red\\negative_count\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "-1"
+    ],
+    "results": []
+  },
+  {
+    "name": "batch_template_ascii_crlf",
+    "passed": false
+  },
+  {
+    "name": "checkout_retains_batch_crlf",
+    "passed": false
+  },
+  {
+    "name": "source_checkout_unchanged",
+    "passed": true
+  }
+]
