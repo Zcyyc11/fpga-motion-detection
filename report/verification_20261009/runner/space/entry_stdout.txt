@@ -1,0 +1,7 @@
+Vivado 环境来源：--vivado-settings
+本次运行目录（全部保留）：D:\666666\Temp\fpga_runner_live_20261009_final\space project_runs\run_20261009T114609Z_xotz4hhv
+仿真流程：通过
+检测记录：11 条，帧号 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+帧完整性：未检查（可指定 --expect-frames）；未进行模型一致性比较
+日志：D:\666666\Temp\fpga_runner_live_20261009_final\space project_runs\run_20261009T114609Z_xotz4hhv\sim\logs\sim_run.log
+结果：D:\666666\Temp\fpga_runner_live_20261009_final\space project_runs\run_20261009T114609Z_xotz4hhv\result.json

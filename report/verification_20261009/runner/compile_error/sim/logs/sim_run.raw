@@ -1,0 +1,26 @@
+=== xvlog ===
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/src/rtl/bbox.v" into library work
+INFO: [VRFC 10-311] analyzing module bbox
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/src/rtl/diff_stage.v" into library work
+INFO: [VRFC 10-311] analyzing module diff_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/src/rtl/downsample2x2.v" into library work
+INFO: [VRFC 10-311] analyzing module downsample2x2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/src/rtl/frame_buf.v" into library work
+INFO: [VRFC 10-311] analyzing module frame_buf
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/src/rtl/md_pipeline.v" into library work
+INFO: [VRFC 10-311] analyzing module md_pipeline
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/src/rtl/morph3x3.v" into library work
+INFO: [VRFC 10-311] analyzing module morph3x3
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/src/rtl/morph_open.v" into library work
+INFO: [VRFC 10-311] analyzing module morph_open
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/src/rtl/overlay.v" into library work
+INFO: [VRFC 10-311] analyzing module overlay
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/src/rtl/pattern_gen.v" into library work
+INFO: [VRFC 10-311] analyzing module pattern_gen
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/src/rtl/threshold.v" into library work
+INFO: [VRFC 10-311] analyzing module threshold
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/src/rtl/video_timing.v" into library work
+INFO: [VRFC 10-311] analyzing module video_timing
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/sim/tb/tb_md_pipeline.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_md_pipeline
+ERROR: [VRFC 10-4982] syntax error near 'syntax' [C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/sim/tb/tb_md_pipeline.v:215]

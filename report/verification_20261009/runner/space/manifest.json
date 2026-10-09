@@ -1,0 +1,40 @@
+{
+  "source_root": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project",
+  "run_dir": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv",
+  "sources": {
+    "src/rtl/bbox.v": "19a6b0c3ece4b32446a515ef8343cf44d3986738b17e51555ff1114b53e2b0fc",
+    "src/rtl/diff_stage.v": "39a64d6b44855c7f762fe57c71cd9d717bf612496c35cda04708333c31b9839c",
+    "src/rtl/downsample2x2.v": "836e336ea283ace829eb6dc5f5c59b506440c7e08f228ef4648ee40435ccee8f",
+    "src/rtl/frame_buf.v": "f65ce9c0b7f40a313f2c0b00ccfebcc6bdda690e01ef17bc58c1372549fccddc",
+    "src/rtl/md_pipeline.v": "a3ad796ecf57db0973097bb8df5791290e51b6095fffa8fce5ddc6d55a397693",
+    "src/rtl/morph3x3.v": "aa3ce59c7106ef1ba66dea1a8f7e1f6cf627fbca0704e8f242901d3e016bdc26",
+    "src/rtl/morph_open.v": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2",
+    "src/rtl/overlay.v": "4f7f5757066d59eccb93331ad4c946cc3874c8600b5a55304597ade756898f66",
+    "src/rtl/pattern_gen.v": "a706630fbaa84a9e74f7271344f144c3bf9c59446e47d4768d8d4c900dbd4294",
+    "src/rtl/threshold.v": "f6b2f454045479bc524527a67dd112a9039813843d9879e0841458fe6ee50a97",
+    "src/rtl/video_timing.v": "79b9a8fbb3ed2a6490cbd49d2f94a1d603d314134babe1f5436dd337c421bfc8",
+    "sim/tb/tb_md_pipeline.v": "15e3c486c977c2093f0ea0f26de1ca5bb8abca25c471d174128281853f897daa",
+    "sim/run_sim.bat": "e0f3c28829006ceacc1f40da9685e55eff4681e8f9e39b7b9c8c359875348663",
+    "build/scripts/run_sim.py": "2c3f8df0a31f2c5d23e182138abaaece435bd373ac361f708e9e741edd9a19dc"
+  },
+  "git": {
+    "commit": null,
+    "status": null
+  },
+  "created_utc": "2026-10-09T11:46:09.796353+00:00",
+  "command": "call run_sim.bat \"tb_md_pipeline\" \"sim_tb_md_pipeline\" \"files.f\"",
+  "cwd": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim",
+  "arguments": {
+    "top": "tb_md_pipeline",
+    "vivado_settings": "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+    "scratch_root": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs",
+    "expect_frames": null,
+    "first_frame": 0
+  },
+  "settings_source": "--vivado-settings",
+  "settings": "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+  "settings_sha256": "da47c1887abd80a2527acf6b512bb7a2ee96a00d512b14840dd2f86b8e2f4ba3",
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "filelist_encoding": "ascii",
+  "filelist_paths": "quoted_relative"
+}

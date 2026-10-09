@@ -7,9 +7,10 @@ endings it mis-parses `^` caret continuations, re-runs part of the script and
 reports nonsense like "'n' is not recognized as an internal or external
 command".  Both were live bugs in this repo.
 """
-import os
+import argparse
+from pathlib import Path
 
-ROOT = r'D:/FPGA/fpga-motion-detection'
+ROOT = Path(__file__).resolve().parents[2]
 
 BUILD_BAT = r'''@echo off
 rem ============================================================================
@@ -93,16 +94,28 @@ rem      powershell  $env:VIVADO_SETTINGS = 'D:\AMDDesignTools\2026.1\Vivado\set
 rem      persistent  setx VIVADO_SETTINGS "D:\AMDDesignTools\2026.1\Vivado\settings64.bat"
 rem    Same idea for XILINX_VIVADO (the install directory, not the .bat file).
 rem
-rem  Usage: run_sim.bat <top_module> <snapshot_name> <filelist>
+rem  Internal worker: run via python build/scripts/run_sim.py for isolation.
+rem  Usage inside a fresh run: run_sim.bat <top_module> <snapshot_name> <filelist>
 rem
 rem  Exit codes:  10 settings64.bat not found   11 settings64.bat failed to load
 rem                12 xvlog/xelab/xsim not on PATH
+rem                13 not launched in an isolated run
 rem                2  xvlog failed               3  xelab failed
-rem                0  xsim ran (check the LOG CONTENT -- xsim.bat returns 0 even
+rem                xsim exit code is preserved (check LOG CONTENT too; it may be 0
 rem                   when its engine never started, so the caller must judge
 rem                   by the log, not by this exit code)
 rem ============================================================================
-setlocal
+setlocal DisableDelayedExpansion
+if not "%FPGA_SIM_ISOLATED_RUN%"=="1" goto need_launcher
+if not exist "%~dp0..\manifest.json" goto need_launcher
+goto init_env
+
+:need_launcher
+echo [ERROR] Use python build/scripts/run_sim.py to create a new retained run.
+echo         Direct batch execution can overwrite evidence and is disabled.
+exit /b 13
+
+:init_env
 set VIV_SETTINGS=
 if not "%VIVADO_SETTINGS%"=="" set VIV_SETTINGS=%VIVADO_SETTINGS%
 if not "%XILINX_VIVADO%"=="" if "%VIV_SETTINGS%"=="" set VIV_SETTINGS=%XILINX_VIVADO%\settings64.bat
@@ -150,11 +163,12 @@ echo   and just leave the variables unset.
 exit /b 12
 
 :run
-set TOP=%~1
+setlocal DisableDelayedExpansion
+set "TOP=%~1"
 if "%TOP%"=="" set TOP=tb_md_pipeline
-set SNAP=%~2
+set "SNAP=%~2"
 if "%SNAP%"=="" set SNAP=sim_%TOP%
-set FL=%~3
+set "FL=%~3"
 if "%FL%"=="" set FL=files.f
 
 cd /d "%~dp0"
@@ -169,7 +183,7 @@ if errorlevel 1 exit /b 3
 
 echo === xsim ===
 call xsim.bat %SNAP% -runall
-exit /b 0
+exit /b %errorlevel%
 '''
 
 
@@ -180,14 +194,20 @@ def write_crlf(path, text):
     return data
 
 
-out = []
-for rel, text in (('build/scripts/build_vivado.bat', BUILD_BAT),
-                  ('sim/run_sim.bat', SIM_BAT)):
-    p = os.path.join(ROOT, rel)
-    data = write_crlf(p, text)
-    bare_lf = data.count(b'\n') - data.count(b'\r\n')
-    out.append('%s  bytes=%d  CRLF=%d  bareLF=%d  pure_ascii=%s'
-               % (rel, len(data), data.count(b'\r\n'), bare_lf,
-                  all(c < 128 for c in data)))
+def main():
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--only', choices=['sim', 'build', 'all'], default='all',
+                    help='Regenerate only the selected launcher; back up edits first')
+    args = ap.parse_args()
+    for kind, rel, content in [('build', 'build/scripts/build_vivado.bat', BUILD_BAT),
+                               ('sim', 'sim/run_sim.bat', SIM_BAT)]:
+        if args.only not in (kind, 'all'):
+            continue
+        data = write_crlf(ROOT / rel, content)
+        print('%s bytes=%d CRLF=%d bareLF=%d pure_ascii=%s' % (
+            rel, len(data), data.count(b'\r\n'),
+            data.count(b'\n') - data.count(b'\r\n'), all(c < 128 for c in data)))
 
-print('\n'.join(out))
+
+if __name__ == '__main__':
+    main()
