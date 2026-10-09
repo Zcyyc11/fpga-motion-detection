@@ -46,7 +46,7 @@ def execute(name, args, out, commands):
     env = dict(os.environ, PYTHONUTF8='1', PYTHONIOENCODING='utf-8')
     proc = subprocess.run(command, cwd=ROOT, capture_output=True, env=env, timeout=180)
     log = (proc.stdout + proc.stderr).decode('utf-8', errors='replace')
-    (out / 'logs' / (name + '.txt')).write_text(log, encoding='utf-8')
+    (out / 'logs' / (name + '.txt')).write_text(log.replace('\r\n', '\n'), encoding='utf-8', newline='\n')
     commands.append(dict(name=name, argv=command, cwd=str(ROOT), exit_code=proc.returncode,
                          seconds=round(time.perf_counter()-start, 3), log='logs/' + name + '.txt'))
     if proc.returncode:
@@ -106,7 +106,31 @@ def match_targets(pred, truth, tolerance=60.):
     return best[2]
 
 
+def validate_observations(obs, truth, width=1280, height=720):
+    """Reject incomplete/misaligned observations before computing clip metrics."""
+    expected = list(range(120))
+    if sorted(truth) != expected:
+        raise ValueError('Truth must cover frames 0..119 exactly')
+    for name in ('frames', 'alarms'):
+        if [r['frame'] for r in obs[name]] != expected:
+            raise ValueError(name + ' must cover frames 0..119 once, in order')
+    for row in obs['frames']:
+        for b in row['boxes'] + list(row['assigned'].values()):
+            values = [b[k] for k in ('x0', 'y0', 'x1', 'y1', 'cx', 'cy')]
+            if not all(math.isfinite(v) for v in values):
+                raise ValueError('Non-finite coordinate at frame ' + str(row['frame']))
+            if not (0 <= b['x0'] <= b['cx'] <= b['x1'] < width and
+                    0 <= b['y0'] <= b['cy'] <= b['y1'] < height):
+                raise ValueError('Invalid box at frame ' + str(row['frame']))
+        if not set(row['assigned']) <= set(row['tracks']):
+            raise ValueError('Assigned ID missing from tracks')
+    for row in obs['alarms']:
+        if any(e['frame'] != row['frame'] for e in row['events']):
+            raise ValueError('Event frame does not match observation')
+
+
 def tracking_audit(obs, truth, out):
+    validate_observations(obs, truth)
     frame_rows, target_rows, transitions = [], [], []
     hits = total = fp = switches = dir_ok = dir_total = 0
     tid_to_oid, oid_to_tids, previous_side = {}, {}, {}

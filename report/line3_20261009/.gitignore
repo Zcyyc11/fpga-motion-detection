@@ -1,0 +1,2 @@
+# Keep the explicitly generated acceptance logs, not Vivado build directories.
+!tool_acceptance_02/*.log

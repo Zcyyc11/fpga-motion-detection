@@ -1,0 +1,14 @@
+[
+  {
+    "kind": "missing",
+    "key": [
+      "1"
+    ],
+    "field": "",
+    "expected": {
+      "frame": "1",
+      "x": "2"
+    },
+    "actual": null
+  }
+]

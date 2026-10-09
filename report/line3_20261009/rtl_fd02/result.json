@@ -1,0 +1,38 @@
+{
+  "settings": "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+  "scratch": "D:\\666666\\Temp\\line3_xsim_20261009_fd02",
+  "mode": "framediff",
+  "exit_code": 3,
+  "timed_out": false,
+  "drain_frames": 1,
+  "expected_frames": 12,
+  "seconds": 20.375,
+  "source_sha256": {
+    "src\\rtl\\bbox.v": "19a6b0c3ece4b32446a515ef8343cf44d3986738b17e51555ff1114b53e2b0fc",
+    "src\\rtl\\diff_stage.v": "39a64d6b44855c7f762fe57c71cd9d717bf612496c35cda04708333c31b9839c",
+    "src\\rtl\\downsample2x2.v": "836e336ea283ace829eb6dc5f5c59b506440c7e08f228ef4648ee40435ccee8f",
+    "src\\rtl\\frame_buf.v": "f65ce9c0b7f40a313f2c0b00ccfebcc6bdda690e01ef17bc58c1372549fccddc",
+    "src\\rtl\\md_pipeline.v": "a3ad796ecf57db0973097bb8df5791290e51b6095fffa8fce5ddc6d55a397693",
+    "src\\rtl\\morph3x3.v": "aa3ce59c7106ef1ba66dea1a8f7e1f6cf627fbca0704e8f242901d3e016bdc26",
+    "src\\rtl\\morph_open.v": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2",
+    "src\\rtl\\overlay.v": "4f7f5757066d59eccb93331ad4c946cc3874c8600b5a55304597ade756898f66",
+    "src\\rtl\\pattern_gen.v": "a706630fbaa84a9e74f7271344f144c3bf9c59446e47d4768d8d4c900dbd4294",
+    "src\\rtl\\threshold.v": "f6b2f454045479bc524527a67dd112a9039813843d9879e0841458fe6ee50a97",
+    "src\\rtl\\video_timing.v": "79b9a8fbb3ed2a6490cbd49d2f94a1d603d314134babe1f5436dd337c421bfc8",
+    "sim\\tb\\tb_md_pipeline.v": "15e3c486c977c2093f0ea0f26de1ca5bb8abca25c471d174128281853f897daa"
+  },
+  "simulation_done": false,
+  "x_hits_zero": false,
+  "files": {},
+  "errors": [
+    "ERROR: [XSIM 43-3409] Failed to compile generated C file xsim.dir/line3_sim/obj/xsim_1.c.",
+    "ERROR: [XSIM 43-3915] Encountered a fatal error. Cannot continue. Exiting... "
+  ],
+  "strict_full_diff": [
+    {
+      "kind": "missing_csv"
+    }
+  ],
+  "csv_rows": 0,
+  "pass": false
+}
