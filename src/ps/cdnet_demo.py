@@ -70,11 +70,15 @@ def metrics(label, pred):
 def main():
     ap = argparse.ArgumentParser(description="在 CDnet 真实素材上跑帧差法并比对真值")
     ap.add_argument("--seq", required=True, help="序列目录（含 input/ 与 groundtruth/）")
-    ap.add_argument("--start", type=int, default=0, help="起始帧号(1基)，默认用 temporalROI 起点")
-    ap.add_argument("--frames", type=int, default=0, help="处理多少帧，0=整个 ROI")
+    ap.add_argument("--start", type=int, default=0,
+                    help="读取起始帧号(1基)，0=ROI 起点；首帧只作帧差参考，ROI 前不计分")
+    ap.add_argument("--frames", type=int, default=0,
+                    help="最多读取多少帧（含参考帧和预热），0=读到 ROI 终点；始终截到 ROI 终点")
     ap.add_argument("--thresh", type=int, default=gr.THRESH)
     ap.add_argument("--kernel", type=int, default=gr.KERNEL)
     args = ap.parse_args()
+    if args.start < 0 or args.frames < 0:
+        ap.error("--start 和 --frames 必须 >= 0")
 
     seqdir = os.path.abspath(args.seq)
     name = os.path.basename(seqdir)
@@ -82,7 +86,12 @@ def main():
         roi = read_roi(seqdir)
         first = args.start if args.start > 0 else roi[0]
         nwarm = max(0, roi[0] - first)
-        count = args.frames if args.frames > 0 else (roi[1] - first + 1)
+        last = min(roi[1], first + args.frames - 1) if args.frames else roi[1]
+        count = last - first + 1
+        score_first = max(1, nwarm)
+        if count <= score_first:
+            raise cio.DataError("没有可计分帧：需要 ROI 内的目标帧及其前一帧；"
+                                "请减小 --start 或增加 --frames")
         grays, labels, names = load_seq(seqdir, first, count, nwarm=nwarm)
     except cio.DataError as e:
         sys.stderr.write("\n[数据不可用] %s\n\n" % e)
@@ -99,7 +108,8 @@ def main():
     print()
 
     rows = []
-    for t in range(1, len(grays)):
+    score_indices = list(range(score_first, len(grays)))
+    for t in score_indices:
         pred = gr.motion_mask(grays[t - 1], grays[t], args.thresh, args.kernel)
         m = metrics(labels[t], pred)
         rows.append((first + t, m))
@@ -119,8 +129,8 @@ def main():
     print("  %-16s %9.0f %9.0f %9.0f" % ("真值运动像素", np.mean(trs), np.min(trs), np.max(trs)))
 
     # --------- 对比图：挑一个真值里确实有运动的帧 ---------
-    good = [i for i in range(1, len(grays)) if labels[i].astype(int).max() >= 255]
-    pick = good[len(good) // 2] if good else len(grays) // 2
+    good = [i for i in score_indices if labels[i].astype(int).max() >= 255]
+    pick = good[len(good) // 2] if good else score_indices[len(score_indices) // 2]
     img = cv2.cvtColor(cio.imread(os.path.join(seqdir, "input", names[pick])),
                        cv2.COLOR_BGR2RGB)
     label = labels[pick]

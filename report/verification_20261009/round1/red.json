@@ -1,0 +1,1046 @@
+[
+  {
+    "name": "roi_official_0_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_0_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_3_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_3_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_8_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_8_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_10_gt0",
+    "passed": false,
+    "error": "t000011.png\r\n        原因：这是**计分帧**，真值必须存在；groundtruth 现有帧号 3~10\r\n    [真值缺失] 第 12 帧\r\n        文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_official_10_gt0\\data\\baseline\\pedestrians\\groundtruth\\gt000012.png\r\n        原因：这是**计分帧**，真值必须存在；groundtruth 现有帧号 3~10\r\n\r\n  CDnet2014 每条序列应该是这样的结构：\r\n      <序列>\\temporalROI.txt     <- 计分区间（1 基帧号）\r\n              \\input\\in%06d.jpg  <- 输入帧图，帧号连续\r\n              \\groundtruth\\gt%06d.png <- 计分帧的真值\r\n  多半是数据集没解压完整、下载时漏了文件，或解压中断留下了半截文件。\r\n  先跑 `python src/ps/algo_lab.py --data-root \"...\" --list` 看看扫到几条序列。\r\n\r\ndynamicBackground/canoe  ->  序列 C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_official_10_gt0\\data\\dynamicBackground\\canoe 的数据不完整，跑出来的分数不可信：\r\n    [真值缺失] 第 11 帧\r\n        文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_official_10_gt0\\data\\dynamicBackground\\canoe\\groundtruth\\gt000011.png\r\n        原因：这是**计分帧**，真值必须存在；groundtruth 现有帧号 3~10\r\n    [真值缺失] 第 12 帧\r\n        文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_official_10_gt0\\data\\dynamicBackground\\canoe\\groundtruth\\gt000012.png\r\n        原因：这是**计分帧**，真值必须存在；groundtruth 现有帧号 3~10\r\n\r\n  CDnet2014 每条序列应该是这样的结构：\r\n      <序列>\\temporalROI.txt     <- 计分区间（1 基帧号）\r\n              \\input\\in%06d.jpg  <- 输入帧图，帧号连续\r\n              \\groundtruth\\gt%06d.png <- 计分帧的真值\r\n  多半是数据集没解压完整、下载时漏了文件，或解压中断留下了半截文件。\r\n  先跑 `python src/ps/algo_lab.py --data-root \"...\" --list` 看看扫到几条序列。\r\n\r\n  ★ 这些问题不会靠「多跑几次」消失，也不会靠调参数变好 —— 只能补数据。\r\n  ★ 也不会生成成绩表：数据不齐时的分数没有意义，写出来只会误导后面的人。\r\n\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_official_10_gt1",
+    "passed": false,
+    "error": "{'seq': 'pedestrians', 'first': 1, 'count': 12, 'nwarm': 2, 'frames': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_official_-1_gt0",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_official_-1_gt1",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_gt_independence_official_0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_official_3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_official_8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_official_10",
+    "passed": false,
+    "error": "outside-ROI GT changed scores",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_lab_0_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_0_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_3_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_3_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_8_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_8_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_10_gt0",
+    "passed": false,
+    "error": "trians\\groundtruth\\gt000011.png\r\n        原因：这是**计分帧**，真值必须存在；groundtruth 现有帧号 3~10\r\n    [真值缺失] 第 12 帧\r\n        文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_lab_10_gt0\\data\\baseline\\pedestrians\\groundtruth\\gt000012.png\r\n        原因：这是**计分帧**，真值必须存在；groundtruth 现有帧号 3~10\r\n\r\n  CDnet2014 每条序列应该是这样的结构：\r\n      <序列>\\temporalROI.txt     <- 计分区间（1 基帧号）\r\n              \\input\\in%06d.jpg  <- 输入帧图，帧号连续\r\n              \\groundtruth\\gt%06d.png <- 计分帧的真值\r\n  多半是数据集没解压完整、下载时漏了文件，或解压中断留下了半截文件。\r\n  先跑 `python src/ps/algo_lab.py --data-root \"...\" --list` 看看扫到几条序列。\r\n\r\ndynamicBackground/canoe  ->  序列 C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_lab_10_gt0\\data\\dynamicBackground\\canoe 的数据不完整，跑出来的分数不可信：\r\n    [真值缺失] 第 11 帧\r\n        文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_lab_10_gt0\\data\\dynamicBackground\\canoe\\groundtruth\\gt000011.png\r\n        原因：这是**计分帧**，真值必须存在；groundtruth 现有帧号 3~10\r\n    [真值缺失] 第 12 帧\r\n        文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_lab_10_gt0\\data\\dynamicBackground\\canoe\\groundtruth\\gt000012.png\r\n        原因：这是**计分帧**，真值必须存在；groundtruth 现有帧号 3~10\r\n\r\n  CDnet2014 每条序列应该是这样的结构：\r\n      <序列>\\temporalROI.txt     <- 计分区间（1 基帧号）\r\n              \\input\\in%06d.jpg  <- 输入帧图，帧号连续\r\n              \\groundtruth\\gt%06d.png <- 计分帧的真值\r\n  多半是数据集没解压完整、下载时漏了文件，或解压中断留下了半截文件。\r\n  先跑 `python src/ps/algo_lab.py --data-root \"...\" --list` 看看扫到几条序列。\r\n\r\n  ★ 这些问题不会靠「多跑几次」消失，也不会靠调参数变好 —— 只能补数据。\r\n  ★ 也不会生成成绩表：数据不齐时的分数没有意义，写出来只会误导后面的人。\r\n\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_lab_10_gt1",
+    "passed": false,
+    "error": "{'seq': 'pedestrians', 'first': 1, 'count': 12, 'nwarm': 2, 'frames': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_lab_-1_gt0",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_lab_-1_gt1",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_gt_independence_lab_0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_lab_3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_lab_8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_lab_10",
+    "passed": false,
+    "error": "outside-ROI GT changed scores",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_ab_0_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_0_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_3_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_3_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_8_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_8_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_10_gt0",
+    "passed": false,
+    "error": "数据根目录：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_ab_10_gt0\\data\r\n  来源：命令行 --data-root\r\n选中序列 2 条：pedestrians, canoe\r\n阈值 = 70（照抄参考作品 #1 的硬编码值，2×2 和域）｜形态学核 = 3\r\n\r\n\n--- stderr ---\n\r\n[数据不可用] 序列 C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_ab_10_gt0\\data\\baseline\\pedestrians 第 11 帧：这是**计分帧**但没有真值图。\r\n  期望文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_ab_10_gt0\\data\\baseline\\pedestrians\\groundtruth\\gt000011.png\r\n  真值目录：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\roi_ab_10_gt0\\data\\baseline\\pedestrians\\groundtruth（现有 8 张）\r\n  ★ 不用全零图顶替 —— 那等于告诉算法\"这帧没有目标\"，召回率会被悄悄吃掉，且没有任何报错。\r\n\r\n  汇总表**没有写出**。\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_ab_10_gt1",
+    "passed": false,
+    "error": "{'seq': 'pedestrians', 'first': 1, 'count': 12, 'nwarm': 2, 'frames': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_ab_-1_gt0",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_ab_-1_gt1",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "roi_gt_independence_ab_0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_ab_3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_ab_8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_ab_10",
+    "passed": false,
+    "error": "outside-ROI GT changed scores",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "five_early_long",
+    "passed": false,
+    "error": "[{'seq': 'pedestrians', 'first': 1, 'count': 10, 'nwarm': 9, 'frames': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}]",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "five_early_default",
+    "passed": false,
+    "error": "数据根目录：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_early_default\\data\r\n  来源：命令行 --data-root\r\n\n--- stderr ---\n\r\n[数据不可用] 序列 C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_early_default\\data\\baseline\\pedestrians 第 13 帧：input/ 里没有这一帧（现有帧号 1~12）。\r\n  期望文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_early_default\\data\\baseline\\pedestrians\\input\\in000013.jpg\r\n  ★ 不跳帧继续跑 —— 跳帧会让后面的帧号与真值错位，分数是错的。\r\n\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "five_early_short",
+    "passed": true,
+    "detail": {
+      "target": 5,
+      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_early_short\\data\\baseline\\pedestrians\\input\\in000005.jpg",
+      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_early_short\\data\\golden\\five_steps_pedestrians_f5.png",
+      "shape": [
+        819,
+        1989,
+        3
+      ]
+    }
+  },
+  {
+    "name": "five_late",
+    "passed": true,
+    "detail": {
+      "target": 10,
+      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_late\\data\\baseline\\pedestrians\\input\\in000010.jpg",
+      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_late\\data\\golden\\five_steps_pedestrians_f10.png",
+      "shape": [
+        819,
+        1989,
+        3
+      ]
+    }
+  },
+  {
+    "name": "five_first",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "five_zero_warmup",
+    "passed": false,
+    "error": "ix_20261009\\build\\scripts\\test_verification_boundaries.py\", line 342, in main\r\n    return worker(Path(sys.argv[2]), sys.argv[3], sys.argv[4:])\r\n  File \"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\test_verification_boundaries.py\", line 100, in worker\r\n    runpy.run_path(str(case / 'src' / 'ps' / sys.argv[0]), run_name='__main__')\r\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"<frozen runpy>\", line 287, in run_path\r\n  File \"<frozen runpy>\", line 98, in _run_module_code\r\n  File \"<frozen runpy>\", line 88, in _run_code\r\n  File \"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_zero_warmup\\src\\ps\\five_steps.py\", line 145, in <module>\r\n    sys.exit(main())\r\n             ~~~~^^\r\n  File \"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_zero_warmup\\src\\ps\\five_steps.py\", line 83, in main\r\n    g_cur, g_prev = grays[-1], grays[-2]\r\n                               ~~~~~^^^^\r\nIndexError: list index out of range\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "five_negative_frame",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "five_negative_warmup",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "five_auto",
+    "passed": false,
+    "error": "数据根目录：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_auto\\data\r\n  来源：命令行 --data-root\r\n\n--- stderr ---\n\r\n[数据不可用] 序列 C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_auto\\data\\baseline\\pedestrians 第 13 帧：input/ 里没有这一帧（现有帧号 1~12）。\r\n  期望文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\five_auto\\data\\baseline\\pedestrians\\input\\in000013.jpg\r\n  ★ 不跳帧继续跑 —— 跳帧会让后面的帧号与真值错位，分数是错的。\r\n\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s1_n0_gt0",
+    "passed": false,
+    "error": "([2, 3, 4, 5, 6, 7, 8, 9, 10], [3, 4, 5, 6, 7, 8, 9, 10])",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s1_n0_gt1",
+    "passed": false,
+    "error": "([2, 3, 4, 5, 6, 7, 8, 9, 10], [3, 4, 5, 6, 7, 8, 9, 10])",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_gt_independence_s1_n0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "demo_s0_n0_gt0",
+    "passed": true,
+    "detail": {
+      "frames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "plot_frame": 7
+    }
+  },
+  {
+    "name": "demo_s0_n0_gt1",
+    "passed": true,
+    "detail": {
+      "frames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "plot_frame": 7
+    }
+  },
+  {
+    "name": "demo_gt_independence_s0_n0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "demo_s1_n5_gt0",
+    "passed": false,
+    "error": "([2, 3, 4, 5], [3, 4, 5])",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s1_n5_gt1",
+    "passed": false,
+    "error": "([2, 3, 4, 5], [3, 4, 5])",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_gt_independence_s1_n5",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "demo_s1_n20_gt0",
+    "passed": false,
+    "error": "\n--- stderr ---\n\r\n[数据不可用] 序列 C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s1_n20_gt0\\data\\baseline\\pedestrians 第 11 帧：这是**计分帧**但没有真值图。\r\n  期望文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s1_n20_gt0\\data\\baseline\\pedestrians\\groundtruth\\gt000011.png\r\n  真值目录：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s1_n20_gt0\\data\\baseline\\pedestrians\\groundtruth（现有 8 张）\r\n  ★ 不用全零图顶替 —— 那等于告诉算法\"这帧没有目标\"，召回率会被悄悄吃掉，且没有任何报错。\r\n\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s1_n20_gt1",
+    "passed": false,
+    "error": "\n--- stderr ---\n\r\n[数据不可用] 序列 C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s1_n20_gt1\\data\\baseline\\pedestrians 第 13 帧：input/ 里没有这一帧（现有帧号 1~12）。\r\n  期望文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s1_n20_gt1\\data\\baseline\\pedestrians\\input\\in000013.jpg\r\n  ★ 不跳帧继续跑 —— 跳帧会让后面的帧号与真值错位，分数是错的。\r\n\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_gt_independence_s1_n20",
+    "passed": false,
+    "error": "",
+    "error_type": "StopIteration"
+  },
+  {
+    "name": "demo_s8_n20_gt0",
+    "passed": false,
+    "error": "\n--- stderr ---\n\r\n[数据不可用] 序列 C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s8_n20_gt0\\data\\baseline\\pedestrians 第 11 帧：这是**计分帧**但没有真值图。\r\n  期望文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s8_n20_gt0\\data\\baseline\\pedestrians\\groundtruth\\gt000011.png\r\n  真值目录：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s8_n20_gt0\\data\\baseline\\pedestrians\\groundtruth（现有 8 张）\r\n  ★ 不用全零图顶替 —— 那等于告诉算法\"这帧没有目标\"，召回率会被悄悄吃掉，且没有任何报错。\r\n\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s8_n20_gt1",
+    "passed": false,
+    "error": "\n--- stderr ---\n\r\n[数据不可用] 序列 C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s8_n20_gt1\\data\\baseline\\pedestrians 第 13 帧：input/ 里没有这一帧（现有帧号 1~12）。\r\n  期望文件：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s8_n20_gt1\\data\\baseline\\pedestrians\\input\\in000013.jpg\r\n  ★ 不跳帧继续跑 —— 跳帧会让后面的帧号与真值错位，分数是错的。\r\n\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_gt_independence_s8_n20",
+    "passed": false,
+    "error": "",
+    "error_type": "StopIteration"
+  },
+  {
+    "name": "demo_s1_n2_gt0",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s1_n2_gt1",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s10_n0_gt0",
+    "passed": false,
+    "error": "n _run_code\r\n  File \"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s10_n0_gt0\\src\\ps\\cdnet_demo.py\", line 184, in <module>\r\n    sys.exit(main())\r\n             ~~~~^^\r\n  File \"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s10_n0_gt0\\src\\ps\\cdnet_demo.py\", line 113, in main\r\n    print(\"  %-16s %9.3f %9.3f %9.3f\" % (tag, np.mean(v), np.min(v), np.max(v)))\r\n                                                          ~~~~~~^^^\r\n  File \"D:\\666666\\Anaconda\\Lib\\site-packages\\numpy\\_core\\fromnumeric.py\", line 3343, in min\r\n    return _wrapreduction(a, np.minimum, 'min', axis, None, out,\r\n                          keepdims=keepdims, initial=initial, where=where)\r\n  File \"D:\\666666\\Anaconda\\Lib\\site-packages\\numpy\\_core\\fromnumeric.py\", line 86, in _wrapreduction\r\n    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)\r\n           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nValueError: zero-size array to reduction operation minimum which has no identity\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s10_n0_gt1",
+    "passed": false,
+    "error": "n _run_code\r\n  File \"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s10_n0_gt1\\src\\ps\\cdnet_demo.py\", line 184, in <module>\r\n    sys.exit(main())\r\n             ~~~~^^\r\n  File \"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\red\\demo_s10_n0_gt1\\src\\ps\\cdnet_demo.py\", line 113, in main\r\n    print(\"  %-16s %9.3f %9.3f %9.3f\" % (tag, np.mean(v), np.min(v), np.max(v)))\r\n                                                          ~~~~~~^^^\r\n  File \"D:\\666666\\Anaconda\\Lib\\site-packages\\numpy\\_core\\fromnumeric.py\", line 3343, in min\r\n    return _wrapreduction(a, np.minimum, 'min', axis, None, out,\r\n                          keepdims=keepdims, initial=initial, where=where)\r\n  File \"D:\\666666\\Anaconda\\Lib\\site-packages\\numpy\\_core\\fromnumeric.py\", line 86, in _wrapreduction\r\n    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)\r\n           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nValueError: zero-size array to reduction operation minimum which has no identity\r\n",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s11_n0_gt0",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "demo_s11_n0_gt1",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "demo_s-1_n0_gt0",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s-1_n0_gt1",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s1_n-1_gt0",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "demo_s1_n-1_gt1",
+    "passed": false,
+    "error": "invalid request returned success",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "doc_quoted",
+    "passed": false,
+    "error": "[]",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "doc_unicode",
+    "passed": false,
+    "error": "[]",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "doc_single",
+    "passed": false,
+    "error": "[]",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "doc_equals",
+    "passed": false,
+    "error": "[]",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "doc_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_quoted_flag_value",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_comment",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_html_comment",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_quoted_comment",
+    "passed": false,
+    "error": "[]",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "doc_pipeline",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_redirect",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_semicolon",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_two_commands",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../../repair_20261009_round1/red/doc_two_commands.md:1  ★ algo_lab.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--data-root, --frames, --list, --ref, --seq, --set, --strict-data-check）"
+      ]
+    }
+  },
+  {
+    "name": "doc_inline",
+    "passed": false,
+    "error": "[]",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "doc_inline_prose",
+    "passed": false,
+    "error": "['../../repair_20261009_round1/red/doc_inline_prose.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）']",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "doc_negative",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_negative_skip",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_powershell",
+    "passed": false,
+    "error": "[]",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "doc_powershell_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_bash",
+    "passed": false,
+    "error": "[]",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "doc_bash_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_cmd",
+    "passed": false,
+    "error": "[]",
+    "error_type": "AssertionError"
+  },
+  {
+    "name": "doc_cmd_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  }
+]

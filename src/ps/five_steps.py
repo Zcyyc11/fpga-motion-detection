@@ -49,8 +49,13 @@ def main():
                     help="pedestrians 或 canoe（★ 需要 CDnet 数据集）")
     ap.add_argument("--frame", type=int, default=0, help="1 基帧号；0=自动挑一个")
     ap.add_argument("--alpha", type=float, default=0.005)
-    ap.add_argument("--warmup", type=int, default=100)
+    ap.add_argument("--warmup", type=int, default=100,
+                    help="最多预热多少帧（至少 1）；不足时缩短到第 1 帧")
     args = ap.parse_args()
+    if args.frame < 0:
+        ap.error("--frame 必须 >= 0（0 表示自动选择）")
+    if args.warmup < 1:
+        ap.error("--warmup 必须 >= 1，帧差法需要目标帧的前一帧")
 
     # ★ 以前这里写 choices=list(ab.SEQ)，而 ab.SEQ 要等 algo_ab.main() 跑起来才填，
     #   导入期它是**空表** ⇒ argparse 一律报"invalid choice"，退出码 2。
@@ -71,10 +76,12 @@ def main():
     try:
         roi = cio.read_roi(seqdir)
         target = args.frame or (roi[0] + roi[1]) // 2
+        if target < 2:
+            raise cio.DataError("目标帧必须 >= 2：第 1 帧没有前一帧，无法计算帧差")
         first = max(1, target - args.warmup)
+        nwarm = target - first
         # 只有最后一帧是"目标帧"，前面的都是预热帧 —— 预热帧允许没有真值。
-        grays, labels, names = cio.load_seq(seqdir, first, args.warmup + 1,
-                                            nwarm=args.warmup)
+        grays, labels, names = cio.load_seq(seqdir, first, nwarm + 1, nwarm=nwarm)
         bgr = cio.imread(os.path.join(seqdir, "input", names[-1]))
     except cio.DataError as e:
         sys.stderr.write("\n[数据不可用] %s\n\n" % e)

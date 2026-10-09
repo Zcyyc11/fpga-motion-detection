@@ -1,0 +1,2001 @@
+[
+  {
+    "name": "plan_w0_f0",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 3,
+      "nwarm": 0,
+      "count": 8,
+      "score": [
+        3,
+        10
+      ]
+    }
+  },
+  {
+    "name": "plan_w0_f3",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 3,
+      "nwarm": 0,
+      "count": 3,
+      "score": [
+        3,
+        5
+      ]
+    }
+  },
+  {
+    "name": "plan_w0_f8",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 3,
+      "nwarm": 0,
+      "count": 8,
+      "score": [
+        3,
+        10
+      ]
+    }
+  },
+  {
+    "name": "plan_w0_f10",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 3,
+      "nwarm": 0,
+      "count": 8,
+      "score": [
+        3,
+        10
+      ]
+    }
+  },
+  {
+    "name": "plan_w0_f-1",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w0_f0.5",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w1_f0",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 2,
+      "nwarm": 1,
+      "count": 9,
+      "score": [
+        3,
+        10
+      ]
+    }
+  },
+  {
+    "name": "plan_w1_f3",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 2,
+      "nwarm": 1,
+      "count": 4,
+      "score": [
+        3,
+        5
+      ]
+    }
+  },
+  {
+    "name": "plan_w1_f8",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 2,
+      "nwarm": 1,
+      "count": 9,
+      "score": [
+        3,
+        10
+      ]
+    }
+  },
+  {
+    "name": "plan_w1_f10",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 2,
+      "nwarm": 1,
+      "count": 9,
+      "score": [
+        3,
+        10
+      ]
+    }
+  },
+  {
+    "name": "plan_w1_f-1",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w1_f0.5",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w100_f0",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 1,
+      "nwarm": 2,
+      "count": 10,
+      "score": [
+        3,
+        10
+      ]
+    }
+  },
+  {
+    "name": "plan_w100_f3",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 1,
+      "nwarm": 2,
+      "count": 5,
+      "score": [
+        3,
+        5
+      ]
+    }
+  },
+  {
+    "name": "plan_w100_f8",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 1,
+      "nwarm": 2,
+      "count": 10,
+      "score": [
+        3,
+        10
+      ]
+    }
+  },
+  {
+    "name": "plan_w100_f10",
+    "passed": true,
+    "detail": {
+      "roi": [
+        3,
+        10
+      ],
+      "first": 1,
+      "nwarm": 2,
+      "count": 10,
+      "score": [
+        3,
+        10
+      ]
+    }
+  },
+  {
+    "name": "plan_w100_f-1",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w100_f0.5",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w-1_f0",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w-1_f3",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w-1_f8",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w-1_f10",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w-1_f-1",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w-1_f0.5",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w0.5_f0",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w0.5_f3",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w0.5_f8",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w0.5_f10",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w0.5_f-1",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "plan_w0.5_f0.5",
+    "passed": true,
+    "detail": "clear DataError"
+  },
+  {
+    "name": "roi_official_0_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_0_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_3_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_3_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_8_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_8_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_10_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_10_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_official_-1_gt0",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "roi_official_-1_gt1",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "roi_gt_independence_official_0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_official_3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_official_8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_official_10",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_lab_0_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_0_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_3_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_3_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_8_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_8_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_10_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_10_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 8
+      }
+    }
+  },
+  {
+    "name": "roi_lab_-1_gt0",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "roi_lab_-1_gt1",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "roi_gt_independence_lab_0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_lab_3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_lab_8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_lab_10",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_ab_0_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_0_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_3_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_3_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_8_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_8_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_10_gt0",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_10_gt1",
+    "passed": true,
+    "detail": {
+      "pedestrians": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      },
+      "canoe": {
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "repetitions": 2
+      }
+    }
+  },
+  {
+    "name": "roi_ab_-1_gt0",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "roi_ab_-1_gt1",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "roi_gt_independence_ab_0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_ab_3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_ab_8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "roi_gt_independence_ab_10",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "five_early_long",
+    "passed": true,
+    "detail": {
+      "target": 5,
+      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\green_final\\five_early_long\\data\\baseline\\pedestrians\\input\\in000005.jpg",
+      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\green_final\\five_early_long\\data\\golden\\five_steps_pedestrians_f5.png",
+      "shape": [
+        819,
+        1989,
+        3
+      ]
+    }
+  },
+  {
+    "name": "five_early_default",
+    "passed": true,
+    "detail": {
+      "target": 5,
+      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\green_final\\five_early_default\\data\\baseline\\pedestrians\\input\\in000005.jpg",
+      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\green_final\\five_early_default\\data\\golden\\five_steps_pedestrians_f5.png",
+      "shape": [
+        819,
+        1989,
+        3
+      ]
+    }
+  },
+  {
+    "name": "five_early_short",
+    "passed": true,
+    "detail": {
+      "target": 5,
+      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\green_final\\five_early_short\\data\\baseline\\pedestrians\\input\\in000005.jpg",
+      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\green_final\\five_early_short\\data\\golden\\five_steps_pedestrians_f5.png",
+      "shape": [
+        819,
+        1989,
+        3
+      ]
+    }
+  },
+  {
+    "name": "five_late",
+    "passed": true,
+    "detail": {
+      "target": 10,
+      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\green_final\\five_late\\data\\baseline\\pedestrians\\input\\in000010.jpg",
+      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\green_final\\five_late\\data\\golden\\five_steps_pedestrians_f10.png",
+      "shape": [
+        819,
+        1989,
+        3
+      ]
+    }
+  },
+  {
+    "name": "five_first",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "five_zero_warmup",
+    "passed": true,
+    "detail": {
+      "rc": 2
+    }
+  },
+  {
+    "name": "five_negative_frame",
+    "passed": true,
+    "detail": {
+      "rc": 2
+    }
+  },
+  {
+    "name": "five_negative_warmup",
+    "passed": true,
+    "detail": {
+      "rc": 2
+    }
+  },
+  {
+    "name": "five_auto",
+    "passed": true,
+    "detail": {
+      "target": 6,
+      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\green_final\\five_auto\\data\\baseline\\pedestrians\\input\\in000006.jpg",
+      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\green_final\\five_auto\\data\\golden\\five_steps_pedestrians_f6.png",
+      "shape": [
+        819,
+        1989,
+        3
+      ]
+    }
+  },
+  {
+    "name": "demo_short_input",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "demo_s1_n0_gt0",
+    "passed": true,
+    "detail": {
+      "frames": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "plot_frame": 7
+    }
+  },
+  {
+    "name": "demo_s1_n0_gt1",
+    "passed": true,
+    "detail": {
+      "frames": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "plot_frame": 7
+    }
+  },
+  {
+    "name": "demo_gt_independence_s1_n0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "demo_s0_n0_gt0",
+    "passed": true,
+    "detail": {
+      "frames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "plot_frame": 7
+    }
+  },
+  {
+    "name": "demo_s0_n0_gt1",
+    "passed": true,
+    "detail": {
+      "frames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "plot_frame": 7
+    }
+  },
+  {
+    "name": "demo_gt_independence_s0_n0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "demo_s1_n5_gt0",
+    "passed": true,
+    "detail": {
+      "frames": [
+        3,
+        4,
+        5
+      ],
+      "plot_frame": 5
+    }
+  },
+  {
+    "name": "demo_s1_n5_gt1",
+    "passed": true,
+    "detail": {
+      "frames": [
+        3,
+        4,
+        5
+      ],
+      "plot_frame": 5
+    }
+  },
+  {
+    "name": "demo_gt_independence_s1_n5",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "demo_s1_n20_gt0",
+    "passed": true,
+    "detail": {
+      "frames": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "plot_frame": 7
+    }
+  },
+  {
+    "name": "demo_s1_n20_gt1",
+    "passed": true,
+    "detail": {
+      "frames": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "plot_frame": 7
+    }
+  },
+  {
+    "name": "demo_gt_independence_s1_n20",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "demo_s8_n20_gt0",
+    "passed": true,
+    "detail": {
+      "frames": [
+        9,
+        10
+      ],
+      "plot_frame": 9
+    }
+  },
+  {
+    "name": "demo_s8_n20_gt1",
+    "passed": true,
+    "detail": {
+      "frames": [
+        9,
+        10
+      ],
+      "plot_frame": 9
+    }
+  },
+  {
+    "name": "demo_gt_independence_s8_n20",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "demo_s1_n2_gt0",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "demo_s1_n2_gt1",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "demo_s10_n0_gt0",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "demo_s10_n0_gt1",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "demo_s11_n0_gt0",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "demo_s11_n0_gt1",
+    "passed": true,
+    "detail": {
+      "rc": 1
+    }
+  },
+  {
+    "name": "demo_s-1_n0_gt0",
+    "passed": true,
+    "detail": {
+      "rc": 2
+    }
+  },
+  {
+    "name": "demo_s-1_n0_gt1",
+    "passed": true,
+    "detail": {
+      "rc": 2
+    }
+  },
+  {
+    "name": "demo_s1_n-1_gt0",
+    "passed": true,
+    "detail": {
+      "rc": 2
+    }
+  },
+  {
+    "name": "demo_s1_n-1_gt1",
+    "passed": true,
+    "detail": {
+      "rc": 2
+    }
+  },
+  {
+    "name": "doc_quoted",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/green_final/doc_quoted.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_unicode",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/green_final/doc_unicode.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_single",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/green_final/doc_single.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_equals",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/green_final/doc_equals.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_quoted_flag_value",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_comment",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_html_comment",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_quoted_comment",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/green_final/doc_quoted_comment.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_pipeline",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_redirect",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_semicolon",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_two_commands",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/green_final/doc_two_commands.md:1  ★ algo_lab.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--data-root, --frames, --list, --ref, --seq, --set, --strict-data-check）"
+      ]
+    }
+  },
+  {
+    "name": "doc_inline",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/green_final/doc_inline.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_inline_prose",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_negative",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_negative_skip",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_quoted_command",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_comment_command",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_comment_only",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_html_command",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_powershell",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/green_final/doc_powershell.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_powershell_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_bash",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/green_final/doc_bash.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_bash_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_cmd",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/green_final/doc_cmd.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_cmd_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "matrix_official_valid",
+    "passed": true,
+    "detail": {
+      "rc": 0,
+      "products": [
+        "src\\ps\\cdnet_official_results_r5.csv"
+      ]
+    }
+  },
+  {
+    "name": "matrix_official_missing_input",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_official_bad_input",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_official_header_only",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_official_missing_truth",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_official_bad_truth",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_official_wrong_size",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_official_warmup_no_truth",
+    "passed": true,
+    "detail": {
+      "rc": 0,
+      "products": [
+        "src\\ps\\cdnet_official_results_r5.csv"
+      ]
+    }
+  },
+  {
+    "name": "matrix_lab_valid",
+    "passed": true,
+    "detail": {
+      "rc": 0,
+      "products": [
+        "src\\ps\\algo_lab_results.csv"
+      ]
+    }
+  },
+  {
+    "name": "matrix_lab_missing_input",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_lab_bad_input",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_lab_header_only",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_lab_missing_truth",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_lab_bad_truth",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_lab_wrong_size",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_lab_warmup_no_truth",
+    "passed": true,
+    "detail": {
+      "rc": 0,
+      "products": [
+        "src\\ps\\algo_lab_results.csv"
+      ]
+    }
+  },
+  {
+    "name": "matrix_ab_valid",
+    "passed": true,
+    "detail": {
+      "rc": 0,
+      "products": [
+        "src\\ps\\algo_ab_summary.csv"
+      ]
+    }
+  },
+  {
+    "name": "matrix_ab_missing_input",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_ab_bad_input",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_ab_header_only",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_ab_missing_truth",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_ab_bad_truth",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_ab_wrong_size",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_ab_warmup_no_truth",
+    "passed": true,
+    "detail": {
+      "rc": 0,
+      "products": [
+        "src\\ps\\algo_ab_summary.csv"
+      ]
+    }
+  },
+  {
+    "name": "matrix_demo_valid",
+    "passed": true,
+    "detail": {
+      "rc": 0,
+      "products": [
+        "data\\baseline\\pedestrians\\cdnet_demo_fig.png",
+        "data\\baseline\\pedestrians\\cdnet_demo_metrics.csv"
+      ]
+    }
+  },
+  {
+    "name": "matrix_demo_missing_input",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_demo_bad_input",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_demo_header_only",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_demo_missing_truth",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_demo_bad_truth",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_demo_wrong_size",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_demo_warmup_no_truth",
+    "passed": true,
+    "detail": {
+      "rc": 0,
+      "products": [
+        "data\\baseline\\pedestrians\\cdnet_demo_fig.png",
+        "data\\baseline\\pedestrians\\cdnet_demo_metrics.csv"
+      ]
+    }
+  },
+  {
+    "name": "matrix_five_valid",
+    "passed": true,
+    "detail": {
+      "rc": 0,
+      "products": [
+        "data\\golden\\five_steps_pedestrians_f5.png"
+      ]
+    }
+  },
+  {
+    "name": "matrix_five_missing_input",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_five_bad_input",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_five_header_only",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_five_missing_truth",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_five_bad_truth",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_five_wrong_size",
+    "passed": true,
+    "detail": {
+      "rc": 1,
+      "products": []
+    }
+  },
+  {
+    "name": "matrix_five_warmup_no_truth",
+    "passed": true,
+    "detail": {
+      "rc": 0,
+      "products": [
+        "data\\golden\\five_steps_pedestrians_f5.png"
+      ]
+    }
+  }
+]
