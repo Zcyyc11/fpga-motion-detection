@@ -1,0 +1,4 @@
+# Preserve console evidence bytes; CR characters are part of the captured output.
+run_ead15e0_01/logs/*.txt -text -whitespace
+rtl_fd01/console.txt -text -whitespace
+rtl_fd01/invocation.bat text eol=crlf
