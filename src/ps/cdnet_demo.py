@@ -42,37 +42,15 @@ plt.rcParams["axes.unicode_minus"] = False
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import golden_ref as gr          # noqa: E402
+import cdnet_io as cio           # noqa: E402  唯一的数据读取/校验实现
 
-
-def read_roi(seqdir):
-    """读 temporalROI.txt -> (起始帧, 结束帧)，1 基；没有则 None。"""
-    p = os.path.join(seqdir, "temporalROI.txt")
-    if not os.path.exists(p):
-        return None
-    txt = open(p).read().split()
-    if len(txt) < 2:
-        return None
-    return int(txt[0]), int(txt[1])
-
-
-def load_seq(seqdir, first, count):
-    """读 input/*.jpg 与 groundtruth/*.png。first 为 1 基帧号，返回 (灰帧, 标签图, 文件名)。"""
-    inp = os.path.join(seqdir, "input")
-    names = sorted(os.listdir(inp))
-    if not names:
-        raise RuntimeError("input 目录为空: %s" % inp)
-    sel = names[first - 1: first - 1 + count]
-    grays, labels = [], []
-    for n in sel:
-        img = cv2.imread(os.path.join(inp, n))
-        if img is None:
-            continue
-        grays.append(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY))
-        gp = os.path.join(seqdir, "groundtruth",
-                          n.replace("in", "gt").rsplit(".", 1)[0] + ".png")
-        t = cv2.imread(gp, cv2.IMREAD_GRAYSCALE)
-        labels.append(t if t is not None else np.zeros_like(grays[-1]))
-    return grays, labels, sel
+# ★ 读图与校验**只有 cdnet_io 一份实现**。以前各脚本自己写一份，于是同一个
+#   "数据不全"的问题在四个入口上有四种表现：静默算错分 / 填零图 / 跳帧错位 /
+#   IndexError。现在一律转过去。
+imread = cio.imread
+read_roi = cio.read_roi
+load_seq = cio.load_seq
+DataError = cio.DataError
 
 
 def metrics(label, pred):
@@ -100,16 +78,20 @@ def main():
 
     seqdir = os.path.abspath(args.seq)
     name = os.path.basename(seqdir)
-    roi = read_roi(seqdir)
-    first = args.start if args.start > 0 else (roi[0] if roi else 1)
-    count = args.frames if args.frames > 0 else (roi[1] - first + 1 if roi else 150)
-
-    grays, labels, names = load_seq(seqdir, first, count)
+    try:
+        roi = read_roi(seqdir)
+        first = args.start if args.start > 0 else roi[0]
+        nwarm = max(0, roi[0] - first)
+        count = args.frames if args.frames > 0 else (roi[1] - first + 1)
+        grays, labels, names = load_seq(seqdir, first, count, nwarm=nwarm)
+    except cio.DataError as e:
+        sys.stderr.write("\n[数据不可用] %s\n\n" % e)
+        return 1
     print("序列     : %s" % name)
     print("目录     : %s" % seqdir)
     print("分辨率   : %d x %d" % (grays[0].shape[1], grays[0].shape[0]))
-    print("temporalROI: %s   ->  本次用第 %d ~ %d 帧，共 %d 帧"
-          % ("%d~%d" % roi if roi else "(文件缺失)", first, first + len(grays) - 1, len(grays)))
+    print("temporalROI: %d~%d   ->  本次用第 %d ~ %d 帧，共 %d 帧（预热 %d）"
+          % (roi[0], roi[1], first, first + len(grays) - 1, len(grays), nwarm))
     print("参数     : thresh=%d  kernel=%d" % (args.thresh, args.kernel))
 
     lbl = np.unique(np.concatenate([l.ravel() for l in labels]))
@@ -139,7 +121,7 @@ def main():
     # --------- 对比图：挑一个真值里确实有运动的帧 ---------
     good = [i for i in range(1, len(grays)) if labels[i].astype(int).max() >= 255]
     pick = good[len(good) // 2] if good else len(grays) // 2
-    img = cv2.cvtColor(cv2.imread(os.path.join(seqdir, "input", names[pick])),
+    img = cv2.cvtColor(cio.imread(os.path.join(seqdir, "input", names[pick])),
                        cv2.COLOR_BGR2RGB)
     label = labels[pick]
     pred = gr.motion_mask(grays[pick - 1], grays[pick], args.thresh, args.kernel)

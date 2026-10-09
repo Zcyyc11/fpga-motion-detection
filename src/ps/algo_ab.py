@@ -49,6 +49,7 @@ plt.rcParams["axes.unicode_minus"] = False
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdnet_demo as cd          # noqa: E402  复用 ROI 读取 / 指标 的规矩
 import algo_lab as lab           # noqa: E402  复用**唯一**的数据根解析（--data-root / CDNET_ROOT）
+import cdnet_io as cio           # noqa: E402  复用**唯一**的数据读取与校验
 
 # ★ 数据根不再有默认值。algo_ab 只做两条序列的 A/B，但根目录必须和 algo_lab 用同一套解析，
 #   否则两个入口会指向不同的数据集 —— 那比只改一处更糟。
@@ -127,15 +128,14 @@ def step5_box(mask, ratio=0.02):
 # --------------------------------------------------------------------------
 def run_seq(seqdir, frames=0, warmup=100, alpha=0.02, ksize=KSIZE):
     name = os.path.basename(seqdir)
-    roi = cd.read_roi(seqdir)
-    assert roi, "缺 temporalROI.txt：%s" % seqdir
-    r0, r1 = roi
-    first = max(1, r0 - warmup)
-    count = frames if frames > 0 else (r1 - r0 + 1)
-
-    grays, labels, names = cd.load_seq(seqdir, first, count + (r0 - first))
+    # 帧号怎么切只有 cdnet_io.frame_plan 一处定义；读取本身是严格的
+    # （缺帧/坏帧/真值缺失都会抛错，不跳帧、不填零）。
+    plan = cio.frame_plan(seqdir, warmup, frames)
+    roi = plan["roi"]
+    grays, labels, names = cio.load_seq(seqdir, plan["first"], plan["count"],
+                                        nwarm=plan["nwarm"])
     # 把"预热帧 + 计分帧"切开
-    nw = r0 - first
+    nw = plan["nwarm"]
     c2 = [compress2x2(g) for g in grays]
 
     out = {}
@@ -198,7 +198,12 @@ def main():
 
     summary_rows = []
     for nm in targets:
-        name, roi, (first, nw), out = run_seq(SEQ[nm], args.frames, alpha=args.alpha)
+        try:
+            name, roi, (first, nw), out = run_seq(SEQ[nm], args.frames, alpha=args.alpha)
+        except cio.DataError as e:
+            # ★ 数据不齐立刻停，且不写汇总表
+            sys.stderr.write("\n[数据不可用] %s\n\n  汇总表**没有写出**。\n" % e)
+            return 1
         pf, rf, ff = summarize(out["framediff"])
         pb, rb, fb = summarize(out["bgmodel"])
         print("=" * 78)
@@ -216,7 +221,11 @@ def main():
             print("  α 扫描（只改一个数，看它多敏感）:")
             print("     %-8s %9s %9s %9s" % ("α", "精确率", "召回率", "F1"))
             for a in (0.005, 0.01, 0.02, 0.05, 0.1):
-                _, _, _, o = run_seq(SEQ[nm], args.frames, alpha=a)
+                try:
+                    _, _, _, o = run_seq(SEQ[nm], args.frames, alpha=a)
+                except cio.DataError as e:
+                    sys.stderr.write("\n[数据不可用] %s\n" % e)
+                    return 1
                 p, r, f = summarize(o["bgmodel"])
                 print("     %-8.3f %9.3f %9.3f %9.3f" % (a, p, r, f))
             print()
