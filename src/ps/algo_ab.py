@@ -155,7 +155,7 @@ def run_seq(seqdir, frames=0, warmup=100, alpha=0.02, ksize=KSIZE):
                     pred = np.zeros_like(labels[t])
                 rows.append(cd.metrics(labels[t], pred))
         out[mode] = rows
-    return name, roi, (first, nw), out
+    return name, roi, (plan["first"], nw), out
 
 
 def summarize(rows):
