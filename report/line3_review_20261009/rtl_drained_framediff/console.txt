@@ -1,0 +1,79 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/bbox.v" into library work
+INFO: [VRFC 10-311] analyzing module bbox
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/diff_stage.v" into library work
+INFO: [VRFC 10-311] analyzing module diff_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/downsample2x2.v" into library work
+INFO: [VRFC 10-311] analyzing module downsample2x2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/frame_buf.v" into library work
+INFO: [VRFC 10-311] analyzing module frame_buf
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/md_pipeline.v" into library work
+INFO: [VRFC 10-311] analyzing module md_pipeline
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/morph3x3.v" into library work
+INFO: [VRFC 10-311] analyzing module morph3x3
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/morph_open.v" into library work
+INFO: [VRFC 10-311] analyzing module morph_open
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/overlay.v" into library work
+INFO: [VRFC 10-311] analyzing module overlay
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/pattern_gen.v" into library work
+INFO: [VRFC 10-311] analyzing module pattern_gen
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/tb_md_pipeline.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_md_pipeline
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/threshold.v" into library work
+INFO: [VRFC 10-311] analyzing module threshold
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/video_timing.v" into library work
+INFO: [VRFC 10-311] analyzing module video_timing
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical -timescale 1ns/1ps tb_md_pipeline -generic_top MODE_BG=0 -generic_top FRAMES=13 -s line3_sim 
+Multi-threading is on. Using 22 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3645] port 'vhs' remains unconnected for this instance [D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/tb_md_pipeline.v:65]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.video_timing_default
+Compiling module work.pattern_gen(H_ACTIVE=320,V_ACTIV...
+Compiling module work.downsample2x2(H_ACTIVE=320)
+Compiling module work.diff_stage
+Compiling module work.frame_buf(DEPTH=14400,AW=14)
+Compiling module work.threshold
+Compiling module work.morph3x3(W=160)
+Compiling module work.morph_open(W=160)
+Compiling module work.bbox
+Compiling module work.overlay
+Compiling module work.md_pipeline(H_ACTIVE=320,V_ACTIV...
+Compiling module work.tb_md_pipeline(FRAMES=13)
+Built simulation snapshot line3_sim
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Fri Oct  9 20:09:02 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/line3_sim/xsim_script.tcl
+# xsim {line3_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+t=709535000  第 0 帧检测: bbox=(65535,65535)-(0,0)  cnt=0  valid=0
+t=1393535000  第 1 帧检测: bbox=(20,40)-(47,54)  cnt=240  valid=1
+t=2077535000  第 2 帧检测: bbox=(28,40)-(55,54)  cnt=240  valid=1
+t=2761535000  第 3 帧检测: bbox=(36,40)-(63,54)  cnt=240  valid=1
+t=3445535000  第 4 帧检测: bbox=(44,40)-(71,54)  cnt=240  valid=1
+t=4129535000  第 5 帧检测: bbox=(52,40)-(79,54)  cnt=240  valid=1
+t=4813535000  第 6 帧检测: bbox=(60,40)-(87,54)  cnt=240  valid=1
+t=5497535000  第 7 帧检测: bbox=(68,40)-(95,54)  cnt=240  valid=1
+t=6181535000  第 8 帧检测: bbox=(76,40)-(103,54)  cnt=240  valid=1
+t=6865535000  第 9 帧检测: bbox=(84,40)-(111,54)  cnt=240  valid=1
+t=7549535000  第 10 帧检测: bbox=(92,40)-(119,54)  cnt=240  valid=1
+t=8233535000  第 11 帧检测: bbox=(100,40)-(127,54)  cnt=240  valid=1
+---- 仿真结束：共跑 14 个视频帧，bbox 见 wave/bbox_rtl.csv ----
+---- X 检查：掩码流未出现未知态（x_hits=0）----
+$finish called at time : 8894215 ns : File "D:/666666/Temp/line3_review_20261009_2009_framediff/rtl/tb_md_pipeline.v" Line 203
+exit
+INFO: [Common 17-206] Exiting xsim at Fri Oct  9 20:09:05 2026...

@@ -1,0 +1,2 @@
+# Evidence bytes are preserved; whitespace is not an acceptance criterion.
+* -text -whitespace

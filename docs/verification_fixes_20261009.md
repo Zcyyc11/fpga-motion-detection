@@ -1,3 +1,5 @@
+> 历史记录：本文描述当时版本与当时授权，不能作为整合分支的当前状态或执行指令。当前入口为仓库 README、docs/reproduce_line3.md 和 docs/line3_status_20261009.md。旧绝对路径可通过外层维护清单和完整备份追溯。
+
 <!-- Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V4; scope: evidence-based repair documentation. -->
 
 # FPGA 验收修复交付说明

@@ -1,0 +1,604 @@
+[
+  {
+    "name": "healthy",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\healthy\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\healthy\\scratch space\\run_20261009T120701Z_4dja78s3\\result.json"
+    ]
+  },
+  {
+    "name": "second_run_is_distinct_and_preserves_first",
+    "passed": true
+  },
+  {
+    "name": "mixed",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\mixed\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\mixed\\scratch space\\run_20261009T120702Z_e01udqkc\\result.json"
+    ]
+  },
+  {
+    "name": "compile",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\compile\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\compile\\scratch space\\run_20261009T120703Z_duemg_1_\\result.json"
+    ]
+  },
+  {
+    "name": "elaborate",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\elaborate\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\elaborate\\scratch space\\run_20261009T120704Z_wr4xi6we\\result.json"
+    ]
+  },
+  {
+    "name": "engine",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\engine\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\engine\\scratch space\\run_20261009T120705Z_iyu9_8ce\\result.json"
+    ]
+  },
+  {
+    "name": "engine_caps",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\engine_caps\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\engine_caps\\scratch space\\run_20261009T120705Z_a9grelvi\\result.json"
+    ]
+  },
+  {
+    "name": "bracket_error",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\bracket_error\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\bracket_error\\scratch space\\run_20261009T120706Z_dc7m43au\\result.json"
+    ]
+  },
+  {
+    "name": "fatal",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\fatal\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\fatal\\scratch space\\run_20261009T120707Z_jzu1vv_e\\result.json"
+    ]
+  },
+  {
+    "name": "lower_fatal",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\lower_fatal\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\lower_fatal\\scratch space\\run_20261009T120708Z_6dhujdfi\\result.json"
+    ]
+  },
+  {
+    "name": "error",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\error\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\error\\scratch space\\run_20261009T120709Z__9a39n6m\\result.json"
+    ]
+  },
+  {
+    "name": "x_chinese",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\x_chinese\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\x_chinese\\scratch space\\run_20261009T120710Z_l3g9a0xn\\result.json"
+    ]
+  },
+  {
+    "name": "x_numeric",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\x_numeric\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\x_numeric\\scratch space\\run_20261009T120710Z_0j3p1k13\\result.json"
+    ]
+  },
+  {
+    "name": "no_x_check",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\no_x_check\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\no_x_check\\scratch space\\run_20261009T120711Z_ps1bnp2z\\result.json"
+    ]
+  },
+  {
+    "name": "no_done",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\no_done\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\no_done\\scratch space\\run_20261009T120712Z_hr5os4fm\\result.json"
+    ]
+  },
+  {
+    "name": "nonzero",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\nonzero\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\nonzero\\scratch space\\run_20261009T120713Z_p8s3th_o\\result.json"
+    ]
+  },
+  {
+    "name": "timeout",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\timeout\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\timeout\\scratch space\\run_20261009T120714Z_50a3tqwl\\result.json"
+    ]
+  },
+  {
+    "name": "no_output",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\no_output\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\no_output\\scratch space\\run_20261009T120715Z_q28uqz_q\\result.json"
+    ]
+  },
+  {
+    "name": "no_csv",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\no_csv\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\no_csv\\scratch space\\run_20261009T120716Z_x9iq98ka\\result.json"
+    ]
+  },
+  {
+    "name": "empty_csv",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\empty_csv\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\empty_csv\\scratch space\\run_20261009T120717Z_b5m6th1k\\result.json"
+    ]
+  },
+  {
+    "name": "csv_x",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\csv_x\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\csv_x\\scratch space\\run_20261009T120717Z_1jz6r0re\\result.json"
+    ]
+  },
+  {
+    "name": "duplicate",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\duplicate\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\duplicate\\scratch space\\run_20261009T120718Z_u8bf0k_s\\result.json"
+    ]
+  },
+  {
+    "name": "gap",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\gap\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\gap\\scratch space\\run_20261009T120719Z_ztvznlo7\\result.json"
+    ]
+  },
+  {
+    "name": "reverse",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\reverse\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\reverse\\scratch space\\run_20261009T120720Z_hwvyklcf\\result.json"
+    ]
+  },
+  {
+    "name": "bad_bytes",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\bad_bytes\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\bad_bytes\\scratch space\\run_20261009T120721Z_22dwqh30\\result.json"
+    ]
+  },
+  {
+    "name": "missing_settings",
+    "passed": true,
+    "rc": 10,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\missing_settings\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "failed_settings",
+    "passed": true,
+    "rc": 11,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\failed_settings\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\failed_settings\\scratch space\\run_20261009T120722Z_oj69r0u8\\result.json"
+    ]
+  },
+  {
+    "name": "scratch_file",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\scratch_file\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "invalid_top",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\invalid_top\\中文 source space\\build\\scripts\\run_sim.py",
+      "--top",
+      "../tb_md_pipeline"
+    ],
+    "results": []
+  },
+  {
+    "name": "expect12",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\expect12\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "12"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\expect12\\scratch space\\run_20261009T120723Z_m4ys0sdf\\result.json"
+    ]
+  },
+  {
+    "name": "expect11",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\expect11\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "11"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\expect11\\scratch space\\run_20261009T120723Z_dcu43e9v\\result.json"
+    ]
+  },
+  {
+    "name": "negative_count",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\negative_count\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "-1"
+    ],
+    "results": []
+  },
+  {
+    "name": "settings_cli_priority",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\settings_cli_priority\\中文 source space\\build\\scripts\\run_sim.py",
+      "--vivado-settings",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\fake tools\\settings64.bat"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\settings_cli_priority\\scratch space\\run_20261009T120724Z_u_cfgoou\\result.json"
+    ]
+  },
+  {
+    "name": "xilinx_settings",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\xilinx_settings\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\xilinx_settings\\scratch space\\run_20261009T120725Z_jmj_0em_\\result.json"
+    ]
+  },
+  {
+    "name": "path_environment",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\path_environment\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\path_environment\\scratch space\\run_20261009T120726Z_vu3tf29m\\result.json"
+    ]
+  },
+  {
+    "name": "no_tools",
+    "passed": true,
+    "rc": 12,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\no_tools\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\no_tools\\scratch space\\run_20261009T120727Z_fwey0xss\\result.json"
+    ]
+  },
+  {
+    "name": "source_scratch_rejected",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\source_scratch_rejected\\中文 source space\\build\\scripts\\run_sim.py",
+      "--scratch-root",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\source_scratch_rejected\\中文 source space\\sim"
+    ],
+    "results": []
+  },
+  {
+    "name": "scratch_cli_priority",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\scratch_cli_priority\\中文 source space\\build\\scripts\\run_sim.py",
+      "--scratch-root",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\scratch_cli_priority\\scratch space"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\scratch_cli_priority\\scratch space\\run_20261009T120727Z_61623250\\result.json"
+    ]
+  },
+  {
+    "name": "missing_top",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\missing_top\\中文 source space\\build\\scripts\\run_sim.py",
+      "--top",
+      "tb_missing"
+    ],
+    "results": []
+  },
+  {
+    "name": "unsafe_top",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\unsafe_top\\中文 source space\\build\\scripts\\run_sim.py",
+      "--top",
+      "tb_md_pipeline&echo_bad"
+    ],
+    "results": []
+  },
+  {
+    "name": "zero_count",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\zero_count\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "0"
+    ],
+    "results": []
+  },
+  {
+    "name": "expect_offset",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\expect_offset\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "11",
+      "--first-frame",
+      "1"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\expect_offset\\scratch space\\run_20261009T120728Z_5h44vx2f\\result.json"
+    ]
+  },
+  {
+    "name": "direct_batch_requires_isolated_launcher",
+    "passed": true
+  },
+  {
+    "name": "batch_template_ascii_crlf",
+    "passed": true
+  },
+  {
+    "name": "checkout_retains_batch_crlf",
+    "passed": true
+  },
+  {
+    "name": "source_checkout_unchanged",
+    "passed": true
+  }
+]
