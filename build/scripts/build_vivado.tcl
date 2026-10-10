@@ -15,7 +15,8 @@
 #    为了用 IP 而套一层 BD 只会让"到底哪段是我们写的"变模糊。
 #    唯一的 IP 是别人写好的 HDMI 发送器（rgb2dvi），它本身就是 RTL 形式调用的。
 #
-#  ★ 路径纪律：Vivado 工程路径与用户名不能含中文，所以工程建在 D:\FPGA 下。
+#  ★ 路径纪律：Vivado 工程路径与用户名不能含中文，所以工程建在仓库外的 build/vivado
+#    工作目录；工程根目录由本脚本按自身位置推算（SCRIPT_DIR 往上两层），不写死任何机器路径。
 # =============================================================================
 
 set SCRIPT_DIR [file dirname [file normalize [info script]]]
@@ -32,8 +33,8 @@ set REPORT_DIR [file join $BUILD_DIR reports]
 if {[info exists ::env(MOTION_IP_REPO)]} {
     set IP_REPO $::env(MOTION_IP_REPO)
 } else {
-    set IP_REPO {D:/FPGA/libs/vivado-library}
-    puts "提示：未设置 MOTION_IP_REPO 环境变量，使用本机默认 $IP_REPO"
+    set IP_REPO [file join $ROOT .. libs vivado-library]
+    puts "提示：未设置 MOTION_IP_REPO 环境变量，使用仓库同级的默认位置 $IP_REPO"
 }
 
 set MODE_BG 0

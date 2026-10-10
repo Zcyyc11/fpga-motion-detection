@@ -15,13 +15,13 @@ Vivado 装在哪（★ 不要再写死路径）
     4) 都没设 → 假设当前 shell 已经有 Vivado 环境
   找不到就**明确报错并打印怎么配**，绝不静默跳过初始化。
   永久性配置（不用每次设）：
-    cmd         setx VIVADO_SETTINGS "D:\\AMDDesignTools\\2026.1\\Vivado\\settings64.bat"
+    cmd         setx VIVADO_SETTINGS "<你的 Vivado 安装目录>\Vivado\settings64.bat"
     PowerShell  [Environment]::SetEnvironmentVariable('VIVADO_SETTINGS','...','User')
 
 用法：
   python build/scripts/run_sim.py
   python build/scripts/run_sim.py --top tb_md_pipeline
-  python build/scripts/run_sim.py --vivado-settings "D:\\...\\settings64.bat"
+  python build/scripts/run_sim.py --vivado-settings "<你的 Vivado 安装目录>\Vivado\settings64.bat"
 """
 import argparse
 import glob
