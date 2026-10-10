@@ -187,7 +187,7 @@ def main():
                 raise ValueError('复制过程中源文件发生变化：%s' % source)
         paths = ['../src/rtl/' + p.name for p in rtl] + ['tb/' + tb.name]
         (sim / 'files.f').write_text(''.join('"' + p + '"\n' for p in paths), encoding='ascii')
-        command = 'call run_sim.bat "%s" "sim_%s" "files.f"' % (args.top, args.top)
+        command = 'call "%s" "%s" "sim_%s" "files.f"' % (sim / "run_sim.bat", args.top, args.top)
         env['FPGA_SIM_ISOLATED_RUN'] = '1'
         try:
             git = git_state()
