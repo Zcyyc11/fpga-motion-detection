@@ -2,14 +2,58 @@
 
 # 线三真实数据与电脑端接收记录
 
-2026-10-10阶段记录。真实CDnet数据已经完整就绪；电脑端模拟TCP接收与画框已通过检查。真实CDnet全量评分已启动，最终分数和与历史CSV的差异尚待评测结束后填写。这里没有把历史0.737写成本轮成绩。
+2026-10-10最终记录。真实CDnet的12段/7类独立复现完成，72项CSV与历史记录逐项一致；电脑端模拟TCP接收与画框23/23检查通过。真实板端协议尚未提供，实际回传联调仍待队友配合。
 
 | 工作 | 已验证的结果 | 尚未完成 |
 | --- | --- | --- |
 | 12段真实数据 | 50,356文件逐个比对落盘字节、CRC与SHA256；50,344张图片全部解码 | 无数据准备缺口 |
 | 电脑端模拟接收 | 最终23/23检查通过；独立进程经TCP接收60帧，原始字节、编号、坐标及60张PNG核对一致 | 实际板端协议与联调 |
-| V43/r12复现 | 隔离源码及运行器已启动；12段读取等价检查均通过，正式评分正在运行 | 全量结束、72行CSV及111,498行逐帧证据复核 |
+| V43/r12复现 | 72/72项一致；111,498行逐帧证据完整，V43类别平均显示为0.737 | 本次选定软件子集无待补项 |
 | 既有修复回归 | 见 `../repair_20261010/README.md`，本轮没有重复运行 | owner换手审阅、资源时序与板测边界不变 |
+
+## 本轮最终结果：72项全部逐项一致
+
+本轮实际V43的7类平均F1为 **0.736717896217**，保留三位小数为 **0.737**。由历史四位小数CSV重算的均值为0.736711904762；两者差+0.000005991455，来自序列分数是否先舍入。全部72行的 `official_f1` 和 `perframe_f1` 均与历史表四位小数完全一致。
+
+这次结果来自12段真实数据、6个固定变体。每变体18,583计分帧，总计111,498行逐帧证据；比较器逐行重算P/R/F1和计数，核对每段每变体的完整帧号集合，再聚合到7类。没有缺帧、重复键或未解释差异。此结论是队伍选定12段/7类的软件复现，不是完整CDnet2014成绩或板端指标。
+
+| 变体 | 本轮完整精度的类别平均 | 历史四位小数CSV重算均值 |
+| --- | ---: | ---: |
+| V0 | 0.4421437595 | 0.4421404762 |
+| V12 | 0.7128433470 | 0.7128571429 |
+| V43 | 0.7367178962 | 0.7367119048 |
+| V45 | 0.7196326992 | 0.7196309524 |
+| V46 | 0.7015313005 | 0.7015238095 |
+| V47 | 0.6876416303 | 0.6876333333 |
+
+V43的逐段结果如下；“一致”指两项CSV分数均一致，完整6变体明细见 `evidence/evaluation02_all_72_rows.csv`。
+
+| 序列 | 计分帧 | 本轮整段F1 | 历史整段F1 | CSV对比 |
+| --- | ---: | ---: | ---: | --- |
+| badWeather/snowFall | 5701 | 0.79692795 | 0.7969 | 一致 |
+| baseline/highway | 1231 | 0.61467841 | 0.6147 | 一致 |
+| baseline/office | 1481 | 0.94642797 | 0.9464 | 一致 |
+| baseline/pedestrians | 800 | 0.92747492 | 0.9275 | 一致 |
+| cameraJitter/badminton | 351 | 0.62830379 | 0.6283 | 一致 |
+| cameraJitter/traffic | 671 | 0.63885942 | 0.6389 | 一致 |
+| dynamicBackground/canoe | 390 | 0.90129410 | 0.9013 | 一致 |
+| dynamicBackground/fountain02 | 1000 | 0.78512864 | 0.7851 | 一致 |
+| intermittentObjectMotion/streetLight | 3026 | 0.87721405 | 0.8772 | 一致 |
+| nightVideos/busyBoulvard | 2031 | 0.30400804 | 0.3040 | 一致 |
+| shadow/busStation | 951 | 0.83961308 | 0.8396 | 一致 |
+| shadow/peopleInShade | 950 | 0.90549724 | 0.9055 | 一致 |
+
+最终运行目录 `D:/line3_cdnet_20261010_1700/evaluation02`，受测源码 `ae5a7d8f77abe577a165b015a83d087f9cb65457`。原入口退出码 **0**，独立比较器退出码 **0**，运行用时1370.0秒（含等价检查、数据预检和评分）。stderr为空；源码及全部历史CSV前后哈希一致，冻结checkout干净。最终核验20/20项通过。
+
+最终运行命令：
+
+```powershell
+& 'D:/666666/Anaconda/python.exe' -X utf8 D:/line3_cdnet_20261010_1700/tools/run_observed.py --source D:/line3_cdnet_20261010_1700/source --data-root D:/cdnet2014_line3_20261010_1700/dataset --out D:/line3_cdnet_20261010_1700/evaluation02
+```
+
+等待器在评分进程结束后调用核验脚本，独立比较实际使用 `--run D:/line3_cdnet_20261010_1700/evaluation02`。命令、原始stdout/stderr、run.json、逐帧gzip、成绩CSV与comparison目录完整保存在 `evidence/evaluation02_complete_evidence.zip`。ZIP已逐项核对内容哈希并通过CRC检查；SHA256 `611701c3b429083f68dfe073118eaae4dc2ff491b6c476a69aafaa9c6bbed5af`。
+
+最终核验详情在 `evidence/evaluation02_final_audit.json`，摘要在 `evidence/evaluation02_comparison_summary.json`，各类分数在 `evidence/evaluation02_category_summary.csv`。本轮收尾工具及合成测试生成脚本另存 `evidence/completion_tools_20261010.zip`。下文保留中断过程与原始运行方式，结论以本节为准。
 
 ## 2026-10-10 19:25：评测中断后重新运行
 
@@ -35,7 +79,7 @@
 
 1. 原包中的 `cameraJitter/traffic/ROI.bmp` 为352×240，输入与真值为320×240。直接从ZIP再次读取，尺寸差异一致。它不是提取后损坏；本轮保留原图，并单独记录空间ROI尺寸差异。现有评分代码没有读取 `ROI.bmp`，只对真值标签0和255计分。这里复现的是队伍现有计分实现，不能据此宣称完成所有官方空间ROI规则的独立审计。
 2. 真实CDnet序列保留各自分辨率，软件做原尺寸的2×2求和；并没有全部缩放到硬件720p对应的640×360域。各序列尺寸已留在数据清单。硬件接口表里的640×360不能直接当成这些离线序列的尺寸。
-3. 12段覆盖7类，每变体18,583个计分帧；这是选定子集，不是完整CDnet2014总成绩。历史V43类别平均由已四舍五入CSV重算为0.7367119047619047，显示为0.737；本轮实际值仍待全量评测结束。
+3. 12段覆盖7类，每变体18,583个计分帧；这是选定子集，不是完整CDnet2014总成绩。历史V43类别平均由已四舍五入CSV重算为0.7367119047619047，显示为0.737；本轮实际值已由evaluation02完整复核，见最上方最终结果。
 
 ## 真实评测如何运行
 
@@ -43,9 +87,9 @@
 
 本机16GB内存，启动前可用约2.3GB。原入口缓存完整序列会占用较多内存，因此观察运行器只替换帧的存储/读取方式：按原来的BGR→灰度→2×2求和逻辑按需取帧，保留小缓存。原 `frame_metrics` 与 `cdnet_official.main` 仍执行，参数没有调整。
 
-正式计分前，对12段各取100帧预热和30帧计分，比较原缓存读取与按需读取的每张灰度图、压缩图、真值图，以及r12全部6变体的逐帧指标；任何差异立即退出。12/12段检查已全部精确通过，见 `evidence/loader_parity_snapshot.json` 的 `loader_equivalence`。这是每段130帧的存储等价检查，不能代替完整ROI评分。正式全量已进入snowFall，最终结果仍待结束。
+正式计分前，对12段各取100帧预热和30帧计分，比较原缓存读取与按需读取的每张灰度图、压缩图、真值图，以及r12全部6变体的逐帧指标；任何差异立即退出。12/12段检查已全部精确通过，见 `evidence/loader_parity_snapshot.json` 的 `loader_equivalence`。这是每段130帧的存储等价检查，不能代替完整ROI评分。该段记录初次运行时的阶段状态；最终完整结果见上方evaluation02。
 
-真实启动命令（2026-10-10 16:53:06，启动PID 32740）：
+初次运行的历史命令（2026-10-10 16:53:06，PID 32740，已中断；成功运行使用上方evaluation02）：
 
 ```powershell
 & 'D:/666666/Anaconda/python.exe' -X utf8 D:/line3_cdnet_20261010_1700/tools/run_observed.py --source D:/line3_cdnet_20261010_1700/source --data-root D:/cdnet2014_line3_20261010_1700/dataset --out D:/line3_cdnet_20261010_1700/evaluation01
@@ -53,10 +97,10 @@
 
 运行器调用的原入口参数是 `--set r12 --seq all`、默认预热100、`--frames 0`完整ROI。r12为V0/V12/V43/V45/V46/V47；每个变体配置、Python/NumPy/OpenCV版本、源码哈希和CSV前后哈希都写入 `run.json`。仅重定向原入口的输出位置，不覆盖原来的 `src/ps/cdnet_official_results_r12.csv`。
 
-实时日志为 `evaluation01/stdout.log`、`stderr.log`；最终退出码在 `run.json`。`per_frame.csv.gz`记录每段、每变体、每帧的P/R/F1、TP/FP/FN和真值前景数。运行结束后执行：
+成功运行的日志位于 `evaluation02/stdout.log` 和 `stderr.log`，退出码在该目录的 `run.json`。`per_frame.csv.gz`记录每段、每变体、每帧的P/R/F1、TP/FP/FN和真值前景数。本轮实际比较命令如下（已执行，勿对同一comparison目录重复运行）：
 
 ```powershell
-& 'D:/666666/Anaconda/python.exe' -X utf8 D:/line3_cdnet_20261010_1700/tools/compare_observed.py --run D:/line3_cdnet_20261010_1700/evaluation01 --reference D:/line3_cdnet_20261010_1700/source/src/ps/cdnet_official_results.csv
+& 'D:/666666/Anaconda/python.exe' -X utf8 D:/line3_cdnet_20261010_1700/tools/compare_observed.py --run D:/line3_cdnet_20261010_1700/evaluation02 --reference D:/line3_cdnet_20261010_1700/source/src/ps/cdnet_official_results.csv
 ```
 
 比较器重新从逐帧计数聚合分数，核对12×6完整键集合、每帧编号覆盖、每段四位小数结果与逐帧平均，不以总分相等代替逐项核对。汇总按类内平均后再对7类平均。若不同，保存差异并诊断，不调参追分。
@@ -90,6 +134,6 @@
 
 旧脚本、部分清单和test01收在 `evidence/preparation_prior_attempts.zip`，CRC已检查；原始D盘目录也保留。
 
-## 仍需接续
+## 交付范围与后续协作
 
-等待当前评测结束，检查退出码与日志，运行完整集合比较，再把真实结果和差异补入本报告并同步原草稿PR。板端联调需线一/线二提供实际连接和包格式。完整板测属线一，资源时序主要属线二，模块owner换手审阅由另一队员完成，不能用本次模拟或作者自检代替。
+线三可在电脑上独立完成的真实数据复现、接收/画框模拟、材料纠错和报告证据已完成。板端联调需线一/线二提供实际连接和包格式。完整板测属线一，资源时序主要属线二，模块owner换手审阅由另一队员完成，不能用本次模拟或作者自检代替。
