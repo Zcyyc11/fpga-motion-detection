@@ -1,0 +1,604 @@
+[
+  {
+    "name": "healthy",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\healthy\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\healthy\\scratch space\\run_20261010T021402Z_6q2385vj\\result.json"
+    ]
+  },
+  {
+    "name": "second_run_is_distinct_and_preserves_first",
+    "passed": true
+  },
+  {
+    "name": "mixed",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\mixed\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\mixed\\scratch space\\run_20261010T021404Z_pjg8lx_d\\result.json"
+    ]
+  },
+  {
+    "name": "compile",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\compile\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\compile\\scratch space\\run_20261010T021406Z_rs8qozc_\\result.json"
+    ]
+  },
+  {
+    "name": "elaborate",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\elaborate\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\elaborate\\scratch space\\run_20261010T021407Z_vy2ckbp4\\result.json"
+    ]
+  },
+  {
+    "name": "engine",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\engine\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\engine\\scratch space\\run_20261010T021408Z_4r2uxmob\\result.json"
+    ]
+  },
+  {
+    "name": "engine_caps",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\engine_caps\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\engine_caps\\scratch space\\run_20261010T021410Z_q82_sryu\\result.json"
+    ]
+  },
+  {
+    "name": "bracket_error",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\bracket_error\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\bracket_error\\scratch space\\run_20261010T021411Z_0mg508wx\\result.json"
+    ]
+  },
+  {
+    "name": "fatal",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\fatal\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\fatal\\scratch space\\run_20261010T021412Z_wifxio61\\result.json"
+    ]
+  },
+  {
+    "name": "lower_fatal",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\lower_fatal\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\lower_fatal\\scratch space\\run_20261010T021414Z_a4619ova\\result.json"
+    ]
+  },
+  {
+    "name": "error",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\error\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\error\\scratch space\\run_20261010T021415Z_xkilq5pk\\result.json"
+    ]
+  },
+  {
+    "name": "x_chinese",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\x_chinese\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\x_chinese\\scratch space\\run_20261010T021416Z_30zedxjm\\result.json"
+    ]
+  },
+  {
+    "name": "x_numeric",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\x_numeric\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\x_numeric\\scratch space\\run_20261010T021418Z_3kd1w79e\\result.json"
+    ]
+  },
+  {
+    "name": "no_x_check",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\no_x_check\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\no_x_check\\scratch space\\run_20261010T021419Z_kn_7uury\\result.json"
+    ]
+  },
+  {
+    "name": "no_done",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\no_done\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\no_done\\scratch space\\run_20261010T021420Z_c4pzznpi\\result.json"
+    ]
+  },
+  {
+    "name": "nonzero",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\nonzero\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\nonzero\\scratch space\\run_20261010T021421Z_nq2hp8wr\\result.json"
+    ]
+  },
+  {
+    "name": "timeout",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\timeout\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\timeout\\scratch space\\run_20261010T021423Z_rr4ycz3a\\result.json"
+    ]
+  },
+  {
+    "name": "no_output",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\no_output\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\no_output\\scratch space\\run_20261010T021424Z_bnotex4v\\result.json"
+    ]
+  },
+  {
+    "name": "no_csv",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\no_csv\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\no_csv\\scratch space\\run_20261010T021426Z_pnshqkl1\\result.json"
+    ]
+  },
+  {
+    "name": "empty_csv",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\empty_csv\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\empty_csv\\scratch space\\run_20261010T021427Z_2wqdirzg\\result.json"
+    ]
+  },
+  {
+    "name": "csv_x",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\csv_x\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\csv_x\\scratch space\\run_20261010T021428Z_8wkzqb6g\\result.json"
+    ]
+  },
+  {
+    "name": "duplicate",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\duplicate\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\duplicate\\scratch space\\run_20261010T021430Z_atds0obj\\result.json"
+    ]
+  },
+  {
+    "name": "gap",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\gap\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\gap\\scratch space\\run_20261010T021431Z_t1_fj2hb\\result.json"
+    ]
+  },
+  {
+    "name": "reverse",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\reverse\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\reverse\\scratch space\\run_20261010T021433Z_5w74fowr\\result.json"
+    ]
+  },
+  {
+    "name": "bad_bytes",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\bad_bytes\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\bad_bytes\\scratch space\\run_20261010T021434Z_yk4i8_hn\\result.json"
+    ]
+  },
+  {
+    "name": "missing_settings",
+    "passed": true,
+    "rc": 10,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\missing_settings\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "failed_settings",
+    "passed": true,
+    "rc": 11,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\failed_settings\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\failed_settings\\scratch space\\run_20261010T021436Z_u6hrd28f\\result.json"
+    ]
+  },
+  {
+    "name": "scratch_file",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\scratch_file\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": []
+  },
+  {
+    "name": "invalid_top",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\invalid_top\\中文 source space\\build\\scripts\\run_sim.py",
+      "--top",
+      "../tb_md_pipeline"
+    ],
+    "results": []
+  },
+  {
+    "name": "expect12",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\expect12\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "12"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\expect12\\scratch space\\run_20261010T021437Z_kotomjnl\\result.json"
+    ]
+  },
+  {
+    "name": "expect11",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\expect11\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "11"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\expect11\\scratch space\\run_20261010T021439Z_k02mk82q\\result.json"
+    ]
+  },
+  {
+    "name": "negative_count",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\negative_count\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "-1"
+    ],
+    "results": []
+  },
+  {
+    "name": "settings_cli_priority",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\settings_cli_priority\\中文 source space\\build\\scripts\\run_sim.py",
+      "--vivado-settings",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\fake tools\\settings64.bat"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\settings_cli_priority\\scratch space\\run_20261010T021441Z_j1hct_27\\result.json"
+    ]
+  },
+  {
+    "name": "xilinx_settings",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\xilinx_settings\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\xilinx_settings\\scratch space\\run_20261010T021442Z_tdz9m5m1\\result.json"
+    ]
+  },
+  {
+    "name": "path_environment",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\path_environment\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\path_environment\\scratch space\\run_20261010T021443Z_skocuxmq\\result.json"
+    ]
+  },
+  {
+    "name": "no_tools",
+    "passed": true,
+    "rc": 12,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\no_tools\\中文 source space\\build\\scripts\\run_sim.py"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\no_tools\\scratch space\\run_20261010T021445Z_30hn4zxx\\result.json"
+    ]
+  },
+  {
+    "name": "source_scratch_rejected",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\source_scratch_rejected\\中文 source space\\build\\scripts\\run_sim.py",
+      "--scratch-root",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\source_scratch_rejected\\中文 source space\\sim"
+    ],
+    "results": []
+  },
+  {
+    "name": "scratch_cli_priority",
+    "passed": true,
+    "rc": 0,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\scratch_cli_priority\\中文 source space\\build\\scripts\\run_sim.py",
+      "--scratch-root",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\scratch_cli_priority\\scratch space"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\scratch_cli_priority\\scratch space\\run_20261010T021446Z_1xuqj2_4\\result.json"
+    ]
+  },
+  {
+    "name": "missing_top",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\missing_top\\中文 source space\\build\\scripts\\run_sim.py",
+      "--top",
+      "tb_missing"
+    ],
+    "results": []
+  },
+  {
+    "name": "unsafe_top",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\unsafe_top\\中文 source space\\build\\scripts\\run_sim.py",
+      "--top",
+      "tb_md_pipeline&echo_bad"
+    ],
+    "results": []
+  },
+  {
+    "name": "zero_count",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\zero_count\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "0"
+    ],
+    "results": []
+  },
+  {
+    "name": "expect_offset",
+    "passed": true,
+    "rc": 2,
+    "command": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\expect_offset\\中文 source space\\build\\scripts\\run_sim.py",
+      "--expect-frames",
+      "11",
+      "--first-frame",
+      "1"
+    ],
+    "results": [
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner\\expect_offset\\scratch space\\run_20261010T021448Z_5x2h4sc9\\result.json"
+    ]
+  },
+  {
+    "name": "direct_batch_requires_isolated_launcher",
+    "passed": true
+  },
+  {
+    "name": "batch_template_ascii_crlf",
+    "passed": true
+  },
+  {
+    "name": "checkout_retains_batch_crlf",
+    "passed": true
+  },
+  {
+    "name": "source_checkout_unchanged",
+    "passed": true
+  }
+]

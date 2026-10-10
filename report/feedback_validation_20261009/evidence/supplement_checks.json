@@ -1,0 +1,44 @@
+{
+  "counterexample_cross_out_count": 1,
+  "counterexample_cross_out_events": [],
+  "counterexample_inputs": "inside=left; cx:30->70; vx:-10 in both observations (inconsistent velocity)",
+  "background_threshold1000_changed_frames": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "default_x_positions": [
+    40,
+    56,
+    72,
+    88,
+    104,
+    120,
+    136,
+    152,
+    168,
+    184,
+    200,
+    216
+  ],
+  "default_wraps": [],
+  "reviewer_mutC_path": "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\out\\mutC.csv",
+  "reviewer_mutC_exists": true,
+  "reviewer_mutC_sha256": "aba05f28125a4aa7f8b85c7ead39539b405591db4f1e32a1e3826dd77cd577b2",
+  "reviewer_mutC_last_row": [
+    "11",
+    "1",
+    "100",
+    "40",
+    "127",
+    "54",
+    "240"
+  ],
+  "reviewer_mutC_matches_unmodified_model": true
+}

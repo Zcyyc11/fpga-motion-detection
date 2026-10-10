@@ -1,0 +1,17 @@
+{
+  "queried_at": "2026-10-10T10:12:40.248920+08:00",
+  "argv": [
+    "git",
+    "-C",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+    "ls-remote",
+    "origin",
+    "refs/heads/main",
+    "refs/heads/codex/line3-review-20261009"
+  ],
+  "remote_url": "https://github.com/Zcyyc11/fpga-motion-detection.git",
+  "returncode": 0,
+  "stdout": "783cd7c49f474bab711671ed1dc644a0f58386ea\trefs/heads/codex/line3-review-20261009\n452075f727aec0f9ca6fe9404a09ac0de4361795\trefs/heads/main\n",
+  "stderr": "",
+  "scope": "branch refs only; PR and review status not queried"
+}

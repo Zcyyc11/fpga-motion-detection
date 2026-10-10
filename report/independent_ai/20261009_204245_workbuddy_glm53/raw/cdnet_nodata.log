@@ -1,0 +1,11 @@
+
+[数据未就绪 / 数据不完整] 没有指定 CDnet 数据根目录。**本项目刻意不给默认值**（这里曾经硬编码某个人的磁盘路径，换机器就静默跑不了）。
+  二选一：
+    1) 命令行：    python 本脚本.py --data-root "D:\我的数据\cdnet2014"
+    2) 环境变量：  set CDNET_ROOT=D:\我的数据\cdnet2014
+  ★ 目录要指向**含类别目录**的那一级，结构应该是：
+        cdnet2014\baseline\highway\temporalROI.txt
+                          \input\...
+                          \groundtruth\...
+  数据集约 0.96 GB / 5.2 万个文件，不进 git（GitHub 单文件上限 100 MB）。
+
