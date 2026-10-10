@@ -66,13 +66,17 @@ module bbox #(
                 cnt   <= n;
                 valid <= (n >= MIN_CNT[15:0]) && (mnx <= mxx) && (mny <= mxy);
                 // 复位累加器
-                mnx <= BIG; mny <= BIG; mxx <= 16'd0; mxy <= 16'd0; n <= 16'd0;
+                // Retain the first sample of the new frame while publishing the old one.
+                mnx <= in_mask ? in_x : BIG; mny <= in_mask ? in_y : BIG;
+                mxx <= in_mask ? in_x : 16'd0; mxy <= in_mask ? in_y : 16'd0;
+                n <= in_mask ? 16'd1 : 16'd0;
             end else if (in_valid && in_mask) begin
                 if (in_x < mnx) mnx <= in_x;
                 if (in_x > mxx) mxx <= in_x;
                 if (in_y < mny) mny <= in_y;
                 if (in_y > mxy) mxy <= in_y;
-                n <= n + 16'd1;
+                // Saturate the published 16-bit count; wrapping can suppress valid targets.
+                if (n != 16'hFFFF) n <= n + 16'd1;
             end
         end
     end
