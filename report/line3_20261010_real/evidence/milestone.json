@@ -1,0 +1,13 @@
+{
+  "selected_files": 50356,
+  "selected_bytes": 505521999,
+  "images_decoded": 50344,
+  "sequence_count": 12,
+  "archive_sha256": "05c6d0dd64858b094cb0d309e5b63be42de52f2b5c5adff4a65e6a640dfd2a84",
+  "manifest_sha256": "2c7e434dfef587de2100bc1b5533096b0e87ecb48057a7c86272f78979cff7e6",
+  "scripts": {
+    "sim\\line3\\pc_receiver.py": "6a0e3f76af363f9a440d5a545211f80d3547a1afb152d51fab86f85d2daa600b",
+    "sim\\line3\\pc_receiver_simulate.py": "b921783af1f7ac0ba571a9eed9d2cabfef2fecf26e46103acf3cd81df2fc6899",
+    "sim\\line3\\check_pc_receiver.py": "fc0f275dc7759203fa463bceef93b6778b81ccd5fe0197ec99bb122f6724cf20"
+  }
+}

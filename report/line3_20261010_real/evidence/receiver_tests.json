@@ -1,0 +1,99 @@
+{
+  "tests": [
+    {
+      "name": "valid packet exact roundtrip",
+      "pass": true
+    },
+    {
+      "name": "invalid UTF8",
+      "pass": true
+    },
+    {
+      "name": "duplicate JSON keys",
+      "pass": true
+    },
+    {
+      "name": "truncated JSON",
+      "pass": true
+    },
+    {
+      "name": "wrong source",
+      "pass": true
+    },
+    {
+      "name": "bool frame ID",
+      "pass": true
+    },
+    {
+      "name": "negative frame ID",
+      "pass": true
+    },
+    {
+      "name": "wrong dimensions",
+      "pass": true
+    },
+    {
+      "name": "coordinate overflow",
+      "pass": true
+    },
+    {
+      "name": "negative coordinates",
+      "pass": true
+    },
+    {
+      "name": "inverted box",
+      "pass": true
+    },
+    {
+      "name": "duplicate target IDs",
+      "pass": true
+    },
+    {
+      "name": "invalid id width",
+      "pass": true
+    },
+    {
+      "name": "numeric valid",
+      "pass": true
+    },
+    {
+      "name": "unknown field",
+      "pass": true
+    },
+    {
+      "name": "missing field",
+      "pass": true
+    },
+    {
+      "name": "every two-chunk split boundary including CRLF",
+      "pass": true
+    },
+    {
+      "name": "oversize bound and resynchronization",
+      "pass": true
+    },
+    {
+      "name": "gaps duplicates out-of-order and truncated EOF fail",
+      "pass": true
+    },
+    {
+      "name": "empty stream fails",
+      "pass": true
+    },
+    {
+      "name": "inclusive x2 mapping and valid false",
+      "pass": true
+    },
+    {
+      "name": "disk growth bounded by frame and byte limits",
+      "pass": true
+    },
+    {
+      "name": "separate-process real TCP 60 frames and decoded output",
+      "pass": true
+    }
+  ],
+  "passed": 23,
+  "total": 23,
+  "board_test": false
+}
