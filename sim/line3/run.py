@@ -131,7 +131,7 @@ def validate_observations(obs, truth, width=1280, height=720):
 
 def tracking_audit(obs, truth, out):
     validate_observations(obs, truth)
-    frame_rows, target_rows, transitions = [], [], []
+    frame_rows, target_rows, assignment_rows, transitions = [], [], [], []
     hits = total = fp = switches = dir_ok = dir_total = 0
     tid_to_oid, oid_to_tids, previous_side = {}, {}, {}
     for data in obs['frames']:
@@ -140,6 +140,15 @@ def tracking_audit(obs, truth, out):
         merged = bool(gts[0]['merged'])
         pred = sorted(data['assigned'].items())
         matched = match_targets(pred, gts)
+        associations = {pi:(gi,distance) for pi,gi,distance in matched}
+        for pi, (tid, b) in enumerate(pred):
+            gi, distance = associations.get(pi, (None, None))
+            assignment_rows.append(dict(frame=f, tid=tid, merged=merged,
+                                        oid='' if gi is None else gts[gi]['oid'],
+                                        distance='' if distance is None else round(distance,6),
+                                        matched=gi is not None,
+                                        **{k:b[k] for k in ('cx','cy','x0','y0','x1','y1')},
+                                        vx=data['tracks'][tid]['vx'], vy=data['tracks'][tid]['vy']))
         for gt in gts:
             oid, side = gt['oid'], gt['cx'] < 640
             if oid in previous_side and previous_side[oid] != side:
@@ -166,22 +175,46 @@ def tracking_audit(obs, truth, out):
                     dir_ok += int((vx > 0) == (gt['vx'] > 0))
             target_rows.append(dict(frame=f, tid=tid, oid=gt['oid'], merged=merged,
                                     cx_error=round(distance, 6), bbox_max_error=error,
-                                    vx=vx, truth_vx=gt['vx'], **{k: b[k] for k in ('x0','y0','x1','y1')}))
+                                    vx=vx, truth_vx=gt['vx'], truth_cx=gt['cx'], truth_cy=gt['cy'],
+                                    **{k: b[k] for k in ('cx','cy','x0','y0','x1','y1')}))
         frame_rows.append(dict(frame=f, merged=merged, n_truth=len(gts), n_detected=len(data['boxes']),
                                n_assigned=len(pred), matched=len(matched),
                                tids=';'.join(tid for tid, _ in pred), live_ids=';'.join(sorted(data['tracks'])),
                                missing_truth_ids=';'.join(str(gt['oid']) for i,gt in enumerate(gts)
                                                          if i not in {g for _,g,_ in matched})))
     write_csv(out / 'frame_audit.csv', list(frame_rows[0]), frame_rows)
-    write_csv(out / 'target_audit.csv', list(target_rows[0]), target_rows)
-    write_csv(out / 'truth_crossings.csv', list(transitions[0]), transitions)
+    write_csv(out / 'target_audit.csv', list(target_rows[0]) if target_rows else
+              ['frame','tid','oid','merged','cx_error','bbox_max_error','vx','truth_vx',
+               'truth_cx','truth_cy','cx','cy','x0','y0','x1','y1'], target_rows)
+    write_csv(out / 'assignment_audit.csv', list(assignment_rows[0]) if assignment_rows else
+              ['frame','tid','merged','oid','distance','matched','cx','cy','x0','y0','x1','y1','vx','vy'], assignment_rows)
+    write_csv(out / 'truth_crossings.csv', ['frame','oid','kind','cx','merged'], transitions)
+    event_counts = dict(cross_in=0, cross_out=0, dwell=0)
+    count_errors = []
+    for row in obs['alarms']:
+        for event in row['events']:
+            event_counts[event['kind']] += 1
+        if any(row[k] != event_counts[k] for k in event_counts):
+            count_errors.append(row['frame'])
     return dict(frames=len(frame_rows), merged_frames=sum(r['merged'] for r in frame_rows),
                 matched_visible=hits, truth_visible=total, recall=hits/max(1,total), false_boxes=fp,
                 id_switches=switches, track_breaks=sum(max(0,len(v)-1) for v in oid_to_tids.values()),
                 direction_correct=dir_ok, direction_total=dir_total, truth_crossings=transitions,
                 actual_events=[event for row in obs['alarms'] for event in row['events']],
                 final_alarm_counts={k:obs['alarms'][-1][k] for k in ('cross_in','cross_out','dwell')},
-                maximum_visible_bbox_error=max(r['bbox_max_error'] for r in target_rows if not r['merged']))
+                alarm_count_mismatch_frames=count_errors,
+                maximum_visible_bbox_error=max((r['bbox_max_error'] for r in target_rows if not r['merged']), default=None))
+
+
+def clip_acceptance(result, mode):
+    """Pinned synthetic fixture contract; not a claim about real-world accuracy."""
+    return (result['matched_visible'] == {'clean':210, 'algo':186}[mode]
+            and result['truth_visible'] == 210 and result['false_boxes'] == 0
+            and result['id_switches'] == 0 and result['track_breaks'] == 0
+            and not result['alarm_count_mismatch_frames']
+            and result['final_alarm_counts'] == dict(cross_in=2, cross_out=1, dwell=0)
+            and [(e['frame'],e['kind']) for e in result['actual_events']] ==
+                [(34,'cross_out'), (43,'cross_in'), (102,'cross_in')])
 
 
 def cdnet_audit(out):
@@ -277,7 +310,9 @@ def main():
         checks.extend([not r['observer_csv_diffs'],not r['observer_alarm_diffs'],r['observer_video_equal'],
                        r['video']['decoded_frames']==120, r['video']['sizes']==[(1280,720)],
                        not r['video']['event_display_mismatch_frames']])
-    checks.extend([not result['algo']['reference_frame_diffs'], not result['algo']['reference_alarm_diffs']])
+    # Old alarm CSV omits cross_out; keep its diff as history, never use it as the corrected oracle.
+    checks.extend([not result['algo']['reference_frame_diffs']])
+    checks.extend(clip_acceptance(result[mode], mode) for mode in ('clean','algo'))
     print(json.dumps(dict(behaviour_failures=failed, infrastructure_pass=all(checks)), ensure_ascii=False))
     return 2 if failed or not all(checks) else 0
 

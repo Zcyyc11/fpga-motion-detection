@@ -63,11 +63,33 @@ def main():
         except ValueError:
             rejected = True
         record('reject_' + name, True, rejected)
-    cli('full_runner_exit', ['sim/line3/run.py','--out',out/'software_rerun'], 2)
+    cli('full_runner_exit', ['sim/line3/run.py','--out',out/'software_rerun'], 0)
     result = json.loads((out/'software_rerun/results.json').read_text(encoding='utf-8'))
-    record('known_failures', ['exit_left','reenter_left','exit_right','dwell_non30fps','dwell_consecutive_gap'],
+    record('behaviour_failures', [],
            [r['case'] for r in result['cases'] if r['status']=='FAIL'])
     record('protected_files', [], result['protected_files_changed'])
+    fresh = json.loads((out/'software_rerun/clean_observed/observations.json').read_text(encoding='utf-8'))
+    for mutation in ('renumber', 'swap', 'recreate', 'drop'):
+        bad = copy.deepcopy(fresh)
+        for row in bad['frames']:
+            if mutation == 'renumber' or row['frame'] >= 80:
+                if mutation == 'drop':
+                    row['assigned'] = {}
+                    row['boxes'] = []
+                else:
+                    def remap(tid):
+                        return str(3-int(tid)) if mutation == 'swap' else str(int(tid)+10)
+                    row['assigned'] = {remap(t):v for t,v in row['assigned'].items()}
+                    row['tracks'] = {remap(t):v for t,v in row['tracks'].items()}
+        dest = out / ('identity_' + mutation)
+        dest.mkdir()
+        metrics = run.tracking_audit(bad, truth, dest)
+        (dest/'metrics.json').write_text(json.dumps(metrics,indent=2),encoding='utf-8')
+        record('identity_' + mutation, mutation == 'renumber', run.clip_acceptance(metrics,'clean'))
+        if mutation == 'swap':
+            record('identity_swap_metric', True, metrics['id_switches'] > 0)
+        if mutation == 'recreate':
+            record('identity_recreate_metric', True, metrics['track_breaks'] > 0)
     record('log_line_endings', False, any(b'\r\r\n' in p.read_bytes() for p in (out/'software_rerun/logs').glob('*.txt')))
     (out/'acceptance.json').write_text(json.dumps(results, indent=2), encoding='utf-8')
     print(json.dumps(dict(tests=len(results), passed=sum(r['passed'] for r in results))))

@@ -22,7 +22,7 @@ python -X utf8 build/scripts/check_doc_commands.py
 python -X utf8 build/scripts/check_doc_commands.py --self-test
 ```
 
-软件回归测试程序参数和异常处理；运行器回归使用工具替身；tracking才是当前PC合成片段与行为取证。已有算法问题会让tracking返回非零，必须读它的results.json和commands.json，不要改期望使其通过。check_tools.py固定包含旧基线的行为断言，verify_delivery.py固定核验旧ead15e0文件，均不适合作为任意新版本的全项目验收结论。
+软件回归测试程序参数和异常处理；运行器回归使用工具替身；tracking才是当前PC合成片段与行为取证。修复版 tracking 应退出 0，并保留 results.json、commands.json、逐帧及逐目标关联表。check_tools.py 要求告警行为通过，并检出身份交换、重建和掉检；整体重编号不算身份错误。check_repairs.py 会再次运行旧提交的最小失败反例，然后验证修复结果。verify_delivery.py 只核验旧 ead15e0 交付，不用于本修复版验收。
 
 ## 实际RTL
 
@@ -33,15 +33,17 @@ $vivadoSettings = 'D:\AMD2025.2\2025.2\Vivado\settings64.bat'
 python -X utf8 build/scripts/run_sim.py --vivado-settings "$vivadoSettings" --scratch-root "$evidenceRoot/rtl_default" --expect-frames 12
 ```
 
-默认testbench与延长排空的实验要分开保存。旧线三独立适配器支持后者；scratch必须是新的纯英文绝对路径，以下路径只适用于本机：
+默认 testbench 已按结果计数自动收尾。独立适配器仍要求新的纯英文绝对路径；以下路径只适用于本机：
 
 ```powershell
 $asciiScratch = 'D:/666666/Temp/line3_rerun_' + $runId
-python -X utf8 sim/line3/run_rtl.py --settings "$vivadoSettings" --out "$asciiScratch/fd" --evidence "$evidenceRoot/rtl_fd" --mode framediff --drain-frames 1
-python -X utf8 sim/line3/run_rtl.py --settings "$vivadoSettings" --out "$asciiScratch/bg" --evidence "$evidenceRoot/rtl_bg" --mode bg --drain-frames 1
+python -X utf8 sim/line3/run_rtl.py --settings "$vivadoSettings" --out "$asciiScratch/fd" --evidence "$evidenceRoot/rtl_fd" --mode framediff
+python -X utf8 sim/line3/run_rtl.py --settings "$vivadoSettings" --out "$asciiScratch/bg" --evidence "$evidenceRoot/rtl_bg" --mode bg
 ```
 
-这个参数只增加testbench收尾，不代表默认工程通过，也不代表720p视频全链或板测。结果内保存源文件哈希、命令、真实日志、完整CSV差异和PPM。
+旧 `--drain-frames 1` 作为兼容参数保留，0 和 1 均收集 12 帧，不再把 FRAMES 改成 13。结果内保存源文件哈希、命令、真实日志、完整 CSV 差异和 PPM。这是 320×180 合成仿真，不代表 720p 全链或板测。
+
+定向验证另用 `sim/line3/check_rtl_contracts.py --settings <settings64.bat> --out <新英文目录>`，覆盖差值 69/70/71、四边贴边、帧间切换和实际回绕，同时在独立副本注入错误。用 `--help` 查看参数。
 
 原完整7例真实运行器检查已移入build/scripts/verify_runner_live.py，原脚本字节保持一致；用其--help查看参数。它会在隔离副本中故意制造编译错误和X状态，不能直接按子运行成功数量解释结果。
 
@@ -49,4 +51,4 @@ python -X utf8 sim/line3/run_rtl.py --settings "$vivadoSettings" --out "$asciiSc
 
 真实CDnet输入必须另行提供；仓库CSV和构造数据不等于真实数据集。使用cdnet相关入口前阅读--help及输出路径，在隔离源码/数据副本运行，避免覆盖归档成绩。板端回传未确认协议，不提供虚构的板端复现步骤。
 
-新视频应逐帧解码，检查CSV、事件和图像的帧/坐标对应关系；新结果不能用旧inspect_media.py固定读取的历史视频替代。本轮原始命令和完整输出见report/line3_review_20261009/commands.json及同目录日志。
+新视频应逐帧解码，检查CSV、事件和图像的帧/坐标对应关系；新结果不能用旧inspect_media.py固定读取的历史视频替代。旧复核输出见 report/line3_review_20261009/；当前修复证据、备份和失败记录见 [修复报告](../report/repair_20261010/README.md)。

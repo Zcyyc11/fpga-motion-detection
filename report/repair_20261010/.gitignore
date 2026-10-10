@@ -1,0 +1,4 @@
+**/wave/*.ppm
+**/*_observed/*.mp4
+software_first/**/*.mp4
+software_second/**/*.mp4

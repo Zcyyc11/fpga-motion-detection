@@ -1,0 +1,24 @@
+{
+  "archive_0_10_diff": [],
+  "archive_full_model_diff": [
+    {
+      "kind": "missing",
+      "key": [
+        "11"
+      ],
+      "field": "",
+      "expected": {
+        "frame": "11",
+        "b_valid": "1",
+        "b_x1": "100",
+        "b_y1": "40",
+        "b_x2": "127",
+        "b_y2": "54",
+        "b_cnt": "240"
+      },
+      "actual": null
+    }
+  ],
+  "execution_error": "RuntimeError('clean failed; see log')",
+  "protected_files_changed": []
+}

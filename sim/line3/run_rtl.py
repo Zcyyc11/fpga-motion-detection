@@ -21,7 +21,7 @@ def main():
     ap.add_argument('--evidence', type=Path, required=True, help='New evidence directory')
     ap.add_argument('--mode', choices=['framediff','bg'], default='framediff')
     ap.add_argument('--drain-frames', type=int, choices=[0, 1], default=0,
-                    help='Add one video frame to finish collecting the original 12 expected frames')
+                    help='Deprecated compatibility option; testbench now drains automatically, both values collect 12 frames')
     a = ap.parse_args()
     settings, scratch, evidence = a.settings.resolve(), a.out.resolve(), a.evidence.resolve()
     if not settings.is_file():
@@ -43,7 +43,7 @@ def main():
     mode = '0' if a.mode == 'framediff' else '1'
     batch = '\n'.join(['@echo off', 'setlocal', 'call "'+str(settings)+'"', 'if errorlevel 1 exit /b 1',
                        'call xvlog.bat -sv -f files.f','if errorlevel 1 exit /b 2',
-                       'call xelab.bat -debug typical -timescale 1ns/1ps tb_md_pipeline -generic_top "MODE_BG='+mode+'" -generic_top "FRAMES='+str(12+a.drain_frames)+'" -s line3_sim',
+                       'call xelab.bat -debug typical -timescale 1ns/1ps tb_md_pipeline -generic_top "MODE_BG='+mode+'" -generic_top "FRAMES=12" -s line3_sim',
                        'if errorlevel 1 exit /b 3', 'call xsim.bat line3_sim -runall','exit /b %errorlevel%',''])
     with (scratch/'run.bat').open('w',encoding='ascii',newline='\r\n') as f:
         f.write(batch)

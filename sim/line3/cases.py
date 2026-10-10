@@ -51,6 +51,13 @@ def run(out):
             rule.update(frame, {1: box(x)}, {1: {'vx': x-xs[max(0, frame-1)]}})
         record(name, dict(centres=xs, line_x=50, inside=inside),
                [exp_in, exp_out], [rule.n_cross_in, rule.n_cross_out])
+        expected_events = [dict(frame=f, kind='cross_in' if
+                               ((xs[f] < 50) == (inside == 'left')) else 'cross_out')
+                           for f in range(1, len(xs)) if (xs[f] < 50) != (xs[f-1] < 50)]
+        record(name + '_events', xs, expected_events,
+               [{k:e[k] for k in ('frame','kind')} for e in rule.events])
+        record(name + '_side', xs, 'in' if ((xs[-1] < 50) == (inside == 'left')) else 'out',
+               rule.state[1]['side'])
         (out / (name + '_events.json')).write_text(json.dumps(rule.events, indent=2), encoding='utf-8')
 
     rule = mt.AlarmRule(zone=(0, 0, 100, 70), dwell_s=1., fps=10.)
@@ -63,6 +70,27 @@ def run(out):
         rule.update(f, {} if f == 2 else {1: box(30)}, {1: {'vx': 0}})
     record('dwell_consecutive_gap', 'present,present,missing,present,present; threshold 3 continuous frames',
            0, rule.n_dwell)
+
+    for name, frames in [('skipped_frame_number', [0,1,3,4]), ('consecutive', [0,1,2,3])]:
+        rule = mt.AlarmRule(dwell_s=.25, fps=10.)  # ceil(2.5) = 3; None zone is full image
+        emitted = []
+        for f in frames:
+            emitted.extend(rule.update(f, {1:box(30)}, {1:{'vx':0}}))
+        record('dwell_' + name, frames, [] if name == 'skipped_frame_number' else [(2,.3)],
+               [(e['frame'],e['secs']) for e in emitted])
+    rule = mt.AlarmRule(zone=(0,0,50,50), dwell_s=.2, fps=10.)
+    for f, x in enumerate([30,30,30,70,30,30]):
+        rule.update(f, {1:box(x)}, {1:{'vx':0}})
+    record('dwell_rearm_after_exit', 'two visits; one event per continuous visit', [1,5],
+           [e['frame'] for e in rule.events])
+    for inside in ('left','right'):
+        rule = mt.AlarmRule(line_x=50, inside=inside)
+        for f, (x,vx) in enumerate([(30,0),(70,-1),(30,0)]):
+            rule.update(f, {1:box(x)}, {1:{'vx':vx}})
+        record('inconsistent_velocity_' + inside, 'wrong direction then zero speed', [0,0,[]],
+               [rule.n_cross_in,rule.n_cross_out,rule.events])
+        record('observed_side_' + inside, 'position updates even if direction rejected',
+               'in' if inside == 'left' else 'out', rule.state[1]['side'])
 
     # Exact comparator tests use copies only. Row permutation is deliberately accepted.
     fields = ['frame', 'tid', 'x0', 'kind']

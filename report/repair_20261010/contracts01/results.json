@@ -1,0 +1,250 @@
+[
+  {
+    "case": "correct",
+    "exit_code": 0,
+    "done": true,
+    "fatal": false,
+    "mutation": null,
+    "original_sha256": {
+      "threshold.v": "f6b2f454045479bc524527a67dd112a9039813843d9879e0841458fe6ee50a97",
+      "morph_open.v": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2",
+      "morph3x3.v": "aa3ce59c7106ef1ba66dea1a8f7e1f6cf627fbca0704e8f242901d3e016bdc26",
+      "pattern_gen.v": "a706630fbaa84a9e74f7271344f144c3bf9c59446e47d4768d8d4c900dbd4294",
+      "tb_contracts.v": "1c4c9e1164bd6355658778da3946b2a26679466771788d4f4faf7c0bf0518db5"
+    },
+    "tested_sha256": {
+      "threshold.v": "f6b2f454045479bc524527a67dd112a9039813843d9879e0841458fe6ee50a97",
+      "morph_open.v": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2",
+      "morph3x3.v": "aa3ce59c7106ef1ba66dea1a8f7e1f6cf627fbca0704e8f242901d3e016bdc26",
+      "pattern_gen.v": "a706630fbaa84a9e74f7271344f144c3bf9c59446e47d4768d8d4c900dbd4294",
+      "tb_contracts.v": "1c4c9e1164bd6355658778da3946b2a26679466771788d4f4faf7c0bf0518db5"
+    },
+    "morph_comparison": [
+      {
+        "frame": 0,
+        "unique": true,
+        "rows": 49,
+        "actual_pixels": 49,
+        "model_pixels": 64,
+        "differences": [
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            8
+          ]
+        ]
+      },
+      {
+        "frame": 1,
+        "unique": true,
+        "rows": 49,
+        "actual_pixels": 0,
+        "model_pixels": 0,
+        "differences": []
+      },
+      {
+        "frame": 2,
+        "unique": true,
+        "rows": 49,
+        "actual_pixels": 49,
+        "model_pixels": 64,
+        "differences": [
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            8
+          ]
+        ]
+      }
+    ],
+    "pass": false
+  },
+  {
+    "case": "threshold_69",
+    "exit_code": 0,
+    "done": false,
+    "fatal": true,
+    "mutation": [
+      "threshold.v",
+      "parameter integer THRESH = 70",
+      "parameter integer THRESH = 69"
+    ],
+    "original_sha256": {
+      "threshold.v": "f6b2f454045479bc524527a67dd112a9039813843d9879e0841458fe6ee50a97",
+      "morph_open.v": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2",
+      "morph3x3.v": "aa3ce59c7106ef1ba66dea1a8f7e1f6cf627fbca0704e8f242901d3e016bdc26",
+      "pattern_gen.v": "a706630fbaa84a9e74f7271344f144c3bf9c59446e47d4768d8d4c900dbd4294",
+      "tb_contracts.v": "1c4c9e1164bd6355658778da3946b2a26679466771788d4f4faf7c0bf0518db5"
+    },
+    "tested_sha256": {
+      "threshold.v": "9633c2889617f1ff629fe82704c3b3a8394c277dca08707bcac604f7e0d3e2e6",
+      "morph_open.v": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2",
+      "morph3x3.v": "aa3ce59c7106ef1ba66dea1a8f7e1f6cf627fbca0704e8f242901d3e016bdc26",
+      "pattern_gen.v": "a706630fbaa84a9e74f7271344f144c3bf9c59446e47d4768d8d4c900dbd4294",
+      "tb_contracts.v": "1c4c9e1164bd6355658778da3946b2a26679466771788d4f4faf7c0bf0518db5"
+    },
+    "pass": true
+  },
+  {
+    "case": "wrap_early",
+    "exit_code": 0,
+    "done": false,
+    "fatal": true,
+    "mutation": [
+      "pattern_gen.v",
+      "(obj_x + DX16) > X_MAX16",
+      "(obj_x + DX16) >= X_MAX16"
+    ],
+    "original_sha256": {
+      "threshold.v": "f6b2f454045479bc524527a67dd112a9039813843d9879e0841458fe6ee50a97",
+      "morph_open.v": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2",
+      "morph3x3.v": "aa3ce59c7106ef1ba66dea1a8f7e1f6cf627fbca0704e8f242901d3e016bdc26",
+      "pattern_gen.v": "a706630fbaa84a9e74f7271344f144c3bf9c59446e47d4768d8d4c900dbd4294",
+      "tb_contracts.v": "1c4c9e1164bd6355658778da3946b2a26679466771788d4f4faf7c0bf0518db5"
+    },
+    "tested_sha256": {
+      "threshold.v": "f6b2f454045479bc524527a67dd112a9039813843d9879e0841458fe6ee50a97",
+      "morph_open.v": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2",
+      "morph3x3.v": "aa3ce59c7106ef1ba66dea1a8f7e1f6cf627fbca0704e8f242901d3e016bdc26",
+      "pattern_gen.v": "7461d36b66490bad63c4c2b1c03d5bb56727f3e6d7e6c0dfe99079c1f56c3524",
+      "tb_contracts.v": "1c4c9e1164bd6355658778da3946b2a26679466771788d4f4faf7c0bf0518db5"
+    },
+    "pass": true
+  },
+  {
+    "case": "no_wrap",
+    "exit_code": 0,
+    "done": false,
+    "fatal": true,
+    "mutation": [
+      "pattern_gen.v",
+      "(obj_x + DX16) > X_MAX16",
+      "1'b0"
+    ],
+    "original_sha256": {
+      "threshold.v": "f6b2f454045479bc524527a67dd112a9039813843d9879e0841458fe6ee50a97",
+      "morph_open.v": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2",
+      "morph3x3.v": "aa3ce59c7106ef1ba66dea1a8f7e1f6cf627fbca0704e8f242901d3e016bdc26",
+      "pattern_gen.v": "a706630fbaa84a9e74f7271344f144c3bf9c59446e47d4768d8d4c900dbd4294",
+      "tb_contracts.v": "1c4c9e1164bd6355658778da3946b2a26679466771788d4f4faf7c0bf0518db5"
+    },
+    "tested_sha256": {
+      "threshold.v": "f6b2f454045479bc524527a67dd112a9039813843d9879e0841458fe6ee50a97",
+      "morph_open.v": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2",
+      "morph3x3.v": "aa3ce59c7106ef1ba66dea1a8f7e1f6cf627fbca0704e8f242901d3e016bdc26",
+      "pattern_gen.v": "5af1e3932dafcb2b6275aa471b3835e5fe857ea3e70df2186b2270bf60d10b9a",
+      "tb_contracts.v": "1c4c9e1164bd6355658778da3946b2a26679466771788d4f4faf7c0bf0518db5"
+    },
+    "pass": true
+  }
+]

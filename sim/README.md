@@ -1,3 +1,5 @@
+<!-- Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V4; scope: simulation evidence instructions. -->
+
 # sim/ — 仿真与验证
 
 **职责**：证明功能正确性，并留下**可复核的证据**。官方硬门槛是"须板上跑通实测、不收纯仿真"，
@@ -13,23 +15,25 @@
 ## 一键复现
 
 ```bat
-python build\scripts\run_sim.py          :: 编译 + 仿真 + 判据
-python src\ps\rtl_golden.py --compare sim\wave\bbox_rtl.csv --report sim\logs\model_vs_rtl.txt
-python sim\view_sim.py                    :: 出对比图 + H.264 演示视频 + 叠加体检
+python build\scripts\run_sim.py --expect-frames 12
+python src\ps\rtl_golden.py --compare "本次运行目录/sim/wave/bbox_rtl.csv" --report "本次运行目录/model_vs_rtl.txt"
+
 ```
 
-必须按这个顺序：仿真要在模型之后对比，而对比图和视频都依赖仿真产物。
+把“本次运行目录”替换为运行器打印的真实路径。源码目录内的旧 CSV 和视频是历史归档，不会由新仿真覆盖。旧 CSV 少第 11 帧，严格比较应失败。
 
-## 这一版仿真的产物与判据（当前实测结果）
+默认 testbench 等待完整 12 次 bbox 结算后停止；比较须覆盖 0–11 的完整集合，空表、重复或额外帧均失败。更完整的复现命令见 [复现说明](../docs/reproduce_line3.md)。
+
+## 产物与判据
 
 | 产物 | 内容 | 判据 |
 |---|---|---|
-| `wave/bbox_rtl.csv` | 逐帧 `valid,x1,y1,x2,y2,cnt`（大像素坐标） | 与 `rtl_golden.py` **逐帧逐字段完全一致**（11/11 帧） |
-| `wave/frame_*.ppm` | 流水线输出画面（含红框） | 画面里红框的实测像素范围 == CSV 行 `k-1` ×2（12/12 帧吻合） |
-| `wave/mask_*.ppm` | 3×3 开运算后的运动掩码 | 数量等于 2 条带 × 8 宽 × 15 高 = 240 |
+| `wave/bbox_rtl.csv` | 逐帧 `valid,x1,y1,x2,y2,cnt`（大像素坐标） | 与 `rtl_golden.py` **完整 12 帧逐字段一致**，拒绝只比较共同帧 |
+| `wave/frame_*.ppm` | 流水线输出画面（含红框） | 画面里红框的实测像素范围 == CSV 行 `k-1` ×2；显示核验须独立运行 |
+| `wave/mask_*.ppm` | 3×3 开运算后的运动掩码 | 默认帧差中间帧为 240；贴边输入另用定向测试，不能推广这个常数 |
 | `wave/sim_montage.png` | 每帧「输出画面 + 掩码」两联，纵向排列 | 人眼复核 |
 | `wave/sim_demo.mp4` | 同上的 H.264 视频 | 人眼复核（Windows 自带播放器可直接打开） |
-| `logs/model_vs_rtl.txt` | 模型对比报告 | 必须显示"完全一致" |
+| `logs/model_vs_rtl.txt` | 模型对比报告 | 退出 0、完整集合一致且所有字段一致 |
 
 **为什么必须两路对照**（数字 + 画面），而不是只留一个：
 - 只对数字 → 不知道红框有没有真的画到画面上（"算出来了"≠"显示出来了"）
@@ -50,3 +54,9 @@ python sim\view_sim.py                    :: 出对比图 + H.264 演示视频 +
    必须同步改 `src/ps/rtl_golden.py` 的对应函数 —— 两边的整数运算约定必须逐条一致
 3. `xvlog` 用 `-sv`，所以模块名/端口名不能撞 SystemVerilog 关键字（`ref`、`bit`、`int` … 都踩过）
 4. `run_sim.bat` 与 `.bat` 文件**必须纯 ASCII** —— cmd.exe 按 GBK 读 .bat，UTF-8 中文注释会把脚本拆散
+
+## 定向边界验证
+
+`sim/line3/check_rtl_contracts.py` 调用真实 Vivado，检查阈值 69/70/71、四边贴边、帧间切换与位置 0、16、32、48、0、16 的实际回绕。固定几何答案独立于硬件模型，错误版本仅在新目录副本中运行。
+
+两级流式开运算的输出域为 x=1..W-3、y=1..H-3；没有额外排空右/底边界，所以是左/顶裁一格、右/底裁两格。10×10 全前景输出 49 格，不是对称裁边的 64 格。该限制需用于算法评价，不能宣称完整零填充图像的所有边界都已输出。
