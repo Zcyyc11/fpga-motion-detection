@@ -1,0 +1,9 @@
+help_rtl_golden completed
+help_multi_track completed
+model_framediff completed
+model_bg completed
+clean completed
+clean_observed completed
+algo completed
+algo_observed completed
+{"behaviour_failures": [], "infrastructure_pass": true}

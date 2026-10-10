@@ -1,0 +1,734 @@
+[
+  {
+    "mode": "rtl_fd",
+    "frame": 0,
+    "actual": null,
+    "expected": null,
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_fd",
+    "frame": 1,
+    "actual": null,
+    "expected": null,
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_fd",
+    "frame": 2,
+    "actual": [
+      40,
+      80,
+      94,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      94,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_fd",
+    "frame": 3,
+    "actual": [
+      56,
+      80,
+      110,
+      108
+    ],
+    "expected": [
+      56,
+      80,
+      110,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_fd",
+    "frame": 4,
+    "actual": [
+      72,
+      80,
+      126,
+      108
+    ],
+    "expected": [
+      72,
+      80,
+      126,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_fd",
+    "frame": 5,
+    "actual": [
+      88,
+      80,
+      142,
+      108
+    ],
+    "expected": [
+      88,
+      80,
+      142,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_fd",
+    "frame": 6,
+    "actual": [
+      104,
+      80,
+      158,
+      108
+    ],
+    "expected": [
+      104,
+      80,
+      158,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_fd",
+    "frame": 7,
+    "actual": [
+      120,
+      80,
+      174,
+      108
+    ],
+    "expected": [
+      120,
+      80,
+      174,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_fd",
+    "frame": 8,
+    "actual": [
+      136,
+      80,
+      190,
+      108
+    ],
+    "expected": [
+      136,
+      80,
+      190,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_fd",
+    "frame": 9,
+    "actual": [
+      152,
+      80,
+      206,
+      108
+    ],
+    "expected": [
+      152,
+      80,
+      206,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_fd",
+    "frame": 10,
+    "actual": [
+      168,
+      80,
+      222,
+      108
+    ],
+    "expected": [
+      168,
+      80,
+      222,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_fd",
+    "frame": 11,
+    "actual": [
+      184,
+      80,
+      238,
+      108
+    ],
+    "expected": [
+      184,
+      80,
+      238,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 0,
+    "actual": null,
+    "expected": null,
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 1,
+    "actual": null,
+    "expected": null,
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 2,
+    "actual": [
+      40,
+      80,
+      94,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      94,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 3,
+    "actual": [
+      40,
+      80,
+      110,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      110,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 4,
+    "actual": [
+      40,
+      80,
+      126,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      126,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 5,
+    "actual": [
+      40,
+      80,
+      142,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      142,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 6,
+    "actual": [
+      40,
+      80,
+      158,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      158,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 7,
+    "actual": [
+      40,
+      80,
+      174,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      174,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 8,
+    "actual": [
+      40,
+      80,
+      190,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      190,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 9,
+    "actual": [
+      40,
+      80,
+      206,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      206,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 10,
+    "actual": [
+      40,
+      80,
+      222,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      222,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_bg",
+    "frame": 11,
+    "actual": [
+      40,
+      80,
+      238,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      238,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 0,
+    "actual": null,
+    "expected": null,
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 1,
+    "actual": null,
+    "expected": null,
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 2,
+    "actual": [
+      40,
+      80,
+      94,
+      108
+    ],
+    "expected": [
+      40,
+      80,
+      94,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 3,
+    "actual": [
+      56,
+      80,
+      110,
+      108
+    ],
+    "expected": [
+      56,
+      80,
+      110,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 4,
+    "actual": [
+      72,
+      80,
+      126,
+      108
+    ],
+    "expected": [
+      72,
+      80,
+      126,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 5,
+    "actual": [
+      88,
+      80,
+      142,
+      108
+    ],
+    "expected": [
+      88,
+      80,
+      142,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 6,
+    "actual": [
+      104,
+      80,
+      158,
+      108
+    ],
+    "expected": [
+      104,
+      80,
+      158,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 7,
+    "actual": [
+      120,
+      80,
+      174,
+      108
+    ],
+    "expected": [
+      120,
+      80,
+      174,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 8,
+    "actual": [
+      136,
+      80,
+      190,
+      108
+    ],
+    "expected": [
+      136,
+      80,
+      190,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 9,
+    "actual": [
+      152,
+      80,
+      206,
+      108
+    ],
+    "expected": [
+      152,
+      80,
+      206,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 10,
+    "actual": [
+      168,
+      80,
+      222,
+      108
+    ],
+    "expected": [
+      168,
+      80,
+      222,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  },
+  {
+    "mode": "rtl_compat",
+    "frame": 11,
+    "actual": [
+      184,
+      80,
+      238,
+      108
+    ],
+    "expected": [
+      184,
+      80,
+      238,
+      108
+    ],
+    "shape": [
+      180,
+      320,
+      3
+    ],
+    "pass": true
+  }
+]

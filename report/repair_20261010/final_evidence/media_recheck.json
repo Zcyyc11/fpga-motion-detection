@@ -1,0 +1,26 @@
+{
+  "clean": {
+    "path": "tools/software_rerun/clean/track_result.mp4",
+    "decoded_frames": 120,
+    "shapes": [
+      [
+        720,
+        1280,
+        3
+      ]
+    ],
+    "sha256": "1b2332df6743d7b1c5314ba7ca80268500aec6f85b76e2395ddca17fd10d19ae"
+  },
+  "algo": {
+    "path": "tools/software_rerun/algo/track_result_algo.mp4",
+    "decoded_frames": 120,
+    "shapes": [
+      [
+        720,
+        1280,
+        3
+      ]
+    ],
+    "sha256": "3d68af772b521f94a213b83e2de4f70b3ae4023e2dbf2108f6f5a20756cf4e89"
+  }
+}

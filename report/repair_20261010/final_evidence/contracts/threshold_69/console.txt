@@ -1,0 +1,45 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_final01/contracts/threshold_69/threshold.v" into library work
+INFO: [VRFC 10-311] analyzing module threshold
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_final01/contracts/threshold_69/morph_open.v" into library work
+INFO: [VRFC 10-311] analyzing module morph_open
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_final01/contracts/threshold_69/morph3x3.v" into library work
+INFO: [VRFC 10-311] analyzing module morph3x3
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_final01/contracts/threshold_69/pattern_gen.v" into library work
+INFO: [VRFC 10-311] analyzing module pattern_gen
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_final01/contracts/threshold_69/tb_contracts.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_contracts
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_contracts -s contracts 
+Multi-threading is on. Using 22 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.threshold
+Compiling module work.morph3x3(W=10)
+Compiling module work.morph_open(W=10)
+Compiling module work.pattern_gen(H_ACTIVE=64,V_ACTIVE...
+Compiling module work.tb_contracts
+Built simulation snapshot contracts
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Oct 10 10:48:08 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/contracts/xsim_script.tcl
+# xsim {contracts} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+Fatal: THRESHOLD value=70 expected=0 actual=1
+Time: 66 ns  Iteration: 0  Process: /tb_contracts/threshold_check  Scope: tb_contracts.threshold_check  File: D:/666666/Temp/codex_repair_20261010_final01/contracts/threshold_69/tb_contracts.v Line: 32
+$finish called at time : 66 ns
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Oct 10 10:48:10 2026...

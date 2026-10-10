@@ -1,0 +1,37 @@
+usage: multi_track.py [-h] [--clip CLIP] [--gate GATE] [--maxmiss MAXMISS]
+                      [--extrapolate EXTRAPOLATE] [--blob-max BLOB_MAX]
+                      [--min-area MIN_AREA] [--match-dist MATCH_DIST]
+                      [--source {clean,algo}] [--alpha ALPHA]
+                      [--init-frames INIT_FRAMES]
+                      [--min-area-big MIN_AREA_BIG] [--outdir OUTDIR]
+                      [--no-video] [--alarm] [--line-x LINE_X]
+                      [--inside {left,right}] [--zone ZONE] [--dwell DWELL]
+
+options:
+  -h, --help            show this help message and exit
+  --clip CLIP
+  --gate GATE
+  --maxmiss MAXMISS     连续没匹配上几帧后注销。有粘连判据兜底，5 是安全的默认；调小到 2~3
+                        会在【两目标面积恰好相等、块面积看不出是粘连】的那几帧上断航
+  --extrapolate EXTRAPOLATE
+                        丢帧期最多按旧速度外推几帧，超过就停在原地（防止越推越偏）
+  --blob-max BLOB_MAX   面积超过它的块视为【多目标粘连】，谁也不许认领；0/负数=关闭。本考场实测：单目标块
+                        19200/6912，粘连块 24960/25536 ⇒ 22000 正好分得开
+  --min-area MIN_AREA
+  --match-dist MATCH_DIST
+                        评测时框与真值的匹配距离
+  --source {clean,algo}
+                        clean=干净掩码（只考逻辑）；algo=换成我们自己的检测链（噪声进来）
+  --alpha ALPHA         背景学习率（越大背景跟得越快）
+  --init-frames INIT_FRAMES
+                        初始背景取前 N 帧逐像素最小值；1 = 旧行为（直接拿第 0 帧）
+  --min-area-big MIN_AREA_BIG
+                        algo 模式下按**大像素**算的最小面积（压缩域）
+  --outdir OUTDIR
+  --no-video
+  --alarm               打开周界告警规则
+  --line-x LINE_X       警戒线 x 坐标；不给则取画面中线
+  --inside {left,right}
+                        警戒线哪一侧算'里'（禁入区）
+  --zone ZONE           重点区域 x0,y0,x1,y1；留空=全画面
+  --dwell DWELL         停留多少秒算滞留

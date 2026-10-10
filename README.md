@@ -2,13 +2,14 @@
 
 # fpga-motion-detection
 
-2026 FPGA竞赛项目，团队GGBOND。当前分支 `codex/line3-review-20261009` 汇集线三独立验证、后续软件/仿真运行器修复及审查材料。main仍由队长管理；遵守 [协作规范](CONTRIBUTING.md)。
+2026 FPGA竞赛项目，团队GGBOND。当前分支 `codex/verified-repairs-20261010` 汇集线三验证、软件/RTL 修复及固定提交的最终回归证据。main仍由队长管理；遵守 [协作规范](CONTRIBUTING.md)。
 
 **线三离线交付已有证据，但原始职责没有全部完成。** 真实CDnet成绩复现、板端结果回传实物验证、完整板测和他人换手验均不能据此宣布通过。
 
 | 入口 | 用途 |
 | --- | --- |
-| [当前状态与缺口](docs/line3_status_20261009.md) | 对照原始职责，说明已完成与未完成 |
+| [2026-10-10 修复最终验收](report/repair_20261010/README.md) | 12 步回归通过、软件视频与真实 RTL 证据、尚未完成的硬件门槛 |
+| [2026-10-09 职责核对（历史）](docs/line3_status_20261009.md) | 对照原始职责，说明已完成与未完成 |
 | [复现说明](docs/reproduce_line3.md) | 从新输出目录运行，避免覆盖参考结果 |
 | [独立检验委托](docs/independent_review.md) | 给另一AI自行建立判据，不预定结论 |
 | [可复制提示词](docs/independent_review_prompt.md) | 新会话直接使用 |

@@ -1,0 +1,16 @@
+[
+  {
+    "kind": "missing",
+    "key": [
+      "2"
+    ],
+    "field": "",
+    "expected": {
+      "frame": "2",
+      "tid": "1",
+      "x0": "12",
+      "kind": "cross_in"
+    },
+    "actual": null
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "kind": "missing",
+    "key": [
+      "0"
+    ],
+    "field": "",
+    "expected": {
+      "frame": "0",
+      "tid": "1",
+      "x0": "10",
+      "kind": "cross_in"
+    },
+    "actual": null
+  },
+  {
+    "kind": "missing",
+    "key": [
+      "1"
+    ],
+    "field": "",
+    "expected": {
+      "frame": "1",
+      "tid": "1",
+      "x0": "11",
+      "kind": "cross_in"
+    },
+    "actual": null
+  },
+  {
+    "kind": "missing",
+    "key": [
+      "2"
+    ],
+    "field": "",
+    "expected": {
+      "frame": "2",
+      "tid": "1",
+      "x0": "12",
+      "kind": "cross_in"
+    },
+    "actual": null
+  },
+  {
+    "kind": "missing",
+    "key": [
+      "3"
+    ],
+    "field": "",
+    "expected": {
+      "frame": "3",
+      "tid": "1",
+      "x0": "13",
+      "kind": "cross_in"
+    },
+    "actual": null
+  }
+]

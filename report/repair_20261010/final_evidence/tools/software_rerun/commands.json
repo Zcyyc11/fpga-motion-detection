@@ -1,0 +1,148 @@
+[
+  {
+    "name": "help_rtl_golden",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/rtl_golden.py",
+      "--help"
+    ],
+    "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+    "exit_code": 0,
+    "seconds": 0.221,
+    "log": "logs/help_rtl_golden.txt"
+  },
+  {
+    "name": "help_multi_track",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/multi_track.py",
+      "--help"
+    ],
+    "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+    "exit_code": 0,
+    "seconds": 0.504,
+    "log": "logs/help_multi_track.txt"
+  },
+  {
+    "name": "model_framediff",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/rtl_golden.py",
+      "--mode",
+      "framediff",
+      "--out-csv",
+      "D:\\666666\\Temp\\codex_repair_20261010_final01\\tools\\software_rerun\\framediff.csv"
+    ],
+    "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+    "exit_code": 0,
+    "seconds": 0.224,
+    "log": "logs/model_framediff.txt"
+  },
+  {
+    "name": "model_bg",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/rtl_golden.py",
+      "--mode",
+      "bg",
+      "--out-csv",
+      "D:\\666666\\Temp\\codex_repair_20261010_final01\\tools\\software_rerun\\bg.csv"
+    ],
+    "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+    "exit_code": 0,
+    "seconds": 0.169,
+    "log": "logs/model_bg.txt"
+  },
+  {
+    "name": "clean",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/multi_track.py",
+      "--source",
+      "clean",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--outdir",
+      "D:\\666666\\Temp\\codex_repair_20261010_final01\\tools\\software_rerun\\clean"
+    ],
+    "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+    "exit_code": 0,
+    "seconds": 4.84,
+    "log": "logs/clean.txt"
+  },
+  {
+    "name": "clean_observed",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "sim/line3/observe.py",
+      "--source",
+      "clean",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--outdir",
+      "D:\\666666\\Temp\\codex_repair_20261010_final01\\tools\\software_rerun\\clean_observed"
+    ],
+    "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+    "exit_code": 0,
+    "seconds": 6.132,
+    "log": "logs/clean_observed.txt"
+  },
+  {
+    "name": "algo",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/multi_track.py",
+      "--source",
+      "algo",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--init-frames",
+      "12",
+      "--outdir",
+      "D:\\666666\\Temp\\codex_repair_20261010_final01\\tools\\software_rerun\\algo"
+    ],
+    "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+    "exit_code": 0,
+    "seconds": 3.752,
+    "log": "logs/algo.txt"
+  },
+  {
+    "name": "algo_observed",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "sim/line3/observe.py",
+      "--source",
+      "algo",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--init-frames",
+      "12",
+      "--outdir",
+      "D:\\666666\\Temp\\codex_repair_20261010_final01\\tools\\software_rerun\\algo_observed"
+    ],
+    "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+    "exit_code": 0,
+    "seconds": 3.816,
+    "log": "logs/algo_observed.txt"
+  }
+]
