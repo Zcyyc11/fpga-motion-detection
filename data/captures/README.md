@@ -12,7 +12,7 @@
 - 命令行 `--data-root <目录>` 或直接用 `--seq <序列完整路径>`（见下方用法）。
 
 ```
-CDNET_ROOT=<你放数据集的目录>/cdnet2014      ← 例如 D:/datasets/cdnet2014
+CDNET_ROOT=<你放数据集的目录>/cdnet2014      ← 例如 <你的数据集目录>/cdnet2014
 ```
 
 | 类别 | 序列 | 分辨率 | temporalROI | 选它的理由 |
