@@ -1,0 +1,109 @@
+{
+  "threshold69": {
+    "command": {
+      "argv": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\threshold69.py",
+        "--compare",
+        "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone\\sim\\wave\\bbox_rtl.csv",
+        "--out-csv",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\threshold69.csv"
+      ],
+      "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+      "started": "2026-10-10T10:11:13.533799+08:00",
+      "seconds": 0.279,
+      "returncode": 0
+    },
+    "changed_frames": [],
+    "output_last_frame": [
+      11,
+      1,
+      100,
+      40,
+      127,
+      54,
+      240
+    ]
+  },
+  "no_last_column": {
+    "command": {
+      "argv": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\no_last_column.py",
+        "--compare",
+        "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone\\sim\\wave\\bbox_rtl.csv",
+        "--out-csv",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\no_last_column.csv"
+      ],
+      "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+      "started": "2026-10-10T10:11:13.860225+08:00",
+      "seconds": 0.291,
+      "returncode": 0
+    },
+    "changed_frames": [],
+    "output_last_frame": [
+      11,
+      1,
+      100,
+      40,
+      127,
+      54,
+      240
+    ]
+  },
+  "last_frame": {
+    "command": {
+      "argv": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\last_frame.py",
+        "--compare",
+        "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone\\sim\\wave\\bbox_rtl.csv",
+        "--out-csv",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\last_frame.csv"
+      ],
+      "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+      "started": "2026-10-10T10:11:14.193031+08:00",
+      "seconds": 0.292,
+      "returncode": 0
+    },
+    "changed_frames": [
+      11
+    ],
+    "output_last_frame": [
+      11,
+      0,
+      65535,
+      65535,
+      0,
+      0,
+      0
+    ]
+  },
+  "threshold_positive_control": {
+    "input": [
+      69,
+      70,
+      71
+    ],
+    "base": [
+      false,
+      false,
+      true
+    ],
+    "mutated": [
+      false,
+      true,
+      true
+    ]
+  },
+  "edge_positive_control": {
+    "base_last_column": 0,
+    "mutated_last_column": 8
+  }
+}

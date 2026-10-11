@@ -10,6 +10,8 @@
 *.md     text eol=lf
 *.ipynb  text eol=lf
 *.csv    text eol=lf
+*.bat text eol=crlf
+*.raw binary
 
 # 二进制：不做任何行尾转换
 *.bit    binary

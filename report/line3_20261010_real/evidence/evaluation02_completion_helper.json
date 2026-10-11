@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-10-10T19:48:35.598761+08:00",
+  "result": "AUDIT_PASS",
+  "run": "D:\\line3_cdnet_20261010_1700\\evaluation02",
+  "watched_pid": 27788,
+  "command": [
+    "D:\\666666\\Anaconda\\python.exe",
+    "-X",
+    "utf8",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\maintenance_20261010\\finalize_cdnet_20261010.py",
+    "--run",
+    "D:\\line3_cdnet_20261010_1700\\evaluation02",
+    "--out",
+    "D:\\line3_cdnet_20261010_1700\\final_audit02"
+  ],
+  "exit_code": 0
+}

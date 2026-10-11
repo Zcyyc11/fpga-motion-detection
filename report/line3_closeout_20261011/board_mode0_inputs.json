@@ -1,0 +1,79 @@
+{
+  "source_sha": "64ac44ee2a27897f674919d6fcb8e4fbbd8dfde8",
+  "mode": 0,
+  "files": [
+    {
+      "path": "board/pynq-z2_v1.0_official.xdc",
+      "sha256": "70207ba33ed98e5a157999969350948b95d28ed471ab43fdc50975f60ffcc25b"
+    },
+    {
+      "path": "board/pynq_z2_hdmi_out.xdc",
+      "sha256": "1a328329b2125e84bc3f3faae7d9a691bb838df7a8c0773069c296409810d862"
+    },
+    {
+      "path": "build/scripts/build_vivado.tcl",
+      "sha256": "50b1cf49b67b868b0d43957e71ed45b1a1137cffe38cfa2ea7323898395318b2"
+    },
+    {
+      "path": "src/rtl/bbox.v",
+      "sha256": "f1c874a592c1e835cc1dc5ca6bee58646cea4e3f400a54df4e88d626b33e3fe2"
+    },
+    {
+      "path": "src/rtl/board/board_top.v",
+      "sha256": "22f2b51f1e4ba79d63d3d458ce39b5cd5fb3f6985bf860b4c0ecb60afaed92c8"
+    },
+    {
+      "path": "src/rtl/board/clock_74m25.v",
+      "sha256": "b7505d1068c75d3d68c900666216669813f0c20a0365c358a6049032fa1e3675"
+    },
+    {
+      "path": "src/rtl/diff_stage.v",
+      "sha256": "39a64d6b44855c7f762fe57c71cd9d717bf612496c35cda04708333c31b9839c"
+    },
+    {
+      "path": "src/rtl/downsample2x2.v",
+      "sha256": "836e336ea283ace829eb6dc5f5c59b506440c7e08f228ef4648ee40435ccee8f"
+    },
+    {
+      "path": "src/rtl/frame_buf.v",
+      "sha256": "f65ce9c0b7f40a313f2c0b00ccfebcc6bdda690e01ef17bc58c1372549fccddc"
+    },
+    {
+      "path": "src/rtl/md_pipeline.v",
+      "sha256": "a3ad796ecf57db0973097bb8df5791290e51b6095fffa8fce5ddc6d55a397693"
+    },
+    {
+      "path": "src/rtl/morph3x3.v",
+      "sha256": "4120cff579b8f5b71e89f09644299fdb82dc578c77769a4a5ce3a2c33bb78b78"
+    },
+    {
+      "path": "src/rtl/morph_open.v",
+      "sha256": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2"
+    },
+    {
+      "path": "src/rtl/overlay.v",
+      "sha256": "4f7f5757066d59eccb93331ad4c946cc3874c8600b5a55304597ade756898f66"
+    },
+    {
+      "path": "src/rtl/pattern_gen.v",
+      "sha256": "a706630fbaa84a9e74f7271344f144c3bf9c59446e47d4768d8d4c900dbd4294"
+    },
+    {
+      "path": "src/rtl/threshold.v",
+      "sha256": "f6b2f454045479bc524527a67dd112a9039813843d9879e0841458fe6ee50a97"
+    },
+    {
+      "path": "src/rtl/video_timing.v",
+      "sha256": "79b9a8fbb3ed2a6490cbd49d2f94a1d603d314134babe1f5436dd337c421bfc8"
+    }
+  ],
+  "ip_sha": "f4613fff005b098065fd5d619a2b88e55720a423",
+  "ip_url": "https://github.com/Digilent/vivado-library",
+  "source_tree": "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode0",
+  "clock": "125 MHz external; generated 74.25 MHz pixel clock",
+  "scope": "board_top internal pattern + HDMI output; no HDMI input, no hardware test",
+  "adaptations": [
+    "limit jobs to 2",
+    "remove create_project -force in fresh directory"
+  ]
+}

@@ -1,0 +1,3 @@
+# These are archived invocation scripts, not generated Vivado projects.
+!*.bat
+!*.log

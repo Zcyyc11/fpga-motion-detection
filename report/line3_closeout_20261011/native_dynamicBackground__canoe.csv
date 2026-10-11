@@ -1,0 +1,7 @@
+seq,variant,perframe_f1,official_f1
+dynamicBackground/canoe,V0 现役 α.02 thr70 open3,0.3569,0.5547
+dynamicBackground/canoe,V12 快背景1/32+冻结前景 ★现冠军,0.5713,0.9067
+dynamicBackground/canoe,V43 V38+全局补偿 R2/抽样4,0.5706,0.9013
+dynamicBackground/canoe,V45 V43+初始背景取前6帧最小,0.5452,0.8715
+dynamicBackground/canoe,V46 V43+初始背景取前12帧最小,0.4784,0.7836
+dynamicBackground/canoe,V47 V43+初始背景取前20帧最小,0.4217,0.6881

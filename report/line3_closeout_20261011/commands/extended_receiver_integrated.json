@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "D:/666666/Anaconda/python.exe",
+    "-I",
+    "-B",
+    "-X",
+    "utf8",
+    "D:\\line3_closeout_20261011_1000_work\\integration\\sim\\line3\\check_pc_receiver_extended.py",
+    "--out",
+    "D:\\line3_closeout_20261011_1000_work\\integrated_receiver_extended"
+  ],
+  "cwd": "D:\\line3_closeout_20261011_1000_work\\integration",
+  "start_utc": "2026-10-11T02:10:06.168073+00:00",
+  "exit_code": 0,
+  "seconds": 0.34,
+  "encoding": "utf-8"
+}

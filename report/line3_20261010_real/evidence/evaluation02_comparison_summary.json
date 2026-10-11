@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "rows": 72,
+  "sequences": 12,
+  "categories": 7,
+  "variants": 6,
+  "scored_frames_per_variant": 18583,
+  "per_frame_rows": 111498,
+  "csv_matches_reference_all_4dp_fields": true,
+  "differences": [],
+  "source_and_references_unchanged": true,
+  "totals": {
+    "V0 现役 α.02 thr70 open3": {
+      "actual_full_precision": 0.4421437595313669,
+      "reference_from_4dp": 0.4421404761904762
+    },
+    "V12 快背景1/32+冻结前景 ★现冠军": {
+      "actual_full_precision": 0.7128433470483714,
+      "reference_from_4dp": 0.7128571428571429
+    },
+    "V43 V38+全局补偿 R2/抽样4": {
+      "actual_full_precision": 0.7367178962173883,
+      "reference_from_4dp": 0.7367119047619047
+    },
+    "V45 V43+初始背景取前6帧最小": {
+      "actual_full_precision": 0.7196326991706098,
+      "reference_from_4dp": 0.7196309523809523
+    },
+    "V46 V43+初始背景取前12帧最小": {
+      "actual_full_precision": 0.7015313004967019,
+      "reference_from_4dp": 0.7015238095238095
+    },
+    "V47 V43+初始背景取前20帧最小": {
+      "actual_full_precision": 0.6876416302843389,
+      "reference_from_4dp": 0.6876333333333333
+    }
+  },
+  "reference_sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2"
+}

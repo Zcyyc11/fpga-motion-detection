@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "D:\\666666\\Anaconda\\python.exe",
+    "-X",
+    "utf8",
+    "build/scripts/test_sim_runner.py",
+    "--repo",
+    "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+    "--out",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner"
+  ],
+  "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+  "started": "2026-10-10T10:14:01.457193+08:00",
+  "seconds": 49.6,
+  "returncode": 0
+}

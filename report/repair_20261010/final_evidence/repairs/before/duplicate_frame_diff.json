@@ -1,0 +1,11 @@
+[
+  {
+    "kind": "duplicate_actual",
+    "key": [
+      "2"
+    ],
+    "field": "",
+    "expected": "unique",
+    "actual": 6
+  }
+]

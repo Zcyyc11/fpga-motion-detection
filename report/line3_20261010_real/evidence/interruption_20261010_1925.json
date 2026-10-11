@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-10-10T19:26:34.316770+08:00",
+  "classification": "INTERRUPTED_WITHOUT_FINAL_EXIT_CODE",
+  "observed_last_boot": "2026-10-10T19:14:39+08:00",
+  "original_pid_32740_absent": true,
+  "matching_evaluation_process_absent_before_restart": true,
+  "original_last_output_at": "2026-10-10T17:09:37+08:00",
+  "completed_items": 7,
+  "expected_items": 72,
+  "reason_limit": "Reboot observed; exact termination mechanism before reboot is not established.",
+  "replacement_run": "D:/line3_cdnet_20261010_1700/evaluation02",
+  "replacement_pid": 27788,
+  "replacement_started_at": "2026-10-10T19:25:31+08:00",
+  "source_sha": "ae5a7d8f77abe577a165b015a83d087f9cb65457",
+  "archives": [
+    {
+      "path": "evaluation01_interrupted.zip",
+      "bytes": 284946,
+      "sha256": "3dcd7d5b750fbee04e703095ad8e3005adb5725e4193a20be1c0f5419f5dec0a",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "comparator_test01_synthetic.zip",
+      "bytes": 713831,
+      "sha256": "57d147154816b5a8814f7f206d146655c10ffb96f64128b6e68f5a652f2ec417",
+      "zip_crc": "PASS"
+    }
+  ],
+  "original_files": {
+    "per_frame.csv.gz": {
+      "bytes": 338908,
+      "sha256": "a749bb74fecb1362a3c484715292e655f5391ebf9df35191afd36145d6f29f18"
+    },
+    "run.json": {
+      "bytes": 10389,
+      "sha256": "2387a40a4e16bc7049d6d7f8229889e9a4ef4619efbf5a52bdb1029b7e27ada1"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.log": {
+      "bytes": 2606,
+      "sha256": "fab8e495e0ff02deb8df5bca4e8a5ba203dcb7018f05cba076def195702ca8fc"
+    }
+  }
+}

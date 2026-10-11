@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "D:/666666/Anaconda/python.exe",
+    "-I",
+    "-B",
+    "-X",
+    "utf8",
+    "D:\\line3_closeout_20261011_1000_work\\native_v2\\shadow__peopleInShade\\cdnet_official.py",
+    "--data-root",
+    "D:\\cdnet2014_line3_20261010_1700\\dataset",
+    "--set",
+    "r12",
+    "--seq",
+    "shadow/peopleInShade"
+  ],
+  "cwd": "D:\\line3_closeout_20261011_1000_work\\native_v2\\shadow__peopleInShade",
+  "start_utc": "2026-10-11T02:14:57.379494+00:00",
+  "exit_code": 0,
+  "seconds": 37.465,
+  "encoding": "utf-8"
+}

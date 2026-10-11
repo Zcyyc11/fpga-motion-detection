@@ -1,0 +1,68 @@
+{
+  "frames": 120,
+  "merged_frames": 15,
+  "matched_visible": 142,
+  "truth_visible": 210,
+  "recall": 0.6761904761904762,
+  "false_boxes": 0,
+  "id_switches": 0,
+  "track_breaks": 0,
+  "direction_correct": 140,
+  "direction_total": 140,
+  "truth_crossings": [
+    {
+      "frame": 32,
+      "oid": 0,
+      "kind": "cross_out",
+      "cx": 651.5,
+      "merged": true
+    },
+    {
+      "frame": 43,
+      "oid": 1,
+      "kind": "cross_in",
+      "cx": 631.5,
+      "merged": false
+    },
+    {
+      "frame": 102,
+      "oid": 0,
+      "kind": "cross_in",
+      "cx": 627.5,
+      "merged": false
+    }
+  ],
+  "actual_events": [
+    {
+      "frame": 34,
+      "tid": 1,
+      "kind": "cross_out",
+      "cx": 691.1,
+      "cy": 359.2,
+      "vx": 40.0
+    },
+    {
+      "frame": 43,
+      "tid": 2,
+      "kind": "cross_in",
+      "cx": 631.5,
+      "cy": 355.5,
+      "vx": -12.0
+    },
+    {
+      "frame": 102,
+      "tid": 1,
+      "kind": "cross_in",
+      "cx": 627.5,
+      "cy": 359.5,
+      "vx": -16.0
+    }
+  ],
+  "final_alarm_counts": {
+    "cross_in": 2,
+    "cross_out": 1,
+    "dwell": 0
+  },
+  "alarm_count_mismatch_frames": [],
+  "maximum_visible_bbox_error": 0
+}

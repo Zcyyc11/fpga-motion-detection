@@ -1,0 +1,2 @@
+# Frozen evidence retains original bytes for SHA256 verification.
+* -text

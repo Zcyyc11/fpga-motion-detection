@@ -1,0 +1,56 @@
+{
+  "docs": [
+    {
+      "name": "default",
+      "rc": 0,
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "build/scripts/check_doc_commands.py"
+      ],
+      "pass_count": 0
+    },
+    {
+      "name": "selftest",
+      "rc": 0,
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "build/scripts/check_doc_commands.py",
+        "--self-test"
+      ],
+      "pass_count": 8
+    }
+  ],
+  "doc_integrity": {
+    "changed": [],
+    "added": [],
+    "files": 127
+  },
+  "protected": {
+    "captain_repo": {
+      "files": 375,
+      "changed": [],
+      "added": []
+    },
+    "verification_fix_20261009": {
+      "files": 4048,
+      "changed": [],
+      "added": []
+    },
+    "verification_20261009": {
+      "files": 229,
+      "changed": [],
+      "added": []
+    }
+  },
+  "syntax_files": 19,
+  "frozen_files_unchanged": true,
+  "git": {
+    "main": "452075f727aec0f9ca6fe9404a09ac0de4361795",
+    "line3": "f6f6036ab44b4604897305d17d58cc71f8e089f7",
+    "original_status": ""
+  }
+}

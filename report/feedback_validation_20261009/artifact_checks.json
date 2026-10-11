@@ -1,0 +1,18 @@
+{
+  "original_review_unchanged": true,
+  "backup_crc_ok": true,
+  "evidence_hashes_ok": true,
+  "report_links_exist": true,
+  "report_utf8_no_replacement": true,
+  "shared_code_docs_unchanged": true,
+  "boundaries": true,
+  "runner": true,
+  "tools": true,
+  "exact_five_failures": true,
+  "cross_out_counts": {
+    "clean": 1,
+    "algo": 1
+  },
+  "drained_framediff": true,
+  "drained_bg": true
+}

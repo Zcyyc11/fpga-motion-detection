@@ -1,0 +1,7 @@
+seq,variant,perframe_f1,official_f1
+cameraJitter/badminton,V0 现役 α.02 thr70 open3,0.5442,0.5534
+cameraJitter/badminton,V12 快背景1/32+冻结前景 ★现冠军,0.4640,0.4618
+cameraJitter/badminton,V43 V38+全局补偿 R2/抽样4,0.6000,0.6283
+cameraJitter/badminton,V45 V43+初始背景取前6帧最小,0.4691,0.4921
+cameraJitter/badminton,V46 V43+初始背景取前12帧最小,0.3908,0.4081
+cameraJitter/badminton,V47 V43+初始背景取前20帧最小,0.3699,0.3859

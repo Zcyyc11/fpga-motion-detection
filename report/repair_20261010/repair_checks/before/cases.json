@@ -1,0 +1,574 @@
+[
+  {
+    "case": "empty",
+    "input": "empty.npy",
+    "expected": [],
+    "actual": [],
+    "status": "PASS"
+  },
+  {
+    "case": "single",
+    "input": "single.npy",
+    "expected": [
+      [
+        10,
+        10,
+        20,
+        20
+      ]
+    ],
+    "actual": [
+      [
+        10,
+        10,
+        20,
+        20
+      ]
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "separate",
+    "input": "separate.npy",
+    "expected": [
+      [
+        10,
+        10,
+        20,
+        20
+      ],
+      [
+        50,
+        40,
+        60,
+        50
+      ]
+    ],
+    "actual": [
+      [
+        10,
+        10,
+        20,
+        20
+      ],
+      [
+        50,
+        40,
+        60,
+        50
+      ]
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "short_occlusion_recovery",
+    "input": "centres 20,25,missing,35; max_miss=2",
+    "expected": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [],
+      [
+        1
+      ]
+    ],
+    "actual": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [],
+      [
+        1
+      ]
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "enter_left",
+    "input": {
+      "centres": [
+        70,
+        60,
+        40,
+        30
+      ],
+      "line_x": 50,
+      "inside": "left"
+    },
+    "expected": [
+      1,
+      0
+    ],
+    "actual": [
+      1,
+      0
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "enter_left_events",
+    "input": [
+      70,
+      60,
+      40,
+      30
+    ],
+    "expected": [
+      {
+        "frame": 2,
+        "kind": "cross_in"
+      }
+    ],
+    "actual": [
+      {
+        "frame": 2,
+        "kind": "cross_in"
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "enter_left_side",
+    "input": [
+      70,
+      60,
+      40,
+      30
+    ],
+    "expected": "in",
+    "actual": "in",
+    "status": "PASS"
+  },
+  {
+    "case": "exit_left",
+    "input": {
+      "centres": [
+        30,
+        40,
+        60,
+        70
+      ],
+      "line_x": 50,
+      "inside": "left"
+    },
+    "expected": [
+      0,
+      1
+    ],
+    "actual": [
+      0,
+      0
+    ],
+    "status": "FAIL"
+  },
+  {
+    "case": "exit_left_events",
+    "input": [
+      30,
+      40,
+      60,
+      70
+    ],
+    "expected": [
+      {
+        "frame": 2,
+        "kind": "cross_out"
+      }
+    ],
+    "actual": [],
+    "status": "FAIL"
+  },
+  {
+    "case": "exit_left_side",
+    "input": [
+      30,
+      40,
+      60,
+      70
+    ],
+    "expected": "out",
+    "actual": "in",
+    "status": "FAIL"
+  },
+  {
+    "case": "reenter_left",
+    "input": {
+      "centres": [
+        70,
+        40,
+        70,
+        40
+      ],
+      "line_x": 50,
+      "inside": "left"
+    },
+    "expected": [
+      2,
+      1
+    ],
+    "actual": [
+      1,
+      0
+    ],
+    "status": "FAIL"
+  },
+  {
+    "case": "reenter_left_events",
+    "input": [
+      70,
+      40,
+      70,
+      40
+    ],
+    "expected": [
+      {
+        "frame": 1,
+        "kind": "cross_in"
+      },
+      {
+        "frame": 2,
+        "kind": "cross_out"
+      },
+      {
+        "frame": 3,
+        "kind": "cross_in"
+      }
+    ],
+    "actual": [
+      {
+        "frame": 1,
+        "kind": "cross_in"
+      }
+    ],
+    "status": "FAIL"
+  },
+  {
+    "case": "reenter_left_side",
+    "input": [
+      70,
+      40,
+      70,
+      40
+    ],
+    "expected": "in",
+    "actual": "in",
+    "status": "PASS"
+  },
+  {
+    "case": "enter_right",
+    "input": {
+      "centres": [
+        30,
+        40,
+        60,
+        70
+      ],
+      "line_x": 50,
+      "inside": "right"
+    },
+    "expected": [
+      1,
+      0
+    ],
+    "actual": [
+      1,
+      0
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "enter_right_events",
+    "input": [
+      30,
+      40,
+      60,
+      70
+    ],
+    "expected": [
+      {
+        "frame": 2,
+        "kind": "cross_in"
+      }
+    ],
+    "actual": [
+      {
+        "frame": 2,
+        "kind": "cross_in"
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "enter_right_side",
+    "input": [
+      30,
+      40,
+      60,
+      70
+    ],
+    "expected": "in",
+    "actual": "in",
+    "status": "PASS"
+  },
+  {
+    "case": "exit_right",
+    "input": {
+      "centres": [
+        70,
+        60,
+        40,
+        30
+      ],
+      "line_x": 50,
+      "inside": "right"
+    },
+    "expected": [
+      0,
+      1
+    ],
+    "actual": [
+      0,
+      0
+    ],
+    "status": "FAIL"
+  },
+  {
+    "case": "exit_right_events",
+    "input": [
+      70,
+      60,
+      40,
+      30
+    ],
+    "expected": [
+      {
+        "frame": 2,
+        "kind": "cross_out"
+      }
+    ],
+    "actual": [],
+    "status": "FAIL"
+  },
+  {
+    "case": "exit_right_side",
+    "input": [
+      70,
+      60,
+      40,
+      30
+    ],
+    "expected": "out",
+    "actual": "in",
+    "status": "FAIL"
+  },
+  {
+    "case": "dwell_non30fps",
+    "input": "10 observations at 10 fps; threshold 1 second",
+    "expected": [
+      1,
+      1.0
+    ],
+    "actual": [
+      1,
+      0.3
+    ],
+    "status": "FAIL"
+  },
+  {
+    "case": "dwell_consecutive_gap",
+    "input": "present,present,missing,present,present; threshold 3 continuous frames",
+    "expected": 0,
+    "actual": 1,
+    "status": "FAIL"
+  },
+  {
+    "case": "dwell_skipped_frame_number",
+    "input": [
+      0,
+      1,
+      3,
+      4
+    ],
+    "expected": [],
+    "actual": [],
+    "status": "PASS"
+  },
+  {
+    "case": "dwell_consecutive",
+    "input": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "expected": [
+      [
+        2,
+        0.3
+      ]
+    ],
+    "actual": [],
+    "status": "FAIL"
+  },
+  {
+    "case": "dwell_rearm_after_exit",
+    "input": "two visits; one event per continuous visit",
+    "expected": [
+      1,
+      5
+    ],
+    "actual": [
+      1,
+      5
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "inconsistent_velocity_left",
+    "input": "wrong direction then zero speed",
+    "expected": [
+      0,
+      0,
+      []
+    ],
+    "actual": [
+      0,
+      1,
+      []
+    ],
+    "status": "FAIL"
+  },
+  {
+    "case": "observed_side_left",
+    "input": "position updates even if direction rejected",
+    "expected": "in",
+    "actual": "out",
+    "status": "FAIL"
+  },
+  {
+    "case": "inconsistent_velocity_right",
+    "input": "wrong direction then zero speed",
+    "expected": [
+      0,
+      0,
+      []
+    ],
+    "actual": [
+      0,
+      0,
+      []
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "observed_side_right",
+    "input": "position updates even if direction rejected",
+    "expected": "out",
+    "actual": "out",
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_reordered",
+    "input": "reordered.csv",
+    "expected": false,
+    "actual": false,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_missing_frame",
+    "input": "missing_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_missing_frame",
+    "input": "missing_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_duplicate_frame",
+    "input": "duplicate_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_duplicate_frame",
+    "input": "duplicate_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_wrong_box",
+    "input": "wrong_box.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_wrong_box",
+    "input": "wrong_box.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_wrong_id",
+    "input": "wrong_id.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_wrong_id",
+    "input": "wrong_id.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_wrong_alarm",
+    "input": "wrong_alarm.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_wrong_alarm",
+    "input": "wrong_alarm.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_shifted_frame",
+    "input": "shifted_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_shifted_frame",
+    "input": "shifted_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_empty_result",
+    "input": "empty_result.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  }
+]

@@ -100,12 +100,12 @@ module tb_md_pipeline;
     initial begin
         csv_f    = $fopen("wave/bbox_rtl.csv", "w");
         poke_idx = 0;
-        if (csv_f == 0) $display("!! 打不开 wave/bbox_rtl.csv");
+        if (csv_f == 0) $fatal(1, "Cannot open wave/bbox_rtl.csv");
         else            $fwrite(csv_f, "frame,b_valid,b_x1,b_y1,b_x2,b_y2,b_cnt\n");
     end
 
     always @(posedge clk) begin
-        if (mk_poke) begin
+        if (mk_poke && poke_idx < FRAMES) begin
             if (csv_f != 0)
                 $fwrite(csv_f, "%0d,%0d,%0d,%0d,%0d,%0d,%0d\n",
                         poke_idx, b_valid, b_x1, b_y1, b_x2, b_y2, b_cnt);
@@ -191,23 +191,24 @@ module tb_md_pipeline;
 
     initial begin
         wait (rst_n == 1'b1);
-        while (vframe <= FRAMES) @(posedge clk);
-        repeat (200) @(posedge clk);
+        // bbox settles at the next mask boundary, later than video SOF.
+        // Stop on collected results, not a guessed video-clock delay.
+        wait (poke_idx == FRAMES);
+        @(negedge clk);
         if (csv_f != 0) $fclose(csv_f);
         if (ppm_f != 0) $fclose(ppm_f);
         $display("---- 仿真结束：共跑 %0d 个视频帧，bbox 见 wave/bbox_rtl.csv ----", vframe);
         if (x_hits == 0)
             $display("---- X 检查：掩码流未出现未知态（x_hits=0）----");
         else
-            $display("!! X 检查：掩码流出现 %0d 次未知态，流水线有未初始化路径，需排查", x_hits);
+            $fatal(1, "X check failed: x_hits=%0d", x_hits);
         $finish;
     end
 
     // 看门狗：卡死时明确报错，别让日志停在中间让人猜
     initial begin
         #200000000;
-        $display("!! TIMEOUT：仿真未在预期时间内结束");
-        $finish;
+        $fatal(1, "TIMEOUT: expected %0d frames, collected %0d", FRAMES, poke_idx);
     end
 
 endmodule

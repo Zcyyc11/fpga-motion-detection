@@ -1,0 +1,26 @@
+[
+  {
+    "frame": 1,
+    "tid": 1,
+    "kind": "cross_in",
+    "cx": 40.0,
+    "cy": 15.0,
+    "vx": -30
+  },
+  {
+    "frame": 2,
+    "tid": 1,
+    "kind": "cross_out",
+    "cx": 70.0,
+    "cy": 15.0,
+    "vx": 30
+  },
+  {
+    "frame": 3,
+    "tid": 1,
+    "kind": "cross_in",
+    "cx": 40.0,
+    "cy": 15.0,
+    "vx": -30
+  }
+]

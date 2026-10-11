@@ -1,0 +1,7 @@
+seq,variant,perframe_f1,official_f1
+intermittentObjectMotion/streetLight,V0 现役 α.02 thr70 open3,0.0660,0.1358
+intermittentObjectMotion/streetLight,V12 快背景1/32+冻结前景 ★现冠军,0.5380,0.8803
+intermittentObjectMotion/streetLight,V43 V38+全局补偿 R2/抽样4,0.5314,0.8772
+intermittentObjectMotion/streetLight,V45 V43+初始背景取前6帧最小,0.5296,0.8762
+intermittentObjectMotion/streetLight,V46 V43+初始背景取前12帧最小,0.5277,0.8748
+intermittentObjectMotion/streetLight,V47 V43+初始背景取前20帧最小,0.5250,0.8739

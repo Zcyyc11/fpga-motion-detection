@@ -1,0 +1,146 @@
+[
+  {
+    "case": "equal",
+    "expected": 0,
+    "actual": 0,
+    "passed": true
+  },
+  {
+    "case": "missing",
+    "expected": 2,
+    "actual": 2,
+    "passed": true
+  },
+  {
+    "case": "refuse_compare_overwrite",
+    "expected": 2,
+    "actual": 2,
+    "passed": true
+  },
+  {
+    "case": "equal_evidence_preserved",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "case": "refuse_runner_overwrite",
+    "expected": 1,
+    "actual": 1,
+    "passed": true
+  },
+  {
+    "case": "refuse_observer_overwrite",
+    "expected": 1,
+    "actual": 1,
+    "passed": true
+  },
+  {
+    "case": "malformed",
+    "expected": 2,
+    "actual": 2,
+    "passed": true
+  },
+  {
+    "case": "valid_observations",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "case": "reject_missing_frame",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "case": "reject_duplicate_frame",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "case": "reject_out_of_range",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "case": "reject_nan",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "case": "reject_inverted",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "case": "reject_alarm_frame",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "case": "full_runner_exit",
+    "expected": 0,
+    "actual": 0,
+    "passed": true
+  },
+  {
+    "case": "behaviour_failures",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "case": "protected_files",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "case": "identity_renumber",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "case": "identity_swap",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "case": "identity_swap_metric",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "case": "identity_recreate",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "case": "identity_recreate_metric",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "case": "identity_drop",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "case": "log_line_endings",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  }
+]

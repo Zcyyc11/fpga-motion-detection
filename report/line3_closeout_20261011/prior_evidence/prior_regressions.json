@@ -1,0 +1,68 @@
+[
+  {
+    "folder": "repair_clean",
+    "revision": "b4bf9300ac7f499f0c1c72ed3ef28317066f49a5",
+    "jobs_passed": 12,
+    "runner": "46/46",
+    "boundaries": "174/174",
+    "frame_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "checkout_clean": true
+  },
+  {
+    "folder": "candidate_repair_set",
+    "revision": "121a460e079834b79181c9c0058ed9d8228c8237",
+    "jobs_passed": 12,
+    "runner": "46/46",
+    "boundaries": "174/174",
+    "frame_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "checkout_clean": true
+  },
+  {
+    "folder": "final_candidate_regr_resumed",
+    "revision": "dc9f05fab3b625f962c4b40ffc70e7d4054a21ac",
+    "jobs_passed": 12,
+    "runner": "46/46",
+    "boundaries": "174/174",
+    "frame_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "checkout_clean": true
+  }
+]

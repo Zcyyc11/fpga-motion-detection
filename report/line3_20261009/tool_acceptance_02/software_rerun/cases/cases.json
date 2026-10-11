@@ -1,0 +1,320 @@
+[
+  {
+    "case": "empty",
+    "input": "empty.npy",
+    "expected": [],
+    "actual": [],
+    "status": "PASS"
+  },
+  {
+    "case": "single",
+    "input": "single.npy",
+    "expected": [
+      [
+        10,
+        10,
+        20,
+        20
+      ]
+    ],
+    "actual": [
+      [
+        10,
+        10,
+        20,
+        20
+      ]
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "separate",
+    "input": "separate.npy",
+    "expected": [
+      [
+        10,
+        10,
+        20,
+        20
+      ],
+      [
+        50,
+        40,
+        60,
+        50
+      ]
+    ],
+    "actual": [
+      [
+        10,
+        10,
+        20,
+        20
+      ],
+      [
+        50,
+        40,
+        60,
+        50
+      ]
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "short_occlusion_recovery",
+    "input": "centres 20,25,missing,35; max_miss=2",
+    "expected": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [],
+      [
+        1
+      ]
+    ],
+    "actual": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [],
+      [
+        1
+      ]
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "enter_left",
+    "input": {
+      "centres": [
+        70,
+        60,
+        40,
+        30
+      ],
+      "line_x": 50,
+      "inside": "left"
+    },
+    "expected": [
+      1,
+      0
+    ],
+    "actual": [
+      1,
+      0
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "exit_left",
+    "input": {
+      "centres": [
+        30,
+        40,
+        60,
+        70
+      ],
+      "line_x": 50,
+      "inside": "left"
+    },
+    "expected": [
+      0,
+      1
+    ],
+    "actual": [
+      0,
+      0
+    ],
+    "status": "FAIL"
+  },
+  {
+    "case": "reenter_left",
+    "input": {
+      "centres": [
+        70,
+        40,
+        70,
+        40
+      ],
+      "line_x": 50,
+      "inside": "left"
+    },
+    "expected": [
+      2,
+      1
+    ],
+    "actual": [
+      1,
+      0
+    ],
+    "status": "FAIL"
+  },
+  {
+    "case": "enter_right",
+    "input": {
+      "centres": [
+        30,
+        40,
+        60,
+        70
+      ],
+      "line_x": 50,
+      "inside": "right"
+    },
+    "expected": [
+      1,
+      0
+    ],
+    "actual": [
+      1,
+      0
+    ],
+    "status": "PASS"
+  },
+  {
+    "case": "exit_right",
+    "input": {
+      "centres": [
+        70,
+        60,
+        40,
+        30
+      ],
+      "line_x": 50,
+      "inside": "right"
+    },
+    "expected": [
+      0,
+      1
+    ],
+    "actual": [
+      0,
+      0
+    ],
+    "status": "FAIL"
+  },
+  {
+    "case": "dwell_non30fps",
+    "input": "10 observations at 10 fps; threshold 1 second",
+    "expected": [
+      1,
+      1.0
+    ],
+    "actual": [
+      1,
+      0.3
+    ],
+    "status": "FAIL"
+  },
+  {
+    "case": "dwell_consecutive_gap",
+    "input": "present,present,missing,present,present; threshold 3 continuous frames",
+    "expected": 0,
+    "actual": 1,
+    "status": "FAIL"
+  },
+  {
+    "case": "comparator_reordered",
+    "input": "reordered.csv",
+    "expected": false,
+    "actual": false,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_missing_frame",
+    "input": "missing_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_missing_frame",
+    "input": "missing_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_duplicate_frame",
+    "input": "duplicate_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_duplicate_frame",
+    "input": "duplicate_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_wrong_box",
+    "input": "wrong_box.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_wrong_box",
+    "input": "wrong_box.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_wrong_id",
+    "input": "wrong_id.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_wrong_id",
+    "input": "wrong_id.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_wrong_alarm",
+    "input": "wrong_alarm.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_wrong_alarm",
+    "input": "wrong_alarm.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_shifted_frame",
+    "input": "shifted_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "location_shifted_frame",
+    "input": "shifted_frame.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  },
+  {
+    "case": "comparator_empty_result",
+    "input": "empty_result.csv",
+    "expected": true,
+    "actual": true,
+    "status": "PASS"
+  }
+]

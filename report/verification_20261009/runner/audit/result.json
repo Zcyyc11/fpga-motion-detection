@@ -1,0 +1,473 @@
+{
+  "passed": true,
+  "protected": {
+    "captain_repo": {
+      "files": 375,
+      "changed": [],
+      "added": []
+    },
+    "verification_fix_20261009": {
+      "files": 4048,
+      "changed": [],
+      "added": []
+    },
+    "verification_20261009": {
+      "files": 229,
+      "changed": [],
+      "added": []
+    }
+  },
+  "frozen_files_unchanged": true,
+  "software_regression": {
+    "passed": 174,
+    "total": 174,
+    "source_hashes_unchanged": {
+      "src/ps/alarm_events.csv": "262d60485fefa6aad775e74c6368447d23adbf6a9a5c3a587b69f3fa1daecb82",
+      "src/ps/alarm_events_algo.csv": "262d60485fefa6aad775e74c6368447d23adbf6a9a5c3a587b69f3fa1daecb82",
+      "src/ps/algo_ab.py": "1966d31f0c0b9b011a593d64ade03d76a1066f9415cde391cc191aa7057354c5",
+      "src/ps/algo_ab_summary.csv": "a08d9034a3c6cb46681ae659816a7adfa1d07ee6b060ecb69ff05ad9ea5ce424",
+      "src/ps/algo_lab.py": "3a57c11468a45910aaf8dbd76c9351580770fd300ef1deeb76d6f60719e6d8a2",
+      "src/ps/algo_lab_results.csv": "559f9c8592788958673b7e84d086c89551bf5b67fe6cc3e659de221dd382ff89",
+      "src/ps/algo_lab_results_r2.csv": "14db0a1c4e539e993e9573ed4fe47518fa0a7d315c09004f7d4769881da83a00",
+      "src/ps/algo_lab_results_r3.csv": "dc7f453cda88fc1737be6fbc6b7552945db039209b4ccfd1bcf9e70cd33b99b6",
+      "src/ps/cdnet_demo.py": "ba54292692ca87549268ba644ed0c1d5e0a1bfbff344f267d33ea7e5fc9ac889",
+      "src/ps/cdnet_io.py": "368564ea6e22d633e517d080af7fdb4fc320b0498184a4cf0ff8723f3cab549c",
+      "src/ps/cdnet_official.py": "996d9f2569d62f57082a87a5fa106bd16dc16cd338f1fd8b1bef7d78eb2c5bd0",
+      "src/ps/cdnet_official_results.csv": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "src/ps/cdnet_official_results_r1.csv": "28fe7f7ccf5e8b6429bb52c5ad89ec5a0c86e146a0ff709b0c7e5924fa4e42f8",
+      "src/ps/cdnet_official_results_r10.csv": "a998f71e29f3aa8bb6eac5830a08d1bbed2c1841c1a209adb505d42a4faad7a7",
+      "src/ps/cdnet_official_results_r11b.csv": "e9552f932bc72b62e33a0357afff1acb931412795f6ce0fa46115cb02d8349d9",
+      "src/ps/cdnet_official_results_r12.csv": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "src/ps/cdnet_official_results_r2.csv": "945fadb35a127c4b5ea2c8d7813b111d0a0fe5c45def73143f44bba80d191c99",
+      "src/ps/cdnet_official_results_r4.csv": "5f0e97314afc839cf3bba6fcaa372eb4d16d22847b4cd1e2a91c6975d1af35f2",
+      "src/ps/cdnet_official_results_r7b.csv": "fdf0f3bc79d6a3390b2763c3c3e1f6ad59f1ede588908e8bfbaa19148c0d966e",
+      "src/ps/cdnet_official_results_r8.csv": "51ed1fdf572a4f9b1fc09db46d78907064fee3e8314bc11fd93e618a8ec3718d",
+      "src/ps/cdnet_official_results_r9.csv": "42029f063aeae0e92f6126b1ec21076219276129d2f855bc366ad090ffaf5fee",
+      "src/ps/five_steps.py": "d140b11c1e9842de3f9ff7005218668719879c268d564e1f84158e16ef4a88d1",
+      "src/ps/golden_ref.py": "7f2b2dd2c4e2bfdb7e6c584ce873ea5bfb299145b1c3c88fa162865a66ef8143",
+      "src/ps/multi_track.py": "b3a81cecbe8f95f29554eae750553be332822a5d1a7a477aebc6feca2a852d83",
+      "src/ps/multi_track_results.csv": "4e423b5b3e54075889860f91045a78a3adc390c762cafb30013e80d4cbed520a",
+      "src/ps/multi_track_results_algo.csv": "4e423b5b3e54075889860f91045a78a3adc390c762cafb30013e80d4cbed520a",
+      "src/ps/README.md": "481f0619e98169c6ba683727784b7d03fe4f09133dc8417f6fa74206b4b930ad",
+      "src/ps/requirements.txt": "4d68b57319de7dd1b6e07b84d9d485571d71fb60bcb15ace51bfaf6ab67452ac",
+      "src/ps/rtl_golden.py": "06ed3c879d8bd58cfb3ddc15fa9d20d1230954bc10c36483aa656de69cfaef64",
+      "src/ps/track_result.mp4": "66a19bc2256a92394c92537a48b142ac21443a05aaa268b38ad50be6b045f873",
+      "src/ps/track_result_algo.mp4": "66a19bc2256a92394c92537a48b142ac21443a05aaa268b38ad50be6b045f873",
+      "src/ps/track_result_clean.mp4": "f0622def4dec29ca1841b79c34e23a7a0d59a176a06f46dcf8b613a740f52b9e",
+      "build/scripts/check_doc_commands.py": "78ebf69ba0dac89c17f21203069258f33773b0867f8cc0df227ea5495b9972cd"
+    }
+  },
+  "data_guard": {
+    "passed": true,
+    "original22_rc": 0,
+    "absolute_paths_passed": 5,
+    "absolute_paths_failed": 0,
+    "frames": {
+      "D:\\666666\\Temp\\fpga_fix_paths_20261009_r1\\uni\\plain\\tcat\\tseq\\cdnet_demo_metrics.csv": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "D:\\666666\\Temp\\fpga_fix_paths_20261009_r1\\uni\\中文目录\\tcat\\tseq\\cdnet_demo_metrics.csv": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "D:\\666666\\Temp\\fpga_fix_paths_20261009_r1\\uni\\my data\\tcat\\tseq\\cdnet_demo_metrics.csv": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "D:\\666666\\Temp\\fpga_fix_paths_20261009_r1\\uni\\我的 数据\\tcat\\tseq\\cdnet_demo_metrics.csv": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    "preserved_count": 9
+  },
+  "runner_regression": {
+    "passed": 46,
+    "total": 46
+  },
+  "actual_vivado_checks": [
+    {
+      "name": "english",
+      "passed": true,
+      "expected_success": true,
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain\\build\\scripts\\run_sim.py",
+        "--vivado-settings",
+        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "--scratch-root",
+        "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs"
+      ],
+      "source": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain",
+      "result": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\result.json",
+      "rc": 0,
+      "seconds": 12.13,
+      "source_unchanged": true,
+      "copied_hashes_match": true,
+      "simulation_passed": true,
+      "csv_frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "failures": [],
+      "encodings": [
+        "utf-8"
+      ]
+    },
+    {
+      "name": "chinese",
+      "passed": true,
+      "expected_success": true,
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程\\build\\scripts\\run_sim.py",
+        "--vivado-settings",
+        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "--scratch-root",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs"
+      ],
+      "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程",
+      "result": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\result.json",
+      "rc": 0,
+      "seconds": 14.45,
+      "source_unchanged": true,
+      "copied_hashes_match": true,
+      "simulation_passed": true,
+      "csv_frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "failures": [],
+      "encodings": [
+        "gb18030",
+        "utf-8"
+      ]
+    },
+    {
+      "name": "space",
+      "passed": true,
+      "expected_success": true,
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project\\build\\scripts\\run_sim.py",
+        "--vivado-settings",
+        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "--scratch-root",
+        "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs"
+      ],
+      "source": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project",
+      "result": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\result.json",
+      "rc": 0,
+      "seconds": 12.56,
+      "source_unchanged": true,
+      "copied_hashes_match": true,
+      "simulation_passed": true,
+      "csv_frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "failures": [],
+      "encodings": [
+        "utf-8"
+      ]
+    },
+    {
+      "name": "chinese_space",
+      "passed": true,
+      "expected_success": true,
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程\\build\\scripts\\run_sim.py",
+        "--vivado-settings",
+        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "--scratch-root",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs"
+      ],
+      "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程",
+      "result": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\result.json",
+      "rc": 0,
+      "seconds": 11.79,
+      "source_unchanged": true,
+      "copied_hashes_match": true,
+      "simulation_passed": true,
+      "csv_frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "failures": [],
+      "encodings": [
+        "gb18030",
+        "utf-8"
+      ]
+    },
+    {
+      "name": "expect12",
+      "passed": true,
+      "expected_success": false,
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查\\build\\scripts\\run_sim.py",
+        "--vivado-settings",
+        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "--scratch-root",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs",
+        "--expect-frames",
+        "12"
+      ],
+      "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查",
+      "result": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\result.json",
+      "rc": 2,
+      "seconds": 10.79,
+      "source_unchanged": true,
+      "copied_hashes_match": true,
+      "simulation_passed": true,
+      "csv_frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "failures": [
+        "帧范围不完整；查看 completeness.missing/unexpected"
+      ],
+      "encodings": [
+        "gb18030",
+        "utf-8"
+      ]
+    },
+    {
+      "name": "compile_error",
+      "passed": true,
+      "expected_success": false,
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\编译错误\\build\\scripts\\run_sim.py",
+        "--vivado-settings",
+        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "--scratch-root",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\编译错误_runs"
+      ],
+      "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\编译错误",
+      "result": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\编译错误_runs\\run_20261009T114645Z_ntmk_2qo\\result.json",
+      "rc": 2,
+      "seconds": 2.46,
+      "source_unchanged": true,
+      "copied_hashes_match": true,
+      "simulation_passed": false,
+      "csv_frames": [],
+      "failures": [
+        "子进程非零退出：2",
+        "工具阶段不完整：xvlog",
+        "日志中存在 ERROR/FATAL",
+        "没有本次仿真结束标记",
+        "缺少 x_hits 检查结果",
+        "CSV 校验失败：[Errno 2] No such file or directory: 'C:\\\\Users\\\\孙伟博\\\\Desktop\\\\FPGA大赛资料\\\\repair_20261009_round1\\\\runner_live_final\\\\编译错误_runs\\\\run_20261009T114645Z_ntmk_2qo\\\\sim\\\\wave\\\\bbox_rtl.csv'"
+      ],
+      "encodings": [
+        "gb18030",
+        "utf-8"
+      ]
+    },
+    {
+      "name": "x_state",
+      "passed": true,
+      "expected_success": false,
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态\\build\\scripts\\run_sim.py",
+        "--vivado-settings",
+        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "--scratch-root",
+        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs"
+      ],
+      "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态",
+      "result": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\result.json",
+      "rc": 2,
+      "seconds": 9.43,
+      "source_unchanged": true,
+      "copied_hashes_match": true,
+      "simulation_passed": false,
+      "csv_frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "failures": [
+        "检测到未知态 X",
+        "缺少 x_hits 检查结果"
+      ],
+      "encodings": [
+        "gb18030",
+        "utf-8"
+      ]
+    }
+  ],
+  "decoded_ppm_count": 138,
+  "document_checks": [
+    {
+      "name": "docs",
+      "rc": 0,
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "build/scripts/check_doc_commands.py"
+      ]
+    },
+    {
+      "name": "doc_selftest",
+      "rc": 0,
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "build/scripts/check_doc_commands.py",
+        "--self-test"
+      ]
+    }
+  ],
+  "checker_did_not_write": true,
+  "syntax_files": [
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\check_doc_commands.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\fix_bat_eol.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\mmcm_search.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\run_sim.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\test_data_guard.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\test_sim_runner.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\test_verification_boundaries.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\algo_ab.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\algo_lab.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\cdnet_demo.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\cdnet_io.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\cdnet_official.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\five_steps.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\golden_ref.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\multi_track.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\rtl_golden.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\checkpoint_checks.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\final_audit.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\probe_vivado_paths.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\protect.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\run_guard_preserved.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\save_checkpoint.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\save_outer.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\verify_runner_live.py"
+  ],
+  "utf8_files": [
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\check_doc_commands.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\fix_bat_eol.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\mmcm_search.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\run_sim.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\test_data_guard.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\test_sim_runner.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\build\\scripts\\test_verification_boundaries.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\algo_ab.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\algo_lab.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\cdnet_demo.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\cdnet_io.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\cdnet_official.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\five_steps.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\golden_ref.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\multi_track.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\src\\ps\\rtl_golden.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\checkpoint_checks.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\final_audit.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\probe_vivado_paths.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\protect.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\run_guard_preserved.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\save_checkpoint.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\save_outer.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\verify_runner_live.py",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\docs\\verification_fixes_20261009.md",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_fix_20261009\\docs\\captain_feedback_20261009.txt"
+  ],
+  "batch_ascii_crlf": true,
+  "build_launcher_unchanged": true,
+  "diff_check_passed": true
+}

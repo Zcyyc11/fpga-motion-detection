@@ -1,0 +1,14 @@
+help_rtl_golden completed
+help_multi_track completed
+model_framediff completed
+model_bg completed
+Traceback (most recent call last):
+  File "C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\sim\line3\run.py", line 286, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\sim\line3\run.py", line 244, in main
+    execute(mode, ['src/ps/multi_track.py',*common,'--outdir',out/mode],out,commands)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\sim\line3\run.py", line 53, in execute
+    raise RuntimeError(name + ' failed; see log')
+RuntimeError: clean failed; see log

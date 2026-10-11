@@ -1,0 +1,16 @@
+{
+  "memory": {
+    "length": 64,
+    "load": 75,
+    "total_phys": 16873545728,
+    "avail_phys": 4129656832,
+    "total_page": 35127156736,
+    "avail_page": 15843450880,
+    "total_virtual": 140737488224256,
+    "avail_virtual": 140733070389248,
+    "avail_extended": 0
+  },
+  "estimated_process_bytes": 5584599424.0,
+  "safe_to_attempt": true,
+  "strategy": "one unchanged eager-loader process; no concurrent Vivado; OS-managed paging; no frame truncation"
+}

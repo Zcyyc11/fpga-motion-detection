@@ -1,0 +1,26 @@
+检查了 59 条命令（来自 121 个 .md）
+
+★ 发现 10 个问题：
+   report/feedback_validation_20261009/run_20261010_r2/boundaries/doc_bash.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag
+        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+   report/feedback_validation_20261009/run_20261010_r2/boundaries/doc_cmd.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag
+        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+   report/feedback_validation_20261009/run_20261010_r2/boundaries/doc_equals.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag
+        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+   report/feedback_validation_20261009/run_20261010_r2/boundaries/doc_inline.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag
+        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+   report/feedback_validation_20261009/run_20261010_r2/boundaries/doc_powershell.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag
+        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+   report/feedback_validation_20261009/run_20261010_r2/boundaries/doc_quoted.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag
+        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+   report/feedback_validation_20261009/run_20261010_r2/boundaries/doc_quoted_comment.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag
+        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+   report/feedback_validation_20261009/run_20261010_r2/boundaries/doc_single.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag
+        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+   report/feedback_validation_20261009/run_20261010_r2/boundaries/doc_two_commands.md:1  ★ algo_lab.py **没有**参数 --nonexistent-flag
+        （该脚本实际支持的参数：--data-root, --frames, --list, --ref, --seq, --set, --strict-data-check）
+   report/feedback_validation_20261009/run_20261010_r2/boundaries/doc_unicode.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag
+        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）
+
+修法：跑一下该脚本的 --help，看它到底支持哪些参数，别照记忆抄。
+      （如果那行本来就是要演示错误写法，在行尾加 <!-- 反例：... --> 就不会再报。）

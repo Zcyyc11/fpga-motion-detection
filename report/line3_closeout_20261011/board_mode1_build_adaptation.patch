@@ -1,0 +1,29 @@
+--- a/build/scripts/build_vivado.tcl
++++ b/build/scripts/build_vivado.tcl
+@@ -65,7 +65,7 @@
+ #   它会抛 ERROR [Common 17-53] No open project，而这个 ERROR 会直接终止
+ #   Vivado（catch 也拦不住），表现就是脚本刚开始就死。
+ #   所以：清理由 bat 负责，这里只管建工程。
+-create_project -force fpga_motion_detection $PROJ_DIR -part $PART
++create_project fpga_motion_detection $PROJ_DIR -part $PART
+ set_property target_language Verilog [current_project]
+ # 允许在 xdc 里用 TMDS_33 这类差分电平（部分版本默认禁止）
+ catch { set_property enable_vhdl_2008 1 [current_project] }
+@@ -108,7 +108,7 @@
+ foreach f [get_files -of [get_filesets sources_1]] { puts "   $f" }
+ 
+ # ---------------------------------------------------------------- 4) 综合 → 实现 → bit
+-launch_runs synth_1 -jobs 8
++launch_runs synth_1 -jobs 2
+ wait_on_run synth_1
+ if {[get_property PROGRESS [get_runs synth_1]] != "100%"} {
+     puts "!! 综合失败，日志：$PROJ_DIR/fpga_motion_detection.runs/synth_1/runme.log"
+@@ -120,7 +120,7 @@
+ report_clocks         -file [file join $REPORT_DIR synth_clocks.rpt]
+ close_design
+ 
+-launch_runs impl_1 -to_step write_bitstream -jobs 8
++launch_runs impl_1 -to_step write_bitstream -jobs 2
+ wait_on_run impl_1
+ if {[get_property PROGRESS [get_runs impl_1]] != "100%"} {
+     puts "!! 实现失败，日志：$PROJ_DIR/fpga_motion_detection.runs/impl_1/runme.log"

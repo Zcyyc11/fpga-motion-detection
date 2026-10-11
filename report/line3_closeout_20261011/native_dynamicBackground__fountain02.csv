@@ -1,0 +1,7 @@
+seq,variant,perframe_f1,official_f1
+dynamicBackground/fountain02,V0 现役 α.02 thr70 open3,0.1365,0.6293
+dynamicBackground/fountain02,V12 快背景1/32+冻结前景 ★现冠军,0.1544,0.8055
+dynamicBackground/fountain02,V43 V38+全局补偿 R2/抽样4,0.1607,0.7851
+dynamicBackground/fountain02,V45 V43+初始背景取前6帧最小,0.1604,0.7785
+dynamicBackground/fountain02,V46 V43+初始背景取前12帧最小,0.1601,0.7733
+dynamicBackground/fountain02,V47 V43+初始背景取前20帧最小,0.1595,0.7574

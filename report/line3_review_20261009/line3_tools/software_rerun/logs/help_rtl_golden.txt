@@ -1,0 +1,12 @@
+usage: rtl_golden.py [-h] [--mode {framediff,bg}] [--alpha-shift ALPHA_SHIFT]
+                     [--out-csv OUT_CSV] [--compare COMPARE] [--report REPORT]
+
+RTL 硬件模型参考
+
+options:
+  -h, --help            show this help message and exit
+  --mode {framediff,bg}
+  --alpha-shift ALPHA_SHIFT
+  --out-csv OUT_CSV
+  --compare COMPARE     RTL 仿真导出的 bbox csv，逐帧对比
+  --report REPORT       把本报告另存一份（UTF-8）

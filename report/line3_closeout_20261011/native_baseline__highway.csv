@@ -1,0 +1,7 @@
+seq,variant,perframe_f1,official_f1
+baseline/highway,V0 现役 α.02 thr70 open3,0.5947,0.5915
+baseline/highway,V12 快背景1/32+冻结前景 ★现冠军,0.5688,0.6487
+baseline/highway,V43 V38+全局补偿 R2/抽样4,0.5448,0.6147
+baseline/highway,V45 V43+初始背景取前6帧最小,0.4824,0.5428
+baseline/highway,V46 V43+初始背景取前12帧最小,0.4015,0.4456
+baseline/highway,V47 V43+初始背景取前20帧最小,0.3641,0.4002

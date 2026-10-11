@@ -1,0 +1,19 @@
+{
+  "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\audit_astra_20261010_214132\\continuation_2229\\verified_scores\\complete_per_frame.csv.gz",
+  "sha256": "e2b32321c492f41ea261dfa6d3448f660fbbdf12219aefae46f31e0e7aada124",
+  "rows": 111498,
+  "columns": [
+    "sequence",
+    "variant",
+    "frame",
+    "tp",
+    "fp",
+    "fn",
+    "truth_pixels",
+    "shadow_fp",
+    "roi_tp",
+    "roi_fp_with_shadow",
+    "roi_fn"
+  ],
+  "scope": "gzip integrity and row count rechecked; numerical independent recomputation belongs to prior audit"
+}

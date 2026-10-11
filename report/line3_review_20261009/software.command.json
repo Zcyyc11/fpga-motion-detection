@@ -1,0 +1,18 @@
+{
+  "name": "software",
+  "command": [
+    "D:\\666666\\Anaconda\\python.exe",
+    "-X",
+    "utf8",
+    "build/scripts/test_verification_boundaries.py",
+    "--out",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software",
+    "--suite",
+    "all"
+  ],
+  "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+  "rc": 0,
+  "seconds": 109.54,
+  "stdout_tail": "S doc_bash\r\nPASS doc_bash_legal\r\nPASS doc_cmd\r\nPASS doc_cmd_legal\r\nPASS matrix_official_valid\r\nPASS matrix_official_missing_input\r\nPASS matrix_official_bad_input\r\nPASS matrix_official_header_only\r\nPASS matrix_official_missing_truth\r\nPASS matrix_official_bad_truth\r\nPASS matrix_official_wrong_size\r\nPASS matrix_official_warmup_no_truth\r\nPASS matrix_lab_valid\r\nPASS matrix_lab_missing_input\r\nPASS matrix_lab_bad_input\r\nPASS matrix_lab_header_only\r\nPASS matrix_lab_missing_truth\r\nPASS matrix_lab_bad_truth\r\nPASS matrix_lab_wrong_size\r\nPASS matrix_lab_warmup_no_truth\r\nPASS matrix_ab_valid\r\nPASS matrix_ab_missing_input\r\nPASS matrix_ab_bad_input\r\nPASS matrix_ab_header_only\r\nPASS matrix_ab_missing_truth\r\nPASS matrix_ab_bad_truth\r\nPASS matrix_ab_wrong_size\r\nPASS matrix_ab_warmup_no_truth\r\nPASS matrix_demo_valid\r\nPASS matrix_demo_missing_input\r\nPASS matrix_demo_bad_input\r\nPASS matrix_demo_header_only\r\nPASS matrix_demo_missing_truth\r\nPASS matrix_demo_bad_truth\r\nPASS matrix_demo_wrong_size\r\nPASS matrix_demo_warmup_no_truth\r\nPASS matrix_five_valid\r\nPASS matrix_five_missing_input\r\nPASS matrix_five_bad_input\r\nPASS matrix_five_header_only\r\nPASS matrix_five_missing_truth\r\nPASS matrix_five_bad_truth\r\nPASS matrix_five_wrong_size\r\nPASS matrix_five_warmup_no_truth\r\n174/174 passed; repo changed=0 added=0\r\n",
+  "stderr_tail": ""
+}

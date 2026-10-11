@@ -1,0 +1,211 @@
+[
+  {
+    "name": "doc_quoted",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/doc_green2/doc_quoted.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_unicode",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/doc_green2/doc_unicode.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_single",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/doc_green2/doc_single.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_equals",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/doc_green2/doc_equals.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_quoted_flag_value",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_comment",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_html_comment",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_quoted_comment",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/doc_green2/doc_quoted_comment.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_pipeline",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_redirect",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_semicolon",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_two_commands",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/doc_green2/doc_two_commands.md:1  ★ algo_lab.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--data-root, --frames, --list, --ref, --seq, --set, --strict-data-check）"
+      ]
+    }
+  },
+  {
+    "name": "doc_inline",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/doc_green2/doc_inline.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_inline_prose",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_negative",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_negative_skip",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_quoted_command",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_comment_command",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_comment_only",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_html_command",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_powershell",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/doc_green2/doc_powershell.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_powershell_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_bash",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/doc_green2/doc_bash.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_bash_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  },
+  {
+    "name": "doc_cmd",
+    "passed": true,
+    "detail": {
+      "errors": [
+        "../repair_20261009_round1/doc_green2/doc_cmd.md:1  ★ multi_track.py **没有**参数 --nonexistent-flag\n        （该脚本实际支持的参数：--alarm, --alpha, --blob-max, --clip, --dwell, --extrapolate, --gate, --init-frames, --inside, --line-x, --match-dist, --maxmiss, --min-area, --min-area-big, --no-video, --outdir, --source, --zone）"
+      ]
+    }
+  },
+  {
+    "name": "doc_cmd_legal",
+    "passed": true,
+    "detail": {
+      "errors": []
+    }
+  }
+]

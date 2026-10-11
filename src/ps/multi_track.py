@@ -254,11 +254,17 @@ class AlarmRule:
     """
 
     def __init__(self, line_x=None, inside="left", zone=None, dwell_s=3.0, fps=30.0):
+        if inside not in ("left", "right"):
+            raise ValueError("inside must be left or right")
+        if not np.isfinite(fps) or fps <= 0 or not np.isfinite(dwell_s) or dwell_s < 0:
+            raise ValueError("fps must be positive and dwell_s nonnegative and finite")
         self.line_x = line_x
         self.inside = inside
         self.zone = zone
-        self.dwell_frames = max(1, int(round(dwell_s * fps)))
-        self.state = {}          # tid -> dict(side, dwell, alarmed, ever)
+        self.fps = float(fps)
+        self.dwell_frames = max(1, int(np.ceil(dwell_s * fps)))
+        self.state = {}          # tid -> last observed side and continuous dwell
+        self.last_frame = None
         self.events = []         # 告警事件流水
         self.n_cross_in = 0
         self.n_cross_out = 0
@@ -268,7 +274,21 @@ class AlarmRule:
         return "in" if ((cx < self.line_x) == (self.inside == "left")) else "out"
 
     def update(self, f, assigned, tracks):
-        """assigned: {tid: box}；tracks: Tracker.tracks（要速度）。返回本帧新告警列表。"""
+        """连续停留只计算相邻帧的实际观测；缺帧或离区后重新计时。
+
+        跨线以相邻的已观测侧别变化为准，速度须与目的侧方向一致。
+        缺帧保留侧别，但注销的 ID 不保留状态。线上的点归右侧。
+        """
+        if self.last_frame is not None and f <= self.last_frame:
+            raise ValueError("AlarmRule frames must increase strictly")
+        gap = self.last_frame is not None and f != self.last_frame + 1
+        self.last_frame = f
+        for tid in list(self.state):
+            if tid not in tracks and tid not in assigned:
+                del self.state[tid]
+            elif gap or tid not in assigned:
+                self.state[tid]["dwell"] = 0
+                self.state[tid]["alarmed"] = False
         new = []
         for tid, b in assigned.items():
             st = self.state.setdefault(
@@ -279,36 +299,35 @@ class AlarmRule:
                 if st["side"] is None:
                     st["side"] = s
                 elif s != st["side"]:
-                    # 只有当轨迹速度方向与"跨线方向"一致才算数，
-                    # 避免目标在线上抖动时反复报"闯入"（硬件上就是"过了线还继续往里走"）
+                    # 状态始终跟随观测；速度为零或方向矛盾时不生成事件。
                     vx = tracks.get(tid, {}).get("vx", 0.0)
                     moving_in = (vx < 0) == (self.inside == "left")
-                    if moving_in:
-                        st["side"] = s
+                    st["side"] = s
+                    if vx != 0 and moving_in == (s == "in"):
                         if s == "in":
                             self.n_cross_in += 1
-                            ev = dict(frame=f, tid=tid, kind="cross_in",
-                                      cx=round(b["cx"], 1), cy=round(b["cy"], 1),
-                                      vx=round(vx, 1))
-                            new.append(ev)
                         else:
                             self.n_cross_out += 1
+                        new.append(dict(frame=f, tid=tid,
+                                        kind="cross_in" if s == "in" else "cross_out",
+                                        cx=round(b["cx"], 1), cy=round(b["cy"], 1),
+                                        vx=round(vx, 1)))
             # ---- 2. 重点区域停留 ----
-            if self.zone is not None:
-                x0, y0, x1, y1 = self.zone
-                inzone = (x0 <= b["cx"] <= x1) and (y0 <= b["cy"] <= y1)
-                if inzone:
-                    st["dwell"] += 1
-                    if st["dwell"] >= self.dwell_frames and not st["alarmed"]:
-                        st["alarmed"] = True
-                        self.n_dwell += 1
-                        ev = dict(frame=f, tid=tid, kind="dwell",
-                                  cx=round(b["cx"], 1), cy=round(b["cy"], 1),
-                                  secs=round(st["dwell"] / 30.0, 1))
-                        new.append(ev)
-                else:
-                    st["dwell"] = 0
-                    st["alarmed"] = False
+            inzone = self.zone is None or (
+                self.zone[0] <= b["cx"] <= self.zone[2] and
+                self.zone[1] <= b["cy"] <= self.zone[3])
+            if inzone:
+                st["dwell"] += 1
+                if st["dwell"] >= self.dwell_frames and not st["alarmed"]:
+                    st["alarmed"] = True
+                    self.n_dwell += 1
+                    ev = dict(frame=f, tid=tid, kind="dwell",
+                              cx=round(b["cx"], 1), cy=round(b["cy"], 1),
+                              secs=round(st["dwell"] / self.fps, 6))
+                    new.append(ev)
+            else:
+                st["dwell"] = 0
+                st["alarmed"] = False
         for ev in new:
             self.events.append(ev)
         return new
@@ -538,8 +557,8 @@ def main():
                             cv2.rectangle(vis, (b["x0"] - 4, b["y0"] - 4),
                                           (b["x1"] + 4, b["y1"] + 4), (0, 0, 255), 2)
                 if alarms:
-                    txt = " | ".join("%s id%d" % ("INTRUSION" if a["kind"] == "cross_in"
-                                                  else "DWELL", a["tid"]) for a in alarms)
+                    labels = {"cross_in": "INTRUSION", "cross_out": "EXIT", "dwell": "DWELL"}
+                    txt = " | ".join("%s id%d" % (labels[a["kind"]], a["tid"]) for a in alarms)
                     cv2.putText(vis, "ALARM: " + txt, (12, 54),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv2.LINE_AA)
             cv2.putText(vis, "frame %d  gt=%d  det=%d" % (f, len(gts), len(boxes)),
@@ -585,9 +604,10 @@ def main():
         if rule.events:
             print("告警流水（前 12 条）:")
             for ev in rule.events[:12]:
-                if ev["kind"] == "cross_in":
-                    print("  帧 %4d  闯入  id%-2d  位置(%6.1f,%6.1f)  vx=%+.1f"
-                          % (ev["frame"], ev["tid"], ev["cx"], ev["cy"], ev["vx"]))
+                if ev["kind"] in ("cross_in", "cross_out"):
+                    print("  帧 %4d  %s  id%-2d  位置(%6.1f,%6.1f)  vx=%+.1f"
+                          % (ev["frame"], "闯入" if ev["kind"] == "cross_in" else "离开",
+                             ev["tid"], ev["cx"], ev["cy"], ev["vx"]))
                 else:
                     print("  帧 %4d  滞留  id%-2d  位置(%6.1f,%6.1f)  已停 %.1f 秒"
                           % (ev["frame"], ev["tid"], ev["cx"], ev["cy"], ev["secs"]))

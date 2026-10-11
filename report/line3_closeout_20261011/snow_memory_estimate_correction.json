@@ -1,0 +1,9 @@
+{
+  "v2_estimate_issue": "compress2x2 uses numpy.sum on uint16; cached results are uint64, not uint8",
+  "corrected_estimated_process_bytes": 9093044224,
+  "initial_available_commit_bytes": 15843450880,
+  "corrected_gate_would_pass": true,
+  "observed_private_bytes": 8382349312,
+  "strategy": "Continued as the sole heavy task; ample commit capacity; original eager loader and full ROI unchanged",
+  "v3_note": "Resource gate corrected for future fresh-output reproduction; v2 retained as actually executed driver"
+}

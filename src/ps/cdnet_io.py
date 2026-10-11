@@ -30,6 +30,7 @@ CDnet 官方只对 temporalROI 区间内标注真值，区间外**不保证有�
 
 import os
 import re
+from numbers import Integral
 
 import cv2
 import numpy as np
@@ -182,18 +183,18 @@ def frame_plan(seqdir, warmup=100, frames=0):
         count   一共读多少帧（含预热）
         score   (第一帧计分帧号, 最后一帧计分帧号) 的闭区间
 
-    frames > 0 时只跑前 frames 个计分帧（快速验证用）。
+    frames = 0 使用完整 ROI；frames > 0 最多跑前 frames 个计分帧，
+    始终截到 ROI 终点。warmup / frames 必须是非负整数。
     """
+    for name, value in (("warmup", warmup), ("frames", frames)):
+        if not isinstance(value, Integral) or value < 0:
+            raise DataError("%s 必须是非负整数，实际为 %r" % (name, value))
     roi = read_roi(seqdir)
     r0, r1 = roi
-    first = max(1, r0 - max(0, int(warmup)))
+    first = max(1, r0 - int(warmup))
     nwarm = r0 - first
-    if frames and frames > 0:
-        count = int(frames) + nwarm
-        last = min(r1, r0 + int(frames) - 1)
-    else:
-        count = r1 - first + 1
-        last = r1
+    last = min(r1, r0 + int(frames) - 1) if frames else r1
+    count = last - first + 1
     return {"roi": roi, "first": first, "nwarm": nwarm, "count": count,
             "score": (r0, last)}
 

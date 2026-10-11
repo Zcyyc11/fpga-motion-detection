@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "D:\\AMD2025.2\\2025.2\\Vivado\\bin\\vivado.bat",
+    "-mode",
+    "batch",
+    "-source",
+    "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode1\\build\\scripts\\build_vivado.tcl",
+    "-nojournal",
+    "-log",
+    "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode1\\vivado.log",
+    "-tclargs",
+    "1"
+  ],
+  "cwd": "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode1",
+  "start_utc": "2026-10-11T02:19:29.768935+00:00",
+  "exit_code": 0,
+  "seconds": 688.921,
+  "encoding": "escaped undecodable bytes"
+}

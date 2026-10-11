@@ -1,0 +1,74 @@
+{
+  "baseline": "08b944790b629546a584ade37e77818535f72c57",
+  "failed_before": [
+    "exit_left",
+    "exit_left_events",
+    "exit_left_side",
+    "reenter_left",
+    "reenter_left_events",
+    "exit_right",
+    "exit_right_events",
+    "exit_right_side",
+    "dwell_non30fps",
+    "dwell_consecutive_gap",
+    "dwell_consecutive",
+    "inconsistent_velocity_left",
+    "observed_side_left"
+  ],
+  "results": [
+    {
+      "case": "baseline_five_failures_reproduced",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "case": "all_behaviour_cases_after",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    },
+    {
+      "case": "compare_valid",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "case": "compare_reordered",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "case": "compare_missing_last",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "case": "compare_empty",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "case": "compare_duplicate",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "case": "compare_extra",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "case": "compare_corrupt_last",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    }
+  ]
+}

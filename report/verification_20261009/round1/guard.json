@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "original22_rc": 0,
+  "absolute_paths_passed": 5,
+  "absolute_paths_failed": 0,
+  "frames": {
+    "D:\\666666\\Temp\\fpga_fix_paths_20261009_r1\\uni\\plain\\tcat\\tseq\\cdnet_demo_metrics.csv": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "D:\\666666\\Temp\\fpga_fix_paths_20261009_r1\\uni\\中文目录\\tcat\\tseq\\cdnet_demo_metrics.csv": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "D:\\666666\\Temp\\fpga_fix_paths_20261009_r1\\uni\\my data\\tcat\\tseq\\cdnet_demo_metrics.csv": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "D:\\666666\\Temp\\fpga_fix_paths_20261009_r1\\uni\\我的 数据\\tcat\\tseq\\cdnet_demo_metrics.csv": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "preserved_count": 9
+}
