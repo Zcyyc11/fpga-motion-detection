@@ -118,14 +118,16 @@ add_files -fileset constrs_1 -norecurse [list \
     [file join $BOARD_DIR pynq_z2_hdmi_out.xdc] \
     [file join $BOARD_DIR pynq_z2_hdmi_in.xdc]]
 set_property top $TOP [current_fileset]
-set_property generic [format "MODE_BG=%d,INPUT_SEL=%d" $MODE_BG $INPUT_SEL] [current_fileset]
+# ★ 2026.1 实测：fileset 的 generic 属性用【空格】分隔，逗号分隔会把整个串解析成一个
+#   generic 名（MODE_BG 绑到 "EL=1" 垃圾值、INPUT_SEL 不绑定）。旧版本是逗号。
+set_property generic [format "MODE_BG=%d INPUT_SEL=%d" $MODE_BG $INPUT_SEL] [current_fileset]
 puts "EFFECTIVE_GENERIC=[get_property generic [current_fileset]]"
 update_compile_order -fileset sources_1
 puts "加入的 RTL："
 foreach f [get_files -of [get_filesets sources_1]] { puts "   $f" }
 
 # ---------------------------------------------------------------- 4) 综合 → 实现 → bit
-launch_runs synth_1 -jobs 8
+launch_runs synth_1 -jobs 2
 wait_on_run synth_1
 if {[get_property PROGRESS [get_runs synth_1]] != "100%"} {
     puts "!! 综合失败，日志：$PROJ_DIR/fpga_motion_detection.runs/synth_1/runme.log"
@@ -137,7 +139,7 @@ report_timing_summary -file [file join $REPORT_DIR synth_timing_summary.rpt]
 report_clocks         -file [file join $REPORT_DIR synth_clocks.rpt]
 close_design
 
-launch_runs impl_1 -to_step write_bitstream -jobs 8
+launch_runs impl_1 -to_step write_bitstream -jobs 2
 wait_on_run impl_1
 if {[get_property PROGRESS [get_runs impl_1]] != "100%"} {
     puts "!! 实现失败，日志：$PROJ_DIR/fpga_motion_detection.runs/impl_1/runme.log"
