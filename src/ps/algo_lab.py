@@ -36,7 +36,7 @@ import cdnet_demo as cd          # noqa: E402
 import cdnet_io as cio           # noqa: E402  唯一的数据读取/校验实现
 
 # ★★ 数据根目录：**刻意不给默认值**。
-#   原先这里硬编码 `D:\FPGA\datasets\cdnet2014` —— 换个机器/换个人跑就静默找不到数据，
+#   原先这里硬编码过数据集路径 —— 换个机器/换个人跑就静默找不到数据，
 #   而且"能跑但跑不出结果"最难查。现在按优先级解析，**没配就明确报错**：
 #       1) 命令行   --data-root <目录>      （优先级最高）
 #       2) 环境变量 CDNET_ROOT
@@ -91,8 +91,8 @@ def resolve_data_root(explicit=None):
             "没有指定 CDnet 数据根目录。**本项目刻意不给默认值**"
             "（这里曾经硬编码某个人的磁盘路径，换机器就静默跑不了）。\n"
             "  二选一：\n"
-            "    1) 命令行：    python 本脚本.py --data-root \"D:\\我的数据\\cdnet2014\"\n"
-            "    2) 环境变量：  set %s=D:\\我的数据\\cdnet2014\n"
+            "    1) 命令行：    python 本脚本.py --data-root \"<你的数据集目录>/cdnet2014\"\n"
+            "    2) 环境变量：  set %s=<你的数据集目录>/cdnet2014\n"
             "  ★ 目录要指向**含类别目录**的那一级，结构应该是：\n"
             "        cdnet2014\\baseline\\highway\\temporalROI.txt\n"
             "                          \\input\\...\n"

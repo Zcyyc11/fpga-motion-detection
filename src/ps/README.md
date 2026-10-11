@@ -58,9 +58,11 @@
 用法：
 
 ```bash
-python cdnet_demo.py --seq D:\FPGA\datasets\cdnet2014\baseline\pedestrians
-python cdnet_demo.py --seq D:\FPGA\datasets\cdnet2014\dynamicBackground\canoe
+rem 先设好数据集根目录（或直接用 --seq 给序列的完整路径）
+set CDNET_ROOT=<你放数据集的目录>/cdnet2014
+python cdnet_demo.py --seq %CDNET_ROOT%\baseline\pedestrians
+python cdnet_demo.py --seq %CDNET_ROOT%\dynamicBackground\canoe
 python algo_ab.py --seq both --sweep      # 帧差 vs 背景建模的受控对照 + α 扫描
 ```
 
-> 素材说明见 `data/captures/README.md` 与 `D:\FPGA\datasets\cdnet2014\README.md`。
+> 素材说明见 `data/captures/README.md`（数据集根目录下的 `README.md` 内含校验值 / 目录结构 / 真值标签含义 / 全部 53 段清单 / 引用要求）。

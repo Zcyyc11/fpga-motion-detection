@@ -14,7 +14,7 @@
 #     装/卸一遍，而这两套组合我们都实测过，都能跑。
 #     真要锁死某一套，自己 pip freeze 一份，别改这个文件。
 #   - 安装：pip install -r requirements.txt
-#   - 本机开发环境位于 D:\FPGA\.venvs\motion（venv 建在仓库之外，不入库）
+#   - 开发 venv 建在仓库之外（不入库），例如在仓库同级建一个 venv 目录
 
 # --- 黄金参考本身 ---
 numpy>=2.1,<3

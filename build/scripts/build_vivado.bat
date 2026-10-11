@@ -17,7 +17,13 @@ rem  Log  : build/logs/vivado_build.log
 rem ============================================================================
 setlocal
 rem Vivado location is configurable: set VIVADO_SETTINGS before calling.
-if "%VIVADO_SETTINGS%"=="" set VIVADO_SETTINGS=D:\AMDDesignTools\2026.1\Vivado\settings64.bat
+rem No machine-specific default any more -- error out with guidance if unset.
+if "%VIVADO_SETTINGS%"=="" (
+    echo ERROR: VIVADO_SETTINGS is not set. Point it at the full path to settings64.bat on your machine.
+    echo   e.g.  set VIVADO_SETTINGS=^<your Vivado install dir^>\Vivado\settings64.bat
+    echo   or set env XILINX_VIVADO to the Vivado install directory.
+    exit /b 9
+)
 call "%VIVADO_SETTINGS%" >nul 2>&1
 if errorlevel 1 (
     echo ERROR: cannot load Vivado environment from "%VIVADO_SETTINGS%"

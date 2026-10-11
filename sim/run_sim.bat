@@ -19,9 +19,9 @@ rem    Priority   1) VIVADO_SETTINGS = full path to settings64.bat
 rem               2) XILINX_VIVADO   = install dir (settings64.bat sits in it)
 rem               3) neither set     = assume this shell already has Vivado
 rem    How to set it before calling (pick the one matching your shell):
-rem      cmd         set VIVADO_SETTINGS=D:\AMDDesignTools\2026.1\Vivado\settings64.bat
-rem      powershell  $env:VIVADO_SETTINGS = 'D:\AMDDesignTools\2026.1\Vivado\settings64.bat'
-rem      persistent  setx VIVADO_SETTINGS "D:\AMDDesignTools\2026.1\Vivado\settings64.bat"
+rem      cmd         set VIVADO_SETTINGS=<your Vivado install dir>\Vivado\settings64.bat
+rem      powershell  $env:VIVADO_SETTINGS = '<your Vivado install dir>\Vivado\settings64.bat'
+rem      persistent  setx VIVADO_SETTINGS "<your Vivado install dir>\Vivado\settings64.bat"
 rem    Same idea for XILINX_VIVADO (the install directory, not the .bat file).
 rem
 rem  Internal worker: run via python build/scripts/run_sim.py for isolation.
@@ -60,8 +60,8 @@ goto have_env
 echo [ERROR] VIVADO_SETTINGS points at a file that does not exist:
 echo           %VIV_SETTINGS%
 echo   Fix it with ONE of these, then run again:
-echo     cmd         set VIVADO_SETTINGS=D:\AMDDesignTools\2026.1\Vivado\settings64.bat
-echo     powershell  $env:VIVADO_SETTINGS = 'D:\AMDDesignTools\2026.1\Vivado\settings64.bat'
+echo     cmd         set VIVADO_SETTINGS=<your Vivado install dir>\Vivado\settings64.bat
+echo     powershell  $env:VIVADO_SETTINGS = '<your Vivado install dir>\Vivado\settings64.bat'
 echo   Or set XILINX_VIVADO to the Vivado install directory instead.
 exit /b 10
 
@@ -85,9 +85,9 @@ goto run
 echo [ERROR] Vivado simulation tools are not on PATH (xvlog / xelab / xsim).
 echo           VIV_SETTINGS=%VIV_SETTINGS%
 echo   Fix it with ONE of these, then run again:
-echo     cmd         set VIVADO_SETTINGS=D:\AMDDesignTools\2026.1\Vivado\settings64.bat
-echo     powershell  $env:VIVADO_SETTINGS = 'D:\AMDDesignTools\2026.1\Vivado\settings64.bat'
-echo     persistent  setx VIVADO_SETTINGS "D:\AMDDesignTools\2026.1\Vivado\settings64.bat"
+echo     cmd         set VIVADO_SETTINGS=<your Vivado install dir>\Vivado\settings64.bat
+echo     powershell  $env:VIVADO_SETTINGS = '<your Vivado install dir>\Vivado\settings64.bat'
+echo     persistent  setx VIVADO_SETTINGS "<your Vivado install dir>\Vivado\settings64.bat"
 echo   Or start from the Vivado Tcl shell / run settings64.bat yourself first,
 echo   and just leave the variables unset.
 exit /b 12
