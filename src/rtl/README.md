@@ -23,6 +23,8 @@
 | `bbox.v` | ⑧ 包围盒 | 全局并集框 x1/y1/x2/y2 + 面积门限 |
 | `multi_bbox.v` | ⑧+ 多目标 | **线二**：游程 + 并查集的多目标连通域，每目标一个框（I3 格式逐个输出）；`bbox.v` 的多目标升级版，仿真见 `sim/tb/tb_multi_bbox.v` |
 | `gray_conv.v` | ②' 灰度 | **线二**：BT.601 整数近似 RGB888→8bit 灰度，两级流水、de/坐标同拍对齐；接 HDMI 输入侧（`dvi2rgb` 之后）用，仿真见 `sim/tb/tb_gray_conv.v` |
+| `track.v` | ⑩ 跟踪 | **线二**：帧间贪心最近邻匹配 + 跨帧持续 id + dwell 停留计数；输入/输出均为 I3 目标流，`frame_tick`（vsync）驱动，零目标帧也须给 tick，仿真见 `sim/tb/tb_track_alarm.v` |
+| `alarm.v` | ⑪ 告警 | **线二**：越界（中心穿越 LINE_X，穿越优先）+ 停留（dwell 达 DWELL）告警事件流，LINE_X/DWELL 为运行时参数（将来接 I4 寄存器堆） |
 | `overlay.v` | ⑨ 叠加 | 把包围盒画回画面（红框）+ 左上角状态灯（绿=检出） |
 | `md_pipeline.v` | 整机 | 把①~⑨串成一条流水线，输出视频 + 包围盒 + 掩码探针 |
 
