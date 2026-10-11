@@ -226,7 +226,7 @@ module board_top #(
         .TMDS_Data_p (hdmi_tx_d_p),
         .TMDS_Data_n (hdmi_tx_d_n),
         .aRst        (~rst_n),
-        .vid_pData   ({vr, vg, vb}),
+        .vid_pData   ({vr, vb, vg}),   // rgb2dvi 按 RBG 解包（R=[23:16] G=[7:0] B=[15:8]），不能按 RGB 喂
         .vid_pVDE    (vde),
         .vid_pHSync  (vhs),
         .vid_pVSync  (vvs),

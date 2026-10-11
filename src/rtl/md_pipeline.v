@@ -181,7 +181,15 @@ module md_pipeline #(
     end
     wire [15:0] fid = INPUT_SEL ? frame_cnt : pat_frame_idx;
 
-    wire init_phase = (fid <= 16'd1);      // 首帧：缓存直接写当前帧
+    // ★ 初始化/掩码门用"已进入掩码阶段"的粘性标志，不依赖 fid 绝对值：
+    //   16 位帧号 @60fps ≈ 18.2 分钟会回绕，回绕后 fid 又变 0/1，
+    //   若直接用 fid<=1 / fid>=2 判断，运行 18 分钟后背景会重新初始化、掩码消失一帧。
+    reg mask_phase;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)          mask_phase <= 1'b0;
+        else if (fid == 16'd2) mask_phase <= 1'b1;
+    end
+    wire init_phase = (fid <= 16'd1) & ~mask_phase;   // 首帧：缓存直接写当前帧
 
     diff_stage #(.SHIFT(SHIFT)) u_diff (
         .mode_bg(MODE_BG[0]),
@@ -205,7 +213,7 @@ module md_pipeline #(
 
     // ======================= ⑥ 阈值 =======================
     // 首帧不出掩码（帧差模式下没有「上一帧」可比，背景模式还在初始化）
-    wire mask_en = (fid >= 16'd2);
+    wire mask_en = (fid >= 16'd2) | mask_phase;        // 回绕后仍保持掩码开启
     wire t_valid, t_mask;
 
     threshold #(.THRESH(THRESH)) u_th (
