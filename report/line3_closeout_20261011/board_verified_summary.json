@@ -1,0 +1,192 @@
+[
+  {
+    "mode": 0,
+    "source_sha": "64ac44ee2a27897f674919d6fcb8e4fbbd8dfde8",
+    "timing": {
+      "WNS": "0.780",
+      "TNS": "0.000",
+      "setup_failing": "0",
+      "setup_total": "9981",
+      "WHS": "0.037",
+      "THS": "0.000",
+      "hold_failing": "0",
+      "hold_total": "9981",
+      "WPWS": "1.027",
+      "TPWS": "0.000",
+      "pulse_failing": "0",
+      "pulse_total": "6170"
+    },
+    "resources": {
+      "LUT": 10206,
+      "FF": 5981,
+      "BRAM": 80,
+      "DSP": 1
+    },
+    "constraint_counts": {
+      "no_clock": 0,
+      "unconstrained_internal_endpoints": 0,
+      "no_input_delay": 0,
+      "no_output_delay": 7
+    },
+    "drc_rules": [
+      [
+        "CHECK-3",
+        "Warning",
+        "1"
+      ],
+      [
+        "DPIP-1",
+        "Warning",
+        "2"
+      ],
+      [
+        "DPOP-1",
+        "Warning",
+        "1"
+      ],
+      [
+        "DPOP-2",
+        "Warning",
+        "1"
+      ],
+      [
+        "DPOR-1",
+        "Warning",
+        "18"
+      ],
+      [
+        "REQP-1839",
+        "Warning",
+        "20"
+      ],
+      [
+        "ZPS7-1",
+        "Warning",
+        "1"
+      ]
+    ],
+    "methodology_rules": [
+      [
+        "DPIR-1",
+        "Warning",
+        "30"
+      ],
+      [
+        "LUTAR-1",
+        "Warning",
+        "3"
+      ],
+      [
+        "SYNTH-6",
+        "Warning",
+        "40"
+      ],
+      [
+        "XDCB-5",
+        "Warning",
+        "1"
+      ]
+    ],
+    "routing_errors": 0,
+    "routable_nets": 9829,
+    "fully_routed_nets": 9829,
+    "bit_sha256": "a5d4e31288f2ba20068a253a8a64acc5697fc51487ae3d7d6bf861761821d9d2",
+    "build_exit_code": 0,
+    "scope": "board_top internal pattern + HDMI output; constrained routed paths passed; unconstrained external paths and warnings remain; not board-tested"
+  },
+  {
+    "mode": 1,
+    "source_sha": "64ac44ee2a27897f674919d6fcb8e4fbbd8dfde8",
+    "timing": {
+      "WNS": "0.733",
+      "TNS": "0.000",
+      "setup_failing": "0",
+      "setup_total": "9981",
+      "WHS": "0.098",
+      "THS": "0.000",
+      "hold_failing": "0",
+      "hold_total": "9981",
+      "WPWS": "1.027",
+      "TPWS": "0.000",
+      "pulse_failing": "0",
+      "pulse_total": "6170"
+    },
+    "resources": {
+      "LUT": 10226,
+      "FF": 5981,
+      "BRAM": 80,
+      "DSP": 1
+    },
+    "constraint_counts": {
+      "no_clock": 0,
+      "unconstrained_internal_endpoints": 0,
+      "no_input_delay": 0,
+      "no_output_delay": 7
+    },
+    "drc_rules": [
+      [
+        "CHECK-3",
+        "Warning",
+        "1"
+      ],
+      [
+        "DPIP-1",
+        "Warning",
+        "2"
+      ],
+      [
+        "DPOP-1",
+        "Warning",
+        "1"
+      ],
+      [
+        "DPOP-2",
+        "Warning",
+        "1"
+      ],
+      [
+        "DPOR-1",
+        "Warning",
+        "18"
+      ],
+      [
+        "REQP-1839",
+        "Warning",
+        "20"
+      ],
+      [
+        "ZPS7-1",
+        "Warning",
+        "1"
+      ]
+    ],
+    "methodology_rules": [
+      [
+        "DPIR-1",
+        "Warning",
+        "30"
+      ],
+      [
+        "LUTAR-1",
+        "Warning",
+        "3"
+      ],
+      [
+        "SYNTH-6",
+        "Warning",
+        "40"
+      ],
+      [
+        "XDCB-5",
+        "Warning",
+        "1"
+      ]
+    ],
+    "routing_errors": 0,
+    "routable_nets": 9846,
+    "fully_routed_nets": 9846,
+    "bit_sha256": "736af60236d4e27b5752b09601ecf14c436be79550afd4529375018e6aa0148c",
+    "build_exit_code": 0,
+    "scope": "board_top internal pattern + HDMI output; constrained routed paths passed; unconstrained external paths and warnings remain; not board-tested"
+  }
+]

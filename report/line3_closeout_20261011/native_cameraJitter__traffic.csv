@@ -1,0 +1,7 @@
+seq,variant,perframe_f1,official_f1
+cameraJitter/traffic,V0 现役 α.02 thr70 open3,0.2980,0.3619
+cameraJitter/traffic,V12 快背景1/32+冻结前景 ★现冠军,0.4444,0.5486
+cameraJitter/traffic,V43 V38+全局补偿 R2/抽样4,0.4791,0.6389
+cameraJitter/traffic,V45 V43+初始背景取前6帧最小,0.4273,0.5766
+cameraJitter/traffic,V46 V43+初始背景取前12帧最小,0.4101,0.5505
+cameraJitter/traffic,V47 V43+初始背景取前20帧最小,0.3963,0.5274

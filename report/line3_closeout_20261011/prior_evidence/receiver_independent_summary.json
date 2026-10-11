@@ -1,0 +1,942 @@
+[
+  {
+    "name": "baseline",
+    "original_passed": 23,
+    "original_total": 23,
+    "original_exit": 0,
+    "new_passed": 15,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": true
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": true
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": false
+  },
+  {
+    "name": "x1_scale",
+    "original_passed": 23,
+    "original_total": 23,
+    "original_exit": 0,
+    "new_passed": 13,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": false,
+        "error": "AssertionError(([((37, 190), (165, 247), (90, 210, 120), 2), ((333, 530), (801, 609), (90, 210, 120), 2)], [((74, 190), (165, 247), (90, 210, 120), 2), ((666, 530), (801, 609), (90, 210, 120), 2)]))"
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": false,
+        "error": "AssertionError(([((0, 48), (1, 49), (90, 210, 120), 2), ((639, 766), (1279, 767), (90, 210, 120), 2)], [((0, 48), (1, 49), (90, 210, 120), 2), ((1278, 766), (1279, 767), (90, 210, 120), 2)]))"
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": false
+  },
+  {
+    "name": "y1_scale",
+    "original_passed": 23,
+    "original_total": 23,
+    "original_exit": 0,
+    "new_passed": 13,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": false,
+        "error": "AssertionError(([((74, 119), (165, 247), (90, 210, 120), 2), ((666, 289), (801, 609), (90, 210, 120), 2)], [((74, 190), (165, 247), (90, 210, 120), 2), ((666, 530), (801, 609), (90, 210, 120), 2)]))"
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": false,
+        "error": "AssertionError(([((0, 48), (1, 49), (90, 210, 120), 2), ((1278, 407), (1279, 767), (90, 210, 120), 2)], [((0, 48), (1, 49), (90, 210, 120), 2), ((1278, 766), (1279, 767), (90, 210, 120), 2)]))"
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": false
+  },
+  {
+    "name": "y1_offset",
+    "original_passed": 23,
+    "original_total": 23,
+    "original_exit": 0,
+    "new_passed": 13,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": false,
+        "error": "AssertionError(([((74, 142), (165, 247), (90, 210, 120), 2), ((666, 482), (801, 609), (90, 210, 120), 2)], [((74, 190), (165, 247), (90, 210, 120), 2), ((666, 530), (801, 609), (90, 210, 120), 2)]))"
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": false,
+        "error": "AssertionError(([((0, 0), (1, 49), (90, 210, 120), 2), ((1278, 718), (1279, 767), (90, 210, 120), 2)], [((0, 48), (1, 49), (90, 210, 120), 2), ((1278, 766), (1279, 767), (90, 210, 120), 2)]))"
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": false
+  },
+  {
+    "name": "x2_inclusive",
+    "original_passed": 23,
+    "original_total": 23,
+    "original_exit": 0,
+    "new_passed": 13,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": false,
+        "error": "AssertionError(([((74, 190), (164, 247), (90, 210, 120), 2), ((666, 530), (800, 609), (90, 210, 120), 2)], [((74, 190), (165, 247), (90, 210, 120), 2), ((666, 530), (801, 609), (90, 210, 120), 2)]))"
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": false,
+        "error": "AssertionError(([((0, 48), (0, 49), (90, 210, 120), 2), ((1278, 766), (1278, 767), (90, 210, 120), 2)], [((0, 48), (1, 49), (90, 210, 120), 2), ((1278, 766), (1279, 767), (90, 210, 120), 2)]))"
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": false
+  },
+  {
+    "name": "drop_second",
+    "original_passed": 23,
+    "original_total": 23,
+    "original_exit": 0,
+    "new_passed": 13,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": false,
+        "error": "AssertionError(([((74, 190), (165, 247), (90, 210, 120), 2)], [((74, 190), (165, 247), (90, 210, 120), 2), ((666, 530), (801, 609), (90, 210, 120), 2)]))"
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": false,
+        "error": "AssertionError(([((0, 48), (1, 49), (90, 210, 120), 2)], [((0, 48), (1, 49), (90, 210, 120), 2), ((1278, 766), (1279, 767), (90, 210, 120), 2)]))"
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": false
+  },
+  {
+    "name": "allow_inverted_y",
+    "original_passed": 23,
+    "original_total": 23,
+    "original_exit": 0,
+    "new_passed": 14,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": false,
+        "error": "AssertionError('invalid packet accepted')"
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": true
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": true
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": false
+  },
+  {
+    "name": "allow_y_overflow",
+    "original_passed": 23,
+    "original_total": 23,
+    "original_exit": 0,
+    "new_passed": 12,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": false,
+        "error": "AssertionError('invalid packet accepted')"
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": false,
+        "error": "AssertionError('invalid packet accepted')"
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": false,
+        "error": "AssertionError('invalid packet accepted')"
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": true
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": true
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": false
+  },
+  {
+    "name": "ignore_gaps",
+    "original_passed": 22,
+    "original_total": 23,
+    "original_exit": 1,
+    "new_passed": 14,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": true
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": true
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": false,
+        "error": "AssertionError(((3, 2, 0, 13, 1), (3, 2, 2, 13, 1)))"
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": false
+  },
+  {
+    "name": "duplicate_ids_allowed",
+    "original_passed": 22,
+    "original_total": 23,
+    "original_exit": 1,
+    "new_passed": 14,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": false,
+        "error": "AssertionError('invalid packet accepted')"
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": true
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": true
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": false
+  },
+  {
+    "name": "bool_as_int",
+    "original_passed": 22,
+    "original_total": 23,
+    "original_exit": 1,
+    "new_passed": 14,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": false,
+        "error": "AssertionError('invalid packet accepted')"
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": true
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": true
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": false
+  },
+  {
+    "name": "equivalent_height_guard",
+    "original_passed": 23,
+    "original_total": 23,
+    "original_exit": 0,
+    "new_passed": 15,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": true
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": true
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": true
+  },
+  {
+    "name": "equivalent_set_order",
+    "original_passed": 23,
+    "original_total": 23,
+    "original_exit": 0,
+    "new_passed": 15,
+    "new_total": 15,
+    "new_tests": [
+      {
+        "name": "wrong height",
+        "pass_": true
+      },
+      {
+        "name": "float height",
+        "pass_": true
+      },
+      {
+        "name": "y1 overflow",
+        "pass_": true
+      },
+      {
+        "name": "y2 overflow",
+        "pass_": true
+      },
+      {
+        "name": "inverted y",
+        "pass_": true
+      },
+      {
+        "name": "bool coordinate",
+        "pass_": true
+      },
+      {
+        "name": "second target wrong id",
+        "pass_": true
+      },
+      {
+        "name": "invalid false coordinates still checked",
+        "pass_": true
+      },
+      {
+        "name": "duplicate id",
+        "pass_": true
+      },
+      {
+        "name": "wrong source",
+        "pass_": true
+      },
+      {
+        "name": "asymmetric two targets",
+        "pass_": true
+      },
+      {
+        "name": "single pixel corners",
+        "pass_": true
+      },
+      {
+        "name": "valid false",
+        "pass_": true
+      },
+      {
+        "name": "fragmented sequence duplicates gaps",
+        "pass_": true
+      },
+      {
+        "name": "source label cannot prove board test",
+        "pass_": true
+      }
+    ],
+    "equivalent": true
+  }
+]

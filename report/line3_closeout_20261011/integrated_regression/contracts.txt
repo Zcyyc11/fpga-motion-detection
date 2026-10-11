@@ -1,0 +1,6 @@
+correct True
+threshold_69 True
+wrap_early True
+no_wrap True
+morph_shift True
+old_morph True

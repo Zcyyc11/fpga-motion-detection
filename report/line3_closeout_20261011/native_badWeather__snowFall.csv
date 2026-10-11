@@ -1,0 +1,7 @@
+seq,variant,perframe_f1,official_f1
+badWeather/snowFall,V0 现役 α.02 thr70 open3,0.0617,0.5463
+badWeather/snowFall,V12 快背景1/32+冻结前景 ★现冠军,0.0926,0.8086
+badWeather/snowFall,V43 V38+全局补偿 R2/抽样4,0.0955,0.7969
+badWeather/snowFall,V45 V43+初始背景取前6帧最小,0.0955,0.7968
+badWeather/snowFall,V46 V43+初始背景取前12帧最小,0.0955,0.7967
+badWeather/snowFall,V47 V43+初始背景取前20帧最小,0.0955,0.7966

@@ -1,0 +1,7 @@
+seq,variant,perframe_f1,official_f1
+nightVideos/busyBoulvard,V0 现役 α.02 thr70 open3,0.0845,0.2962
+nightVideos/busyBoulvard,V12 快背景1/32+冻结前景 ★现冠军,0.0724,0.2623
+nightVideos/busyBoulvard,V43 V38+全局补偿 R2/抽样4,0.0809,0.3040
+nightVideos/busyBoulvard,V45 V43+初始背景取前6帧最小,0.0843,0.3257
+nightVideos/busyBoulvard,V46 V43+初始背景取前12帧最小,0.0861,0.3339
+nightVideos/busyBoulvard,V47 V43+初始背景取前20帧最小,0.0855,0.3287

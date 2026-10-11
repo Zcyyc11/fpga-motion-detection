@@ -1,0 +1,694 @@
+{
+  "keys": 72,
+  "frames": 111498,
+  "mismatches": 0,
+  "source_gzip_was_complete": false,
+  "recomputed_unflushed": [
+    [
+      "nightVideos/busyBoulvard",
+      "V0 现役 α.02 thr70 open3"
+    ],
+    [
+      "nightVideos/busyBoulvard",
+      "V12 快背景1/32+冻结前景 ★现冠军"
+    ]
+  ],
+  "complete_gzip_sha256": "e2b32321c492f41ea261dfa6d3448f660fbbdf12219aefae46f31e0e7aada124",
+  "category_means": {
+    "V0 现役 α.02 thr70 open3": {
+      "historical": 0.4421437595313669,
+      "published_matlab_labels": 0.4358340297323127
+    },
+    "V12 快背景1/32+冻结前景 ★现冠军": {
+      "historical": 0.7128433470483714,
+      "published_matlab_labels": 0.6982050942174713
+    },
+    "V43 V38+全局补偿 R2/抽样4": {
+      "historical": 0.7367178962173883,
+      "published_matlab_labels": 0.7205314165152852
+    },
+    "V45 V43+初始背景取前6帧最小": {
+      "historical": 0.7196326991706098,
+      "published_matlab_labels": 0.704222565518585
+    },
+    "V46 V43+初始背景取前12帧最小": {
+      "historical": 0.7015313004967019,
+      "published_matlab_labels": 0.6865396218167166
+    },
+    "V47 V43+初始背景取前20帧最小": {
+      "historical": 0.6876416302843389,
+      "published_matlab_labels": 0.6728725926950034
+    }
+  },
+  "metrics": [
+    {
+      "sequence": "badWeather/snowFall",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.546314419063944,
+      "published_matlab_labels_f1": 0.534720369704134,
+      "added_shadow_fp": 372397,
+      "roi_shadow_adjusted_f1": 0.534720369704134,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "badWeather/snowFall",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.8086098257453985,
+      "published_matlab_labels_f1": 0.7840426270664742,
+      "added_shadow_fp": 440576,
+      "roi_shadow_adjusted_f1": 0.7840426270664742,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "badWeather/snowFall",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.7969279454400885,
+      "published_matlab_labels_f1": 0.7736114588324855,
+      "added_shadow_fp": 433448,
+      "roi_shadow_adjusted_f1": 0.7736114588324855,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "badWeather/snowFall",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.7967715643976377,
+      "published_matlab_labels_f1": 0.7734578118627919,
+      "added_shadow_fp": 433437,
+      "roi_shadow_adjusted_f1": 0.7734578118627919,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "badWeather/snowFall",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.7967160462419658,
+      "published_matlab_labels_f1": 0.7734030248882079,
+      "added_shadow_fp": 433429,
+      "roi_shadow_adjusted_f1": 0.7734030248882079,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "badWeather/snowFall",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.7966326612936879,
+      "published_matlab_labels_f1": 0.7733221258445704,
+      "added_shadow_fp": 433405,
+      "roi_shadow_adjusted_f1": 0.7733221258445704,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/highway",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.5915223202221953,
+      "published_matlab_labels_f1": 0.5765982100257433,
+      "added_shadow_fp": 360907,
+      "roi_shadow_adjusted_f1": 0.5765982100257433,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/highway",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.6487328030159256,
+      "published_matlab_labels_f1": 0.6338685295351616,
+      "added_shadow_fp": 342641,
+      "roi_shadow_adjusted_f1": 0.6338685295351616,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/highway",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.6146784069900302,
+      "published_matlab_labels_f1": 0.5996706009131769,
+      "added_shadow_fp": 352272,
+      "roi_shadow_adjusted_f1": 0.5996706009131769,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/highway",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.542756020619156,
+      "published_matlab_labels_f1": 0.5313857135059801,
+      "added_shadow_fp": 333536,
+      "roi_shadow_adjusted_f1": 0.5313857135059801,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/highway",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.4455630800230694,
+      "published_matlab_labels_f1": 0.43826673557363344,
+      "added_shadow_fp": 307484,
+      "roi_shadow_adjusted_f1": 0.43826673557363344,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/highway",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.4001560242538325,
+      "published_matlab_labels_f1": 0.3944075281118733,
+      "added_shadow_fp": 294108,
+      "roi_shadow_adjusted_f1": 0.3944075281118733,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/office",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.4012117413928509,
+      "published_matlab_labels_f1": 0.4012117413928509,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.4012117413928509,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/office",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.9511682535022279,
+      "published_matlab_labels_f1": 0.9511682535022279,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.9511682535022279,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/office",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.9464279701889194,
+      "published_matlab_labels_f1": 0.9464279701889194,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.9464279701889194,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/office",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.9464330310854965,
+      "published_matlab_labels_f1": 0.9464330310854965,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.9464330310854965,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/office",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.9464429081641108,
+      "published_matlab_labels_f1": 0.9464429081641108,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.9464429081641108,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/office",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.9464408608188707,
+      "published_matlab_labels_f1": 0.9464408608188707,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.9464408608188707,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/pedestrians",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.6904229988523445,
+      "published_matlab_labels_f1": 0.6868965965608036,
+      "added_shadow_fp": 8799,
+      "roi_shadow_adjusted_f1": 0.6868965965608036,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/pedestrians",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.9372055939584625,
+      "published_matlab_labels_f1": 0.9315832102899174,
+      "added_shadow_fp": 7740,
+      "roi_shadow_adjusted_f1": 0.9315832102899174,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/pedestrians",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.9274749175444831,
+      "published_matlab_labels_f1": 0.9237774607161124,
+      "added_shadow_fp": 5035,
+      "roi_shadow_adjusted_f1": 0.9237774607161124,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/pedestrians",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.9274749175444831,
+      "published_matlab_labels_f1": 0.9237774607161124,
+      "added_shadow_fp": 5035,
+      "roi_shadow_adjusted_f1": 0.9237774607161124,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/pedestrians",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.9274749175444831,
+      "published_matlab_labels_f1": 0.9237774607161124,
+      "added_shadow_fp": 5035,
+      "roi_shadow_adjusted_f1": 0.9237774607161124,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "baseline/pedestrians",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.9274902640685104,
+      "published_matlab_labels_f1": 0.9237927987559817,
+      "added_shadow_fp": 5035,
+      "roi_shadow_adjusted_f1": 0.9237927987559817,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "cameraJitter/badminton",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.5533919818310958,
+      "published_matlab_labels_f1": 0.5533919818310958,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.5533919818310958,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "cameraJitter/badminton",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.4617689836207579,
+      "published_matlab_labels_f1": 0.4617689836207579,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.4617689836207579,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "cameraJitter/badminton",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.6283037913147325,
+      "published_matlab_labels_f1": 0.6283037913147325,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.6283037913147325,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "cameraJitter/badminton",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.4920845326494812,
+      "published_matlab_labels_f1": 0.4920845326494812,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.4920845326494812,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "cameraJitter/badminton",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.4081468447866633,
+      "published_matlab_labels_f1": 0.4081468447866633,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.4081468447866633,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "cameraJitter/badminton",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.3858931937029995,
+      "published_matlab_labels_f1": 0.3858931937029995,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.3858931937029995,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "cameraJitter/traffic",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.36190389375731935,
+      "published_matlab_labels_f1": 0.34693020939640684,
+      "added_shadow_fp": 669504,
+      "roi_shadow_adjusted_f1": null,
+      "roi_note": "shape mismatch; not resized"
+    },
+    {
+      "sequence": "cameraJitter/traffic",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.5485590949191226,
+      "published_matlab_labels_f1": 0.5159930481413202,
+      "added_shadow_fp": 670261,
+      "roi_shadow_adjusted_f1": null,
+      "roi_note": "shape mismatch; not resized"
+    },
+    {
+      "sequence": "cameraJitter/traffic",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.6388594230621469,
+      "published_matlab_labels_f1": 0.5907734250107589,
+      "added_shadow_fp": 670561,
+      "roi_shadow_adjusted_f1": null,
+      "roi_note": "shape mismatch; not resized"
+    },
+    {
+      "sequence": "cameraJitter/traffic",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.5766308128469269,
+      "published_matlab_labels_f1": 0.5371134509968885,
+      "added_shadow_fp": 669910,
+      "roi_shadow_adjusted_f1": null,
+      "roi_note": "shape mismatch; not resized"
+    },
+    {
+      "sequence": "cameraJitter/traffic",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.5504925156117363,
+      "published_matlab_labels_f1": 0.5143097983495293,
+      "added_shadow_fp": 669644,
+      "roi_shadow_adjusted_f1": null,
+      "roi_note": "shape mismatch; not resized"
+    },
+    {
+      "sequence": "cameraJitter/traffic",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.5274108088907637,
+      "published_matlab_labels_f1": 0.49405943708097927,
+      "added_shadow_fp": 669520,
+      "roi_shadow_adjusted_f1": null,
+      "roi_note": "shape mismatch; not resized"
+    },
+    {
+      "sequence": "dynamicBackground/canoe",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.5547069984926041,
+      "published_matlab_labels_f1": 0.5547069984926041,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.5547069984926041,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "dynamicBackground/canoe",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.9067017200603307,
+      "published_matlab_labels_f1": 0.9067017200603307,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.9067017200603307,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "dynamicBackground/canoe",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.9012940983815165,
+      "published_matlab_labels_f1": 0.9012940983815165,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.9012940983815165,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "dynamicBackground/canoe",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.871521536519837,
+      "published_matlab_labels_f1": 0.871521536519837,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.871521536519837,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "dynamicBackground/canoe",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.7835713851838849,
+      "published_matlab_labels_f1": 0.7835713851838849,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.7835713851838849,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "dynamicBackground/canoe",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.6880875193429612,
+      "published_matlab_labels_f1": 0.6880875193429612,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.6880875193429612,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "dynamicBackground/fountain02",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.6292708447117126,
+      "published_matlab_labels_f1": 0.6292708447117126,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.6292708447117126,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "dynamicBackground/fountain02",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.8054675228043101,
+      "published_matlab_labels_f1": 0.8054675228043101,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.8054675228043101,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "dynamicBackground/fountain02",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.7851286427653701,
+      "published_matlab_labels_f1": 0.7851286427653701,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.7851286427653701,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "dynamicBackground/fountain02",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.778503801503411,
+      "published_matlab_labels_f1": 0.778503801503411,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.778503801503411,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "dynamicBackground/fountain02",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.7732742147932397,
+      "published_matlab_labels_f1": 0.7732742147932397,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.7732742147932397,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "dynamicBackground/fountain02",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.7573988366831842,
+      "published_matlab_labels_f1": 0.7573988366831842,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.7573988366831842,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "intermittentObjectMotion/streetLight",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.13581542509867803,
+      "published_matlab_labels_f1": 0.13581542509867803,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.13581542509867803,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "intermittentObjectMotion/streetLight",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.880300347054319,
+      "published_matlab_labels_f1": 0.880300347054319,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.880300347054319,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "intermittentObjectMotion/streetLight",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.8772140503123846,
+      "published_matlab_labels_f1": 0.8772140503123846,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.8772140503123846,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "intermittentObjectMotion/streetLight",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.876213903317611,
+      "published_matlab_labels_f1": 0.876213903317611,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.876213903317611,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "intermittentObjectMotion/streetLight",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.8748339002181716,
+      "published_matlab_labels_f1": 0.8748339002181716,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.8748339002181716,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "intermittentObjectMotion/streetLight",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.8739059558927376,
+      "published_matlab_labels_f1": 0.8739059558927376,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.8739059558927376,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "nightVideos/busyBoulvard",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.29617469210166203,
+      "published_matlab_labels_f1": 0.29617469210166203,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.29617469210166203,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "nightVideos/busyBoulvard",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.26225827882734937,
+      "published_matlab_labels_f1": 0.26225827882734937,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.26225827882734937,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "nightVideos/busyBoulvard",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.304008044710023,
+      "published_matlab_labels_f1": 0.304008044710023,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.304008044710023,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "nightVideos/busyBoulvard",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.3257050984702433,
+      "published_matlab_labels_f1": 0.3257050984702433,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.3257050984702433,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "nightVideos/busyBoulvard",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.33393623086503843,
+      "published_matlab_labels_f1": 0.33393623086503843,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.33393623086503843,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "nightVideos/busyBoulvard",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.32868949273670695,
+      "published_matlab_labels_f1": 0.32868949273670695,
+      "added_shadow_fp": 0,
+      "roi_shadow_adjusted_f1": 0.32868949273670695,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/busStation",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.48252376712629064,
+      "published_matlab_labels_f1": 0.4754013997144921,
+      "added_shadow_fp": 78935,
+      "roi_shadow_adjusted_f1": 0.4754013997144921,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/busStation",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.8182549493497144,
+      "published_matlab_labels_f1": 0.7704945250395944,
+      "added_shadow_fp": 318162,
+      "roi_shadow_adjusted_f1": 0.7704945250395944,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/busStation",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.8396130750570038,
+      "published_matlab_labels_f1": 0.7907696141387996,
+      "added_shadow_fp": 330567,
+      "roi_shadow_adjusted_f1": 0.7907696141387996,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/busStation",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.8415399090042576,
+      "published_matlab_labels_f1": 0.792653438788966,
+      "added_shadow_fp": 330577,
+      "roi_shadow_adjusted_f1": 0.792653438788966,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/busStation",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.8410715175279205,
+      "published_matlab_labels_f1": 0.7922099558198631,
+      "added_shadow_fp": 330577,
+      "roi_shadow_adjusted_f1": 0.7922099558198631,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/busStation",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.8410326490043118,
+      "published_matlab_labels_f1": 0.7921717094939235,
+      "added_shadow_fp": 330570,
+      "roi_shadow_adjusted_f1": 0.7921717094939235,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/peopleInShade",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "historical_f1": 0.5295013680132863,
+      "published_matlab_labels_f1": 0.4987496429775201,
+      "added_shadow_fp": 858083,
+      "roi_shadow_adjusted_f1": 0.4987496429775201,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/peopleInShade",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "historical_f1": 0.8453132510177528,
+      "published_matlab_labels_f1": 0.7834963512637958,
+      "added_shadow_fp": 871799,
+      "roi_shadow_adjusted_f1": 0.7834963512637958,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/peopleInShade",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "historical_f1": 0.9054972390553853,
+      "published_matlab_labels_f1": 0.8349191306808899,
+      "added_shadow_fp": 878244,
+      "roi_shadow_adjusted_f1": 0.8349191306808899,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/peopleInShade",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "historical_f1": 0.9060867506608831,
+      "published_matlab_labels_f1": 0.8354213926285873,
+      "added_shadow_fp": 878236,
+      "roi_shadow_adjusted_f1": 0.8354213926285873,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/peopleInShade",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "historical_f1": 0.9075887705789214,
+      "published_matlab_labels_f1": 0.8367047915887788,
+      "added_shadow_fp": 878234,
+      "roi_shadow_adjusted_f1": 0.8367047915887788,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    },
+    {
+      "sequence": "shadow/peopleInShade",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "historical_f1": 0.9126454970827842,
+      "published_matlab_labels_f1": 0.8410096606868203,
+      "added_shadow_fp": 878233,
+      "roi_shadow_adjusted_f1": 0.8410096606868203,
+      "roi_note": "ROI applied; GT=0/50 negative, 255 positive; not a claim of C++ binary execution"
+    }
+  ],
+  "scope": "Selected 12 sequences, 7 categories, six variants. Scores are not full CDnet2014 ranking or board results."
+}

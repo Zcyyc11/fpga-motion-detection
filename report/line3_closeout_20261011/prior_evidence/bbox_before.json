@@ -1,0 +1,53 @@
+{
+  "tag": "head",
+  "rows": [
+    [
+      0,
+      0,
+      0,
+      65535,
+      65535,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      65535,
+      65535,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      639,
+      102
+    ]
+  ],
+  "small_target_expected": [
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "large_target_expected_saturated": [
+    2,
+    65535,
+    1,
+    0,
+    0,
+    639,
+    102
+  ],
+  "actual_large_foreground": 65537,
+  "first_pixel_preserved": false,
+  "large_target_safely_counted": false
+}

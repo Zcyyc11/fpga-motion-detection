@@ -1,0 +1,21 @@
+diff --git a/build/scripts/build_vivado.tcl b/build/scripts/build_vivado.tcl
+index b4c674e..21aa10c 100644
+--- a/build/scripts/build_vivado.tcl
++++ b/build/scripts/build_vivado.tcl
+@@ -39,6 +39,7 @@ if {[info exists ::env(MOTION_IP_REPO)]} {
+ 
+ set MODE_BG 0
+ if {$argc >= 1} { set MODE_BG [lindex $argv 0] }
++if {$MODE_BG ni {0 1}} { error "MODE_BG must be 0 or 1" }
+ 
+ set PART xc7z020clg400-1
+ set TOP  board_top
+@@ -100,6 +101,8 @@ add_files -norecurse [concat [glob -nocomplain [file join $RTL_DIR *.v]] \
+ #   但会让人误以为工程里有两份约束在生效，排查引脚/时序问题时先被自己误导一轮。
+ add_files -fileset constrs_1 -norecurse [file join $BOARD_DIR pynq_z2_hdmi_out.xdc]
+ set_property top $TOP [current_fileset]
++set_property generic [format "MODE_BG=%d" $MODE_BG] [current_fileset]
++puts "EFFECTIVE_GENERIC=[get_property generic [current_fileset]]"
+ update_compile_order -fileset sources_1
+ puts "加入的 RTL："
+ foreach f [get_files -of [get_filesets sources_1]] { puts "   $f" }

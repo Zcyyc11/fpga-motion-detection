@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "D:/AMD2025.2/2025.2/Vivado/bin/vivado.bat",
+    "-mode",
+    "batch",
+    "-source",
+    "check.tcl",
+    "-nojournal",
+    "-log",
+    "vivado.log"
+  ],
+  "cwd": "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode0\\postroute_diagnostics",
+  "start_utc": "2026-10-11T02:20:53.168696+00:00",
+  "exit_code": 0,
+  "seconds": 78.105,
+  "encoding": "utf-8"
+}

@@ -1,0 +1,2 @@
+f50d5f0c5958f049ad43e31e916199c75696d0f1 docs/scripts: 中性化受控文件里残留的示例盘符路径
+8883cbbe7a98cd58dcff3f079cd7bce65ea14b49 refactor: 清除仓库内所有写死的本机绝对路径，提升协作者可移植性

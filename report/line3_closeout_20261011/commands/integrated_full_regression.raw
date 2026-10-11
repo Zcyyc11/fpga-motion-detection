@@ -1,0 +1,15 @@
+Cloning into 'D:\line3_closeout_20261011_1000_work\integrated_regression\checkout'...
+done.
+HEAD is now at 64ac44e Merge current main portability fixes and apply board background-mode generic
+boundaries exit=0
+runner exit=0
+tools exit=0
+repairs exit=0
+docs exit=0
+docs_self exit=0
+rtl_default exit=0
+rtl_fd exit=0
+rtl_bg exit=0
+rtl_compat exit=0
+contracts exit=0
+data_guard exit=0
