@@ -13,7 +13,9 @@
 //   0x0C LINE_X      11  复位 640  警戒线 X（大像素域）
 //   0x10 DWELL       16  复位 90   停留告警帧数
 //   0x14 ENABLE       1  复位 0    1=背景建模 0=帧差法
-//   0x18 STATUS      32  只读      目标数/告警标志/帧计数（由流水线驱动）
+//   0x18 STATUS      32  只读      bit31 = UART 丢包粘存位（i_uart_drop 置位，
+//                                  PS 写 STATUS 任意值清除）；低 31 位 = i_status
+//                                  （位分配待线一在冻结表补充，读语义不变）
 //
 // PS 总线故意做得很瘦（en/we/addr/wdata/rdata）——将来无论挂 AXI-Lite
 // 还是 GPIO 翻译层，都只改外面一层壳，本模块不动。
@@ -36,8 +38,12 @@ module regs (
     output reg  [15:0] o_dwell,
     output reg         o_enable,
     // 只读状态（流水线侧驱动）
-    input  wire [31:0] i_status
+    input  wire [31:0] i_status,
+    // UART 丢包标志（uart_tx.drop，粘存进 STATUS bit31）
+    input  wire        i_uart_drop
 );
+
+    reg uart_drop_sticky;   // FIFO 满发生过一次即置位，PS 写 STATUS 清除
 
     // 读译码函数（Verilog-2001 不支持 case 表达式）
     function [31:0] rd_decode(input [4:0] a);
@@ -48,7 +54,7 @@ module regs (
             5'h0C: rd_decode = {21'd0, o_line_x};
             5'h10: rd_decode = {16'd0, o_dwell};
             5'h14: rd_decode = {31'd0, o_enable};
-            5'h18: rd_decode = i_status;
+            5'h18: rd_decode = i_status | {uart_drop_sticky, 31'd0};
             default: rd_decode = 32'd0;
         endcase
     endfunction
@@ -61,6 +67,7 @@ module regs (
             o_line_x      <= 11'd640;
             o_dwell       <= 16'd90;
             o_enable      <= 1'b0;
+            uart_drop_sticky <= 1'b0;
             ps_rdata      <= 32'd0;
         end else begin
             if (ps_en && ps_we) begin
@@ -71,12 +78,19 @@ module regs (
                     5'h0C: o_line_x      <= ps_wdata[10:0];
                     5'h10: o_dwell       <= ps_wdata[15:0];
                     5'h14: o_enable      <= ps_wdata[0];
-                    default: ;           // STATUS 只读，写忽略
+                    default: ;           // 其余只读
                 endcase
             end
             // 读：寄存输出
             ps_rdata <= (ps_en && !ps_we) ? rd_decode(ps_addr) : 32'd0;
         end
+    end
+
+    // 丢包粘存：uart_tx 报过一次 FIFO 满就记住，直到 PS 主动清除
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)                          uart_drop_sticky <= 1'b0;
+        else if (ps_en && ps_we && ps_addr == 5'h18) uart_drop_sticky <= 1'b0;
+        else if (i_uart_drop)                uart_drop_sticky <= 1'b1;
     end
 
 endmodule

@@ -5,7 +5,8 @@
 // 自检项：
 //   1) 复位值与接口冻结表 I4 一致（70/15/5/640/90/0）；
 //   2) 写后读回一致（各字段位宽截断正确：LINE_X 只留 11bit 等）；
-//   3) STATUS 只读：写被忽略，读回 i_status；
+//   3) STATUS 只读：写低 31 位不生效，读回 i_status；
+//      bit31 = UART 丢包粘存位：i_uart_drop 置位 → 读到 1 → 写 STATUS 清除；
 //   4) 写参数立即反映到 o_* 输出。
 //
 // 运行（Icarus）：iverilog -g2005 -o sim_regs src/rtl/regs.v sim/tb/tb_regs.v && vvp sim_regs
@@ -21,7 +22,8 @@ module tb_regs;
     reg  [4:0]  ps_addr = 0;
     reg  [31:0] ps_wdata = 0;
     wire [31:0] ps_rdata;
-    reg  [31:0] i_status = 32'hDEADBEEF;
+    reg  [31:0] i_status = 32'h0EADBEEF;   // bit31 留给 UART 丢包粘存位
+    reg         i_uart_drop = 0;
 
     wire [15:0] o_thresh, o_thresh_rel, o_dwell;
     wire [4:0]  o_alpha_shift;
@@ -32,6 +34,7 @@ module tb_regs;
         .clk(clk), .rst_n(rst_n),
         .ps_en(ps_en), .ps_we(ps_we), .ps_addr(ps_addr),
         .ps_wdata(ps_wdata), .ps_rdata(ps_rdata), .i_status(i_status),
+        .i_uart_drop(i_uart_drop),
         .o_thresh(o_thresh), .o_thresh_rel(o_thresh_rel),
         .o_alpha_shift(o_alpha_shift), .o_line_x(o_line_x),
         .o_dwell(o_dwell), .o_enable(o_enable)
@@ -88,9 +91,17 @@ module tb_regs;
         wr(5'h10, 32'd60);   rd_check(5'h10, 32'd60, "DWELL write/read 60");
         wr(5'h14, 32'd1);    rd_check(5'h14, 32'd1,  "ENABLE write/read 1");
 
-        // 3) STATUS 只读
+        // 3) STATUS 只读（低 31 位）
         wr(5'h18, 32'h12345678);
-        rd_check(5'h18, 32'hDEADBEEF, "STATUS 写应被忽略，读回 i_status");
+        rd_check(5'h18, 32'h0EADBEEF, "STATUS 低31位写应被忽略，读回 i_status");
+
+        // 3b) UART 丢包粘存位（STATUS bit31）
+        rd_check(5'h18, 32'h0EADBEEF, "复位后丢包位应为 0");
+        @(posedge clk); i_uart_drop <= 1;
+        @(posedge clk); i_uart_drop <= 0; #1;
+        rd_check(5'h18, 32'h8EADBEEF, "i_uart_drop 脉冲一次后 bit31 应粘存为 1");
+        wr(5'h18, 32'h0);            // 写 STATUS = 清除
+        rd_check(5'h18, 32'h0EADBEEF, "写 STATUS 后丢包位应清 0");
 
         // 4) 参数输出即时生效
         check(o_thresh === 16'd88, "o_thresh 应随写立即更新");
