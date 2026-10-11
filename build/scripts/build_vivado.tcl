@@ -2,18 +2,21 @@
 #  build_vivado.tcl —— 从源码到 bitstream 的全自动构建（官方要求的"可复现构建脚本"）
 #
 #  用法：
-#    vivado -mode batch -source build/scripts/build_vivado.tcl -tclargs [MODE_BG]
+#    vivado -mode batch -source build/scripts/build_vivado.tcl -tclargs [MODE_BG] [INPUT_SEL]
 #
 #  做四件事：
 #    1) 建工程（器件 xc7z020clg400-1，就是 PYNQ-Z2 上那颗 XC7Z020-1CLG400C）
-#    2) 从本地 IP 仓库引入 Digilent 的 rgb2dvi（HDMI 发送：TMDS 编码 + 串化）
+#    2) 从本地 IP 仓库引入 Digilent 的 HDMI 收发 IP：
+#         dvi2rgb（HDMI 输入：TMDS 解码 + 时钟恢复，配 720p EDID）
+#         rgb2dvi（HDMI 发送：TMDS 编码 + 串化）
 #    3) 加 RTL / 约束，跑综合 → 实现 → 出 bit
 #    4) 把资源、时序、时钟三份报告写到 build/reports/（对应评分项"资源·时钟·性能"）
 #
 #  ★ 为什么不建 Block Design：
 #    本设计的核心价值是 PL 里的那条流水线，用纯 RTL 表达最清楚、最容易复核；
 #    为了用 IP 而套一层 BD 只会让"到底哪段是我们写的"变模糊。
-#    唯一的 IP 是别人写好的 HDMI 发送器（rgb2dvi），它本身就是 RTL 形式调用的。
+#    唯一的 IP 是别人写好的 HDMI 收发器（dvi2rgb 输入 / rgb2dvi 输出），
+#    它们本身就是 RTL 形式调用的，算法流水线全部是我们自己的 RTL。
 #
 #  ★ 路径纪律：Vivado 工程路径与用户名不能含中文，所以工程建在仓库外的 build/vivado
 #    工作目录；工程根目录由本脚本按自身位置推算（SCRIPT_DIR 往上两层），不写死任何机器路径。
@@ -41,6 +44,10 @@ set MODE_BG 0
 if {$argc >= 1} { set MODE_BG [lindex $argv 0] }
 if {$MODE_BG ni {0 1}} { error "MODE_BG must be 0 or 1" }
 
+set INPUT_SEL 0
+if {$argc >= 2} { set INPUT_SEL [lindex $argv 1] }
+if {$INPUT_SEL ni {0 1}} { error "INPUT_SEL must be 0 or 1" }
+
 set PART xc7z020clg400-1
 set TOP  board_top
 
@@ -50,6 +57,7 @@ puts "   仓库根   : $ROOT"
 puts "   器件     : $PART (PYNQ-Z2 = XC7Z020-1CLG400C)"
 puts "   顶层     : $TOP"
 puts "   MODE_BG  : $MODE_BG  (0=帧差法 v1 / 1=背景建模 v2)"
+puts "   INPUT_SEL: $INPUT_SEL (0=自测激励 / 1=真实 HDMI 输入)"
 puts "   IP 仓库  : $IP_REPO"
 puts "=============================================================="
 
@@ -70,7 +78,7 @@ set_property target_language Verilog [current_project]
 # 允许在 xdc 里用 TMDS_33 这类差分电平（部分版本默认禁止）
 catch { set_property enable_vhdl_2008 1 [current_project] }
 
-# ---------------------------------------------------------------- 2) 引入 rgb2dvi
+# ---------------------------------------------------------------- 2) 引入 HDMI 收发 IP（Digilent 官方）
 set_property ip_repo_paths [list $IP_REPO] [current_project]
 update_ip_catalog -rebuild
 create_ip -name rgb2dvi -vendor digilentinc.com -library ip -version 1.4 -module_name rgb2dvi_0
@@ -92,6 +100,11 @@ foreach p {CONFIG.kClkRange CONFIG.kClkPrimitive CONFIG.kGenerateSerialClk CONFI
     catch { puts "   $p = [get_property $p [get_ips rgb2dvi_0]]" }
 }
 
+# 2b) dvi2rgb（HDMI 输入：TMDS 解码 + 时钟恢复，720p EDID）
+# 参数出处（kClkRange=3、EDID=dgl_720p_cea.data、kAddBUFG=true 等）见 create_dvi2rgb.tcl
+# 的头部注释 —— 每个值都能追溯到官方文档或 component.xml，不是拍的。
+source [file join $SCRIPT_DIR create_dvi2rgb.tcl]
+
 # ---------------------------------------------------------------- 3) 加源码与约束
 add_files -norecurse [concat [glob -nocomplain [file join $RTL_DIR *.v]] \
                               [glob -nocomplain [file join $RTL_BOARD *.v]]]
@@ -99,9 +112,13 @@ add_files -norecurse [concat [glob -nocomplain [file join $RTL_DIR *.v]] \
 # 那是官方原件的完整留存，**整份都是注释行**（按需取消注释），用途是逐条对照、不是生效约束。
 # ★ 之前这里用 `glob *.xdc`，会把那份注释件也塞进 constrs_1：虽然是空操作（一行有效约束都没有），
 #   但会让人误以为工程里有两份约束在生效，排查引脚/时序问题时先被自己误导一轮。
-add_files -fileset constrs_1 -norecurse [file join $BOARD_DIR pynq_z2_hdmi_out.xdc]
+# 生效约束按收发分两份：pynq_z2_hdmi_out.xdc（HDMI 输出 J11）+
+# pynq_z2_hdmi_in.xdc（HDMI 输入 J10：Rx 引脚 + 720p 时钟 13.468ns，来源见文件头注释）。
+add_files -fileset constrs_1 -norecurse [list \
+    [file join $BOARD_DIR pynq_z2_hdmi_out.xdc] \
+    [file join $BOARD_DIR pynq_z2_hdmi_in.xdc]]
 set_property top $TOP [current_fileset]
-set_property generic [format "MODE_BG=%d" $MODE_BG] [current_fileset]
+set_property generic [format "MODE_BG=%d,INPUT_SEL=%d" $MODE_BG $INPUT_SEL] [current_fileset]
 puts "EFFECTIVE_GENERIC=[get_property generic [current_fileset]]"
 update_compile_order -fileset sources_1
 puts "加入的 RTL："

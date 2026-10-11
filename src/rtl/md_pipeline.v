@@ -46,10 +46,19 @@ module md_pipeline #(
     parameter integer THRESH   = 70,     // 2×2 和域阈值（#1 的硬编码值）
     parameter integer SHIFT    = 6,      // 背景更新 α = 1/2^SHIFT
     parameter integer MODE_BG  = 0,      // 0 = 帧差法（v1）／1 = 背景建模（v2）
-    parameter integer MIN_CNT  = 64      // 包围盒面积门限（大像素个数）
+    parameter integer MIN_CNT  = 64,     // 包围盒面积门限（大像素个数）
+    parameter integer INPUT_SEL = 0      // 0 = 内部自测激励／1 = 外部 HDMI 输入（构建定死）
 )(
     input  wire        clk,
     input  wire        rst_n,
+    // ---- HDMI 输入视频流（INPUT_SEL=1 时使用；0 时悬空，综合会优化掉）----
+    input  wire        rx_de,
+    input  wire        rx_hs,
+    input  wire        rx_vs,
+    input  wire        rx_sof,
+    input  wire [15:0] rx_x,
+    input  wire [15:0] rx_y,
+    input  wire [7:0]  rx_gray,
     // ---- 输出视频（像素坐标，已叠加包围盒）----
     output wire        vde,
     output wire [15:0] vx,
@@ -71,7 +80,7 @@ module md_pipeline #(
     output wire [15:0] m_x,
     output wire [15:0] m_y,
     output wire        m_bit,
-    // ---- 当前激励帧号（自测模式专用）----
+    // ---- 当前帧号（自测 = pattern_gen 的；HDMI = 外部 sof 计帧）----
     output wire [15:0] frame_idx
 );
 
@@ -80,8 +89,10 @@ module md_pipeline #(
     localparam integer AW = $clog2(BW * BH);   // 帧缓存地址位宽 18
 
     // ======================= ① 时序 =======================
-    wire        hs, vs, de, sof;
-    wire [15:0] x, y;
+    // 自测模式用内部 video_timing 生成；HDMI 输入模式用外部恢复的同步信号。
+    // INPUT_SEL 是构建定死的参数，综合后选择退化为直连（不是真 mux，无毛刺问题）。
+    wire        i_hs, i_vs, i_de, i_sof;
+    wire [15:0] i_x, i_y;
 
     video_timing #(
         .H_ACTIVE(H_ACTIVE), .H_FP(H_FP), .H_SYNC(H_SYNC), .H_BP(H_BP),
@@ -89,23 +100,39 @@ module md_pipeline #(
         .SYNC_POS(SYNC_POS)
     ) u_timing (
         .clk(clk), .rst_n(rst_n),
-        .hs(hs), .vs(vs), .de(de), .x(x), .y(y), .sof(sof)
+        .hs(i_hs), .vs(i_vs), .de(i_de), .x(i_x), .y(i_y), .sof(i_sof)
     );
 
+    wire        hs  = INPUT_SEL ? rx_hs  : i_hs;
+    wire        vs  = INPUT_SEL ? rx_vs  : i_vs;
+    wire        de  = INPUT_SEL ? rx_de  : i_de;
+    wire        sof = INPUT_SEL ? rx_sof : i_sof;
+    wire [15:0] x   = INPUT_SEL ? rx_x   : i_x;
+    wire [15:0] y   = INPUT_SEL ? rx_y   : i_y;
+
     // ======================= ② 激励 =======================
-    wire        p_vde;
-    wire [15:0] p_x, p_y;
-    wire [7:0]  p_pix;
+    // 自测模式：pattern_gen 合成画面（接内部时序，行为与旧版完全一致）；
+    // HDMI 输入模式：外部灰度流（board_top 里 dvi2rgb→hdmi_in_ctrl→gray_conv 整理好）。
+    wire        g_vde;
+    wire [15:0] g_x, g_y;
+    wire [7:0]  g_pix;
+    wire [15:0] pat_frame_idx;
 
     pattern_gen #(
         .H_ACTIVE(H_ACTIVE), .V_ACTIVE(V_ACTIVE),
         .OBJ_W(OBJ_W), .OBJ_H(OBJ_H), .X0(X0), .Y0(Y0), .DX(DX)
     ) u_pat (
         .clk(clk), .rst_n(rst_n),
-        .sof(sof), .de(de), .x(x), .y(y),
-        .vde(p_vde), .x_o(p_x), .y_o(p_y), .pixel(p_pix),
-        .frame_idx(frame_idx)
+        .sof(i_sof), .de(i_de), .x(i_x), .y(i_y),
+        .vde(g_vde), .x_o(g_x), .y_o(g_y), .pixel(g_pix),
+        .frame_idx(pat_frame_idx)
     );
+
+    // 像素源选择（INPUT_SEL 定死 → 综合后直连）
+    wire        p_vde = INPUT_SEL ? rx_de   : g_vde;
+    wire [15:0] p_x   = INPUT_SEL ? rx_x    : g_x;
+    wire [15:0] p_y   = INPUT_SEL ? rx_y    : g_y;
+    wire [7:0]  p_pix = INPUT_SEL ? rx_gray : g_pix;
 
     // ======================= ③ 2×2 压缩 =======================
     wire        d_valid;
@@ -146,7 +173,15 @@ module md_pipeline #(
     wire [9:0]  wr_data;
     reg  [9:0]  wr_data_r;
 
-    wire init_phase = (frame_idx <= 16'd1);      // 首帧：缓存直接写当前帧
+    // 帧号：HDMI 输入没有 pattern_gen 的 frame_idx，统一用 sof 计帧（两种模式都准）。
+    reg [15:0] frame_cnt;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)   frame_cnt <= 16'd0;
+        else if (sof) frame_cnt <= frame_cnt + 16'd1;
+    end
+    wire [15:0] fid = INPUT_SEL ? frame_cnt : pat_frame_idx;
+
+    wire init_phase = (fid <= 16'd1);      // 首帧：缓存直接写当前帧
 
     diff_stage #(.SHIFT(SHIFT)) u_diff (
         .mode_bg(MODE_BG[0]),
@@ -170,7 +205,7 @@ module md_pipeline #(
 
     // ======================= ⑥ 阈值 =======================
     // 首帧不出掩码（帧差模式下没有「上一帧」可比，背景模式还在初始化）
-    wire mask_en = (frame_idx >= 16'd2);
+    wire mask_en = (fid >= 16'd2);
     wire t_valid, t_mask;
 
     threshold #(.THRESH(THRESH)) u_th (
@@ -219,6 +254,9 @@ module md_pipeline #(
     assign vvs = vs;
 
     // ======================= 探针输出 =======================
+    // 当前帧号（自测 = pattern_gen 的；HDMI = 外部计帧，与 sof 同步）
+    assign frame_idx = INPUT_SEL ? frame_cnt : pat_frame_idx;
+
     assign m_valid = o_valid;
     assign m_x     = o_x;
     assign m_y     = o_y;
