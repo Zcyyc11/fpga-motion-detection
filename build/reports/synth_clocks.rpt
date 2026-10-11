@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
-| Date         : Tue Oct  6 17:56:33 2026
+| Date         : Sun Oct 11 14:37:50 2026
 | Host         : LAPTOP-RRVGFMON running 64-bit major release  (build 9200)
 | Command      : report_clocks -file D:/FPGA/fpga-motion-detection/build/reports/synth_clocks.rpt
 | Design       : board_top
@@ -22,14 +22,20 @@ Attributes
   I: Inverted
   S: Pin phase-shifted with Latency mode
 
-Clock           Period(ns)  Waveform(ns)    Attributes  Sources
-sys_clk_pin     8.000       {0.000 4.000}   P           {sys_clk}
-CLKFBIN         13.468      {0.000 6.734}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.Deskew/O}
-FeedbackClkOut  13.468      {0.000 6.734}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKFBOUT}
-PixelClkIO      13.468      {0.000 5.387}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.PixelClkBuffer/O}
-PixelClkInX5    2.694       {0.000 1.347}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKOUT0}
-clk_fb          32.000      {0.000 16.000}  P,G,A       {u_clk/u_mmcm/CLKFBOUT}
-clk_pix_raw     13.468      {0.000 6.734}   P,G,A       {u_clk/u_mmcm/CLKOUT0}
+Clock                Period(ns)  Waveform(ns)    Attributes  Sources
+hdmi_rx_clk_p        13.468      {0.000 5.000}   P           {hdmi_rx_clk_p}
+sys_clk_pin          8.000       {0.000 4.000}   P           {sys_clk}
+CLKFBIN              13.468      {0.000 6.734}   P,G,A       {u_rx/U0/TMDS_ClockingX/DVI_ClkGenerator/CLKFBOUT}
+CLKFBIN_1            13.468      {0.000 6.734}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.Deskew/O}
+CLK_OUT_5x_hdmi_clk  2.694       {0.000 1.347}   P,G,A       {u_rx/U0/TMDS_ClockingX/DVI_ClkGenerator/CLKOUT0}
+FeedbackClkOut       13.468      {0.000 6.734}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKFBOUT}
+PixelClkIO           13.468      {0.000 5.387}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.PixelClkBuffer/O}
+PixelClkInX5         2.694       {0.000 1.347}   P,G,A       {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKOUT0}
+PixelClk_int         13.468      {0.000 5.387}   P,G,A       {u_rx/U0/TMDS_ClockingX/PixelClkBuffer/O}
+clk_200m_raw         5.000       {0.000 2.500}   P,G,A       {u_clk200/u_mmcm/CLKOUT0}
+clk_fb               32.000      {0.000 16.000}  P,G,A       {u_clk/u_mmcm/CLKFBOUT}
+clk_fb_1             64.000      {0.000 32.000}  P,G,A       {u_clk200/u_mmcm/CLKFBOUT}
+clk_pix_raw          13.468      {0.000 6.734}   P,G,A       {u_clk/u_mmcm/CLKOUT0}
 
 
 ====================================================
@@ -37,10 +43,22 @@ Generated Clocks
 ====================================================
 
 Generated Clock     : CLKFBIN
+Master Source       : u_rx/U0/TMDS_ClockingX/DVI_ClkGenerator/CLKIN1
+Master Clock        : hdmi_rx_clk_p
+Multiply By         : 1
+Generated Sources   : {u_rx/U0/TMDS_ClockingX/DVI_ClkGenerator/CLKFBOUT}
+
+Generated Clock     : CLKFBIN_1
 Master Source       : u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.Deskew/I
 Master Clock        : FeedbackClkOut
 Divide By           : 1
 Generated Sources   : {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.Deskew/O}
+
+Generated Clock     : CLK_OUT_5x_hdmi_clk
+Master Source       : u_rx/U0/TMDS_ClockingX/DVI_ClkGenerator/CLKIN1
+Master Clock        : hdmi_rx_clk_p
+Multiply By         : 5
+Generated Sources   : {u_rx/U0/TMDS_ClockingX/DVI_ClkGenerator/CLKOUT0}
 
 Generated Clock     : FeedbackClkOut
 Master Source       : u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKIN1
@@ -61,12 +79,33 @@ Master Clock        : clk_pix_raw
 Multiply By         : 5
 Generated Sources   : {u_dvi/U0/ClockGenInternal.ClockGenX/GenMMCM.DVI_ClkGenerator/CLKOUT0}
 
+Generated Clock     : PixelClk_int
+Master Source       : u_rx/U0/TMDS_ClockingX/PixelClkBuffer/I
+Master Clock        : CLK_OUT_5x_hdmi_clk
+Edges               : {1 2 3}
+Edge Shifts(ns)     : {0.000 4.040 10.774}
+Generated Sources   : {u_rx/U0/TMDS_ClockingX/PixelClkBuffer/O}
+
+Generated Clock     : clk_200m_raw
+Master Source       : u_clk200/u_mmcm/CLKIN1
+Master Clock        : sys_clk_pin
+Edges               : {1 2 3}
+Edge Shifts(ns)     : {0.000 -1.500 -3.000}
+Generated Sources   : {u_clk200/u_mmcm/CLKOUT0}
+
 Generated Clock     : clk_fb
 Master Source       : u_clk/u_mmcm/CLKIN1
 Master Clock        : sys_clk_pin
 Edges               : {1 2 3}
 Edge Shifts(ns)     : {0.000 12.000 24.000}
 Generated Sources   : {u_clk/u_mmcm/CLKFBOUT}
+
+Generated Clock     : clk_fb_1
+Master Source       : u_clk200/u_mmcm/CLKIN1
+Master Clock        : sys_clk_pin
+Edges               : {1 2 3}
+Edge Shifts(ns)     : {0.000 28.000 56.000}
+Generated Sources   : {u_clk200/u_mmcm/CLKFBOUT}
 
 Generated Clock     : clk_pix_raw
 Master Source       : u_clk/u_mmcm/CLKIN1
