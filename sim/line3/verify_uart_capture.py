@@ -50,9 +50,43 @@ def canonical(record, reference=False):
     return {"frame_id": fid, "targets": sorted(boxes), "events": sorted(alarms)}
 
 
+def capture_provenance(capture):
+    """Snapshot declarations, never authenticate their claimed origin."""
+    path = Path(capture).resolve() / "summary.json"
+    context = {"capture_path": str(path.parent), "summary_path": str(path),
+               "summary_sha256": None, "source": "unknown", "capture_metadata": {},
+               "source_label": "UNVERIFIED INPUT - BOARD ORIGIN NOT VERIFIED",
+               "source_verified": False, "board_test": False}
+    try:
+        raw = path.read_bytes()
+        context["summary_sha256"] = hashlib.sha256(raw).hexdigest()
+        summary = json.loads(raw.decode("utf-8-sig"))
+        if not isinstance(summary, dict):
+            raise ValueError("capture summary must be a JSON object")
+        context.update(source=summary.get("source", "unknown"),
+                       capture_metadata=summary.get("metadata", {}))
+        if context["source"] == "simulated":
+            context["source_label"] = "SIMULATED INPUT - NOT A BOARD TEST"
+        return summary, context
+    except Exception as exc:
+        context["provenance_error"] = f"{type(exc).__name__}: {exc}"
+        return None, context
+
+
 def verify(capture, expected):
+    summary, context = capture_provenance(capture)
+    try:
+        if summary is None:
+            raise ValueError(context["provenance_error"])
+        result = _verify(capture, expected, summary)
+    except Exception as exc:
+        result = {"exit_code": 1, "errors": [f"{type(exc).__name__}: {exc}"]}
+    return {**result, **context,
+            "scope": "exact table comparison; source/metadata are unverified declarations; hardware origin and video alignment require independent evidence"}
+
+
+def _verify(capture, expected, summary):
     capture, expected = Path(capture), Path(expected)
-    summary = json.loads((capture / "summary.json").read_text(encoding="utf-8"))
     errors = []
     if summary.get("exit_code") != 0 or summary.get("errors") != 0:
         errors.append("capture did not finish cleanly")
@@ -91,8 +125,7 @@ def verify(capture, expected):
             errors.append(f"frame {index}: frame id / targets / events differ")
     return {"exit_code": int(bool(errors)), "errors": errors, "compared_frames": min(len(actual_records), len(references)),
             "actual_frames": len(actual_records), "reference_frames": len(references),
-            "raw_sha256": digest, "reference_sha256": hashlib.sha256(expected.read_bytes()).hexdigest(),
-            "board_test": False, "scope": "exact table comparison; hardware origin and video alignment require independent evidence"}
+            "raw_sha256": digest, "reference_sha256": hashlib.sha256(expected.read_bytes()).hexdigest()}
 
 
 def main():
@@ -101,10 +134,7 @@ def main():
     ap.add_argument("--expected", type=Path, required=True)
     ap.add_argument("--out", type=Path, required=True, help="new result JSON file")
     args = ap.parse_args()
-    try:
-        result = verify(args.capture, args.expected)
-    except Exception as exc:
-        result = {"exit_code": 1, "board_test": False, "errors": [f"{type(exc).__name__}: {exc}"]}
+    result = verify(args.capture, args.expected)
     with args.out.open("x", encoding="utf-8") as output:
         json.dump(result, output, ensure_ascii=False, indent=2)
     print(json.dumps(result, ensure_ascii=False, indent=2))

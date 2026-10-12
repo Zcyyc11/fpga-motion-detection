@@ -1,0 +1,103 @@
+{
+  "board_test": false,
+  "input": "SIMULATED",
+  "checks": [
+    {
+      "name": "256 KiB checksum noise bounded to default details; exact full counts",
+      "passed": true
+    },
+    {
+      "name": "detail boundary size=31 limit=32",
+      "passed": true
+    },
+    {
+      "name": "detail boundary size=32 limit=32",
+      "passed": true
+    },
+    {
+      "name": "detail boundary size=33 limit=32",
+      "passed": true
+    },
+    {
+      "name": "detail boundary size=33 limit=0",
+      "passed": true
+    },
+    {
+      "name": "new error types after detail cap still counted",
+      "passed": true
+    },
+    {
+      "name": "detached comparison carries simulated declarations and summary hash",
+      "passed": true
+    },
+    {
+      "name": "detached comparison carries board-unverified declarations and summary hash",
+      "passed": true
+    },
+    {
+      "name": "comparison failure retains simulated provenance",
+      "passed": true
+    },
+    {
+      "name": "missing_source stays explicitly unverified",
+      "passed": true
+    },
+    {
+      "name": "invalid_summary stays explicitly unverified",
+      "passed": true
+    },
+    {
+      "name": "absent_capture stays explicitly unverified",
+      "passed": true
+    },
+    {
+      "name": "file_missing actually fails open with exit 2 and no capture directory",
+      "passed": true
+    },
+    {
+      "name": "file_directory actually fails open with exit 2 and no capture directory",
+      "passed": true
+    },
+    {
+      "name": "serial actual opener failure exit 2 without directory",
+      "passed": true
+    },
+    {
+      "name": "opened serial read failure first=True, close_error=False preserves evidence",
+      "passed": true
+    },
+    {
+      "name": "opened serial read failure first=False, close_error=False preserves evidence",
+      "passed": true
+    },
+    {
+      "name": "opened serial read failure first=False, close_error=True preserves evidence",
+      "passed": true
+    },
+    {
+      "name": "close failure after otherwise clean acquisition yields exit 1",
+      "passed": true
+    },
+    {
+      "name": "output setup failure closes opened source without reading",
+      "passed": true
+    },
+    {
+      "name": "reset ambiguity and backward then duplicate remain strict; new session starts clean",
+      "passed": true
+    },
+    {
+      "name": "checksum collision remains an explicit protocol limitation",
+      "passed": true
+    }
+  ],
+  "passed": 22,
+  "total": 22,
+  "source_sha256": {
+    "uart_receiver.py": "d374c7f045f99cc2aea30de1fa65574e96cc6253a35e5a859bafd0d23aa5d189",
+    "uart_protocol.py": "dc24a5ef2ebbd4026aa27f9bc7a300225bf2f05a6e7aad92b339495484599496",
+    "verify_uart_capture.py": "a7fcf5c1acf458fcec8967a787c4d15e4f6d9e5c11b25573e7b4cc6a7dcdc824",
+    "check_uart_type1.py": "cc0d71f761788ab9ffc51766046d70c4b10253d3d73d60eeb77b67d7161461c0"
+  },
+  "exit_code": 0
+}

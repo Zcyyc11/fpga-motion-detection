@@ -1,0 +1,20 @@
+{
+  "exit_code": 1,
+  "errors": [
+    "FileNotFoundError: [Errno 2] No such file or directory: 'D:\\\\line3_uart_20261012\\\\type1_20261012_01\\\\tests01\\\\missing_reference.jsonl'"
+  ],
+  "capture_path": "D:\\line3_uart_20261012\\type1_20261012_01\\tests01\\simulated",
+  "summary_path": "D:\\line3_uart_20261012\\type1_20261012_01\\tests01\\simulated\\summary.json",
+  "summary_sha256": "f34394fb4fe8f09d5381d0144756be9f871963cefb7a153547acb9d09763e1d5",
+  "source": "simulated",
+  "capture_metadata": {
+    "supplied": {
+      "operator": "\u6a21\u62df\u64cd\u4f5c\u4eba",
+      "board": "\u58f0\u660e\u4e0d\u8ba4\u8bc1"
+    }
+  },
+  "source_label": "SIMULATED INPUT - NOT A BOARD TEST",
+  "source_verified": false,
+  "board_test": false,
+  "scope": "exact table comparison; source/metadata are unverified declarations; hardware origin and video alignment require independent evidence"
+}

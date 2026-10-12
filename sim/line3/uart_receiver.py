@@ -11,6 +11,7 @@ import time
 from uart_protocol import Decoder, Frames, PROTOCOL
 
 HEADER = 80
+DEFAULT_MAX_ERROR_DETAILS = 10000
 
 
 def render(frame, source):
@@ -36,13 +37,35 @@ def render(frame, source):
     return canvas
 
 
+class InputChunks:
+    """Open separately from reading, so an open failure is a startup failure."""
+    def __init__(self, opener, reader):
+        self.opener, self.reader = opener, reader
+        self.resource = None
+
+    def open(self):
+        if self.resource is None:
+            self.resource = self.opener()
+
+    def __iter__(self):
+        self.open()
+        yield from self.reader(self.resource)
+
+    def close(self):
+        resource, self.resource = self.resource, None
+        if resource is not None:
+            resource.close()
+
+
 def serial_chunks(port, duration=60.0, idle_timeout=5.0, factory=None):
     """No reconnect/reset: each connection has a distinct output directory."""
-    if factory is None:
+    def opener():
         import serial
-        factory = serial.Serial
-    with factory(port=port, baudrate=115200, bytesize=8, parity="N", stopbits=1,
-                 timeout=.1, xonxoff=False, rtscts=False, dsrdtr=False) as device:
+        constructor = factory or serial.Serial
+        return constructor(port=port, baudrate=115200, bytesize=8, parity="N", stopbits=1,
+                           timeout=.1, xonxoff=False, rtscts=False, dsrdtr=False)
+
+    def reader(device):
         start = last = time.monotonic()
         while time.monotonic() - start < duration:
             data = device.read(max(1, min(device.in_waiting, 4096)))
@@ -51,28 +74,57 @@ def serial_chunks(port, duration=60.0, idle_timeout=5.0, factory=None):
                 yield data
             elif time.monotonic() - last >= idle_timeout:
                 raise TimeoutError("serial idle timeout; no automatic reconnect")
+    return InputChunks(opener, reader)
 
 
 def file_chunks(path):
-    with Path(path).open("rb") as stream:
-        yield from iter(lambda: stream.read(4096), b"")
+    return InputChunks(lambda: Path(path).open("rb"),
+                       lambda stream: iter(lambda: stream.read(4096), b""))
 
 
 def receive(chunks, out, source="board-unverified", show=False, save_images=100,
-            max_frames=10000, max_bytes=16 * 1024 * 1024, metadata=None):
+            max_frames=10000, max_bytes=16 * 1024 * 1024, metadata=None,
+            max_error_details=DEFAULT_MAX_ERROR_DETAILS):
     if source not in ("simulated", "board-unverified"):
         raise ValueError("invalid source")
-    if max_frames < 1 or max_bytes < 1 or save_images < 0:
-        raise ValueError("limits must be positive (image limit may be zero)")
+    if max_frames < 1 or max_bytes < 1 or save_images < 0 or max_error_details < 0:
+        raise ValueError("limits must be positive (image/error detail limits may be zero)")
     if show or save_images:
         import cv2  # Fail before creating capture directory if dependency is missing.
     out = Path(out)
+    if out.exists():
+        raise FileExistsError(f"capture directory already exists: {out}")
+    try:
+        # File/serial sources actually open here, before mkdir. Arbitrary iterable
+        # read failures occur inside _receive and are capture failures (exit 1).
+        open_source = getattr(chunks, "open", None)
+        if open_source:
+            open_source()
+        return _receive(chunks, out, source, show, save_images, max_frames,
+                        max_bytes, metadata, max_error_details)
+    except (Exception, KeyboardInterrupt):
+        # Setup/storage failure may bypass the normal recorded cleanup below.
+        close = getattr(chunks, "close", None)
+        if close:
+            try:
+                close()
+            except (Exception, KeyboardInterrupt) as exc:
+                print(f"ERROR during cleanup: {type(exc).__name__}: {exc}", file=sys.stderr)
+        raise
+
+
+def _receive(chunks, out, source, show, save_images, max_frames,
+             max_bytes, metadata, max_error_details):
+    if show or save_images:
+        import cv2
     out.mkdir(parents=True, exist_ok=False)
     stats = dict(protocol=PROTOCOL, started_utc=datetime.now(timezone.utc).isoformat(),
                  source=source, board_test=False, video_synchronized=False,
                  bytes_saved=0, packets=0, frames=0, valid_frames=0, events=0, images=0,
                  max_frames=max_frames, max_bytes=max_bytes, save_images=save_images,
                  metadata=metadata or {}, errors=0, transport_error=None,
+                 max_error_details=max_error_details, error_details_written=0,
+                 error_details_suppressed=0,
                  last_frame_event_completeness="unverifiable: no end packet or event count")
     digest = hashlib.sha256()
     counts = Counter()
@@ -89,7 +141,11 @@ def receive(chunks, out, source="board-unverified", show=False, save_images=100,
         def error(detail):
             counts[detail["reason"]] += 1
             stats["errors"] += 1
-            write(errors, detail)
+            if stats["error_details_written"] < max_error_details:
+                write(errors, detail)
+                stats["error_details_written"] += 1
+            else:
+                stats["error_details_suppressed"] += 1
 
         def display(frame):
             cv2.imshow("UART v0.2 - coordinate canvas", render(frame, source))
@@ -196,6 +252,8 @@ def main():
     ap.add_argument("--save-images", type=int, default=100)
     ap.add_argument("--max-frames", type=int, default=10000)
     ap.add_argument("--max-bytes", type=int, default=16 * 1024 * 1024)
+    ap.add_argument("--max-error-details", type=int, default=DEFAULT_MAX_ERROR_DETAILS,
+                    help="最多保存的错误明细条数；0 仅计数；不影响失败状态或原始流")
     ap.add_argument("--metadata", type=Path, help="板卡/固件/样本对应说明 JSON；只保留，不认证来源")
     args = ap.parse_args()
     try:
@@ -214,7 +272,7 @@ def main():
                     "duration": args.duration if args.port else None}
         chunks = serial_chunks(args.port, args.duration, args.idle_timeout) if args.port else file_chunks(args.file)
         result = receive(chunks, args.out, args.source, args.show, args.save_images,
-                         args.max_frames, args.max_bytes, metadata)
+                         args.max_frames, args.max_bytes, metadata, args.max_error_details)
         print(json.dumps(result, ensure_ascii=False))
         return result["exit_code"]
     except (Exception, KeyboardInterrupt) as exc:

@@ -11,6 +11,7 @@ UART 二进制三包，旧 `pc_receiver.py` 保留为 JSONL/TCP 历史模拟入�
 python -m pip install -r sim/line3/requirements-uart.txt
 python sim/line3/check_uart_receiver.py --out D:/uart_check_new
 python sim/line3/check_uart_evidence.py --out D:/uart_evidence_check_new
+python sim/line3/check_uart_type1.py --out D:/uart_type1_check_new
 python sim/line3/uart_receiver.py --file D:/uart_check_new/simulated.bin --source simulated --out D:/uart_replay_new --show
 ```
 
@@ -33,6 +34,9 @@ python sim/line3/uart_receiver.py --port COM7 --out D:/uart_board_capture_new --
 具体 USB-UART 转接与板端 TX 引脚由线一/线二确认，不猜板卡接线。
 
 默认采集 60 秒，空闲 5 秒判为连接异常；不自动重连或猜测板端复位。
+板端复位时先结束当前采集、保留失败记录，复位完成后使用全新输出目录重新采集。
+协议没有复位标记，帧号下降不能可靠区分复位与乱序；例如 500,499,500 中后两帧
+分别仍报倒序/复位歧义和重复，不自动将 499 当作新参考帧号。
 采集中断、按 Esc/Ctrl+C、丢帧、坏包或达到数据上限均记录异常并非零退出。
 正常到时仍可能截断包或缺少最后一个目标，出现这种情况应保留本次记录并另开目录重采。
 默认最多 10000 帧、16 MiB 原始流；只保存前 100 帧 PNG，但全部帧/事件继续写 JSONL。
@@ -72,11 +76,25 @@ python sim/line3/uart_receiver.py --port COM7 --out D:/uart_board_capture_new --
 
 `raw_stream.bin` 是原始字节；`packets.jsonl` 是成功解码的包（含字节偏移）；
 `frames.jsonl` 是全部组装帧（含有效性和问题）；`events.jsonl` 是已关联的事件；
-`errors.jsonl` 记录错误；`summary.json` 保存哈希、数量、来源声明与退出码。
+`errors.jsonl` 默认只保存前 10000 条错误明细；`summary.json` 保存哈希、数量、来源声明与退出码。
+`--max-error-details N` 可调整明细上限，0 表示不写明细。超限后所有错误仍计入 `errors`
+及 `error_counts`，`error_details_written` / `error_details_suppressed` 分别记录已写/抑制条数，
+两者之和等于错误总数。限制单位是记录条数，并非严格字节配额；不会截断原始流或把失败变成功。
+原始流仍受独立的 `--max-bytes` 上限控制。排查时不能把明细行数当错误总数。
 PNG 文件名带采集序号和帧号，回卷不会覆盖旧图。
 
-退出 0 仅表示本次接收/解析检查未发现异常；退出 1 表示数据或采集失败；退出 2
-表示命令/启动错误。全部模式的 `board_test` 都为 false：实机结论需另做证据核对。
+退出码按以下规则处理，全部模式的 `board_test` 都为 false：实机结论需另做证据核对。
+
+| 退出码 | 含义及输出 |
+|---|---|
+| 0 | 存在有效帧且本次检查未发现异常；不表示实机来源已认证 |
+| 1 | 输入已打开后的读取、断连、空闲超时、处理、关闭或数据检查失败；保存原始流、错误及 summary |
+| 2 | 参数、依赖、输入源打开或输出初始化失败；文件/串口实际打开失败时不创建采集目录，诊断写 stderr |
+
+存储介质写入/关闭或汇总保存失败也可能从外层返回 2，此时仅能尽力保留部分文件和 stderr，
+不能保证完整 summary。输出目录已存在时拒绝覆盖且不打开输入源。
+脚本内调用 `receive()` 时，启动异常向调用方抛出，由 CLI 转为 2；输入源在进入读取循环前实际打开，
+不是只检查路径是否存在。打开成功但第一次读取即失败仍属于采集失败（1）。
 
 ## 收到线二样本后的精确对照
 
@@ -96,7 +114,11 @@ python sim/line3/verify_uart_capture.py --capture D:/uart_real_replay_new --expe
 
 对照工具重新解析原始流，先核对原始字节哈希及保存的帧表，再逐帧检查帧号、目标 ID、
 四坐标、FLAGS、事件 ID/TYPE/中心 X；目标顺序不要求一致，
-事件重复次数要一致。输入画面的真实性、帧号映射与延迟需人或独立证据核验。
+事件重复次数要一致。结果 JSON 同时保存 `source`、明确的 `source_label`、`capture_metadata`、
+`capture_path`、`summary_path` 和 `summary_sha256`，脱离采集目录也可看到 SIMULATED 或未核验来源。
+旧采集没有来源字段时写 unknown；采集摘要损坏/缺失或对照失败时仍尽力保留来源上下文和错误。
+哈希用于识别摘要版本，不能认证其中人工声明。`source_verified=false`、`board_test=false` 始终保持。
+输入画面的真实性、帧号映射与延迟需人或独立证据核验。
 
 ## 已知协议边界及队友所需输入
 
