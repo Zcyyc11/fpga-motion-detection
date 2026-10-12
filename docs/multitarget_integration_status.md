@@ -8,7 +8,7 @@
 
 ## 一句话现状
 
-**多目标版接线的代码已完成并推送到本分支；bit 正在构建（综合阶段，尚未出固件）；下一步是烧录 + 上板实测。** 单目标版已实测 PASS（main @37c1d2c，红框框住卡车证据在 board/logs/）。
+**多目标版接线的代码已完成并推送到本分支（含 1 处接线 bug 修复 248a6d8）；bit 正在构建（具体阶段以 build/logs/vivado_build.log 为准）；下一步是烧录 + 上板实测。** 单目标版已实测 PASS（main @37c1d2c，红框框住卡车证据在 board/logs/）。
 
 ## 已经做完（勿重复）
 
@@ -23,6 +23,7 @@
 ### 已确认的事实
 - 构建红线纪律：generic 必须**空格分隔**（Vivado 2026.1 只认空格，逗号=坏货）。构建脚本 build_vivado.tcl 已固化。本轮实测日志：`EFFECTIVE_GENERIC=MODE_BG=0 INPUT_SEL=1` ✅
 - 当前构建命令：`build_vivado.bat 0 1`（0=帧差算法，1=HDMI 输入）
+- 已修复：md_pipeline 中 `t_valid` 重名双驱动（threshold→morph 域 vs multi_bbox→overlay 域），后者改名 `mb_valid`（commit 248a6d8）。**若发现 multi_bbox 输出或 morph 输入异常，先查是否又有同名 wire。**
 
 ## 坑（接手必看）
 
@@ -65,5 +66,5 @@
 ## 推送状态
 
 - 代码：✅ 已推 `line1/multi-bbox-integration`（10f9be5）
-- bit：⏳ 构建中（综合阶段），出来后**必须**推（build/bitstream 是 git 跟踪的）
+- bit：⏳ 构建中（阶段以日志为准；中途发现 t_valid 重名 bug 已修并重跑），出来后**必须**推（build/bitstream 是 git 跟踪的）
 - 实测证据：⏳ 待实测后推
