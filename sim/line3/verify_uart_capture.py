@@ -8,6 +8,8 @@ import json
 from pathlib import Path
 import sys
 
+from uart_protocol import Decoder, Frames
+
 
 def load_jsonl(path):
     with Path(path).open(encoding="utf-8-sig") as stream:
@@ -54,15 +56,34 @@ def verify(capture, expected):
     errors = []
     if summary.get("exit_code") != 0 or summary.get("errors") != 0:
         errors.append("capture did not finish cleanly")
-    digest = hashlib.file_digest((capture / "raw_stream.bin").open("rb"), "sha256").hexdigest()
+    raw_frames, raw_errors = [], []
+    assembler = Frames(raw_frames.append, lambda _: None, raw_errors.append)
+    decoder = Decoder(assembler.accept, assembler.error)
+    hasher = hashlib.sha256()
+    byte_count = 0
+    with (capture / "raw_stream.bin").open("rb") as stream:
+        for chunk in iter(lambda: stream.read(4096), b""):
+            hasher.update(chunk)
+            byte_count += len(chunk)
+            decoder.feed(chunk)
+    decoder.feed(final=True)
+    assembler.finish()
+    digest = hasher.hexdigest()
     if digest != summary.get("raw_sha256"):
         errors.append("raw stream hash mismatch")
+    if byte_count != summary.get("bytes_saved") or raw_errors:
+        errors.append("raw stream decode/count failed")
     actual_records = load_jsonl(capture / "frames.jsonl")
     references = load_jsonl(expected)
     if not actual_records or not references:
         errors.append("empty frame/reference table")
     if len(actual_records) != len(references) or len(actual_records) != summary.get("frames"):
         errors.append("frame count mismatch")
+    if len(actual_records) != len(raw_frames):
+        errors.append("saved frame table length differs from raw stream")
+    for index, (saved, decoded) in enumerate(zip(actual_records, raw_frames), 1):
+        if canonical(saved) != canonical(decoded) or decoded["valid"] is not True:
+            errors.append(f"frame {index}: saved frame table differs from raw stream")
     for index, (actual, wanted) in enumerate(zip(actual_records, references), 1):
         if actual.get("sequence") != index or actual.get("valid") is not True:
             errors.append(f"frame {index}: invalid sequence or rejected capture frame")

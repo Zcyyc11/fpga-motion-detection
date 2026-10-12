@@ -154,11 +154,18 @@ def receive(chunks, out, source="board-unverified", show=False, save_images=100,
             except (Exception, KeyboardInterrupt) as exc:
                 stats["transport_error"] = stats["transport_error"] or f"{type(exc).__name__}: {exc}"
                 error({"reason": "finalization_error", "detail": str(exc)})
+            cleanup = []
             if show:
-                cv2.destroyAllWindows()
+                cleanup.append(("display_close_error", cv2.destroyAllWindows))
             close = getattr(chunks, "close", None)
             if close:
-                close()
+                cleanup.append(("transport_close_error", close))
+            for reason, action in cleanup:
+                try:
+                    action()
+                except (Exception, KeyboardInterrupt) as exc:
+                    stats["transport_error"] = stats["transport_error"] or f"{type(exc).__name__}: {exc}"
+                    error({"reason": reason, "detail": str(exc)})
     stats.update(missing_frames=assembler.missing_frames, frame_wraps=assembler.wraps,
                  error_counts=dict(counts), raw_sha256=digest.hexdigest(),
                  finished_utc=datetime.now(timezone.utc).isoformat())
