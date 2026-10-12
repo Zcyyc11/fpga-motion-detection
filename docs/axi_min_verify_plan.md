@@ -46,6 +46,8 @@
 ## 5. 互验门（写的不自签）
 
 - `axi_lite_slave.v` + `tb_axi_lite_slave.v`：线二或线三跑 xsim，全 PASS 才签字（写的人=线一，不自签）。
+  **已真跑通（Vivado 2026.1 xsim，2026-10-12）：4/4 PASS（写回一致 / 第二口写回 / 只读计数单调 / 连续不错位）。**
+  真实根因修法：① ps_en/ps_we/ps_addr 原被两个 always 块**双驱动**→ 合并为单块统一驱动；② 读 1 拍延迟→ master 改 `while(!rvalid)` 真握手。
 - PS 侧 `mmio_readout.py`：线三（伟博）上板跑，确认 CSV 与抓帧/bit 哈希/源码 SHA 配对。
 - 改接口前按《接口冻结表》流程群内确认。
 
@@ -53,8 +55,8 @@
 
 | 文件 | 作用 | 状态 |
 |---|---|---|
-| `src/rtl/board/axi_lite_slave.v` | AXI-Lite 从机→瘦总线桥 | 已写，待 xsim 互验 |
-| `sim/tb/tb_axi_lite_slave.v` | 协议翻译验证台 | 已写，待线二/线三跑 |
+| `src/rtl/board/axi_lite_slave.v` | AXI-Lite 从机→瘦总线桥 | 已写，xsim 4/4 PASS（2026-10-12 真跑通） |
+| `sim/tb/tb_axi_lite_slave.v` | 协议翻译验证台 | 已写，xsim 4/4 PASS，待线二/线三另跑签字 |
 | `src/ps/mmio_readout.py` | Jupyter MMIO 读 bbox/写 THRESH | 已写，待 PS 构建 |
 | `docs/axi_min_verify_plan.md` | 本方案 | 已写 |
 | `docs/board_runbook.md` | 乙路径抓帧 run-book | 已写 |
