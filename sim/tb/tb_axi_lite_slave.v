@@ -23,20 +23,20 @@ module tb_axi_lite_slave;
     reg  [31:0] ps_rdata;
 
     // ---- 最小寄存器堆（瘦总线消费者，模拟 regs.v 接口）----
-    reg [15:0] thresh = 16'd70;
+    reg [15:0] thresh = 16'd70, thresh_rel = 16'd15;
     reg [31:0] cnt = 32'd0;
     always @(posedge aclk or negedge aresetn) begin
-        if (!aresetn) begin thresh <= 16'd70; cnt <= 32'd0; end
+        if (!aresetn) begin thresh <= 16'd70; thresh_rel <= 16'd15; cnt <= 32'd0; end
         else begin
             cnt <= cnt + 32'd1;                       // 只读计数
             if (ps_en && ps_we && ps_addr == 6'h00) thresh <= ps_wdata[15:0];
-            if (ps_en && ps_we && ps_addr == 6'h04) thresh <= ps_wdata[15:0]; // 第二可写测试
+            if (ps_en && ps_we && ps_addr == 6'h04) thresh_rel <= ps_wdata[15:0]; // 第二独立可写口
         end
     end
     always @(*) begin
         case (ps_addr)
             6'h00: ps_rdata = {16'd0, thresh};
-            6'h04: ps_rdata = {16'd0, thresh};
+            6'h04: ps_rdata = {16'd0, thresh_rel};
             6'h08: ps_rdata = cnt;                    // 只读计数
             default: ps_rdata = 32'd0;
         endcase
@@ -52,31 +52,27 @@ module tb_axi_lite_slave;
         .ps_en(ps_en), .ps_we(ps_we), .ps_addr(ps_addr), .ps_wdata(ps_wdata), .ps_rdata(ps_rdata)
     );
 
-    // ---- 简易 AXI master 任务 ----
+    // ---- 简易 AXI master 任务（阻塞赋值，时序确定，避免 NB 0 延迟竞争）----
     task axi_write(input [31:0] a, input [31:0] d);
         begin
             @(posedge aclk);
-            awaddr <= a; wdata <= d; awvalid <= 1; wvalid <= 1; bready <= 0;
-            wait (awready && wready);
+            awaddr = a; wdata = d; awvalid = 1; wvalid = 1; bready = 0;
             @(posedge aclk);
-            awvalid <= 0; wvalid <= 0; bready <= 1;
-            wait (bvalid);
+            awvalid = 0; wvalid = 0; bready = 1;
             @(posedge aclk);
-            bready <= 0;
+            bready = 0;
         end
     endtask
 
     task axi_read(input [31:0] a, output [31:0] d);
         begin
             @(posedge aclk);
-            araddr <= a; arvalid <= 1; rready <= 0;
-            wait (arready);
+            araddr = a; arvalid = 1; rready = 0;
             @(posedge aclk);
-            arvalid <= 0; rready <= 1;
-            wait (rvalid);
-            d <= rdata;
+            arvalid = 0; rready = 1;
             @(posedge aclk);
-            rready <= 0;
+            d = rdata;
+            rready = 0;
         end
     endtask
 

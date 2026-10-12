@@ -80,6 +80,7 @@ module axi_lite_slave #(
                 ps_addr   <= S_AXI_AWADDR[ADDR_W-1:0];
                 ps_wdata  <= S_AXI_WDATA;
                 S_AXI_BVALID <= 1'b1;
+                $display("[slave] WRITE accept addr=0x%h data=0x%h", S_AXI_AWADDR[ADDR_W-1:0], S_AXI_WDATA);
             end else if (S_AXI_BVALID && S_AXI_BREADY) begin
                 S_AXI_BVALID <= 1'b0;   // 写响应完成
             end
@@ -107,6 +108,7 @@ module axi_lite_slave #(
                 ps_we   <= 1'b0;
                 ps_addr <= S_AXI_ARADDR[ADDR_W-1:0];
                 rd_pend <= 1'b1;
+                $display("[slave] READ accept addr=0x%h", S_AXI_ARADDR[ADDR_W-1:0]);
             end else if (rd_pend && !S_AXI_RVALID) begin
                 // ps_rdata 已稳定（ps_en 当拍更新），送出并清 pend
                 rdata_r <= ps_rdata;
