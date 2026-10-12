@@ -19,7 +19,7 @@
 //   过钟，PS 读 STATUS bit1 = 「快照所属帧内是否发生过告警」，
 //   与 BBOX_FRAME 同源，可交叉校验。
 //
-// 顶层接入（md_pipeline 由线一接，见 docs/接入说明.md）：
+// 顶层接入（md_pipeline 由线一接，见 docs/line2_integration_guide.md）：
 //   i_x1..i_valid ← bbox.v 同名输出；i_latch ← 掩码流 y 回绕拍（与 bbox.v
 //   帧边界同判据 in_y<in_py，由顶层生成）；i_frame_idx ← md_pipeline.frame_idx；
 //   i_obj_count ← multi_bbox 帧结算目标数；clk_axi ← AXI-Lite 时钟。
