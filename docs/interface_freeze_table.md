@@ -70,8 +70,8 @@ video_timing → downsample2x2 → frame_buf → diff_stage → threshold
 - 用 `valid` 区分「第 N 个目标」和「没有更多目标了」
 - 坐标是**大像素域**（I2），要用回原图需 ×2
 
-**★ 当前状态**：`bbox.v` 只输出**全局并集框**（一个框）。
-"每目标一个框"是我们正在往 PL 搬的功能，冻结的是**目标格式**，不是"已经实现了"。
+**★ 当前状态**：`main` 上 `bbox.v` 仍只输出**全局并集框**（一个框）；多目标 RTL（`multi_bbox.v` 等）已在 `line2/multi-bbox-gray` 分支（徐一夫，6 仿真台 PASS），10/12-13 接顶层后生效。
+"每目标一个框"冻结的是**目标格式**，不是"main 已实现"——接顶层前按单框验收。
 
 ---
 
@@ -108,3 +108,5 @@ video_timing → downsample2x2 → frame_buf → diff_stage → threshold
 | 日期 | 字段 | 旧值 | 新值 | 影响 |
 |---|---|---|---|---|
 | 2026-10-08 | — | — | 首次冻结 | — |
+| 2026-10-11 | STATUS（I4） | 未分配位 | **提案**：bit31 = UART 丢包粘存位（读语义不变，写=清除） | regs.v / tb_regs.v（**待群确认后转正式**） |
+| 2026-10-12 | STATUS（I4） | 提案 | **已定稿生效**（main@f15fbce）：bit31=UART 丢包粘存、bit1=alarm(A)、低 31 位=`i_status`；BBOX 快照只读 0x1C–0x34（X1/Y1/X2/Y2/CNT/VALID/FRAME）；ps_addr 加宽 [5:0] | `regs.v`（线二，`3e51dbd`）+ 协议定稿 |

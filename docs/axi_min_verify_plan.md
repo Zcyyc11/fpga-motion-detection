@@ -19,7 +19,7 @@
 - `board_top.v`：纯 PL 顶层（125M→MMCM、HDMI 进/出、LED），**无 PS 端口、无 AXI 从机**。
 - `build_vivado.tcl`：纯 RTL 工程，`top=board_top`，器件 xc7z020clg400-1，**无 BD、无 PS7 IP**。
 - `regs.v`（在 `line2/multi-bbox-gray` 分支）：参数控制寄存器堆，接口是瘦总线
-  `ps_en/ps_we/ps_addr[4:0]/ps_wdata[31:0]/ps_rdata[31:0]`；**bbox 快照寄存器尚未写**。
+  `ps_en/ps_we/ps_addr[5:0]/ps_wdata[31:0]/ps_rdata[31:0]`；**bbox 快照寄存器已实现**（`3e51dbd`，10/12 线二交付，BBOX_X1..FRAME 0x1C–0x34，含帧快照 CDC）。
 - 构建产物只有 `.bit`，无 `.hwh/.xsa`（无 PS）。
 
 ## 3. 集成步骤（引入 PS，但尽量守住"算法流水线不套 BD"的初衷）
@@ -60,7 +60,7 @@
 | `src/ps/mmio_readout.py` | Jupyter MMIO 读 bbox/写 THRESH | 已写，待 PS 构建 |
 | `docs/axi_min_verify_plan.md` | 本方案 | 已写 |
 | `docs/board_runbook.md` | 乙路径抓帧 run-book | 已写 |
-| `docs/line1_uart_field_table_draft.md` | bbox 快照 + STATUS 位分配 | 已写，待线二对齐 |
+| `docs/line1_uart_field_table_draft.md` | bbox 快照 + STATUS 位分配 | 已实现并定稿（`3e51dbd` + `f15fbce`），以协议定稿为准 |
 
 ## 7. 下一步
 
