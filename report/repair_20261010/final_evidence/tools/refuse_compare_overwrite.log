@@ -1,0 +1,2 @@
+usage: compare.py [-h] [--keys KEYS] --out OUT expected actual
+compare.py: error: Output exists; use a new path

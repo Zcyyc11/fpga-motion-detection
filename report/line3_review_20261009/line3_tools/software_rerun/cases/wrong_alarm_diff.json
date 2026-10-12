@@ -1,0 +1,11 @@
+[
+  {
+    "kind": "value",
+    "key": [
+      "2"
+    ],
+    "field": "kind",
+    "expected": "cross_in",
+    "actual": "dwell"
+  }
+]

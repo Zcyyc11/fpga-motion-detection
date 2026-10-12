@@ -1,0 +1,1106 @@
+[
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_0.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_1.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_10.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_11.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_2.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_3.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_4.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_5.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_6.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_7.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_8.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\frame_9.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\mask_0.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\mask_1.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\mask_10.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\mask_2.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\mask_3.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\mask_4.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\mask_5.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\mask_6.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\mask_7.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\mask_8.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\plain_runs\\run_20261009T114542Z_xk42reqj\\sim\\wave\\mask_9.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_0.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_1.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_10.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_11.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_2.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_3.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_4.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_5.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_6.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_7.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_8.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\frame_9.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\mask_0.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\mask_1.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\mask_10.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\mask_2.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\mask_3.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\mask_4.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\mask_5.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\mask_6.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\mask_7.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\mask_8.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文工程_runs\\run_20261009T114555Z_0924hekq\\sim\\wave\\mask_9.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_0.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_1.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_10.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_11.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_2.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_3.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_4.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_5.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_6.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_7.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_8.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\frame_9.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\mask_0.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\mask_1.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\mask_10.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\mask_2.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\mask_3.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\mask_4.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\mask_5.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\mask_6.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\mask_7.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\mask_8.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "D:\\666666\\Temp\\fpga_runner_live_20261009_final\\space project_runs\\run_20261009T114609Z_xotz4hhv\\sim\\wave\\mask_9.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_0.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_1.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_10.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_11.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_2.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_3.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_4.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_5.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_6.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_7.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_8.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\frame_9.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\mask_0.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\mask_1.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\mask_10.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\mask_2.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\mask_3.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\mask_4.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\mask_5.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\mask_6.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\mask_7.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\mask_8.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\中文 空格工程_runs\\run_20261009T114622Z_kuzen7kq\\sim\\wave\\mask_9.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_0.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_1.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_10.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_11.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_2.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_3.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_4.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_5.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_6.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_7.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_8.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\frame_9.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\mask_0.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\mask_1.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\mask_10.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\mask_2.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\mask_3.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\mask_4.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\mask_5.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\mask_6.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\mask_7.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\mask_8.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\完整性检查_runs\\run_20261009T114634Z_uf_nz9m0\\sim\\wave\\mask_9.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_0.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_1.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_10.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_11.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_2.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_3.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_4.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_5.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_6.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_7.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_8.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\frame_9.ppm",
+    "shape": [
+      180,
+      320,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\mask_0.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\mask_1.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\mask_10.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\mask_2.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\mask_3.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\mask_4.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\mask_5.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\mask_6.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\mask_7.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\mask_8.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  },
+  {
+    "path": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\未知态_runs\\run_20261009T114647Z_5bfhezts\\sim\\wave\\mask_9.ppm",
+    "shape": [
+      90,
+      160,
+      3
+    ]
+  }
+]

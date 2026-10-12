@@ -1,0 +1,2 @@
+# Preserve the received report and raw evidence without EOL conversion.
+** -text whitespace=-blank-at-eol,-blank-at-eof

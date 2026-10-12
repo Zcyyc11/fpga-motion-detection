@@ -1,0 +1,106 @@
+# 交接说明 · 线一（主城要 · 通路线 + 架构线）
+
+> 给线三（孙伟博/伟博）的资料交接，对应《给队友_线三资料交接清单》第一批 + 第二批中"板端负责人/工程负责人"部分。
+> 线二（徐一夫）负责的部分见"待线二提供"标注，不在此文件冒充。
+
+---
+
+## 0. 基本信息
+
+| 项 | 内容 |
+|---|---|
+| 提供人 / 负责模块 | 主城要（线一）— 视频通路、板级、顶层连线、综合实现、时序收敛、实测证据 |
+| 日期 | 2026-10-11 |
+| 仓库 | `https://github.com/Zcyyc11/fpga-motion-detection.git` |
+| 分支 | `main`（已 ff 合入 `hdmi-in`，单一验证锚点；详见末尾备注） |
+| 完整提交 SHA | `b7656a8`（含 `77811c4` HDMI 输入版构建、`b7656a8` 重建两版 bit 修复坏货；均已推 origin/main） |
+| 板卡 / 器件 | PYNQ-Z2（Zynq-7020，**具体封装 xc7z020clg400-1 待与 XDC 核对**） |
+| Vivado 版本 | 2026.1（build 脚本注释实证） |
+
+---
+
+## 1. 已交文件及各自用途（线一部分）
+
+| 文件 | 用途 |
+|---|---|
+| `src/rtl/board/board_top.v` | 板级顶层：HDMI 输入(dvi2rgb)→ hdmi_in_ctrl → gray_conv → md_pipeline → rgb2dvi 输出 |
+| `src/rtl/board/hdmi_in_ctrl.v` | HDMI 输入控制：补 x/y 坐标、帧首 sof、无信号黑屏兜底 |
+| `src/rtl/board/gray_conv.v` | RBG 24bit → 8bit 灰度（BT.601，77/150/29），进流水线同一入口 |
+| `src/rtl/board/clock_74m25.v` `clock_200m.v` | 像素时钟 74.25MHz / dvi2rgb RefClk 200MHz |
+| `src/rtl/md_pipeline.v` | 检测流水线（detection→overlay），输出 bbox 信号 `b_x1..b_x2 / b_cnt / b_valid / frame_idx` |
+| `board/pynq_z2_hdmi_in.xdc` `pynq_z2_hdmi_out.xdc` | 板级约束（HDMI 输入/输出引脚、时钟） |
+| `build/scripts/build_vivado.tcl` `build_vivado.bat` | Tcl 构建命令（综合→实现→bitstream） |
+| `build/scripts/create_dvi2rgb.tcl` | dvi2rgb IP 生成方式 |
+| `build/bitstream/board_top_hdmiin.bit` | HDMI 输入模式 bitstream |
+| `build/bitstream/board_top_selftest.bit` | 内部自测模式 bitstream |
+| `build/reports/*`（根目录） | 自测版（INPUT_SEL=0）构建报告（SHA `b7656a8`） |
+| `build/reports/hdmiin/*` | ⚠️ 旧格式坏配置报告（逗号绑定失败），正确 HDMI 版报告待重建 |
+
+---
+
+## 2. 从连接设备到运行（HDMI 输入模式）
+
+1. PYNQ-Z2 上电，HDMI 输入接 J10（信源），HDMI 输出接 J11（显示器）。
+2. `build/scripts/build_vivado.bat`（或 `vivado -mode batch -source build/scripts/build_vivado.tcl`）生成 `board_top_hdmiin.bit`。
+3. 烧写 bitstream 到板；`INPUT_SEL=1`（真实 HDMI 输入）、`MODE_BG=0/1`（帧差/背景建模）。
+4. LED0 = 锁定指示（屏黑先看它）：自测=MMCM 锁定，输入=dvi2rgb 时钟恢复锁定。
+5. 显示器看到叠加了检测框的画面。
+
+---
+
+## 3. 协议状态（第一批 · ★当前最大缺口）
+
+- **回传协议：未完成。** 当前 RTL **没有板端→PC 的回传通路**（全仓无 UART/以太网/串口发送模块）。检测结果只走到 HDMI 叠加显示，没有可抓包的"原始报文"。
+- 因此伟博清单第一批的"板端发送程序及运行方法 / 真实输出样本(原始报文或抓包)"**当前无法满足**，需二选一：
+  - **方案甲（线一新写）**：加 UART TX（PMOD→USB-UART）或 PS 侧 AXI 读 bbox 寄存器经网口回传，按清单定协议（串/网、波特率或地址端口、包/帧边界、编码字节序、校验、异常重连）。
+  - **方案乙（改验证通路）**：伟博走"HDMI 输出抓取 + PC 侧检测"验证（他已有电脑接收端草案），不要求板端回传。需伟博明确接受草案或列修改项。
+- **字段说明与样例**：bbox 字段（x1/y1/x2/y2/cnt/valid/frame_idx）由线二定语义、线一确认传输；坐标域=大像素 640×360（×2 回原图）；多目标**未实现**（仅全局并集框），须如实注明。
+
+---
+
+## 4. 参数控制实现状态（第二批）
+
+- 寄存器映射见 `docs/interface_freeze_table.md` I4：THRESH(0x00)/THRESH_REL(0x04)/ALPHA_SHIFT(0x08)/LINE_X(0x0C)/DWELL(0x10)/ENABLE(0x14)/STATUS(0x18)。
+- **ENABLE 等参数是编译时（generic MODE_BG/INPUT_SEL）还是运行时 AXI 可改：待线一确认并测切换。**（当前顶层用 `parameter` 编译时选择，运行时切换未验证）
+- 复位值、读写示例：**TODO 线一补**。
+
+---
+
+## 5. 已有构建和时序证据（第二批 · 工程负责人）
+
+- **⚠️ 注意**：`f7d7088` 时代的两版 bit 与 `build/reports/hdmiin/*` 用**逗号格式**绑定失败（MODE_BG=垃圾值、INPUT_SEL 未绑），**不可作验证依据**，已由 `b7656a8` 重建替换。
+- **正确构建（`b7656a8`，空格格式真绑定，绑定已 grep 验证）**：HDMI 输入版（INPUT_SEL=1）WNS 0.932ns（`77811c4`）；自测版（INPUT_SEL=0）WNS 0.800ns（`b7656a8`）。根目录 `build/reports/*` 为自测版报告。
+- 未约束路径/DRC 明细：**TODO 线一从报告摘录关键项**。
+
+---
+
+## 6. 已有实机记录（第二批 · 线一）
+
+- 板卡 / 输入分辨率·帧率 / 测试场景·时长 / 丢帧·异常 / 帧率·延迟测量方式与原始记录 / 演示视频：**TODO 线一实测后填**（须与固件 SHA 对应）。
+
+---
+
+## 7. 尚缺内容、负责人、预计提供时间
+
+| 缺项 | 负责人 | 预计时间 |
+|---|---|---|
+| 回传通路（模块 + 协议 + 发送程序） | 线一 | TODO |
+| 字段语义定稿（bbox/多目标/告警） | 线二 | TODO |
+| 参数运行时切换验证 | 线一 | TODO |
+| 实机记录 + 演示视频 | 线一 | TODO |
+| morph3x3 / bbox 书面评审 | 线二（RTL/算法负责人） | TODO |
+
+---
+
+## 8. 线三需要反馈的问题
+
+- 回传通路选方案甲还是方案乙？这决定伟博能否按清单第一批"读真实报文"。
+- dc9f05f 清单称"本地候选未进 main"，**实际已合入 main**（e71c383 祖先），线二可直接对 main 评审，不必等"拿到实际补丁"。
+
+---
+
+## 备注：hdmi-in 与 main 的关系（已闭环）
+
+`hdmi-in` 已于 2026-10-11 ff 合回 `main`，无冲突；`main` 后续推进至 `73757f1`（含两版 bit 重建 `b7656a8`、分工表修订 `73757f1`），并已 `git push origin main`。
+伟博第二批要求"确切 SHA 绑到同一版本"——当前唯一锚点即 `main @ 73757f1`，验证直接对 main 做即可，无需再等侧分支。
+两版固件为最新状态：自测版 `board_top_selftest.bit`（INPUT_SEL=0，SHA `5937D6602BF5`）、HDMI 输入版 `board_top_hdmiin.bit`（INPUT_SEL=1，SHA `9F506BEF4132`，WNS 0.932）；`build/reports/hdmiin/` 已更新为该版本配套报告。

@@ -1,0 +1,1980 @@
+{
+  "archive_0_10_diff": [],
+  "archive_full_model_diff": [
+    {
+      "kind": "missing",
+      "key": [
+        "11"
+      ],
+      "field": "",
+      "expected": {
+        "frame": "11",
+        "b_valid": "1",
+        "b_x1": "100",
+        "b_y1": "40",
+        "b_x2": "127",
+        "b_y2": "54",
+        "b_cnt": "240"
+      },
+      "actual": null
+    }
+  ],
+  "clean": {
+    "frames": 120,
+    "merged_frames": 15,
+    "matched_visible": 210,
+    "truth_visible": 210,
+    "recall": 1.0,
+    "false_boxes": 0,
+    "id_switches": 0,
+    "track_breaks": 0,
+    "direction_correct": 207,
+    "direction_total": 208,
+    "truth_crossings": [
+      {
+        "frame": 32,
+        "oid": 0,
+        "kind": "cross_out",
+        "cx": 651.5,
+        "merged": true
+      },
+      {
+        "frame": 43,
+        "oid": 1,
+        "kind": "cross_in",
+        "cx": 631.5,
+        "merged": false
+      },
+      {
+        "frame": 102,
+        "oid": 0,
+        "kind": "cross_in",
+        "cx": 627.5,
+        "merged": false
+      }
+    ],
+    "actual_events": [
+      {
+        "frame": 34,
+        "tid": 1,
+        "kind": "cross_out",
+        "cx": 691.1,
+        "cy": 359.2,
+        "vx": 40.0
+      },
+      {
+        "frame": 43,
+        "tid": 2,
+        "kind": "cross_in",
+        "cx": 631.5,
+        "cy": 355.5,
+        "vx": -12.0
+      },
+      {
+        "frame": 102,
+        "tid": 1,
+        "kind": "cross_in",
+        "cx": 627.5,
+        "cy": 359.5,
+        "vx": -16.0
+      }
+    ],
+    "final_alarm_counts": {
+      "cross_in": 2,
+      "cross_out": 1,
+      "dwell": 0
+    },
+    "maximum_visible_bbox_error": 0,
+    "observer_csv_diffs": [],
+    "observer_alarm_diffs": [],
+    "observer_video_equal": true,
+    "video": {
+      "decoded_frames": 120,
+      "fps": 30.0,
+      "sizes": [
+        [
+          1280,
+          720
+        ]
+      ],
+      "event_display_mismatch_frames": []
+    }
+  },
+  "algo": {
+    "frames": 120,
+    "merged_frames": 15,
+    "matched_visible": 186,
+    "truth_visible": 210,
+    "recall": 0.8857142857142857,
+    "false_boxes": 0,
+    "id_switches": 0,
+    "track_breaks": 0,
+    "direction_correct": 183,
+    "direction_total": 184,
+    "truth_crossings": [
+      {
+        "frame": 32,
+        "oid": 0,
+        "kind": "cross_out",
+        "cx": 651.5,
+        "merged": true
+      },
+      {
+        "frame": 43,
+        "oid": 1,
+        "kind": "cross_in",
+        "cx": 631.5,
+        "merged": false
+      },
+      {
+        "frame": 102,
+        "oid": 0,
+        "kind": "cross_in",
+        "cx": 627.5,
+        "merged": false
+      }
+    ],
+    "actual_events": [
+      {
+        "frame": 34,
+        "tid": 1,
+        "kind": "cross_out",
+        "cx": 691.6,
+        "cy": 359.7,
+        "vx": 40.0
+      },
+      {
+        "frame": 43,
+        "tid": 2,
+        "kind": "cross_in",
+        "cx": 632.0,
+        "cy": 356.0,
+        "vx": -12.0
+      },
+      {
+        "frame": 102,
+        "tid": 1,
+        "kind": "cross_in",
+        "cx": 628.0,
+        "cy": 360.0,
+        "vx": -16.0
+      }
+    ],
+    "final_alarm_counts": {
+      "cross_in": 2,
+      "cross_out": 1,
+      "dwell": 0
+    },
+    "maximum_visible_bbox_error": 1,
+    "observer_csv_diffs": [],
+    "observer_alarm_diffs": [],
+    "observer_video_equal": true,
+    "video": {
+      "decoded_frames": 120,
+      "fps": 30.0,
+      "sizes": [
+        [
+          1280,
+          720
+        ]
+      ],
+      "event_display_mismatch_frames": []
+    },
+    "reference_frame_diffs": [],
+    "reference_alarm_diffs": [
+      {
+        "kind": "unexpected",
+        "key": [
+          "34",
+          "1",
+          "cross_out"
+        ],
+        "field": "",
+        "expected": null,
+        "actual": {
+          "frame": "34",
+          "tid": "1",
+          "kind": "cross_out",
+          "cx": "691.6",
+          "cy": "359.7",
+          "detail": "40.0"
+        }
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case": "empty",
+      "input": "empty.npy",
+      "expected": [],
+      "actual": [],
+      "status": "PASS"
+    },
+    {
+      "case": "single",
+      "input": "single.npy",
+      "expected": [
+        [
+          10,
+          10,
+          20,
+          20
+        ]
+      ],
+      "actual": [
+        [
+          10,
+          10,
+          20,
+          20
+        ]
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "separate",
+      "input": "separate.npy",
+      "expected": [
+        [
+          10,
+          10,
+          20,
+          20
+        ],
+        [
+          50,
+          40,
+          60,
+          50
+        ]
+      ],
+      "actual": [
+        [
+          10,
+          10,
+          20,
+          20
+        ],
+        [
+          50,
+          40,
+          60,
+          50
+        ]
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "short_occlusion_recovery",
+      "input": "centres 20,25,missing,35; max_miss=2",
+      "expected": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [],
+        [
+          1
+        ]
+      ],
+      "actual": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [],
+        [
+          1
+        ]
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "enter_left",
+      "input": {
+        "centres": [
+          70,
+          60,
+          40,
+          30
+        ],
+        "line_x": 50,
+        "inside": "left"
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "actual": [
+        1,
+        0
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "enter_left_events",
+      "input": [
+        70,
+        60,
+        40,
+        30
+      ],
+      "expected": [
+        {
+          "frame": 2,
+          "kind": "cross_in"
+        }
+      ],
+      "actual": [
+        {
+          "frame": 2,
+          "kind": "cross_in"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "enter_left_side",
+      "input": [
+        70,
+        60,
+        40,
+        30
+      ],
+      "expected": "in",
+      "actual": "in",
+      "status": "PASS"
+    },
+    {
+      "case": "exit_left",
+      "input": {
+        "centres": [
+          30,
+          40,
+          60,
+          70
+        ],
+        "line_x": 50,
+        "inside": "left"
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "actual": [
+        0,
+        1
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "exit_left_events",
+      "input": [
+        30,
+        40,
+        60,
+        70
+      ],
+      "expected": [
+        {
+          "frame": 2,
+          "kind": "cross_out"
+        }
+      ],
+      "actual": [
+        {
+          "frame": 2,
+          "kind": "cross_out"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "exit_left_side",
+      "input": [
+        30,
+        40,
+        60,
+        70
+      ],
+      "expected": "out",
+      "actual": "out",
+      "status": "PASS"
+    },
+    {
+      "case": "reenter_left",
+      "input": {
+        "centres": [
+          70,
+          40,
+          70,
+          40
+        ],
+        "line_x": 50,
+        "inside": "left"
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "actual": [
+        2,
+        1
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "reenter_left_events",
+      "input": [
+        70,
+        40,
+        70,
+        40
+      ],
+      "expected": [
+        {
+          "frame": 1,
+          "kind": "cross_in"
+        },
+        {
+          "frame": 2,
+          "kind": "cross_out"
+        },
+        {
+          "frame": 3,
+          "kind": "cross_in"
+        }
+      ],
+      "actual": [
+        {
+          "frame": 1,
+          "kind": "cross_in"
+        },
+        {
+          "frame": 2,
+          "kind": "cross_out"
+        },
+        {
+          "frame": 3,
+          "kind": "cross_in"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "reenter_left_side",
+      "input": [
+        70,
+        40,
+        70,
+        40
+      ],
+      "expected": "in",
+      "actual": "in",
+      "status": "PASS"
+    },
+    {
+      "case": "enter_right",
+      "input": {
+        "centres": [
+          30,
+          40,
+          60,
+          70
+        ],
+        "line_x": 50,
+        "inside": "right"
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "actual": [
+        1,
+        0
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "enter_right_events",
+      "input": [
+        30,
+        40,
+        60,
+        70
+      ],
+      "expected": [
+        {
+          "frame": 2,
+          "kind": "cross_in"
+        }
+      ],
+      "actual": [
+        {
+          "frame": 2,
+          "kind": "cross_in"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "enter_right_side",
+      "input": [
+        30,
+        40,
+        60,
+        70
+      ],
+      "expected": "in",
+      "actual": "in",
+      "status": "PASS"
+    },
+    {
+      "case": "exit_right",
+      "input": {
+        "centres": [
+          70,
+          60,
+          40,
+          30
+        ],
+        "line_x": 50,
+        "inside": "right"
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "actual": [
+        0,
+        1
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "exit_right_events",
+      "input": [
+        70,
+        60,
+        40,
+        30
+      ],
+      "expected": [
+        {
+          "frame": 2,
+          "kind": "cross_out"
+        }
+      ],
+      "actual": [
+        {
+          "frame": 2,
+          "kind": "cross_out"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "exit_right_side",
+      "input": [
+        70,
+        60,
+        40,
+        30
+      ],
+      "expected": "out",
+      "actual": "out",
+      "status": "PASS"
+    },
+    {
+      "case": "dwell_non30fps",
+      "input": "10 observations at 10 fps; threshold 1 second",
+      "expected": [
+        1,
+        1.0
+      ],
+      "actual": [
+        1,
+        1.0
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "dwell_consecutive_gap",
+      "input": "present,present,missing,present,present; threshold 3 continuous frames",
+      "expected": 0,
+      "actual": 0,
+      "status": "PASS"
+    },
+    {
+      "case": "dwell_skipped_frame_number",
+      "input": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "expected": [],
+      "actual": [],
+      "status": "PASS"
+    },
+    {
+      "case": "dwell_consecutive",
+      "input": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        [
+          2,
+          0.3
+        ]
+      ],
+      "actual": [
+        [
+          2,
+          0.3
+        ]
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "dwell_rearm_after_exit",
+      "input": "two visits; one event per continuous visit",
+      "expected": [
+        1,
+        5
+      ],
+      "actual": [
+        1,
+        5
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "inconsistent_velocity_left",
+      "input": "wrong direction then zero speed",
+      "expected": [
+        0,
+        0,
+        []
+      ],
+      "actual": [
+        0,
+        0,
+        []
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "observed_side_left",
+      "input": "position updates even if direction rejected",
+      "expected": "in",
+      "actual": "in",
+      "status": "PASS"
+    },
+    {
+      "case": "inconsistent_velocity_right",
+      "input": "wrong direction then zero speed",
+      "expected": [
+        0,
+        0,
+        []
+      ],
+      "actual": [
+        0,
+        0,
+        []
+      ],
+      "status": "PASS"
+    },
+    {
+      "case": "observed_side_right",
+      "input": "position updates even if direction rejected",
+      "expected": "out",
+      "actual": "out",
+      "status": "PASS"
+    },
+    {
+      "case": "comparator_reordered",
+      "input": "reordered.csv",
+      "expected": false,
+      "actual": false,
+      "status": "PASS"
+    },
+    {
+      "case": "comparator_missing_frame",
+      "input": "missing_frame.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "location_missing_frame",
+      "input": "missing_frame.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "comparator_duplicate_frame",
+      "input": "duplicate_frame.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "location_duplicate_frame",
+      "input": "duplicate_frame.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "comparator_wrong_box",
+      "input": "wrong_box.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "location_wrong_box",
+      "input": "wrong_box.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "comparator_wrong_id",
+      "input": "wrong_id.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "location_wrong_id",
+      "input": "wrong_id.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "comparator_wrong_alarm",
+      "input": "wrong_alarm.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "location_wrong_alarm",
+      "input": "wrong_alarm.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "comparator_shifted_frame",
+      "input": "shifted_frame.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "location_shifted_frame",
+      "input": "shifted_frame.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    },
+    {
+      "case": "comparator_empty_result",
+      "input": "empty_result.csv",
+      "expected": true,
+      "actual": true,
+      "status": "PASS"
+    }
+  ],
+  "cdnet_archive_audit": [
+    {
+      "file": "cdnet_official_results.csv",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.4421404761904762,
+      "category_means": {
+        "badWeather": 0.5463,
+        "baseline": 0.5610333333333334,
+        "cameraJitter": 0.45765,
+        "dynamicBackground": 0.592,
+        "intermittentObjectMotion": 0.1358,
+        "nightVideos": 0.2962,
+        "shadow": 0.506
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results.csv",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7128571428571429,
+      "category_means": {
+        "badWeather": 0.8086,
+        "baseline": 0.8457,
+        "cameraJitter": 0.5052,
+        "dynamicBackground": 0.8561,
+        "intermittentObjectMotion": 0.8803,
+        "nightVideos": 0.2623,
+        "shadow": 0.8318000000000001
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results.csv",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7367119047619047,
+      "category_means": {
+        "badWeather": 0.7969,
+        "baseline": 0.8295333333333333,
+        "cameraJitter": 0.6335999999999999,
+        "dynamicBackground": 0.8432,
+        "intermittentObjectMotion": 0.8772,
+        "nightVideos": 0.304,
+        "shadow": 0.8725499999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results.csv",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7196309523809523,
+      "category_means": {
+        "badWeather": 0.7968,
+        "baseline": 0.8055666666666667,
+        "cameraJitter": 0.53435,
+        "dynamicBackground": 0.825,
+        "intermittentObjectMotion": 0.8762,
+        "nightVideos": 0.3257,
+        "shadow": 0.8738
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results.csv",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7015238095238095,
+      "category_means": {
+        "badWeather": 0.7967,
+        "baseline": 0.7731666666666667,
+        "cameraJitter": 0.4793,
+        "dynamicBackground": 0.77845,
+        "intermittentObjectMotion": 0.8748,
+        "nightVideos": 0.3339,
+        "shadow": 0.87435
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results.csv",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.6876333333333333,
+      "category_means": {
+        "badWeather": 0.7966,
+        "baseline": 0.7580333333333332,
+        "cameraJitter": 0.45665,
+        "dynamicBackground": 0.72275,
+        "intermittentObjectMotion": 0.8739,
+        "nightVideos": 0.3287,
+        "shadow": 0.8768
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r1.csv",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "sequences": 9,
+      "categories": 5,
+      "category_macro_f1": 0.4430366666666667,
+      "category_means": {
+        "baseline": 0.5610333333333334,
+        "cameraJitter": 0.45765,
+        "dynamicBackground": 0.5547,
+        "intermittentObjectMotion": 0.1358,
+        "shadow": 0.506
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "28fe7f7ccf5e8b6429bb52c5ad89ec5a0c86e146a0ff709b0c7e5924fa4e42f8",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r1.csv",
+      "variant": "V1 只调 α→.005",
+      "sequences": 9,
+      "categories": 5,
+      "category_macro_f1": 0.5453966666666666,
+      "category_means": {
+        "baseline": 0.6960333333333333,
+        "cameraJitter": 0.46175,
+        "dynamicBackground": 0.6614,
+        "intermittentObjectMotion": 0.2851,
+        "shadow": 0.6227
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "28fe7f7ccf5e8b6429bb52c5ad89ec5a0c86e146a0ff709b0c7e5924fa4e42f8",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r1.csv",
+      "variant": "V4 V2+V3",
+      "sequences": 9,
+      "categories": 5,
+      "category_macro_f1": 0.7512766666666667,
+      "category_means": {
+        "baseline": 0.7949333333333334,
+        "cameraJitter": 0.46365,
+        "dynamicBackground": 0.8584,
+        "intermittentObjectMotion": 0.9068,
+        "shadow": 0.7325999999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "28fe7f7ccf5e8b6429bb52c5ad89ec5a0c86e146a0ff709b0c7e5924fa4e42f8",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r1.csv",
+      "variant": "V7 V4+双速率α(背1/64·前1/1024)",
+      "sequences": 9,
+      "categories": 5,
+      "category_macro_f1": 0.71111,
+      "category_means": {
+        "baseline": 0.8097,
+        "cameraJitter": 0.5059,
+        "dynamicBackground": 0.8944,
+        "intermittentObjectMotion": 0.5966,
+        "shadow": 0.74895
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "28fe7f7ccf5e8b6429bb52c5ad89ec5a0c86e146a0ff709b0c7e5924fa4e42f8",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r1.csv",
+      "variant": "V8 V4+阴影抑制(比值0.55~0.98)",
+      "sequences": 9,
+      "categories": 5,
+      "category_macro_f1": 0.5874233333333334,
+      "category_means": {
+        "baseline": 0.6015666666666667,
+        "cameraJitter": 0.51885,
+        "dynamicBackground": 0.613,
+        "intermittentObjectMotion": 0.4157,
+        "shadow": 0.788
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "28fe7f7ccf5e8b6429bb52c5ad89ec5a0c86e146a0ff709b0c7e5924fa4e42f8",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r10.csv",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.4421404761904762,
+      "category_means": {
+        "badWeather": 0.5463,
+        "baseline": 0.5610333333333334,
+        "cameraJitter": 0.45765,
+        "dynamicBackground": 0.592,
+        "intermittentObjectMotion": 0.1358,
+        "nightVideos": 0.2962,
+        "shadow": 0.506
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "a998f71e29f3aa8bb6eac5830a08d1bbed2c1841c1a209adb505d42a4faad7a7",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r10.csv",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7128571428571429,
+      "category_means": {
+        "badWeather": 0.8086,
+        "baseline": 0.8457,
+        "cameraJitter": 0.5052,
+        "dynamicBackground": 0.8561,
+        "intermittentObjectMotion": 0.8803,
+        "nightVideos": 0.2623,
+        "shadow": 0.8318000000000001
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "a998f71e29f3aa8bb6eac5830a08d1bbed2c1841c1a209adb505d42a4faad7a7",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r10.csv",
+      "variant": "V38 V12+自适应局部阈值(12%~30%)",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7221547619047619,
+      "category_means": {
+        "badWeather": 0.7976,
+        "baseline": 0.8295333333333333,
+        "cameraJitter": 0.5309999999999999,
+        "dynamicBackground": 0.8432,
+        "intermittentObjectMotion": 0.8772,
+        "nightVideos": 0.304,
+        "shadow": 0.8725499999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "a998f71e29f3aa8bb6eac5830a08d1bbed2c1841c1a209adb505d42a4faad7a7",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r10.csv",
+      "variant": "V39 V29+全局补偿 R2",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7277571428571428,
+      "category_means": {
+        "badWeather": 0.807,
+        "baseline": 0.8319,
+        "cameraJitter": 0.54585,
+        "dynamicBackground": 0.8611,
+        "intermittentObjectMotion": 0.8769,
+        "nightVideos": 0.3078,
+        "shadow": 0.86375
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "a998f71e29f3aa8bb6eac5830a08d1bbed2c1841c1a209adb505d42a4faad7a7",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r10.csv",
+      "variant": "V40 V38+全局补偿 R2",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7283333333333333,
+      "category_means": {
+        "badWeather": 0.7976,
+        "baseline": 0.8295333333333333,
+        "cameraJitter": 0.5742499999999999,
+        "dynamicBackground": 0.8432,
+        "intermittentObjectMotion": 0.8772,
+        "nightVideos": 0.304,
+        "shadow": 0.8725499999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "a998f71e29f3aa8bb6eac5830a08d1bbed2c1841c1a209adb505d42a4faad7a7",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r10.csv",
+      "variant": "V41 V38+全局补偿 R4",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7231523809523809,
+      "category_means": {
+        "badWeather": 0.7976,
+        "baseline": 0.8296666666666667,
+        "cameraJitter": 0.5476000000000001,
+        "dynamicBackground": 0.83345,
+        "intermittentObjectMotion": 0.8772,
+        "nightVideos": 0.304,
+        "shadow": 0.8725499999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "a998f71e29f3aa8bb6eac5830a08d1bbed2c1841c1a209adb505d42a4faad7a7",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r11b.csv",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.4421404761904762,
+      "category_means": {
+        "badWeather": 0.5463,
+        "baseline": 0.5610333333333334,
+        "cameraJitter": 0.45765,
+        "dynamicBackground": 0.592,
+        "intermittentObjectMotion": 0.1358,
+        "nightVideos": 0.2962,
+        "shadow": 0.506
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "e9552f932bc72b62e33a0357afff1acb931412795f6ce0fa46115cb02d8349d9",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r11b.csv",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7128571428571429,
+      "category_means": {
+        "badWeather": 0.8086,
+        "baseline": 0.8457,
+        "cameraJitter": 0.5052,
+        "dynamicBackground": 0.8561,
+        "intermittentObjectMotion": 0.8803,
+        "nightVideos": 0.2623,
+        "shadow": 0.8318000000000001
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "e9552f932bc72b62e33a0357afff1acb931412795f6ce0fa46115cb02d8349d9",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r11b.csv",
+      "variant": "V40 V38+全局补偿 R2",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7283333333333333,
+      "category_means": {
+        "badWeather": 0.7976,
+        "baseline": 0.8295333333333333,
+        "cameraJitter": 0.5742499999999999,
+        "dynamicBackground": 0.8432,
+        "intermittentObjectMotion": 0.8772,
+        "nightVideos": 0.304,
+        "shadow": 0.8725499999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "e9552f932bc72b62e33a0357afff1acb931412795f6ce0fa46115cb02d8349d9",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r11b.csv",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7367119047619047,
+      "category_means": {
+        "badWeather": 0.7969,
+        "baseline": 0.8295333333333333,
+        "cameraJitter": 0.6335999999999999,
+        "dynamicBackground": 0.8432,
+        "intermittentObjectMotion": 0.8772,
+        "nightVideos": 0.304,
+        "shadow": 0.8725499999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "e9552f932bc72b62e33a0357afff1acb931412795f6ce0fa46115cb02d8349d9",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r12.csv",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.4421404761904762,
+      "category_means": {
+        "badWeather": 0.5463,
+        "baseline": 0.5610333333333334,
+        "cameraJitter": 0.45765,
+        "dynamicBackground": 0.592,
+        "intermittentObjectMotion": 0.1358,
+        "nightVideos": 0.2962,
+        "shadow": 0.506
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r12.csv",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7128571428571429,
+      "category_means": {
+        "badWeather": 0.8086,
+        "baseline": 0.8457,
+        "cameraJitter": 0.5052,
+        "dynamicBackground": 0.8561,
+        "intermittentObjectMotion": 0.8803,
+        "nightVideos": 0.2623,
+        "shadow": 0.8318000000000001
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r12.csv",
+      "variant": "V43 V38+全局补偿 R2/抽样4",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7367119047619047,
+      "category_means": {
+        "badWeather": 0.7969,
+        "baseline": 0.8295333333333333,
+        "cameraJitter": 0.6335999999999999,
+        "dynamicBackground": 0.8432,
+        "intermittentObjectMotion": 0.8772,
+        "nightVideos": 0.304,
+        "shadow": 0.8725499999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r12.csv",
+      "variant": "V45 V43+初始背景取前6帧最小",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7196309523809523,
+      "category_means": {
+        "badWeather": 0.7968,
+        "baseline": 0.8055666666666667,
+        "cameraJitter": 0.53435,
+        "dynamicBackground": 0.825,
+        "intermittentObjectMotion": 0.8762,
+        "nightVideos": 0.3257,
+        "shadow": 0.8738
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r12.csv",
+      "variant": "V46 V43+初始背景取前12帧最小",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7015238095238095,
+      "category_means": {
+        "badWeather": 0.7967,
+        "baseline": 0.7731666666666667,
+        "cameraJitter": 0.4793,
+        "dynamicBackground": 0.77845,
+        "intermittentObjectMotion": 0.8748,
+        "nightVideos": 0.3339,
+        "shadow": 0.87435
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r12.csv",
+      "variant": "V47 V43+初始背景取前20帧最小",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.6876333333333333,
+      "category_means": {
+        "badWeather": 0.7966,
+        "baseline": 0.7580333333333332,
+        "cameraJitter": 0.45665,
+        "dynamicBackground": 0.72275,
+        "intermittentObjectMotion": 0.8739,
+        "nightVideos": 0.3287,
+        "shadow": 0.8768
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r2.csv",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "sequences": 10,
+      "categories": 6,
+      "category_macro_f1": 0.4185638888888889,
+      "category_means": {
+        "baseline": 0.5610333333333334,
+        "cameraJitter": 0.45765,
+        "dynamicBackground": 0.5547,
+        "intermittentObjectMotion": 0.1358,
+        "nightVideos": 0.2962,
+        "shadow": 0.506
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "945fadb35a127c4b5ea2c8d7813b111d0a0fe5c45def73143f44bba80d191c99",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r2.csv",
+      "variant": "V4 V2+V3",
+      "sequences": 10,
+      "categories": 6,
+      "category_macro_f1": 0.6682138888888889,
+      "category_means": {
+        "baseline": 0.7949333333333334,
+        "cameraJitter": 0.46365,
+        "dynamicBackground": 0.8584,
+        "intermittentObjectMotion": 0.9068,
+        "nightVideos": 0.2529,
+        "shadow": 0.7325999999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "945fadb35a127c4b5ea2c8d7813b111d0a0fe5c45def73143f44bba80d191c99",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r2.csv",
+      "variant": "V7 V4+双速率α(背1/64·前1/1024)",
+      "sequences": 10,
+      "categories": 6,
+      "category_macro_f1": 0.6461083333333334,
+      "category_means": {
+        "baseline": 0.8097,
+        "cameraJitter": 0.5059,
+        "dynamicBackground": 0.8944,
+        "intermittentObjectMotion": 0.5966,
+        "nightVideos": 0.3211,
+        "shadow": 0.74895
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "945fadb35a127c4b5ea2c8d7813b111d0a0fe5c45def73143f44bba80d191c99",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r2.csv",
+      "variant": "V10 快背景+冻结前景(1/64·0)",
+      "sequences": 10,
+      "categories": 6,
+      "category_macro_f1": 0.6940083333333332,
+      "category_means": {
+        "baseline": 0.8457,
+        "cameraJitter": 0.4866,
+        "dynamicBackground": 0.8879,
+        "intermittentObjectMotion": 0.8823,
+        "nightVideos": 0.2596,
+        "shadow": 0.8019499999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "945fadb35a127c4b5ea2c8d7813b111d0a0fe5c45def73143f44bba80d191c99",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r2.csv",
+      "variant": "V11 α.02+选择性更新+闭+去小块",
+      "sequences": 10,
+      "categories": 6,
+      "category_macro_f1": 0.698775,
+      "category_means": {
+        "baseline": 0.8458,
+        "cameraJitter": 0.4927,
+        "dynamicBackground": 0.8963,
+        "intermittentObjectMotion": 0.8818,
+        "nightVideos": 0.262,
+        "shadow": 0.8140499999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "945fadb35a127c4b5ea2c8d7813b111d0a0fe5c45def73143f44bba80d191c99",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r2.csv",
+      "variant": "V12 快背景1/32+冻结前景",
+      "sequences": 10,
+      "categories": 6,
+      "category_macro_f1": 0.7053333333333334,
+      "category_means": {
+        "baseline": 0.8457,
+        "cameraJitter": 0.5052,
+        "dynamicBackground": 0.9067,
+        "intermittentObjectMotion": 0.8803,
+        "nightVideos": 0.2623,
+        "shadow": 0.8318000000000001
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "945fadb35a127c4b5ea2c8d7813b111d0a0fe5c45def73143f44bba80d191c99",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r4.csv",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.44214285714285717,
+      "category_means": {
+        "badWeather": 0.546,
+        "baseline": 0.5609999999999999,
+        "cameraJitter": 0.4575,
+        "dynamicBackground": 0.5920000000000001,
+        "intermittentObjectMotion": 0.136,
+        "nightVideos": 0.296,
+        "shadow": 0.5065
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "5f0e97314afc839cf3bba6fcaa372eb4d16d22847b4cd1e2a91c6975d1af35f2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r4.csv",
+      "variant": "V4 V2+V3",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.6815,
+      "category_means": {
+        "badWeather": 0.806,
+        "baseline": 0.795,
+        "cameraJitter": 0.4635,
+        "dynamicBackground": 0.8135,
+        "intermittentObjectMotion": 0.907,
+        "nightVideos": 0.253,
+        "shadow": 0.7324999999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "5f0e97314afc839cf3bba6fcaa372eb4d16d22847b4cd1e2a91c6975d1af35f2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r4.csv",
+      "variant": "V7 V4+双速率α(背1/64·前1/1024)",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.6615952380952381,
+      "category_means": {
+        "badWeather": 0.806,
+        "baseline": 0.8096666666666668,
+        "cameraJitter": 0.5055000000000001,
+        "dynamicBackground": 0.843,
+        "intermittentObjectMotion": 0.597,
+        "nightVideos": 0.321,
+        "shadow": 0.749
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "5f0e97314afc839cf3bba6fcaa372eb4d16d22847b4cd1e2a91c6975d1af35f2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r4.csv",
+      "variant": "V10 快背景+冻结前景(1/64·0)",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7038095238095238,
+      "category_means": {
+        "badWeather": 0.809,
+        "baseline": 0.8456666666666667,
+        "cameraJitter": 0.487,
+        "dynamicBackground": 0.841,
+        "intermittentObjectMotion": 0.882,
+        "nightVideos": 0.26,
+        "shadow": 0.802
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "5f0e97314afc839cf3bba6fcaa372eb4d16d22847b4cd1e2a91c6975d1af35f2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r4.csv",
+      "variant": "V11 α.02+选择性更新+闭+去小块",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7073809523809524,
+      "category_means": {
+        "badWeather": 0.809,
+        "baseline": 0.8456666666666667,
+        "cameraJitter": 0.49250000000000005,
+        "dynamicBackground": 0.8465,
+        "intermittentObjectMotion": 0.882,
+        "nightVideos": 0.262,
+        "shadow": 0.8140000000000001
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "5f0e97314afc839cf3bba6fcaa372eb4d16d22847b4cd1e2a91c6975d1af35f2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r4.csv",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7128095238095238,
+      "category_means": {
+        "badWeather": 0.809,
+        "baseline": 0.8456666666666667,
+        "cameraJitter": 0.5055000000000001,
+        "dynamicBackground": 0.8560000000000001,
+        "intermittentObjectMotion": 0.88,
+        "nightVideos": 0.262,
+        "shadow": 0.8314999999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "5f0e97314afc839cf3bba6fcaa372eb4d16d22847b4cd1e2a91c6975d1af35f2",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r7b.csv",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.4421404761904762,
+      "category_means": {
+        "badWeather": 0.5463,
+        "baseline": 0.5610333333333334,
+        "cameraJitter": 0.45765,
+        "dynamicBackground": 0.592,
+        "intermittentObjectMotion": 0.1358,
+        "nightVideos": 0.2962,
+        "shadow": 0.506
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "fdf0f3bc79d6a3390b2763c3c3e1f6ad59f1ede588908e8bfbaa19148c0d966e",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r7b.csv",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7128571428571429,
+      "category_means": {
+        "badWeather": 0.8086,
+        "baseline": 0.8457,
+        "cameraJitter": 0.5052,
+        "dynamicBackground": 0.8561,
+        "intermittentObjectMotion": 0.8803,
+        "nightVideos": 0.2623,
+        "shadow": 0.8318000000000001
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "fdf0f3bc79d6a3390b2763c3c3e1f6ad59f1ede588908e8bfbaa19148c0d966e",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r7b.csv",
+      "variant": "V28 V26+阴影闸门(0.60~0.95)",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.5542404761904762,
+      "category_means": {
+        "badWeather": 0.3506,
+        "baseline": 0.6858333333333334,
+        "cameraJitter": 0.56475,
+        "dynamicBackground": 0.5454,
+        "intermittentObjectMotion": 0.6159,
+        "nightVideos": 0.309,
+        "shadow": 0.8082
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "fdf0f3bc79d6a3390b2763c3c3e1f6ad59f1ede588908e8bfbaa19148c0d966e",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r7b.csv",
+      "variant": "V29 V12+局部相对(3x3均值)/15% 底25",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7214857142857143,
+      "category_means": {
+        "badWeather": 0.8069,
+        "baseline": 0.8319,
+        "cameraJitter": 0.502,
+        "dynamicBackground": 0.8611500000000001,
+        "intermittentObjectMotion": 0.8769,
+        "nightVideos": 0.3078,
+        "shadow": 0.86375
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "fdf0f3bc79d6a3390b2763c3c3e1f6ad59f1ede588908e8bfbaa19148c0d966e",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r8.csv",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "sequences": 6,
+      "categories": 6,
+      "category_macro_f1": 0.43088333333333334,
+      "category_means": {
+        "badWeather": 0.5463,
+        "baseline": 0.6904,
+        "dynamicBackground": 0.5547,
+        "intermittentObjectMotion": 0.1358,
+        "cameraJitter": 0.3619,
+        "nightVideos": 0.2962
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "51ed1fdf572a4f9b1fc09db46d78907064fee3e8314bc11fd93e618a8ec3718d",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r8.csv",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "sequences": 6,
+      "categories": 6,
+      "category_macro_f1": 0.72395,
+      "category_means": {
+        "badWeather": 0.8086,
+        "baseline": 0.9372,
+        "dynamicBackground": 0.9067,
+        "intermittentObjectMotion": 0.8803,
+        "cameraJitter": 0.5486,
+        "nightVideos": 0.2623
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "51ed1fdf572a4f9b1fc09db46d78907064fee3e8314bc11fd93e618a8ec3718d",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r8.csv",
+      "variant": "V29 V12+局部相对(3x3均值)/15% 底25",
+      "sequences": 6,
+      "categories": 6,
+      "category_macro_f1": 0.7255833333333334,
+      "category_means": {
+        "badWeather": 0.8069,
+        "baseline": 0.9096,
+        "dynamicBackground": 0.9241,
+        "intermittentObjectMotion": 0.8769,
+        "cameraJitter": 0.5282,
+        "nightVideos": 0.3078
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "51ed1fdf572a4f9b1fc09db46d78907064fee3e8314bc11fd93e618a8ec3718d",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r8.csv",
+      "variant": "V30 V12+局部8% 底20",
+      "sequences": 6,
+      "categories": 6,
+      "category_macro_f1": 0.66415,
+      "category_means": {
+        "badWeather": 0.7658,
+        "baseline": 0.9435,
+        "dynamicBackground": 0.7275,
+        "intermittentObjectMotion": 0.8823,
+        "cameraJitter": 0.3794,
+        "nightVideos": 0.2864
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "51ed1fdf572a4f9b1fc09db46d78907064fee3e8314bc11fd93e618a8ec3718d",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r8.csv",
+      "variant": "V31 V12+局部10% 底20",
+      "sequences": 6,
+      "categories": 6,
+      "category_macro_f1": 0.7006166666666666,
+      "category_means": {
+        "badWeather": 0.8016,
+        "baseline": 0.9361,
+        "dynamicBackground": 0.8695,
+        "intermittentObjectMotion": 0.8805,
+        "cameraJitter": 0.4215,
+        "nightVideos": 0.2945
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "51ed1fdf572a4f9b1fc09db46d78907064fee3e8314bc11fd93e618a8ec3718d",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r8.csv",
+      "variant": "V32 V12+局部12% 底22",
+      "sequences": 6,
+      "categories": 6,
+      "category_macro_f1": 0.7174,
+      "category_means": {
+        "badWeather": 0.8117,
+        "baseline": 0.9275,
+        "dynamicBackground": 0.919,
+        "intermittentObjectMotion": 0.8792,
+        "cameraJitter": 0.4626,
+        "nightVideos": 0.3044
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "51ed1fdf572a4f9b1fc09db46d78907064fee3e8314bc11fd93e618a8ec3718d",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r8.csv",
+      "variant": "V33 V12+局部18% 底28",
+      "sequences": 6,
+      "categories": 6,
+      "category_macro_f1": 0.7224333333333334,
+      "category_means": {
+        "badWeather": 0.7935,
+        "baseline": 0.8903,
+        "dynamicBackground": 0.911,
+        "intermittentObjectMotion": 0.8747,
+        "cameraJitter": 0.5652,
+        "nightVideos": 0.2999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "51ed1fdf572a4f9b1fc09db46d78907064fee3e8314bc11fd93e618a8ec3718d",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r8.csv",
+      "variant": "V34 V12+局部25% 底35",
+      "sequences": 6,
+      "categories": 6,
+      "category_macro_f1": 0.7026166666666667,
+      "category_means": {
+        "badWeather": 0.7345,
+        "baseline": 0.8541,
+        "dynamicBackground": 0.8806,
+        "intermittentObjectMotion": 0.8668,
+        "cameraJitter": 0.6207,
+        "nightVideos": 0.259
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "51ed1fdf572a4f9b1fc09db46d78907064fee3e8314bc11fd93e618a8ec3718d",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r8.csv",
+      "variant": "V35 V29+差值3x3平滑(抗抖)",
+      "sequences": 6,
+      "categories": 6,
+      "category_macro_f1": 0.6891833333333333,
+      "category_means": {
+        "badWeather": 0.8099,
+        "baseline": 0.9448,
+        "dynamicBackground": 0.5985,
+        "intermittentObjectMotion": 0.9599,
+        "cameraJitter": 0.4246,
+        "nightVideos": 0.3974
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "51ed1fdf572a4f9b1fc09db46d78907064fee3e8314bc11fd93e618a8ec3718d",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r8.csv",
+      "variant": "V36 V12+局部5x5均值/15% 底25",
+      "sequences": 6,
+      "categories": 6,
+      "category_macro_f1": 0.7261333333333333,
+      "category_means": {
+        "badWeather": 0.8073,
+        "baseline": 0.9105,
+        "dynamicBackground": 0.9245,
+        "intermittentObjectMotion": 0.8768,
+        "cameraJitter": 0.5318,
+        "nightVideos": 0.3059
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "51ed1fdf572a4f9b1fc09db46d78907064fee3e8314bc11fd93e618a8ec3718d",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r9.csv",
+      "variant": "V0 现役 α.02 thr70 open3",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.4421404761904762,
+      "category_means": {
+        "badWeather": 0.5463,
+        "baseline": 0.5610333333333334,
+        "cameraJitter": 0.45765,
+        "dynamicBackground": 0.592,
+        "intermittentObjectMotion": 0.1358,
+        "nightVideos": 0.2962,
+        "shadow": 0.506
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "42029f063aeae0e92f6126b1ec21076219276129d2f855bc366ad090ffaf5fee",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r9.csv",
+      "variant": "V12 快背景1/32+冻结前景 ★现冠军",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7128571428571429,
+      "category_means": {
+        "badWeather": 0.8086,
+        "baseline": 0.8457,
+        "cameraJitter": 0.5052,
+        "dynamicBackground": 0.8561,
+        "intermittentObjectMotion": 0.8803,
+        "nightVideos": 0.2623,
+        "shadow": 0.8318000000000001
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "42029f063aeae0e92f6126b1ec21076219276129d2f855bc366ad090ffaf5fee",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r9.csv",
+      "variant": "V29 V12+局部相对(3x3均值)/15% 底25",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7214857142857143,
+      "category_means": {
+        "badWeather": 0.8069,
+        "baseline": 0.8319,
+        "cameraJitter": 0.502,
+        "dynamicBackground": 0.8611500000000001,
+        "intermittentObjectMotion": 0.8769,
+        "nightVideos": 0.3078,
+        "shadow": 0.86375
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "42029f063aeae0e92f6126b1ec21076219276129d2f855bc366ad090ffaf5fee",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r9.csv",
+      "variant": "V33 V12+局部18% 底28",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7188333333333333,
+      "category_means": {
+        "badWeather": 0.7935,
+        "baseline": 0.8194333333333333,
+        "cameraJitter": 0.5281,
+        "dynamicBackground": 0.8385,
+        "intermittentObjectMotion": 0.8747,
+        "nightVideos": 0.2999,
+        "shadow": 0.8777
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "42029f063aeae0e92f6126b1ec21076219276129d2f855bc366ad090ffaf5fee",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r9.csv",
+      "variant": "V36 V12+局部5x5均值/15% 底25",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7216285714285714,
+      "category_means": {
+        "badWeather": 0.8073,
+        "baseline": 0.8329,
+        "cameraJitter": 0.5037,
+        "dynamicBackground": 0.8602000000000001,
+        "intermittentObjectMotion": 0.8768,
+        "nightVideos": 0.3059,
+        "shadow": 0.8646
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "42029f063aeae0e92f6126b1ec21076219276129d2f855bc366ad090ffaf5fee",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r9.csv",
+      "variant": "V37 V12+自适应局部阈值(10%~25%)",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7119833333333333,
+      "category_means": {
+        "badWeather": 0.791,
+        "baseline": 0.8352333333333334,
+        "cameraJitter": 0.5235,
+        "dynamicBackground": 0.79215,
+        "intermittentObjectMotion": 0.8782,
+        "nightVideos": 0.3025,
+        "shadow": 0.8613
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "42029f063aeae0e92f6126b1ec21076219276129d2f855bc366ad090ffaf5fee",
+      "raw_counts_available": false
+    },
+    {
+      "file": "cdnet_official_results_r9.csv",
+      "variant": "V38 V12+自适应局部阈值(12%~30%)",
+      "sequences": 12,
+      "categories": 7,
+      "category_macro_f1": 0.7221547619047619,
+      "category_means": {
+        "badWeather": 0.7976,
+        "baseline": 0.8295333333333333,
+        "cameraJitter": 0.5309999999999999,
+        "dynamicBackground": 0.8432,
+        "intermittentObjectMotion": 0.8772,
+        "nightVideos": 0.304,
+        "shadow": 0.8725499999999999
+      },
+      "duplicate_rows": [],
+      "invalid_rows": [],
+      "sha256": "42029f063aeae0e92f6126b1ec21076219276129d2f855bc366ad090ffaf5fee",
+      "raw_counts_available": false
+    }
+  ],
+  "completed": true,
+  "protected_files_changed": []
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "mode": 0,
+    "values": [
+      "0",
+      "0"
+    ],
+    "log": "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode0\\build\\vivado\\fpga_motion_detection.runs\\synth_1\\runme.log",
+    "sha256": "3ac212cd37cf0203de91d5b2f9aea852650871044d107c65d41756b6fab0d3df",
+    "scope": "synthesis parameter binding at board_top and md_pipeline"
+  },
+  {
+    "mode": 1,
+    "values": [
+      "1",
+      "1"
+    ],
+    "log": "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode1\\build\\vivado\\fpga_motion_detection.runs\\synth_1\\runme.log",
+    "sha256": "1a801b034e22b50be3645770346e98ec9eae6922741eb629b79ca33f4fb16f0f",
+    "scope": "synthesis parameter binding at board_top and md_pipeline"
+  }
+]

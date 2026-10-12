@@ -1,0 +1,7 @@
+seq,variant,perframe_f1,official_f1
+shadow/peopleInShade,V0 现役 α.02 thr70 open3,0.4047,0.5295
+shadow/peopleInShade,V12 快背景1/32+冻结前景 ★现冠军,0.5585,0.8453
+shadow/peopleInShade,V43 V38+全局补偿 R2/抽样4,0.5978,0.9055
+shadow/peopleInShade,V45 V43+初始背景取前6帧最小,0.5978,0.9061
+shadow/peopleInShade,V46 V43+初始背景取前12帧最小,0.5980,0.9076
+shadow/peopleInShade,V47 V43+初始背景取前20帧最小,0.5989,0.9126

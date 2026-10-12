@@ -28,9 +28,9 @@
 2) **2×2 是求和不是平均**：用 .sum()，值域 0..1020，
    所以阈值 70 是「和域」阈值，等于单像素 17.5 灰阶。
    写成 .mean() 量纲差 4 倍，阈值就不是一回事了。
-3) **形态学是零扩展、居中锚点**，且 RTL 的输出域是 x∈[1,BW-2]、y∈[1,BH-2]
-   （窗口中心比右下角少 1，首行/首列/末行/末列不产出）。
-   膨胀之后必须把这一圈清零，否则末行/末列会多出 RTL 根本没有的像素。
+3) **形态学是零扩展、居中锚点**。单级输出至 BW-2/BH-2；两级串联
+   后输出域是 x∈[1,BW-3]、y∈[1,BH-3]，没有额外边界排空样本。
+   模型必须裁去顶/左一格与底/右两格，否则会补出 RTL 没有的样本。
 4) **bbox 是全局并集框 + 面积门限**（不是 cv2 的最大连通域）。
    单目标时两者等价，多目标时不等价 —— 已知取舍。
 
@@ -191,10 +191,9 @@ def _win(m, op):
 def open3(m):
     """开运算 = 腐蚀 → 膨胀。
 
-    ★ 末行/末列必须清零：RTL 的输出域是 x∈[1,BW-2]、y∈[1,BH-2]，
-      窗口中心比右下角少 1，末行/末列根本不产出（下游当 0 看）。
-      而这里的零扩展会让膨胀在末行/末列"借"到真实像素，
-      多出 RTL 没有的 1 —— 不清零就永远差一圈。
+    腐蚀输出坐标为 1..W-2 / 1..H-2。膨胀只接收这些有效样本，
+    再减一后最多到 W-3 / H-3。因此右/底两格无输出；这不是对称裁边。
+    10×10 全前景的流式输出应为 (1,1)..(7,7)，共 49 格。
     """
     e = _win(m, 'and')
     e[0, :] = False
@@ -203,9 +202,9 @@ def open3(m):
     e[:, -1] = False
     d = _win(e, 'or')
     d[0, :] = False
-    d[-1, :] = False
+    d[-2:, :] = False
     d[:, 0] = False
-    d[:, -1] = False
+    d[:, -2:] = False
     return d
 
 
@@ -250,9 +249,20 @@ def run(mode='framediff', alpha_shift=6, n_frames=None, **kw):
 def load_rtl_csv(path):
     res = {}
     with io.open(path, encoding='utf-8') as f:
-        for r in csv.DictReader(f):
-            res[int(r['frame'])] = tuple(int(r[k]) for k in
+        reader = csv.DictReader(f)
+        fields = ['frame', 'b_valid', 'b_x1', 'b_y1', 'b_x2', 'b_y2', 'b_cnt']
+        if reader.fieldnames != fields:
+            raise ValueError('Unexpected CSV schema: %r' % reader.fieldnames)
+        for r in reader:
+            if None in r or any(v is None for v in r.values()):
+                raise ValueError('Malformed CSV row')
+            frame = int(r['frame'])
+            if frame in res:
+                raise ValueError('Duplicate frame: %d' % frame)
+            res[frame] = tuple(int(r[k]) for k in
                                          ('b_valid', 'b_x1', 'b_y1', 'b_x2', 'b_y2', 'b_cnt'))
+    if not res:
+        raise ValueError('Empty RTL CSV')
     return res
 
 
@@ -295,9 +305,16 @@ def main():
             out("!! 找不到 RTL 结果: %s" % args.compare)
             rc = 1
         else:
-            rtl = load_rtl_csv(args.compare)
+            try:
+                rtl = load_rtl_csv(args.compare)
+            except (ValueError, OSError) as exc:
+                out('!! Invalid RTL CSV: %s' % exc)
+                rtl = {}
+                rc = 2
             mine = {r[0]: r[1:] for r in rows}
             common = sorted(set(rtl) & set(mine))
+            missing = sorted(set(mine) - set(rtl))
+            extra = sorted(set(rtl) - set(mine))
             bad = [t for t in common if rtl[t] != mine[t]]
             out("")
             out("=" * 74)
@@ -305,12 +322,15 @@ def main():
             out("=" * 74)
             out("  共同帧 %d 个，完全一致 %d 个，不一致 %d 个"
                 % (len(common), len(common) - len(bad), len(bad)))
+            if missing or extra:
+                out('!! Frame set mismatch: missing=%s extra=%s' % (missing, extra))
+                rc = 2
             if bad:
                 out("  不一致的帧（RTL / 模型 两边都列出来，便于判断是谁错）：")
                 for t in bad[:20]:
                     out("    帧 %-4d RTL=%s  模型=%s" % (t, rtl[t], mine[t]))
                 rc = 2
-            else:
+            elif rc == 0:
                 out("  ✅ 逐帧逐字段完全一致 —— RTL 的整数运算与模型逐位对齐")
 
     if args.report:

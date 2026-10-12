@@ -1,0 +1,7 @@
+seq,variant,perframe_f1,official_f1
+baseline/pedestrians,V0 现役 α.02 thr70 open3,0.5600,0.6904
+baseline/pedestrians,V12 快背景1/32+冻结前景 ★现冠军,0.7280,0.9372
+baseline/pedestrians,V43 V38+全局补偿 R2/抽样4,0.7167,0.9275
+baseline/pedestrians,V45 V43+初始背景取前6帧最小,0.7167,0.9275
+baseline/pedestrians,V46 V43+初始背景取前12帧最小,0.7167,0.9275
+baseline/pedestrians,V47 V43+初始背景取前20帧最小,0.7167,0.9275

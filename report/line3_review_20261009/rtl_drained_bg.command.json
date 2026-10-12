@@ -1,0 +1,24 @@
+{
+  "name": "rtl_drained_bg",
+  "command": [
+    "D:\\666666\\Anaconda\\python.exe",
+    "-X",
+    "utf8",
+    "sim/line3/run_rtl.py",
+    "--settings",
+    "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+    "--out",
+    "D:\\666666\\Temp\\line3_review_20261009_2009_bg",
+    "--evidence",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg",
+    "--mode",
+    "bg",
+    "--drain-frames",
+    "1"
+  ],
+  "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+  "rc": 0,
+  "seconds": 7.87,
+  "stdout_tail": "e_8.ppm\": \"7827cc757ab5f87c0bcc7c737f525ba5cc5395e1b6d9657babc35861d0d9f215\",\r\n    \"frame_9.ppm\": \"607ba483c3e46f0f04d55161939fe82db2df94847167b3fac11eb34f385e9167\",\r\n    \"mask_0.ppm\": \"9553764f6f1ff25fe919f09a6e848d951bd47c766c7366b23d06eef94eb5486e\",\r\n    \"mask_1.ppm\": \"6498ec30dcb0a41e31664130a7f42e94e37ab9a544f88d414741ddc4600581c6\",\r\n    \"mask_10.ppm\": \"8c19f03ea552c5b7e9a22df44344ae279dc90b6dc6de084320e6d98143e1ff0f\",\r\n    \"mask_11.ppm\": \"9316f25d82b8607a654ab0c951337a6e701c8d202224245fd3429284b5ccc3e6\",\r\n    \"mask_2.ppm\": \"6024213ff92fde1dfa519e3c97c627f5c83296e51fdf90fa09258e087e87b44a\",\r\n    \"mask_3.ppm\": \"e3b3a8286041010c0852501ebd9e861177f21f7577f90374e57338f0860da643\",\r\n    \"mask_4.ppm\": \"1ed79cc497b19462760d63b4e7773615e1320a3ccb2a232dcf99384cf603fb2f\",\r\n    \"mask_5.ppm\": \"036a6df7e8d2eed88f90a07421ba0bc240bf7e8f933f64e2dd44da9318cb3684\",\r\n    \"mask_6.ppm\": \"2c19911844825c6144891cbaf01f8dbc53b99139e7e42b32b67102f721f1ce26\",\r\n    \"mask_7.ppm\": \"0b11490ad79f1ef31a7fe3c560b556e6033b94812f0baca0754cab7109298f29\",\r\n    \"mask_8.ppm\": \"101bdec4b25e76cac59f0eed750044f7ae5b2282b1420f70f697302893f40445\",\r\n    \"mask_9.ppm\": \"17e9e83651764dbe73d432121263a4e53051e50fe7a1f0281e18dce072e68310\"\r\n  },\r\n  \"errors\": [],\r\n  \"strict_full_diff\": [],\r\n  \"csv_rows\": 12,\r\n  \"pass\": true\r\n}\r\n",
+  "stderr_tail": ""
+}

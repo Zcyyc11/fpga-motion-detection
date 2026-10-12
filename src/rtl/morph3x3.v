@@ -58,18 +58,20 @@ module morph3x3 #(
     reg [1:0] ph;
     reg [2:0] rv;
     reg [15:0] py;
+    reg seen_sample;
 
-    wire row_start = in_valid && (in_y != py);
-    wire new_frame = row_start && (in_y < py);
+    wire row_start = in_valid && (!seen_sample || (in_y != py));
+    wire new_frame = row_start && seen_sample && (in_y < py);
 
     // 本行的相位（在换行那一拍就组合地换成新值，保证该行第一个像素写对位置）
-    wire [1:0] ph_cur = row_start ? ((ph == 2'd2) ? 2'd0 : (ph + 2'd1)) : ph;
+    wire [1:0] ph_cur = !seen_sample ? 2'd0 :
+                       row_start ? ((ph == 2'd2) ? 2'd0 : (ph + 2'd1)) : ph;
 
     wire [1:0] phm1 = (ph_cur == 2'd0) ? 2'd2 : (ph_cur - 2'd1);   // y-1 行
     wire [1:0] phm2 = (ph_cur == 2'd2) ? 2'd0 : (ph_cur + 2'd1);   // y-2 行
 
-    wire r1 = rv[phm1] ? mem[phm1][in_x] : 1'b0;    // y-1 行、同列
-    wire r2 = rv[phm2] ? mem[phm2][in_x] : 1'b0;    // y-2 行、同列
+    wire r1 = !new_frame && rv[phm1] ? mem[phm1][in_x] : 1'b0;
+    wire r2 = !new_frame && rv[phm2] ? mem[phm2][in_x] : 1'b0;
 
     // ---- 每行的两级列延迟 ----
     reg d1, d2;                     // 当前行：x-1, x-2
@@ -84,6 +86,7 @@ module morph3x3 #(
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             ph <= 2'd0;  rv <= 3'b000;  py <= 16'd0;
+            seen_sample <= 1'b0;
             d1 <= 1'b0;  d2 <= 1'b0;
             a1 <= 1'b0;  a2 <= 1'b0;
             b1 <= 1'b0;  b2 <= 1'b0;
@@ -94,6 +97,7 @@ module morph3x3 #(
         end else begin
             out_valid <= 1'b0;
             if (in_valid) begin
+                seen_sample <= 1'b1;
                 // 写当前行（用组合后的相位，保证该行首像素也落在正确相位）
                 mem[ph_cur][in_x] <= in_mask;
 
@@ -105,9 +109,11 @@ module morph3x3 #(
                 end
 
                 // 列延迟（按样本推进）
-                d2 <= d1;  d1 <= in_mask;
-                a2 <= a1;  a1 <= r1;
-                b2 <= b1;  b1 <= r2;
+                // 每行首将缺失的左邻样本置零。第二级从 x=1 开始，
+                // 不清零会把上一行末列带入下一行 x=1 的窗口。
+                d2 <= row_start ? 1'b0 : d1;  d1 <= in_mask;
+                a2 <= row_start ? 1'b0 : a1;  a1 <= r1;
+                b2 <= row_start ? 1'b0 : b1;  b1 <= r2;
 
                 if ((in_x >= 16'd2) && (in_y >= 16'd2)) begin
                     out_mask  <= res;

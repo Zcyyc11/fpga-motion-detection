@@ -1,0 +1,10 @@
+help_rtl_golden completed
+help_multi_track completed
+model_framediff completed
+model_bg completed
+clean completed
+clean_observed completed
+algo completed
+algo_observed completed
+{"behaviour_failures": ["exit_left", "reenter_left", "exit_right", "dwell_non30fps", "dwell_consecutive_gap"], "infrastructure_pass": true}
+Failed to find real location of D:\666666\Anaconda\python.exe

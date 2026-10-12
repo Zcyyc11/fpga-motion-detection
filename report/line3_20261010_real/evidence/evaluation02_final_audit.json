@@ -1,0 +1,170 @@
+{
+  "checked_at": "2026-10-10T19:48:35.563554+08:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "original_entrypoint_exit_zero",
+      "pass": true
+    },
+    {
+      "name": "fixed_source_sha",
+      "pass": true
+    },
+    {
+      "name": "exact_r12_variant_ids",
+      "pass": true
+    },
+    {
+      "name": "72_completed_unique_keys",
+      "pass": true
+    },
+    {
+      "name": "completed_frame_counts",
+      "pass": true
+    },
+    {
+      "name": "12_sequence_plans",
+      "pass": true
+    },
+    {
+      "name": "plans_match_data_temporalROI_and_100_warmup",
+      "pass": true
+    },
+    {
+      "name": "12_loader_parity_records",
+      "pass": true
+    },
+    {
+      "name": "stderr_empty",
+      "pass": true
+    },
+    {
+      "name": "source_and_reference_hashes_unchanged_in_run",
+      "pass": true
+    },
+    {
+      "name": "source_hashes_match_current_files",
+      "pass": true
+    },
+    {
+      "name": "reference_hashes_match_current_files",
+      "pass": true
+    },
+    {
+      "name": "runner_hash_unchanged",
+      "pass": true
+    },
+    {
+      "name": "data_verification_hash_unchanged",
+      "pass": true
+    },
+    {
+      "name": "frozen_git_clean_and_same_head",
+      "pass": true
+    },
+    {
+      "name": "independent_comparator_pass",
+      "pass": true
+    },
+    {
+      "name": "111498_per_frame_rows",
+      "pass": true
+    },
+    {
+      "name": "archive_crc_and_exact_members",
+      "pass": true
+    },
+    {
+      "name": "archive_member_hashes_match_disk",
+      "pass": true
+    },
+    {
+      "name": "run_files_stable_during_archive",
+      "pass": true
+    }
+  ],
+  "run": "D:\\line3_cdnet_20261010_1700\\evaluation02",
+  "source_sha": "ae5a7d8f77abe577a165b015a83d087f9cb65457",
+  "comparator_sha256": "d891bbd3c67f5df3be8e45c0b772a236403a4bb581b48af31a73ee8d2a91aaf1",
+  "comparator_exit_code": 0,
+  "run_exit_code": 0,
+  "run_elapsed_seconds": 1369.9911570549011,
+  "comparison": {
+    "status": "PASS",
+    "rows": 72,
+    "sequences": 12,
+    "categories": 7,
+    "variants": 6,
+    "scored_frames_per_variant": 18583,
+    "per_frame_rows": 111498,
+    "csv_matches_reference_all_4dp_fields": true,
+    "differences": [],
+    "source_and_references_unchanged": true,
+    "totals": {
+      "V0 现役 α.02 thr70 open3": {
+        "actual_full_precision": 0.4421437595313669,
+        "reference_from_4dp": 0.4421404761904762
+      },
+      "V12 快背景1/32+冻结前景 ★现冠军": {
+        "actual_full_precision": 0.7128433470483714,
+        "reference_from_4dp": 0.7128571428571429
+      },
+      "V43 V38+全局补偿 R2/抽样4": {
+        "actual_full_precision": 0.7367178962173883,
+        "reference_from_4dp": 0.7367119047619047
+      },
+      "V45 V43+初始背景取前6帧最小": {
+        "actual_full_precision": 0.7196326991706098,
+        "reference_from_4dp": 0.7196309523809523
+      },
+      "V46 V43+初始背景取前12帧最小": {
+        "actual_full_precision": 0.7015313004967019,
+        "reference_from_4dp": 0.7015238095238095
+      },
+      "V47 V43+初始背景取前20帧最小": {
+        "actual_full_precision": 0.6876416302843389,
+        "reference_from_4dp": 0.6876333333333333
+      }
+    },
+    "reference_sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2"
+  },
+  "inventory": {
+    "cdnet_official_results_r12.csv": {
+      "bytes": 5280,
+      "sha256": "24c671cb35e9e2046c1ee105f52de6ad87aa922c54e1835765ab8e425b297dc2"
+    },
+    "comparison/all_72_rows.csv": {
+      "bytes": 9312,
+      "sha256": "e49602efbe68b65ebf93fda9606c3a406874318e5c33826ba5044cdd43f78036"
+    },
+    "comparison/category_summary.csv": {
+      "bytes": 3481,
+      "sha256": "dc946e6daa0a578f491a73c6fc38246403bc50270ad0c4da8e23c935ca784515"
+    },
+    "comparison/summary.json": {
+      "bytes": 1316,
+      "sha256": "609d3dae53f677eb4861e44c988d3cce4e340638a76837806a52b56be23ef745"
+    },
+    "per_frame.csv.gz": {
+      "bytes": 2027164,
+      "sha256": "d79aed733ec0fefbc26632b1a8ed75630f7bf90e0d2f3c11accb1f31827339c6"
+    },
+    "run.json": {
+      "bytes": 27415,
+      "sha256": "70525820b961041fb7d1ea994df1ec62a06b3861c17dda2261ddc1a0826d4306"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.log": {
+      "bytes": 13398,
+      "sha256": "5debdf95b753579c9e35bad0df26afa3c08e4169893e12d454ed497a8ba0d7a9"
+    }
+  },
+  "archive": {
+    "file": "D:\\line3_cdnet_20261010_1700\\final_audit02\\evaluation02_complete_evidence.zip",
+    "bytes": 1932832,
+    "sha256": "611701c3b429083f68dfe073118eaae4dc2ff491b6c476a69aafaa9c6bbed5af"
+  }
+}

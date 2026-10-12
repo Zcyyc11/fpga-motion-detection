@@ -1,0 +1,194 @@
+{
+  "archive": "C:\\Users\\\u5b59\u4f1f\u535a\\Desktop\\dataset2014.zip",
+  "archive_bytes": 3918467615,
+  "archive_sha256": "05c6d0dd64858b094cb0d309e5b63be42de52f2b5c5adff4a65e6a640dfd2a84",
+  "destination": "D:\\cdnet2014_line3_20261010_1700",
+  "sequences": {
+    "badWeather/snowFall": {
+      "input": 6500,
+      "groundtruth": 6500,
+      "temporal_roi": [
+        800,
+        6500
+      ],
+      "shape": "480x720",
+      "roi_shape": "480x720",
+      "roi_shape_matches_frames": true,
+      "files": 13002,
+      "bytes": 115355768,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    },
+    "baseline/highway": {
+      "input": 1700,
+      "groundtruth": 1700,
+      "temporal_roi": [
+        470,
+        1700
+      ],
+      "shape": "240x320",
+      "roi_shape": "240x320",
+      "roi_shape_matches_frames": true,
+      "files": 3402,
+      "bytes": 27742947,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    },
+    "baseline/office": {
+      "input": 2050,
+      "groundtruth": 2050,
+      "temporal_roi": [
+        570,
+        2050
+      ],
+      "shape": "240x360",
+      "roi_shape": "240x360",
+      "roi_shape_matches_frames": true,
+      "files": 4102,
+      "bytes": 29171751,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    },
+    "baseline/pedestrians": {
+      "input": 1099,
+      "groundtruth": 1099,
+      "temporal_roi": [
+        300,
+        1099
+      ],
+      "shape": "240x360",
+      "roi_shape": "240x360",
+      "roi_shape_matches_frames": true,
+      "files": 2200,
+      "bytes": 16319240,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    },
+    "cameraJitter/badminton": {
+      "input": 1150,
+      "groundtruth": 1150,
+      "temporal_roi": [
+        800,
+        1150
+      ],
+      "shape": "480x720",
+      "roi_shape": "480x720",
+      "roi_shape_matches_frames": true,
+      "files": 2302,
+      "bytes": 44416803,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    },
+    "cameraJitter/traffic": {
+      "input": 1570,
+      "groundtruth": 1570,
+      "temporal_roi": [
+        900,
+        1570
+      ],
+      "shape": "240x320",
+      "roi_shape": "240x352",
+      "roi_shape_matches_frames": false,
+      "files": 3142,
+      "bytes": 15458521,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    },
+    "dynamicBackground/canoe": {
+      "input": 1189,
+      "groundtruth": 1189,
+      "temporal_roi": [
+        800,
+        1189
+      ],
+      "shape": "240x320",
+      "roi_shape": "240x320",
+      "roi_shape_matches_frames": true,
+      "files": 2380,
+      "bytes": 20547926,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    },
+    "dynamicBackground/fountain02": {
+      "input": 1499,
+      "groundtruth": 1499,
+      "temporal_roi": [
+        500,
+        1499
+      ],
+      "shape": "288x432",
+      "roi_shape": "288x432",
+      "roi_shape_matches_frames": true,
+      "files": 3000,
+      "bytes": 44211665,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    },
+    "intermittentObjectMotion/streetLight": {
+      "input": 3200,
+      "groundtruth": 3200,
+      "temporal_roi": [
+        175,
+        3200
+      ],
+      "shape": "240x320",
+      "roi_shape": "240x320",
+      "roi_shape_matches_frames": true,
+      "files": 6402,
+      "bytes": 65030478,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    },
+    "nightVideos/busyBoulvard": {
+      "input": 2760,
+      "groundtruth": 2760,
+      "temporal_roi": [
+        730,
+        2760
+      ],
+      "shape": "364x640",
+      "roi_shape": "364x640",
+      "roi_shape_matches_frames": true,
+      "files": 5522,
+      "bytes": 77501860,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    },
+    "shadow/busStation": {
+      "input": 1250,
+      "groundtruth": 1250,
+      "temporal_roi": [
+        300,
+        1250
+      ],
+      "shape": "240x360",
+      "roi_shape": "240x360",
+      "roi_shape_matches_frames": true,
+      "files": 2502,
+      "bytes": 21752590,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    },
+    "shadow/peopleInShade": {
+      "input": 1199,
+      "groundtruth": 1199,
+      "temporal_roi": [
+        250,
+        1199
+      ],
+      "shape": "244x380",
+      "roi_shape": "244x380",
+      "roi_shape_matches_frames": true,
+      "files": 2400,
+      "bytes": 28012450,
+      "all_saved_bytes_verified": true,
+      "all_images_decoded": true
+    }
+  },
+  "status": "PASS",
+  "elapsed_seconds": 208.97154116630554,
+  "manifest": "D:\\cdnet2014_line3_20261010_1700\\file_manifest_resumed_1791622142677164300.csv",
+  "manifest_sha256": "2c7e434dfef587de2100bc1b5533096b0e87ecb48057a7c86272f78979cff7e6",
+  "workers": 8,
+  "resume_verify": true
+}

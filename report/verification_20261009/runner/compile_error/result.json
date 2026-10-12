@@ -1,0 +1,42 @@
+{
+  "passed": false,
+  "simulation_passed": false,
+  "subprocess_returncode": 2,
+  "stages": [
+    "xvlog"
+  ],
+  "done": false,
+  "x_hits": [],
+  "errors": [
+    "ERROR: [VRFC 10-4982] syntax error near 'syntax' [C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/sim/tb/tb_md_pipeline.v:215]"
+  ],
+  "failures": [
+    "子进程非零退出：2",
+    "工具阶段不完整：xvlog",
+    "日志中存在 ERROR/FATAL",
+    "没有本次仿真结束标记",
+    "缺少 x_hits 检查结果",
+    "CSV 校验失败：[Errno 2] No such file or directory: 'C:\\\\Users\\\\孙伟博\\\\Desktop\\\\FPGA大赛资料\\\\repair_20261009_round1\\\\runner_live_final\\\\编译错误_runs\\\\run_20261009T114645Z_ntmk_2qo\\\\sim\\\\wave\\\\bbox_rtl.csv'"
+  ],
+  "csv_frames": [],
+  "csv_error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\孙伟博\\\\Desktop\\\\FPGA大赛资料\\\\repair_20261009_round1\\\\runner_live_final\\\\编译错误_runs\\\\run_20261009T114645Z_ntmk_2qo\\\\sim\\\\wave\\\\bbox_rtl.csv'",
+  "completeness": {
+    "checked": false,
+    "expected_count": null,
+    "first_frame": null,
+    "actual_count": 0,
+    "missing": [],
+    "unexpected": [],
+    "passed": null
+  },
+  "golden_comparison_performed": false,
+  "run_dir": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\编译错误_runs\\run_20261009T114645Z_ntmk_2qo",
+  "seconds": 1.759,
+  "log_encodings": [
+    "gb18030",
+    "utf-8"
+  ],
+  "undecodable_lines": [],
+  "raw_log_sha256": "e3601ad1e06a5e7c931dc606c10c3294267bc626dbbf4708843e4379e132da77",
+  "artifacts": {}
+}

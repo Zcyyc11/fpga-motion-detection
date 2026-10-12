@@ -50,14 +50,14 @@ REPO = os.path.abspath(os.path.join(HERE, "..", ".."))
 # 命令头：python [可选 -x 开关] <脚本.py>。脚本路径允许带引号（含空格的中文路径）
 CMD_HEAD_RE = re.compile(
     r"""python\s+(?:-[A-Za-z]\s+)*(?:"([^"]+\.py)"|'([^']+\.py)'|([^\s"']+\.py))""")
-# 分词：引号里的整体算一个 token（所以 --data-root "D:\我的 数据" 不会被拆坏）
-TOKEN_RE = re.compile(r""""[^"]*"|'[^']*'|[^\s"']+""")
+# 引号可出现在词中（--outdir="我的 数据"）；只有未引用的 shell 分隔符结束命令。
+TOKEN_RE = re.compile(r"""(?:"[^"]*"|'[^']*'|[^\s"'`|&;<>]+)+|[`|&;<>]""")
 # 参数：--xxx 或 --xxx=值
 FLAG_RE = re.compile(r"^--[A-Za-z0-9][A-Za-z0-9_-]*(?:=.*)?$")
 # 反面例子标记（HTML 注释，渲染后不可见，源码里好认好查）
 NEGATIVE_RE = re.compile(r"<!--[^>]*(?:反例|反面例子|doc-check:\s*skip)[^>]*-->")
-# 续行：bash 用 \ 、cmd 用 ^ 结尾
-CONTINUE_RE = re.compile(r"[\\^]\s*$")
+# 续行：bash 用 \ 、cmd 用 ^ 、PowerShell 用反引号。
+CONTINUE_RE = re.compile(r"[\\^`]\s*$")
 
 # 脚本里定义的参数
 ARG_RE = re.compile(r"add_argument\(\s*[\"'](--[A-Za-z0-9_-]+)[\"']")
@@ -134,7 +134,9 @@ def params_from_help(path):
             r = subprocess.run([py, path, "--help"],
                                capture_output=True, text=True, timeout=120,
                                encoding="utf-8", errors="replace",
-                               cwd=os.path.dirname(path))
+                               cwd=os.path.dirname(path),
+                               env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1",
+                                        PYTHONUTF8="1", PYTHONIOENCODING="utf-8"))
         except Exception:
             continue
         out = (r.stdout or "") + (r.stderr or "")
@@ -240,7 +242,7 @@ def resolve_script(rel):
 
 
 def logical_lines(src):
-    """把源码拆成"逻辑行"：处理续行（bash 的 \\ 、cmd 的 ^ ），并记住原始行号。
+    """拼接 bash/cmd/PowerShell 续行，保留 Markdown 行内代码的结束边界。
 
     返回 [(行号, 拼接后的文本)]。反面例子标记按**原始行**判断，所以这里
     同时把参与拼接的所有原始行文本带上。
@@ -248,14 +250,26 @@ def logical_lines(src):
     raw = src.split("\n")
     out = []
     i = 0
+
+    def continued(line):
+        match = CONTINUE_RE.search(line)
+        if not match:
+            return False
+        if match.group().lstrip().startswith("`"):
+            # 成对的 Markdown 行内代码、代码围栏不是 PowerShell 续行。
+            return line.count("`") % 2 == 1 and not line.lstrip().startswith("```")
+        return True
+
     while i < len(raw):
         start = i
         parts = [raw[i]]
-        while CONTINUE_RE.search(raw[i]) and i + 1 < len(raw):
+        joined = []
+        while continued(raw[i]) and i + 1 < len(raw):
+            joined.append(CONTINUE_RE.sub("", raw[i]))
             i += 1
             parts.append(raw[i])
-        out.append((start + 1, " ".join(p.rstrip("\\^").rstrip() for p in parts),
-                    parts))
+        joined.append(raw[i])
+        out.append((start + 1, " ".join(joined), parts))
         i += 1
     return out
 
@@ -264,20 +278,29 @@ def extract_commands(text):
     """从一段文本里抽出 (脚本路径, 参数列表)。**整条命令都解析**，不像旧版
     遇到第一个"非 -- 开头的词"就停止 —— 那正是漏掉 --nonexistent-flag 的原因。
     """
+    # HTML 注释是文档说明，不是待运行的命令。替换为空格保持 token 边界。
+    text = re.sub(r"<!--.*?-->", lambda m: " " * len(m.group()), text)
+    if text.lstrip().startswith("#"):
+        return []
     cmds = []
+    consumed_until = 0
     for m in CMD_HEAD_RE.finditer(text):
+        if m.start() < consumed_until:
+            continue              # 前一条命令的引用值/行尾注释内不是另一条命令
         script = m.group(1) or m.group(2) or m.group(3)
         rest = text[m.end():]
         flags = []
-        for tok in TOKEN_RE.findall(rest):
+        consumed_until = len(text)
+        for token in TOKEN_RE.finditer(rest):
+            tok = token.group()
+            if tok.startswith("#"):
+                break             # 行尾注释后的 python 文本也必须忽略
+            if tok in "`|&;<>":
+                consumed_until = m.end() + token.end()
+                break             # shell 边界或 Markdown 行内代码结束
             if FLAG_RE.match(tok):
                 flags.append(tok.split("=", 1)[0])
-            elif tok.startswith("-") and not tok.startswith("--"):
-                continue          # 单字符开关 -h 之类，不查
-            elif re.match(r"^[A-Za-z0-9_./\\:-]+$", tok):
-                continue          # 参数值 / 位置参数
-            else:
-                break             # 引号里的路径、管道、重定向之类，命令到此结束
+            # 其余 token 是参数值、位置参数或短选项；引号中的 --xxx 也是值。
         cmds.append((script, flags))
     return cmds
 
@@ -297,9 +320,7 @@ def check_file(md, cache, errors, degraded):
         # ★ 反面例子：整条逻辑行（含续行）都不参与检查
         if any(NEGATIVE_RE.search(p) for p in parts):
             continue
-        # 去掉 markdown 的行内代码反引号 —— 否则 `python x.py --algo`
-        # 会被反引号粘成 "--algo`" 而认不出是个参数（漏报）。
-        for raw_script, used in extract_commands(text.replace("`", "")):
+        for raw_script, used in extract_commands(text):
             n += 1
             full = resolve_script(raw_script)
             if full is None:
@@ -344,6 +365,10 @@ def self_test():
         'python src/ps/algo_lab.py --data-root "D:\\我的 数据\\cdnet2014" --set r5',  # ④ 中文+空格路径
         "python src/ps/algo_lab.py --set r5 --seq all \\",
         "    --frames 20 --ref",                                 # ⑤ 续行
+        'python src/ps/multi_track.py --outdir "我的 数据" --quoted-bad',
+        'python src/ps/multi_track.py --outdir "my data" `',
+        '    --powershell-bad',
+        '`python src/ps/multi_track.py --source clean` 文档提及 --prose-only',
     ])
     with io.open(md, "w", encoding="utf-8") as fh:
         fh.write(body)
@@ -358,6 +383,9 @@ def self_test():
         ("④ 中文/空格路径不能误判", "我的" not in joined and "data-root" not in joined),
         ("⑤ 续行里的 --frames/--ref 要能解析到（且不报错）",
          "--frames" not in joined and "--ref" not in joined),
+        ("⑥ 合法引号值后接非法参数必须报错", "--quoted-bad" in joined),
+        ("⑦ PowerShell 续行非法参数必须报错", "--powershell-bad" in joined),
+        ("⑧ 行内代码外的说明不能误报", "--prose-only" not in joined),
     ]
     print("自检（临时 md，不进仓库）：")
     bad = 0
@@ -365,7 +393,7 @@ def self_test():
         print("   %-44s %s" % (name, "PASS" if ok else "FAIL"))
         bad += (not ok)
     if errors:
-        print("\n  捕获到的错误（应只有 ①② 两条）：")
+        print("\n  捕获到的错误（应为 ①②⑥⑦ 四条）：")
         for e in errors:
             print("    " + e.replace("\n", "\n    "))
     return 1 if bad else 0

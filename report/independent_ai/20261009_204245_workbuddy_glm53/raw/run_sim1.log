@@ -1,0 +1,8 @@
+Vivado 环境来源：--vivado-settings
+本次运行目录（全部保留）：C:\Users\孙伟博\AppData\Local\Temp\ind_review_20261009\sim_scratch\run_20261009T124753Z_pnnme44a
+仿真流程：失败
+检测记录：11 条，帧号 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+帧完整性：未检查（可指定 --expect-frames）；未进行模型一致性比较
+失败原因：子进程非零退出：3221226505
+日志：C:\Users\孙伟博\AppData\Local\Temp\ind_review_20261009\sim_scratch\run_20261009T124753Z_pnnme44a\sim\logs\sim_run.log
+结果：C:\Users\孙伟博\AppData\Local\Temp\ind_review_20261009\sim_scratch\run_20261009T124753Z_pnnme44a\result.json

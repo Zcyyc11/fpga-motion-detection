@@ -1,0 +1,22 @@
+{
+  "revision": "64ac44ee2a27897f674919d6fcb8e4fbbd8dfde8",
+  "jobs_passed": 12,
+  "runner": "46/46",
+  "boundaries": "174/174",
+  "default_frame_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "checkout_clean": true,
+  "NoDefaultCurrentDirectoryInExePath": "1"
+}

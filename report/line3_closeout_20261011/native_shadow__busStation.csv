@@ -1,0 +1,7 @@
+seq,variant,perframe_f1,official_f1
+shadow/busStation,V0 现役 α.02 thr70 open3,0.3548,0.4825
+shadow/busStation,V12 快背景1/32+冻结前景 ★现冠军,0.7021,0.8183
+shadow/busStation,V43 V38+全局补偿 R2/抽样4,0.7442,0.8396
+shadow/busStation,V45 V43+初始背景取前6帧最小,0.7463,0.8415
+shadow/busStation,V46 V43+初始背景取前12帧最小,0.7456,0.8411
+shadow/busStation,V47 V43+初始背景取前20帧最小,0.7455,0.8410

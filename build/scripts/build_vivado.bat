@@ -12,7 +12,9 @@ rem          no ^ caret continuation.
 rem  NOTE 2: settings64.bat must be called first, otherwise vivado.bat cannot
 rem          find its own libraries.
 rem
-rem  Usage: build_vivado.bat [MODE_BG]   (0 = frame diff, 1 = background model)
+rem  Usage: build_vivado.bat [MODE_BG] [INPUT_SEL]
+rem    MODE_BG  : 0 = frame diff, 1 = background model
+rem    INPUT_SEL: 0 = 自测激励, 1 = 真实 HDMI 输入（默认 0，向后兼容）
 rem  Log  : build/logs/vivado_build.log
 rem ============================================================================
 setlocal
@@ -38,6 +40,9 @@ if not exist "%LOGDIR%" mkdir "%LOGDIR%"
 set MODE_BG=%~1
 if "%MODE_BG%"=="" set MODE_BG=0
 
+set INPUT_SEL=%~2
+if "%INPUT_SEL%"=="" set INPUT_SEL=0
+
 cd /d "%ROOT%"
 
 rem --- Clean the project directory with the OS, NEVER with Vivado ------------
@@ -52,8 +57,8 @@ if exist "%PROJ%" echo WARNING: could not fully remove "%PROJ%"
 rem Log is written by this script itself: PowerShell redirection would emit
 rem UTF-16, which is awkward to read back with plain text tools.
 set LOG=%LOGDIR%\vivado_build.log
-echo ==== vivado build start %DATE% %TIME% (MODE_BG=%MODE_BG%) ==== > "%LOG%"
-call vivado.bat -mode batch -nojournal -nolog -source "%SCRIPT_DIR%build_vivado.tcl" -tclargs %MODE_BG% >> "%LOG%" 2>&1
+echo ==== vivado build start %DATE% %TIME% (MODE_BG=%MODE_BG% INPUT_SEL=%INPUT_SEL%) ==== > "%LOG%"
+call vivado.bat -mode batch -nojournal -nolog -source "%SCRIPT_DIR%build_vivado.tcl" -tclargs %MODE_BG% %INPUT_SEL% >> "%LOG%" 2>&1
 
 set RC=%errorlevel%
 echo ==== vivado build exit code %RC% ==== >> "%LOG%"

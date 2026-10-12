@@ -1,0 +1,5 @@
+{
+  "sha": "64ac44ee2a27897f674919d6fcb8e4fbbd8dfde8",
+  "parents": "dc9f05fab3b625f962c4b40ffc70e7d4054a21ac f50d5f0c5958f049ad43e31e916199c75696d0f1",
+  "resolution": "Keep candidate isolated runner and Path-based root; retain main portability changes; apply and validate MODE_BG generic."
+}

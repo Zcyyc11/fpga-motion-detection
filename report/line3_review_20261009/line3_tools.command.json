@@ -1,0 +1,16 @@
+{
+  "name": "line3_tools",
+  "command": [
+    "D:\\666666\\Anaconda\\python.exe",
+    "-X",
+    "utf8",
+    "sim/line3/check_tools.py",
+    "--out",
+    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools"
+  ],
+  "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+  "rc": 0,
+  "seconds": 21.41,
+  "stdout_tail": "{\"tests\": 18, \"passed\": 18}\r\n",
+  "stderr_tail": ""
+}

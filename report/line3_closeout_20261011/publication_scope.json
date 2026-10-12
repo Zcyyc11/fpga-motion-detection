@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-11",
+  "instruction": "github提交到分支就行，跟昨天一样",
+  "target": "https://github.com/Zcyyc11/fpga-motion-detection.git",
+  "branch": "codex/line3-delivery-20261011",
+  "permitted": "Push reviewed code and evidence to the branch",
+  "excluded": [
+    "force push",
+    "main merge",
+    "existing PR mutation",
+    "messages to teammates"
+  ]
+}

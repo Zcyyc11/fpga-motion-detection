@@ -1,0 +1,60 @@
+board_integrated_mode1 0 688.921
+ 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 1590.051 ; gain = 0.000
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 1590.051 ; gain = 0.000
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 1590.051 ; gain = 0.000
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1590.051 ; gain = 0.000
+Read placeStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.406 . Memory (MB): peak = 1590.051 ; gain = 0.000
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1590.051 ; gain = 0.000
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.158 . Memory (MB): peak = 1590.051 ; gain = 0.000
+Read Physdb Files: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.612 . Memory (MB): peak = 1590.051 ; gain = 0.000
+Restored from archive | CPU: 1.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.613 . Memory (MB): peak = 1590.051 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1597.812 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+open_run: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1597.867 ; gain = 7.816
+# report_utilization      -file [file join $REPORT_DIR impl_utilization.rpt]
+# report_timing_summary   -file [file join $REPORT_DIR impl_timing_summary.rpt]
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+# report_clock_interaction -file [file join $REPORT_DIR impl_clock_interaction.rpt]
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+# report_drc              -file [file join $REPORT_DIR impl_drc.rpt]
+Command: report_drc -file D:/line3_closeout_20261011_1000_work/board_integrated_mode1/build/reports/impl_drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file D:/line3_closeout_20261011_1000_work/board_integrated_mode1/build/reports/impl_drc.rpt.
+report_drc completed successfully
+# set WNS [get_property SLACK [get_timing_paths -max_paths 1 -setup]]
+# set WHS [get_property SLACK [get_timing_paths -max_paths 1 -hold]]
+# puts "=============================================================="
+==============================================================
+# puts " 综合实现结果"
+ 综合实现结果
+# puts "   时序  WNS(setup) = $WNS ns   WHS(hold) = $WHS ns"
+   时序  WNS(setup) = 0.733 ns   WHS(hold) = 0.098 ns
+# puts "   bit 流：$BIT_DST"
+   bit 流：D:/line3_closeout_20261011_1000_work/board_integrated_mode1/build/bitstream/board_top.bit
+# puts "   报告  \xef\xbc?$REPORT_DIR"
+   报告  \xef\xbc?D:/line3_closeout_20261011_1000_work/board_integrated_mode1/build/reports
+# puts "=============================================================="
+==============================================================
+# if {($WNS < 0) || ($WHS < 0)} {
+#     puts "!! 时序\xe6\x9c?收敛：WNS=$WNS  WHS=$WHS。先生修时序，别拿这\xe4\xb8? bit 上板\xe3\x80?"
+#     exit 1
+# }
+# puts "时序收敛：所有用户约束均满足（All user specified timing constraints are met）\xe3\x80?"
+时序收敛：所有用户约束均满足（All user specified timing constraints are met）\xe3\x80?
+# exit 0
+INFO: [Common 17-206] Exiting Vivado at Sun Oct 11 10:30:58 2026...
+

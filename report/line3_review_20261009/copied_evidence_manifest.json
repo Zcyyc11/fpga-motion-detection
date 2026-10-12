@@ -1,0 +1,762 @@
+[
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\commands.json",
+    "retained": "report/line3_review_20261009/commands.json",
+    "sha256": "4bbb2d2109ad8adc7ec708ee04a516d5f0d745240406623f3663d33edf6f0cc7"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools.command.json",
+    "retained": "report/line3_review_20261009/line3_tools.command.json",
+    "sha256": "64fac8c1f0ca541421f63203def78f0675c92b7b14b081d747b1415425dc056a"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools.stderr.txt",
+    "retained": "report/line3_review_20261009/line3_tools.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools.stdout.txt",
+    "retained": "report/line3_review_20261009/line3_tools.stdout.txt",
+    "sha256": "562162b9e29e42d70753e88a6f00e460a3728330c50f01f958035d520d1fdbf2"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default_complete.command.json",
+    "retained": "report/line3_review_20261009/rtl_default_complete.command.json",
+    "sha256": "dac54684ba8acbadd386963c935fbad66e44a1a8d0043be6ffd50b31ec704cc9"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default_complete.stderr.txt",
+    "retained": "report/line3_review_20261009/rtl_default_complete.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default_complete.stdout.txt",
+    "retained": "report/line3_review_20261009/rtl_default_complete.stdout.txt",
+    "sha256": "73796cdb59c77d818d1765f8df184f20ad97b2dce8f613953a70f9a8ddb7f6e3"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg.command.json",
+    "retained": "report/line3_review_20261009/rtl_drained_bg.command.json",
+    "sha256": "f8889b53e96d60838a75f4f235b185afa6eb907ec8bfe4d5f242bd4319b51203"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg.stderr.txt",
+    "retained": "report/line3_review_20261009/rtl_drained_bg.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg.stdout.txt",
+    "retained": "report/line3_review_20261009/rtl_drained_bg.stdout.txt",
+    "sha256": "07e3ffe64bd50671d5372944a03b9899c07f651b8cfcd88eb891af46e9281415"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff.command.json",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff.command.json",
+    "sha256": "44d24936424b6bae3be9b63a31175f9d931ffb87c91bfa37a03b4b0182d3b3f2"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff.stderr.txt",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff.stdout.txt",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff.stdout.txt",
+    "sha256": "e7045d371e6c276dfa29112d93ca6e3fb0b6f4ec49b42b66067fee9673946816"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner.command.json",
+    "retained": "report/line3_review_20261009/runner.command.json",
+    "sha256": "e86ab69fd795c7956c69cb01620978070a9eae27a09b4461c552a19742a0e5bd"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner.stderr.txt",
+    "retained": "report/line3_review_20261009/runner.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner.stdout.txt",
+    "retained": "report/line3_review_20261009/runner.stdout.txt",
+    "sha256": "ff4065a805ca9c4e42c3e526e53ddb05f07c70d290919a33bfbe9c6c472aa7c8"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software.command.json",
+    "retained": "report/line3_review_20261009/software.command.json",
+    "sha256": "3569570cca1b1cfe212f335ece92879aebc120b54b8d00f3cadb31a0ced43d96"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software.stderr.txt",
+    "retained": "report/line3_review_20261009/software.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software.stdout.txt",
+    "retained": "report/line3_review_20261009/software.stdout.txt",
+    "sha256": "e7ab4ba3a34ac44ae716a5bace4e2c348416f87915cb32d7ee08d639960c7087"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\results.json",
+    "retained": "report/line3_review_20261009/software/results.json",
+    "sha256": "80c23fa760b9a773c23edc73f8f664f47be5bb146086396bf370a65277728fdc"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\integrity.json",
+    "retained": "report/line3_review_20261009/software/integrity.json",
+    "sha256": "625f3d8f32f056a66f36873086bcdc6e2cc3990ea89258e1fda9d72a482c8252"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\\results.json",
+    "retained": "report/line3_review_20261009/runner/results.json",
+    "sha256": "be434bad96ec02b942798abb7f49066a17876019abb0cc5d569d958302685cf6"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\acceptance.json",
+    "retained": "report/line3_review_20261009/line3_tools/acceptance.json",
+    "sha256": "c00c10cb2b29f5f3cd0b1b3285ade55ef090d3613d2cfd1f201242781e034eff"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\archive_expected_0_10.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/archive_expected_0_10.csv",
+    "sha256": "92aed60a766a536fbb755959a69f16bb6f410dc023957ff828a3164f633c2f44"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\bg.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/bg.csv",
+    "sha256": "4b42783649cbcea430b193778680157d881a0912c580904e95c1a56356630dfc"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cdnet_audit.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cdnet_audit.json",
+    "sha256": "9d7aca9c600e33f30ab88501879df34e3bd09357814c41ecd1021391f6844b8e"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\commands.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/commands.json",
+    "sha256": "2beb1465b114ba42c63af3971d23ad741e5681b3b03c1180a691a757d56432a7"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\framediff.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/framediff.csv",
+    "sha256": "aba05f28125a4aa7f8b85c7ead39539b405591db4f1e32a1e3826dd77cd577b2"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\manifest.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/manifest.json",
+    "sha256": "ad5f27368f731ef8f1ed8f7446b5f4a56d5eb18149b139f5270aca5dacd653f0"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\results.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/results.json",
+    "sha256": "827aef187be4f3e115eebe2bb3a190be8596584eee6263e07e6bb170a9758686"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\algo\\alarm_events_algo.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/algo/alarm_events_algo.csv",
+    "sha256": "1a8a050cf67e821ac0e467f0c85c27748f74aea68dff41e7f36846fb1ac0637d"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\algo\\frame_audit.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/algo/frame_audit.csv",
+    "sha256": "0e6244ad6e5b237afd9072f597a9fb1e77b33c63020a1d0b9be511104f1c3b5d"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\algo\\keyframes.png",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/algo/keyframes.png",
+    "sha256": "e9c29399252f0f6974d45a4b9c3eea56a7d6934e39775447e0246d7e0b0070c1"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\algo\\multi_track_results_algo.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/algo/multi_track_results_algo.csv",
+    "sha256": "ede06547030f2bced85169adfbf83c3dada8f7e37d1e5e451aec7a61a73c1add"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\algo\\target_audit.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/algo/target_audit.csv",
+    "sha256": "7e874c24b2a7e21b9ac98e80e17a67077d6c48ec60686f2cd2e6f7687ac5eb53"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\algo\\track_result_algo.mp4",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/algo/track_result_algo.mp4",
+    "sha256": "66a19bc2256a92394c92537a48b142ac21443a05aaa268b38ad50be6b045f873"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\algo\\truth_crossings.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/algo/truth_crossings.csv",
+    "sha256": "5db95bc1ab966cfbe72743e4393d18d5b6d10ae6468f0d3f8d68c618a082f842"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\algo_observed\\alarm_events_algo.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/algo_observed/alarm_events_algo.csv",
+    "sha256": "1a8a050cf67e821ac0e467f0c85c27748f74aea68dff41e7f36846fb1ac0637d"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\algo_observed\\multi_track_results_algo.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/algo_observed/multi_track_results_algo.csv",
+    "sha256": "ede06547030f2bced85169adfbf83c3dada8f7e37d1e5e451aec7a61a73c1add"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\algo_observed\\observations.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/algo_observed/observations.json",
+    "sha256": "ac9e2e2462d39c9cd0fd374f583afca85da4c860c91c70d1690142f2e8148ebe"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\algo_observed\\track_result_algo.mp4",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/algo_observed/track_result_algo.mp4",
+    "sha256": "66a19bc2256a92394c92537a48b142ac21443a05aaa268b38ad50be6b045f873"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\cases.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/cases.json",
+    "sha256": "c1c014e4a16227c5364aa44523d03fc441aea1aeb1a902809bd2618b64cb2a59"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\duplicate_frame.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/duplicate_frame.csv",
+    "sha256": "43b8d3722d261be315d55648bc9d1321ac2f1574d386abfee46e6804b9fe47db"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\duplicate_frame_diff.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/duplicate_frame_diff.json",
+    "sha256": "a3854bece36ecfbf07cf289dc9655738ba86b2581071045f118c0551970951a0"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\empty.npy",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/empty.npy",
+    "sha256": "092afeec7cd1e42c85f279b61442a14545f20f008ca814b3369f613d214e38cf"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\empty_result.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/empty_result.csv",
+    "sha256": "50c82eb56db9390f6bc10e9b2ffcbf9e2650711e079e68a4c1085d5798ed70eb"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\empty_result_diff.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/empty_result_diff.json",
+    "sha256": "263cc1499fbcc1fb681baeba61c8abe3a110664da58ff5a6f0b2eca3916f57b0"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\enter_left_events.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/enter_left_events.json",
+    "sha256": "226ea7f02a401aeb2c1dfce84b547b1b8ac032b44b571323a067ee8bf249f97f"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\enter_right_events.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/enter_right_events.json",
+    "sha256": "2d37b2db77ebb0e1a36dc244515660d5db550a91aab40c58dd26f36ab0f6d866"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\exit_left_events.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/exit_left_events.json",
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\exit_right_events.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/exit_right_events.json",
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\expected.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/expected.csv",
+    "sha256": "94599424615d8f58415816bc9483e3e9c40d26613e8779cf55d408049f819f74"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\missing_frame.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/missing_frame.csv",
+    "sha256": "ea2f8c0e5361aa7e8ce5d5edef58ccfbbe72cb957137144af6ed5f4d128fd002"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\missing_frame_diff.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/missing_frame_diff.json",
+    "sha256": "400a8ba9980cceb1ed937832a4a9e4f1b42f97f1d84106c71cdb52be25143617"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\reenter_left_events.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/reenter_left_events.json",
+    "sha256": "607d9d97d897c4c63c329fbe8dbd4e8bbc38bfab864532dcb01ebbe83e431f29"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\reordered.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/reordered.csv",
+    "sha256": "e0761becddfff3471e6f8bf07a8fc19686ba343f7bbb3f67c916688c3c5333c6"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\reordered_diff.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/reordered_diff.json",
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\separate.npy",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/separate.npy",
+    "sha256": "658d13a48cef3e95724944f88ee97025f5bf44bd35e37b96d20599cf961f3940"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\shifted_frame.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/shifted_frame.csv",
+    "sha256": "82d8dac6e3e97f047fe662505046fe4aa98073ab21f451d5396324d56a7c7632"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\shifted_frame_diff.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/shifted_frame_diff.json",
+    "sha256": "027b689a3e18a8f741c1b64b5352219725631c5b06b7bb353abe08692f6c17bb"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\single.npy",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/single.npy",
+    "sha256": "6568a367e1c6f29ebd669cb36f89bf92e6ab6131170b8e556b20269f7583ac1f"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\wrong_alarm.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/wrong_alarm.csv",
+    "sha256": "b6ec4cd195df444486ab3438278e7c5c6b9b505618b56bc9ef2797474f384730"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\wrong_alarm_diff.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/wrong_alarm_diff.json",
+    "sha256": "e3ca0dac186046ea7ba90245f1c634c25ba359bcfd5e33f454d599e687977d6d"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\wrong_box.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/wrong_box.csv",
+    "sha256": "75ffea2cdbfbab1697e57b63363461095276b50ced9e3a4fd131fff7b2ef3229"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\wrong_box_diff.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/wrong_box_diff.json",
+    "sha256": "b3de539836f5c7b0ad97d19c8aaecac289fdaf106056a654653d4c008d3aa7ea"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\wrong_id.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/wrong_id.csv",
+    "sha256": "f3613452a0e8a07001362b7125ac6404ca532f092e0560740b70be60812b7501"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\cases\\wrong_id_diff.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/cases/wrong_id_diff.json",
+    "sha256": "2ef7369799c76487aa15fd29c2b41905682e8d7c88700d15fca0ff5bf46719aa"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\clean\\alarm_events.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/clean/alarm_events.csv",
+    "sha256": "598b60fdca81207e6fb7e177bb7a7f0b53f8ad19c0b9e862e2e459646b746ea5"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\clean\\frame_audit.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/clean/frame_audit.csv",
+    "sha256": "fa14796a9f900c61a390a1545e692c29b40b8d786186a29cacbd79e01ca77376"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\clean\\keyframes.png",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/clean/keyframes.png",
+    "sha256": "78ab14530fe286ae9b61fc7e161d21fd4a4776cf3c57d9c305de36ae53bb5f83"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\clean\\multi_track_results.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/clean/multi_track_results.csv",
+    "sha256": "1f82e3b97a3eaa66bdcc45fa8388f07bf7b87be40d628905a4aad2db9e633b37"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\clean\\target_audit.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/clean/target_audit.csv",
+    "sha256": "eede2646ae31a36f37a6cfa5583aec7ed822c473cf52a9f6a787fd1427fd2a89"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\clean\\track_result.mp4",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/clean/track_result.mp4",
+    "sha256": "f0622def4dec29ca1841b79c34e23a7a0d59a176a06f46dcf8b613a740f52b9e"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\clean\\truth_crossings.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/clean/truth_crossings.csv",
+    "sha256": "5db95bc1ab966cfbe72743e4393d18d5b6d10ae6468f0d3f8d68c618a082f842"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\clean_observed\\alarm_events.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/clean_observed/alarm_events.csv",
+    "sha256": "598b60fdca81207e6fb7e177bb7a7f0b53f8ad19c0b9e862e2e459646b746ea5"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\clean_observed\\multi_track_results.csv",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/clean_observed/multi_track_results.csv",
+    "sha256": "1f82e3b97a3eaa66bdcc45fa8388f07bf7b87be40d628905a4aad2db9e633b37"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\clean_observed\\observations.json",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/clean_observed/observations.json",
+    "sha256": "fd686b07b282c5e2dbddeb743822def6ea82d90eb4d3e7168b63ca7fb6e0675a"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\clean_observed\\track_result.mp4",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/clean_observed/track_result.mp4",
+    "sha256": "f0622def4dec29ca1841b79c34e23a7a0d59a176a06f46dcf8b613a740f52b9e"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\logs\\algo.txt",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/logs/algo.txt",
+    "sha256": "b11683934988ad248dfb332d5e682a4b6902b5bc7f6806010e22ac6f17c641f6"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\logs\\algo_observed.txt",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/logs/algo_observed.txt",
+    "sha256": "ff08f21e750a8787ad9d3fd13b00894fe1d655f9c4a67422ba82a5fe094a3bad"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\logs\\clean.txt",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/logs/clean.txt",
+    "sha256": "4f114dd1334e82664827a1e33cfbb42af626eab068b1755fd19da3280a6e03ee"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\logs\\clean_observed.txt",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/logs/clean_observed.txt",
+    "sha256": "d21cfc62983c7a4051b02b725921fb2a1964acc909be7aa1b23a14f80a52fc82"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\logs\\help_multi_track.txt",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/logs/help_multi_track.txt",
+    "sha256": "c012ac041d97b40cd9a6deab8b1f4c5509f264dba21b3062b80fc986133f00d8"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\logs\\help_rtl_golden.txt",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/logs/help_rtl_golden.txt",
+    "sha256": "9235650788758382d1dfc350ec13867dd9019c7ff3bd22471afa1c3c025dc2a1"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\logs\\model_bg.txt",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/logs/model_bg.txt",
+    "sha256": "4303153831f988cbe58274d9a7e4cd06103e824241b5705e3885d78976072085"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\line3_tools\\software_rerun\\logs\\model_framediff.txt",
+    "retained": "report/line3_review_20261009/line3_tools/software_rerun/logs/model_framediff.txt",
+    "sha256": "5a5df92ec2407fb05c655755960018fbf61023139203d9b80d81bcb0fff380f4"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\bbox_rtl.csv",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/bbox_rtl.csv",
+    "sha256": "aba05f28125a4aa7f8b85c7ead39539b405591db4f1e32a1e3826dd77cd577b2"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\console.txt",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/console.txt",
+    "sha256": "7e52dd1daa34a05d6ec53ca20a0afe0b5e93b46c4ba2a72d685924b3adda59ed"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\expected.csv",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/expected.csv",
+    "sha256": "aba05f28125a4aa7f8b85c7ead39539b405591db4f1e32a1e3826dd77cd577b2"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\invocation.bat",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/invocation.bat",
+    "sha256": "78d795510f51a10b1f69a1ea0692b65b5e1cdcfda8716584d703b8162c07bfd6"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\result.json",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/result.json",
+    "sha256": "41020fe9d1fcdd9ccd15e01e9f5be0883c5fec450fbfa22444519b8010fea71d"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_0.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_0.ppm",
+    "sha256": "febbe2b9205ef113ea863d10449a269350abe32c23aea18d5cce2ed9d99a5735"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_1.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_1.ppm",
+    "sha256": "6cd6563f966f29ca6ad8a8b1939a8ef12d0576792dceb9fef59071adad955f1b"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_10.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_10.ppm",
+    "sha256": "b5ea12fe97bae536fcd0d99ee376c4c87f7296bc0db8f4f3f06fdc961662790f"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_11.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_11.ppm",
+    "sha256": "606add7d8f7a1b6f908d0fee0d8aa8cf06466aca8c1ebce8a93f0a353b3632cd"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_2.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_2.ppm",
+    "sha256": "61f41a38cf455a86dfa72861160d35bb147926e5717d949373d70fca6556ad9a"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_3.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_3.ppm",
+    "sha256": "f009bcf5d861789cac273a49b928cba95cc3850c78e16ab1186eb5ba58b8de23"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_4.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_4.ppm",
+    "sha256": "df9c24c4574dfd432f57300ba559ec19ee21233b0767ca87b91601fb296a001e"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_5.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_5.ppm",
+    "sha256": "e3e86b5afac4f46f78d1ed60e7e3d9657bfb2833a58a0a28f756c9a0ef863822"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_6.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_6.ppm",
+    "sha256": "a46e667b8e5f0090b267b2274ab5b4004a5cd557e5e3122c701298e70fd5c2b5"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_7.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_7.ppm",
+    "sha256": "38e2ec6e6ef28368420b5325f7e207c8a8dc7091abe5b2f1d0e3368ec76dbd06"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_8.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_8.ppm",
+    "sha256": "e0915c48fa6008f7f8878238ecd6583ad19a6b72781afb316a97e546b04bc462"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\frame_9.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/frame_9.ppm",
+    "sha256": "cbbdd25b720b5654c812b4e1b3d2bfea37725923b98d2d5773f5890e5a0560e9"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_0.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_0.ppm",
+    "sha256": "9553764f6f1ff25fe919f09a6e848d951bd47c766c7366b23d06eef94eb5486e"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_1.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_1.ppm",
+    "sha256": "6498ec30dcb0a41e31664130a7f42e94e37ab9a544f88d414741ddc4600581c6"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_10.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_10.ppm",
+    "sha256": "28b4c4fc098002e717555b73de3e77f30f877f1925bfac7e14a38fe79da190c4"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_11.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_11.ppm",
+    "sha256": "6cf798f24e4873bc392e50cbb13e15687cb66b835a357f929847577664a1f1b5"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_2.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_2.ppm",
+    "sha256": "41eb7c3b9f027820a7938875316320f9032341d563b781ab12b69df07090c79d"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_3.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_3.ppm",
+    "sha256": "6cde7a3d9adbcd07d76e94b08537e7cfc4a9c5d42c37484333420d89a266ac09"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_4.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_4.ppm",
+    "sha256": "21eab99566219819a21a4ccf5f16cdfb1baee1669fb75a043def976cc328c2cd"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_5.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_5.ppm",
+    "sha256": "0e7120f587845f195dec063efa1c70d92b960316a4352891bff6b7fb49feb42e"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_6.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_6.ppm",
+    "sha256": "a143370376bea578863416e89b4cd811183f9e500a33fcdc79bfce9e83c5aa8c"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_7.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_7.ppm",
+    "sha256": "87405d691fcc8969296e7642c7fff6321ae90aa7925f31e07ec8fd67ebfa3aaf"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_8.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_8.ppm",
+    "sha256": "0ee3b03e58b97b8d97a92f4b20c32070b2804255f89e1d863e4621be464baeee"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_framediff\\wave\\mask_9.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_framediff/wave/mask_9.ppm",
+    "sha256": "1e526873f3a43fcda8019a0d752f59a2b4d078d4f8a61fb19caf3840a1d2b9ce"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\bbox_rtl.csv",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/bbox_rtl.csv",
+    "sha256": "4b42783649cbcea430b193778680157d881a0912c580904e95c1a56356630dfc"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\console.txt",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/console.txt",
+    "sha256": "969f7fbcbde69ee0f98add2d4ee328558a350d1bcaa573f7526c21e050183b55"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\expected.csv",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/expected.csv",
+    "sha256": "4b42783649cbcea430b193778680157d881a0912c580904e95c1a56356630dfc"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\invocation.bat",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/invocation.bat",
+    "sha256": "44f038f6e33a956260141fe28a2e2fd9caf75019a5d5003689199212cba9bcad"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\result.json",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/result.json",
+    "sha256": "cd6018ea796b7f994594d102d0141c1376568d98582e7b46195ed032f9a88bdd"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_0.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_0.ppm",
+    "sha256": "febbe2b9205ef113ea863d10449a269350abe32c23aea18d5cce2ed9d99a5735"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_1.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_1.ppm",
+    "sha256": "6cd6563f966f29ca6ad8a8b1939a8ef12d0576792dceb9fef59071adad955f1b"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_10.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_10.ppm",
+    "sha256": "f592bd4577ee8e55ef9b2bfb4ed0347e6d263eaa09d28aa001fe2cd7ce30a67e"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_11.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_11.ppm",
+    "sha256": "0814433bc5df7e6f68d5549857f0cb0a99dd6ae3d9bb8d9c912ee6ef014f7a9b"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_2.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_2.ppm",
+    "sha256": "61f41a38cf455a86dfa72861160d35bb147926e5717d949373d70fca6556ad9a"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_3.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_3.ppm",
+    "sha256": "cfb71aa0361363dd0089762afdd1a352e9c172e3ce2fc68c9463d9268dfd3dda"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_4.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_4.ppm",
+    "sha256": "1a1d956e427d37bf9e1fc4b6a27a9a0ae139cf4635ecb8d319dee55d8b15db17"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_5.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_5.ppm",
+    "sha256": "5ea3570ea2a246f5301e905ca4f13e8404418144aee7e2e660b24abb75ec9288"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_6.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_6.ppm",
+    "sha256": "a562ed4320d21b424767a135bb1591e4dcf1b58d91ac8f51798fba701d88eee6"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_7.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_7.ppm",
+    "sha256": "c0bcd2564f6b0e362cd69972094faae736e938726b1f135967541a8e05624376"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_8.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_8.ppm",
+    "sha256": "7827cc757ab5f87c0bcc7c737f525ba5cc5395e1b6d9657babc35861d0d9f215"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\frame_9.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/frame_9.ppm",
+    "sha256": "607ba483c3e46f0f04d55161939fe82db2df94847167b3fac11eb34f385e9167"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_0.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_0.ppm",
+    "sha256": "9553764f6f1ff25fe919f09a6e848d951bd47c766c7366b23d06eef94eb5486e"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_1.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_1.ppm",
+    "sha256": "6498ec30dcb0a41e31664130a7f42e94e37ab9a544f88d414741ddc4600581c6"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_10.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_10.ppm",
+    "sha256": "8c19f03ea552c5b7e9a22df44344ae279dc90b6dc6de084320e6d98143e1ff0f"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_11.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_11.ppm",
+    "sha256": "9316f25d82b8607a654ab0c951337a6e701c8d202224245fd3429284b5ccc3e6"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_2.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_2.ppm",
+    "sha256": "6024213ff92fde1dfa519e3c97c627f5c83296e51fdf90fa09258e087e87b44a"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_3.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_3.ppm",
+    "sha256": "e3b3a8286041010c0852501ebd9e861177f21f7577f90374e57338f0860da643"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_4.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_4.ppm",
+    "sha256": "1ed79cc497b19462760d63b4e7773615e1320a3ccb2a232dcf99384cf603fb2f"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_5.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_5.ppm",
+    "sha256": "036a6df7e8d2eed88f90a07421ba0bc240bf7e8f933f64e2dd44da9318cb3684"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_6.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_6.ppm",
+    "sha256": "2c19911844825c6144891cbaf01f8dbc53b99139e7e42b32b67102f721f1ce26"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_7.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_7.ppm",
+    "sha256": "0b11490ad79f1ef31a7fe3c560b556e6033b94812f0baca0754cab7109298f29"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_8.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_8.ppm",
+    "sha256": "101bdec4b25e76cac59f0eed750044f7ae5b2282b1420f70f697302893f40445"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_drained_bg\\wave\\mask_9.ppm",
+    "retained": "report/line3_review_20261009/rtl_drained_bg/wave/mask_9.ppm",
+    "sha256": "17e9e83651764dbe73d432121263a4e53051e50fe7a1f0281e18dce072e68310"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default\\run_20261009T120849Z_xtq7m4u_\\result.json",
+    "retained": "report/line3_review_20261009/rtl_default/result.json",
+    "sha256": "3075a6d6743b1b56d134910321f2092b3a31911623f9394b99ac44710673e48e"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default\\run_20261009T120849Z_xtq7m4u_\\manifest.json",
+    "retained": "report/line3_review_20261009/rtl_default/manifest.json",
+    "sha256": "5ee0b778778b9183b38b97898b08edeef2b89b6656b64a3ea12e88b6e73ec087"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default\\run_20261009T120849Z_xtq7m4u_\\sim\\logs\\sim_run.raw",
+    "retained": "report/line3_review_20261009/rtl_default/sim/logs/sim_run.raw",
+    "sha256": "3246e9169fff1239d9a6911234cd863eb6564dc63c00eab17236e9fe8df30177"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default\\run_20261009T120849Z_xtq7m4u_\\sim\\logs\\sim_run.log",
+    "retained": "report/line3_review_20261009/rtl_default/sim/logs/sim_run.log",
+    "sha256": "b18f2ea91b8e489e40f41a0c98727e1b69a5580188e5bc20cbfdc7931a13d396"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default\\run_20261009T120849Z_xtq7m4u_\\sim\\wave\\bbox_rtl.csv",
+    "retained": "report/line3_review_20261009/rtl_default/sim/wave/bbox_rtl.csv",
+    "sha256": "92aed60a766a536fbb755959a69f16bb6f410dc023957ff828a3164f633c2f44"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\review_inputs\\team_division_20261008.txt",
+    "retained": "docs/review_inputs/team_division_20261008.txt",
+    "sha256": "0478f085f531c8a27047c16f9629934c6e1112401a3aa5683080853b380a5b99"
+  },
+  {
+    "source": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\review_inputs\\team_plan_20261008.txt",
+    "retained": "docs/review_inputs/team_plan_20261008.txt",
+    "sha256": "7544d676a16189582807f985205ffac40177b5a0e0c362d8a37567e555e88fc5"
+  },
+  {
+    "source": "workspace_before.zip::repair_20261009_round1/verify_runner_live.py",
+    "retained": "build/scripts/verify_runner_live.py",
+    "sha256": "45c1c27144ac438e5f317bb30c703bea0bca4ec8e9d661b7283a437288bb9bdc"
+  }
+]

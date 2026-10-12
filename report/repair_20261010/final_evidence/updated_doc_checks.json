@@ -1,0 +1,12 @@
+{
+  "full_working_tree_exit_code": 1,
+  "full_working_tree_note": "10 deliberate invalid-command fixtures in ignored historical run_20261010_r2; frozen checkout full scan passed. Original fixtures retained.",
+  "updated_files": [
+    "README.md",
+    "report\\repair_20261010\\README.md"
+  ],
+  "updated_commands_checked": 0,
+  "updated_errors": [],
+  "degraded": [],
+  "parser_limit": "The checker recognizes a fixed set of older command targets; zero recognized commands in the two updated files. The new regression invocation is supported by the actual completed frozen run and its jobs.json, not by this parser."
+}

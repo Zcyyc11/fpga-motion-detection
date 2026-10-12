@@ -1,0 +1,280 @@
+{
+  "evidence_type": "SYNTHETIC comparator tests, not real CDnet scores",
+  "comparator_sha256": "d891bbd3c67f5df3be8e45c0b772a236403a4bb581b48af31a73ee8d2a91aaf1",
+  "cases": [
+    {
+      "case": "valid_synthetic",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\valid_synthetic",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\valid_synthetic\\reference.csv"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "pass": true
+    },
+    {
+      "case": "missing_frame",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\missing_frame",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\missing_frame\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "duplicate_frame",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\duplicate_frame",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\duplicate_frame\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "wrong_frame_id",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\wrong_frame_id",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\wrong_frame_id\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "negative_count",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\negative_count",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\negative_count\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "truth_mismatch",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\truth_mismatch",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\truth_mismatch\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "rate_mismatch",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\rate_mismatch",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\rate_mismatch\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "missing_csv_key",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\missing_csv_key",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\missing_csv_key\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "extra_csv_key",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\extra_csv_key",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\extra_csv_key\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "duplicate_csv_key",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\duplicate_csv_key",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\duplicate_csv_key\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "aggregate_mismatch",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\aggregate_mismatch",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\aggregate_mismatch\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "reference_official_difference",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\reference_official_difference",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\reference_official_difference\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "reference_perframe_difference",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\reference_perframe_difference",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\reference_perframe_difference\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "source_changed",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\source_changed",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\source_changed\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "reference_changed",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\reference_changed",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\reference_changed\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "dirty_source",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\dirty_source",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\dirty_source\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    },
+    {
+      "case": "run_failed",
+      "command": [
+        "D:\\666666\\Anaconda\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\line3_cdnet_20261010_1700\\tools\\compare_observed.py",
+        "--run",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\run_failed",
+        "--reference",
+        "D:\\line3_cdnet_20261010_1700\\comparator_test01\\run_failed\\reference.csv"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "pass": true
+    }
+  ],
+  "passed": 17,
+  "total": 17
+}

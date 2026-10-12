@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "D:\\666666\\Anaconda\\python.exe",
+    "-X",
+    "utf8",
+    "build/scripts/run_sim.py",
+    "--vivado-settings",
+    "D:/AMD2025.2/2025.2/Vivado/settings64.bat",
+    "--scratch-root",
+    "D:\\666666\\Temp\\codex_feedback_20261010_rtl_r2\\default",
+    "--expect-frames",
+    "12"
+  ],
+  "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+  "started": "2026-10-10T10:11:13.474173+08:00",
+  "seconds": 39.104,
+  "returncode": 2
+}

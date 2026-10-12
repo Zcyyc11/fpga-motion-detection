@@ -1,0 +1,148 @@
+[
+  {
+    "name": "help_rtl_golden",
+    "argv": [
+      "C:\\Users\\孙伟博\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/rtl_golden.py",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\clone",
+    "exit_code": 0,
+    "seconds": 0.593,
+    "log": "logs/help_rtl_golden.txt"
+  },
+  {
+    "name": "help_multi_track",
+    "argv": [
+      "C:\\Users\\孙伟博\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/multi_track.py",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\clone",
+    "exit_code": 0,
+    "seconds": 0.933,
+    "log": "logs/help_multi_track.txt"
+  },
+  {
+    "name": "model_framediff",
+    "argv": [
+      "C:\\Users\\孙伟博\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/rtl_golden.py",
+      "--mode",
+      "framediff",
+      "--out-csv",
+      "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\out\\line3_run\\framediff.csv"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\clone",
+    "exit_code": 0,
+    "seconds": 0.589,
+    "log": "logs/model_framediff.txt"
+  },
+  {
+    "name": "model_bg",
+    "argv": [
+      "C:\\Users\\孙伟博\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/rtl_golden.py",
+      "--mode",
+      "bg",
+      "--out-csv",
+      "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\out\\line3_run\\bg.csv"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\clone",
+    "exit_code": 0,
+    "seconds": 0.541,
+    "log": "logs/model_bg.txt"
+  },
+  {
+    "name": "clean",
+    "argv": [
+      "C:\\Users\\孙伟博\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/multi_track.py",
+      "--source",
+      "clean",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--outdir",
+      "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\out\\line3_run\\clean"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\clone",
+    "exit_code": 0,
+    "seconds": 3.506,
+    "log": "logs/clean.txt"
+  },
+  {
+    "name": "clean_observed",
+    "argv": [
+      "C:\\Users\\孙伟博\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "sim/line3/observe.py",
+      "--source",
+      "clean",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--outdir",
+      "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\out\\line3_run\\clean_observed"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\clone",
+    "exit_code": 0,
+    "seconds": 4.688,
+    "log": "logs/clean_observed.txt"
+  },
+  {
+    "name": "algo",
+    "argv": [
+      "C:\\Users\\孙伟博\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/multi_track.py",
+      "--source",
+      "algo",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--init-frames",
+      "12",
+      "--outdir",
+      "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\out\\line3_run\\algo"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\clone",
+    "exit_code": 0,
+    "seconds": 4.904,
+    "log": "logs/algo.txt"
+  },
+  {
+    "name": "algo_observed",
+    "argv": [
+      "C:\\Users\\孙伟博\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "sim/line3/observe.py",
+      "--source",
+      "algo",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--init-frames",
+      "12",
+      "--outdir",
+      "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\out\\line3_run\\algo_observed"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\AppData\\Local\\Temp\\ind_review_20261009\\clone",
+    "exit_code": 0,
+    "seconds": 4.489,
+    "log": "logs/algo_observed.txt"
+  }
+]

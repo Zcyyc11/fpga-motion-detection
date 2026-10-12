@@ -1,0 +1,2 @@
+# Preserve evidence bytes so the recorded hashes survive a clean checkout.
+evidence/** -text whitespace=-blank-at-eol

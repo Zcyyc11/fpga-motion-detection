@@ -1,0 +1,148 @@
+[
+  {
+    "name": "help_rtl_golden",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/rtl_golden.py",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+    "exit_code": 0,
+    "seconds": 0.148,
+    "log": "logs/help_rtl_golden.txt"
+  },
+  {
+    "name": "help_multi_track",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/multi_track.py",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+    "exit_code": 0,
+    "seconds": 0.7,
+    "log": "logs/help_multi_track.txt"
+  },
+  {
+    "name": "model_framediff",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/rtl_golden.py",
+      "--mode",
+      "framediff",
+      "--out-csv",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\line3_20261009\\run_ead15e0_01\\framediff.csv"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+    "exit_code": 0,
+    "seconds": 0.209,
+    "log": "logs/model_framediff.txt"
+  },
+  {
+    "name": "model_bg",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/rtl_golden.py",
+      "--mode",
+      "bg",
+      "--out-csv",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\line3_20261009\\run_ead15e0_01\\bg.csv"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+    "exit_code": 0,
+    "seconds": 0.199,
+    "log": "logs/model_bg.txt"
+  },
+  {
+    "name": "clean",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/multi_track.py",
+      "--source",
+      "clean",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--outdir",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\line3_20261009\\run_ead15e0_01\\clean"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+    "exit_code": 0,
+    "seconds": 3.716,
+    "log": "logs/clean.txt"
+  },
+  {
+    "name": "clean_observed",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "sim/line3/observe.py",
+      "--source",
+      "clean",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--outdir",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\line3_20261009\\run_ead15e0_01\\clean_observed"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+    "exit_code": 0,
+    "seconds": 3.276,
+    "log": "logs/clean_observed.txt"
+  },
+  {
+    "name": "algo",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "src/ps/multi_track.py",
+      "--source",
+      "algo",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--init-frames",
+      "12",
+      "--outdir",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\line3_20261009\\run_ead15e0_01\\algo"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+    "exit_code": 0,
+    "seconds": 3.897,
+    "log": "logs/algo.txt"
+  },
+  {
+    "name": "algo_observed",
+    "argv": [
+      "D:\\666666\\Anaconda\\python.exe",
+      "-X",
+      "utf8",
+      "sim/line3/observe.py",
+      "--source",
+      "algo",
+      "--alarm",
+      "--line-x",
+      "640",
+      "--init-frames",
+      "12",
+      "--outdir",
+      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\line3_20261009\\run_ead15e0_01\\algo_observed"
+    ],
+    "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+    "exit_code": 0,
+    "seconds": 4.024,
+    "log": "logs/algo_observed.txt"
+  }
+]

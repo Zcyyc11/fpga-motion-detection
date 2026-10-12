@@ -1,0 +1,67 @@
+{
+  "passed": 15,
+  "total": 15,
+  "tests": [
+    {
+      "name": "wrong height",
+      "pass_": true
+    },
+    {
+      "name": "float height",
+      "pass_": true
+    },
+    {
+      "name": "y1 overflow",
+      "pass_": true
+    },
+    {
+      "name": "y2 overflow",
+      "pass_": true
+    },
+    {
+      "name": "inverted y",
+      "pass_": true
+    },
+    {
+      "name": "bool coordinate",
+      "pass_": true
+    },
+    {
+      "name": "second target wrong id",
+      "pass_": true
+    },
+    {
+      "name": "invalid false coordinates still checked",
+      "pass_": true
+    },
+    {
+      "name": "duplicate id",
+      "pass_": true
+    },
+    {
+      "name": "wrong source",
+      "pass_": true
+    },
+    {
+      "name": "asymmetric two targets",
+      "pass_": true
+    },
+    {
+      "name": "single pixel corners",
+      "pass_": true
+    },
+    {
+      "name": "valid false",
+      "pass_": true
+    },
+    {
+      "name": "fragmented sequence duplicates gaps",
+      "pass_": true
+    },
+    {
+      "name": "source label cannot prove board test",
+      "pass_": true
+    }
+  ],
+  "board_test": false
+}

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "diff",
+    "--cached",
+    "--check"
+  ],
+  "cwd": "D:\\line3_closeout_20261011_1000_work\\integration",
+  "start_utc": "2026-10-11T02:05:12.920074+00:00",
+  "exit_code": 0,
+  "seconds": 0.074,
+  "encoding": "utf-8"
+}

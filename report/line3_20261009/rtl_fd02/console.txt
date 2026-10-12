@@ -1,0 +1,50 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/bbox.v" into library work
+INFO: [VRFC 10-311] analyzing module bbox
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/diff_stage.v" into library work
+INFO: [VRFC 10-311] analyzing module diff_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/downsample2x2.v" into library work
+INFO: [VRFC 10-311] analyzing module downsample2x2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/frame_buf.v" into library work
+INFO: [VRFC 10-311] analyzing module frame_buf
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/md_pipeline.v" into library work
+INFO: [VRFC 10-311] analyzing module md_pipeline
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/morph3x3.v" into library work
+INFO: [VRFC 10-311] analyzing module morph3x3
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/morph_open.v" into library work
+INFO: [VRFC 10-311] analyzing module morph_open
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/overlay.v" into library work
+INFO: [VRFC 10-311] analyzing module overlay
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/pattern_gen.v" into library work
+INFO: [VRFC 10-311] analyzing module pattern_gen
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/tb_md_pipeline.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_md_pipeline
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/threshold.v" into library work
+INFO: [VRFC 10-311] analyzing module threshold
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/line3_xsim_20261009_fd02/rtl/video_timing.v" into library work
+INFO: [VRFC 10-311] analyzing module video_timing
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical -timescale 1ns/1ps tb_md_pipeline -generic_top MODE_BG=0 -generic_top FRAMES=13 -s line3_sim 
+Multi-threading is on. Using 22 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3645] port 'vhs' remains unconnected for this instance [D:/666666/Temp/line3_xsim_20261009_fd02/rtl/tb_md_pipeline.v:65]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.video_timing_default
+Compiling module work.pattern_gen(H_ACTIVE=320,V_ACTIV...
+Compiling module work.downsample2x2(H_ACTIVE=320)
+Compiling module work.diff_stage
+Compiling module work.frame_buf(DEPTH=14400,AW=14)
+Compiling module work.threshold
+Compiling module work.morph3x3(W=160)
+Compiling module work.morph_open(W=160)
+Compiling module work.bbox
+Compiling module work.overlay
+Compiling module work.md_pipeline(H_ACTIVE=320,V_ACTIV...
+Compiling module work.tb_md_pipeline(FRAMES=13)
+ERROR: [XSIM 43-3409] Failed to compile generated C file xsim.dir/line3_sim/obj/xsim_1.c.
+ERROR: [XSIM 43-3915] Encountered a fatal error. Cannot continue. Exiting... 

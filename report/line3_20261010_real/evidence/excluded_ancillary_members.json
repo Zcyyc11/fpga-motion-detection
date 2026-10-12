@@ -1,0 +1,50 @@
+[
+  {
+    "member": "dataset/badWeather/snowFall/ROI.jpg",
+    "bytes": 31427
+  },
+  {
+    "member": "dataset/baseline/highway/ROI.jpg",
+    "bytes": 19718
+  },
+  {
+    "member": "dataset/baseline/office/ROI.jpg",
+    "bytes": 19817
+  },
+  {
+    "member": "dataset/baseline/pedestrians/ROI.jpg",
+    "bytes": 27543
+  },
+  {
+    "member": "dataset/cameraJitter/badminton/ROI.jpg",
+    "bytes": 58244
+  },
+  {
+    "member": "dataset/cameraJitter/traffic/ROI.jpg",
+    "bytes": 41706
+  },
+  {
+    "member": "dataset/dynamicBackground/canoe/ROI.jpg",
+    "bytes": 30222
+  },
+  {
+    "member": "dataset/dynamicBackground/fountain02/ROI.jpg",
+    "bytes": 51548
+  },
+  {
+    "member": "dataset/intermittentObjectMotion/streetLight/ROI.jpg",
+    "bytes": 43622
+  },
+  {
+    "member": "dataset/nightVideos/busyBoulvard/ROI.jpg",
+    "bytes": 51600
+  },
+  {
+    "member": "dataset/shadow/busStation/ROI.jpg",
+    "bytes": 26473
+  },
+  {
+    "member": "dataset/shadow/peopleInShade/ROI.jpg",
+    "bytes": 18909
+  }
+]
