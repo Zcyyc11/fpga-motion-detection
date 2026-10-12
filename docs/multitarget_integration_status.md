@@ -29,8 +29,15 @@
 ### gray_conv 同名冲突（线二的事，待你拍板）
 - 线二新版 `src/rtl/gray_conv.v`（接口：in_de/in_hsync/in_vsync/in_x/in_y/in_rgb → out_*）与原有 `src/rtl/board/gray_conv.v`（接口：vde/x/y/pix_in → o_*）**同名**。
 - 构建脚本 glob 同时收录 src/rtl/*.v 与 src/rtl/board/*.v → 两个 gray_conv 进 fileset → 同名模块冲突 → `board_top` 的 u_gray 例化连到接口不匹配的版本 → 综合 12 报错。
-- 处理：新版已临时移到 `D:\FPGA\_line2_gray_conv_pending.v.tmp`（**不在仓库内**，只在构建机）。当前用旧版（已上板验证过）。
-- **待线二决定**：①新版接进 board_top（同步改 u_gray 例化，删旧版）；②或保留旧版、新版改名备用。**二选一，不能两个都留**（否则下次构建仍炸）。决定后把文件放回仓库并提交。
+- 处理：新版已归档到仓库内 `src/rtl_pending/gray_conv_line2.v`（**不在构建范围**，glob 只扫 src/rtl 与 src/rtl/board）。当前构建用旧版（已上板验证过）。
+- **待线二决定**：①新版接进 board_top（同步改 u_gray 例化，删旧版）；②或保留旧版、新版改名备用。**二选一，不能两个都留**（否则下次构建仍炸）。决定后把文件移回 src/rtl 并提交。
+
+## 回传协议现状（队友必读：这是 10/13 上板的卡点）
+
+权威文档：**`docs/uart_json_adapter_spec.md`（线一审定的单一权威版，取代旧草案，已入库）**。核心缺口：
+- **顶层没接线**：line2 `board_top.v` 既没例化 `uart_tx`，也没例化 `bbox_snapshot`（grep 已确认为空）→ 现在真板子**既跑不出 UART 报文、也读不到 AXI bbox 快照**。
+- 接线职责：`bbox_snapshot.v` 注释写明"顶层接入（md_pipeline 由线一接）"——多目标版已整体转给线二接手，**这条也归徐一夫**（tap 点见 uart_json 文档"待决"节）。
+- 接收端：`pc_receiver.py` 还是 JSONL/TCP，吃不了板子数据（frame_id 32bit vs 16bit 对不上、JSON 无 alarm/event 字段）——孙伟博那边要加 pyserial 串口分支。
 
 ### overlay_multi 设计要点（徐一夫改这里时先读）
 - 双缓冲：shadow 收 multi_bbox 串行输出（t_valid/t_last），掩码流帧边界 f_edge 时整体发布到 active，画框用 active（描述上一帧，与旧 bbox 行为一致，滞后一帧）。
