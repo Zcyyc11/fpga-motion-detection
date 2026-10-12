@@ -49,12 +49,12 @@
 ## 待办（按顺序，别跳）
 
 1. **看构建结果**：`build/logs/vivado_build.log` 尾部。成功→下一步；失败→把日志尾部发群里一起看。
-2. **烧录**：Vivado 2026.1 Hardware Manager JTAG batch（burn_jtag.tcl），不依赖板子系统。
+2. **烧录**：Vivado 2026.1 Hardware Manager JTAG batch（脚本已入库：`build/scripts/burn_jtag.tcl`，用法见文件头注释：`vivado -mode batch -source build/scripts/burn_jtag.tcl -tclargs <bit文件名>`），不依赖板子系统。
 3. **多目标实测（4 项）**：
    - 多目标检出：画面多个移动物体 → 多个红框（单目标版只有 1 框，这是本版核心差异）
    - 18 分钟回绕：跑满 18 分钟画面不花、背景不重建（P3 修复验证）
    - 换视频：`D:\FPGA\test_videos\` vehicles / market-square / people-walking 三个各放一遍
-   - 自动验证：`verify_board.py`（采集卡直读 + 连通域红框检测）；证据写 `board/logs/`（格式参考 board_test_20261012.md）
+   - 自动验证：`build/scripts/verify_board.py`（采集卡直读 + 连通域红框检测，证据自动写 `board/logs/`；格式参考 board_test_20261012.md）
 4. **线二欠账（勿忘）**：板端发送程序 + 真实报文样本（10-14 交付；回传协议 v0.2 核心已确认，uart_json_adapter_spec.md 相关）。
 
 ## 红线纪律（踩过坑，别重蹈）
