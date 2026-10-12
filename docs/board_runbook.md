@@ -44,7 +44,7 @@
 
 ```
 日期/时间：______  操作人：线一（主城要）
-bit：board_top_hdmiin.bit  （构建提交：b7656a8 真绑定，WNS 0.932）
+bit：board_top_hdmiin.bit  （构建提交：eda3e2f 收编最新 HDMI 版，bit SHA 9F506BEF4132，WNS 0.932）
 器件声明：XC7Z020-1CLG400C  （PYNQ-Z2，Zynq-7020）
 输入信源：______（电脑型号/播放文件/分辨率务必 720p60）
 输出：J11→______（采集卡型号/录屏软件）
@@ -77,6 +77,6 @@ LED1(检出)              有目标时亮：是 / 否
 - 抓帧图/视频（按 §4 命名）
 - 填好的运行记录表
 - `board_top_hdmiin.bit` 路径 + 构建提交哈希（b7656a8）
-- 源码 SHA（当前 main @ 875c372）
+- 源码 SHA（当前 main @ 147aea1）
 
 > 注：甲（AXI 寄存器读出）尚未接（纯 PL bit 无 PS），本 run-book 只覆盖乙。甲通后另出 MMIO 读出流程。
