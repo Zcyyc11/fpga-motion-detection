@@ -236,7 +236,7 @@ module md_pipeline #(
     );
 
     // ======================= ⑧ 多目标包围盒（multi_bbox 替代 bbox）=======================
-    wire        t_valid;
+    wire        mb_valid;
     wire [15:0] t_x1, t_y1, t_x2, t_y2, t_cnt;
     wire [7:0]  t_id;
     wire        t_last;
@@ -244,7 +244,7 @@ module md_pipeline #(
     multi_bbox #(.MIN_CNT(MIN_CNT)) u_mbb (
         .clk(clk), .rst_n(rst_n),
         .in_valid(o_valid), .in_x(o_x), .in_y(o_y), .in_mask(o_bit),
-        .o_valid(t_valid), .o_x1(t_x1), .o_y1(t_y1), .o_x2(t_x2), .o_y2(t_y2),
+        .o_valid(mb_valid), .o_x1(t_x1), .o_y1(t_y1), .o_x2(t_x2), .o_y2(t_y2),
         .o_cnt(t_cnt), .o_id(t_id), .o_last(t_last)
     );
 
@@ -261,7 +261,7 @@ module md_pipeline #(
         .clk(clk), .rst_n(rst_n),
         .de(p_vde), .x(p_x), .y(p_y), .gray(p_pix),
         .f_edge(f_edge),
-        .t_valid(t_valid), .t_x1(t_x1), .t_y1(t_y1), .t_x2(t_x2), .t_y2(t_y2),
+        .t_valid(mb_valid), .t_x1(t_x1), .t_y1(t_y1), .t_x2(t_x2), .t_y2(t_y2),
         .t_cnt(t_cnt), .t_last(t_last),
         .r(vr), .g(vg), .b(vb),
         .o_x1(b_x1), .o_y1(b_y1), .o_x2(b_x2), .o_y2(b_y2), .o_cnt(b_cnt),
