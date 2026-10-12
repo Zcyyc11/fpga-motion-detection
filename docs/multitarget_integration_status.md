@@ -65,6 +65,7 @@
 
 ## 推送状态
 
-- 代码：✅ 已推 `line1/multi-bbox-integration`（10f9be5）
-- bit：⏳ 构建中（阶段以日志为准；中途发现 t_valid 重名 bug 已修并重跑），出来后**必须**推（build/bitstream 是 git 跟踪的）
+- 代码：✅ 已推 `line1/multi-bbox-integration`（HEAD=6f70b0a，7 个提交全在）
+- bit：⏳ 构建中（19:28 修复后重启，物理优化阶段；阶段以 build/logs/vivado_build.log 为准），出来后**必须**推（build/bitstream 是 git 跟踪的）
 - 实测证据：⏳ 待实测后推
+- **交棒声明（2026-10-12 20:30）**：线一正式收工。UART 链移植（track/alarm/uart_tx/bbox_snapshot/regs + XDC + board_top）归徐一夫（tap 点见 uart_json_adapter_spec.md"待决"节，10/14 报文样本前置）；gray_conv 拍板选②（旧版构建、新版 `src/rtl_pending/gray_conv_line2.v` 备用）；4 项实测归徐一夫。bit 构建由线一侧盯到出结果自动推；**若构建失败/卡死，徐一夫按本文档自行重跑（`build_vivado.bat 0 1`）**，不再等线一。
