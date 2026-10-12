@@ -1,0 +1,78 @@
+{
+  "missing_last_reference": {
+    "exit_code": 1,
+    "errors": [
+      "ValueError: duplicate target id"
+    ],
+    "capture_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\capture",
+    "summary_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\capture\\summary.json",
+    "summary_sha256": "71b7426a729afacc85d1300b61434f7ef87dc11cbf40043e0272bc3b393f52da",
+    "source": "simulated",
+    "capture_metadata": {
+      "transport": "RTL serial-pin sampling",
+      "supplied": {
+        "rtl_commit": "15e8e21ed253ff3e5fa9a44a972ece189495bd02",
+        "receiver_commit": "e30c456e8232be286ed195481608e0c5bb429ab3",
+        "scenario": "normal",
+        "baud_div": 50,
+        "pixel_clock_hz": 100000000,
+        "input_video": "SIMULATED internal pattern_gen 320x180",
+        "frame_mapping": "tx_inputs.csv logs frame_idx and independent UART tick count; not physical video alignment"
+      }
+    },
+    "source_label": "SIMULATED INPUT - NOT A BOARD TEST",
+    "source_verified": false,
+    "board_test": false,
+    "scope": "exact table comparison; source/metadata are unverified declarations; hardware origin and video alignment require independent evidence"
+  },
+  "wrong_coordinate": {
+    "exit_code": 1,
+    "errors": [
+      "ValueError: duplicate target id"
+    ],
+    "capture_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\capture",
+    "summary_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\capture\\summary.json",
+    "summary_sha256": "71b7426a729afacc85d1300b61434f7ef87dc11cbf40043e0272bc3b393f52da",
+    "source": "simulated",
+    "capture_metadata": {
+      "transport": "RTL serial-pin sampling",
+      "supplied": {
+        "rtl_commit": "15e8e21ed253ff3e5fa9a44a972ece189495bd02",
+        "receiver_commit": "e30c456e8232be286ed195481608e0c5bb429ab3",
+        "scenario": "normal",
+        "baud_div": 50,
+        "pixel_clock_hz": 100000000,
+        "input_video": "SIMULATED internal pattern_gen 320x180",
+        "frame_mapping": "tx_inputs.csv logs frame_idx and independent UART tick count; not physical video alignment"
+      }
+    },
+    "source_label": "SIMULATED INPUT - NOT A BOARD TEST",
+    "source_verified": false,
+    "board_test": false,
+    "scope": "exact table comparison; source/metadata are unverified declarations; hardware origin and video alignment require independent evidence"
+  },
+  "corrupt_raw": {
+    "receiver_exit": 1,
+    "errors": {
+      "checksum": 1,
+      "noise": 1,
+      "duplicate_target_id": 2,
+      "target_count_mismatch": 2
+    },
+    "comparison": {
+      "exit_code": 1,
+      "errors": [
+        "ValueError: duplicate target id"
+      ],
+      "capture_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\corrupt_capture",
+      "summary_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\corrupt_capture\\summary.json",
+      "summary_sha256": "905c0914b7d0be9b175e98bb8f3b09c121074d537a02870060860181617b064c",
+      "source": "simulated",
+      "capture_metadata": {},
+      "source_label": "SIMULATED INPUT - NOT A BOARD TEST",
+      "source_verified": false,
+      "board_test": false,
+      "scope": "exact table comparison; source/metadata are unverified declarations; hardware origin and video alignment require independent evidence"
+    }
+  }
+}

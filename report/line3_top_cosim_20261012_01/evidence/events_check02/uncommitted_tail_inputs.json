@@ -1,0 +1,29 @@
+{
+  "board_test": false,
+  "frames": [
+    {
+      "frame_id": 30,
+      "targets": [
+        {
+          "id": 2,
+          "x1": 100,
+          "y1": 40,
+          "x2": 107,
+          "y2": 54,
+          "flags": 0
+        },
+        {
+          "id": 3,
+          "x1": 120,
+          "y1": 40,
+          "x2": 127,
+          "y2": 54,
+          "flags": 0
+        }
+      ],
+      "events": [],
+      "input_frame_ref": "SIMULATED transmitter interval 30; tx_inputs.csv; not physical video alignment"
+    }
+  ],
+  "explanation": "Signals after the last closing frame_tick are not yet committed to UART; logged, not silently discarded."
+}

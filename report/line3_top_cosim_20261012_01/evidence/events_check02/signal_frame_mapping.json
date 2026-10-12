@@ -1,0 +1,426 @@
+{
+  "board_test": false,
+  "scope": "RTL signal association only; no physical video mapping",
+  "rows": [
+    {
+      "kind": "H",
+      "uart_interval": 0,
+      "video_frame_signal": 0,
+      "time_ns": 195
+    },
+    {
+      "kind": "H",
+      "uart_interval": 1,
+      "video_frame_signal": 1,
+      "time_ns": 669795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 2,
+      "video_frame_signal": 2,
+      "time_ns": 1353795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 3,
+      "video_frame_signal": 3,
+      "time_ns": 2037795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 4,
+      "video_frame_signal": 3,
+      "time_ns": 2037815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 4,
+      "video_frame_signal": 3,
+      "time_ns": 2037825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 4,
+      "video_frame_signal": 4,
+      "time_ns": 2721795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 5,
+      "video_frame_signal": 4,
+      "time_ns": 2721815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 5,
+      "video_frame_signal": 4,
+      "time_ns": 2721825
+    },
+    {
+      "kind": "E",
+      "uart_interval": 5,
+      "video_frame_signal": 4,
+      "time_ns": 2721825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 5,
+      "video_frame_signal": 5,
+      "time_ns": 3405795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 6,
+      "video_frame_signal": 5,
+      "time_ns": 3405815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 6,
+      "video_frame_signal": 5,
+      "time_ns": 3405825
+    },
+    {
+      "kind": "E",
+      "uart_interval": 6,
+      "video_frame_signal": 5,
+      "time_ns": 3405835
+    },
+    {
+      "kind": "H",
+      "uart_interval": 6,
+      "video_frame_signal": 6,
+      "time_ns": 4089795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 7,
+      "video_frame_signal": 6,
+      "time_ns": 4089815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 7,
+      "video_frame_signal": 6,
+      "time_ns": 4089825
+    },
+    {
+      "kind": "E",
+      "uart_interval": 7,
+      "video_frame_signal": 6,
+      "time_ns": 4089835
+    },
+    {
+      "kind": "H",
+      "uart_interval": 7,
+      "video_frame_signal": 7,
+      "time_ns": 4773795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 8,
+      "video_frame_signal": 7,
+      "time_ns": 4773815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 8,
+      "video_frame_signal": 7,
+      "time_ns": 4773825
+    },
+    {
+      "kind": "E",
+      "uart_interval": 8,
+      "video_frame_signal": 7,
+      "time_ns": 4773825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 8,
+      "video_frame_signal": 8,
+      "time_ns": 5457795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 9,
+      "video_frame_signal": 8,
+      "time_ns": 5457815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 9,
+      "video_frame_signal": 8,
+      "time_ns": 5457825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 9,
+      "video_frame_signal": 9,
+      "time_ns": 6141795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 10,
+      "video_frame_signal": 9,
+      "time_ns": 6141815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 10,
+      "video_frame_signal": 9,
+      "time_ns": 6141825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 10,
+      "video_frame_signal": 10,
+      "time_ns": 6825795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 11,
+      "video_frame_signal": 10,
+      "time_ns": 6825815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 11,
+      "video_frame_signal": 10,
+      "time_ns": 6825825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 11,
+      "video_frame_signal": 11,
+      "time_ns": 7509795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 12,
+      "video_frame_signal": 11,
+      "time_ns": 7509815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 12,
+      "video_frame_signal": 11,
+      "time_ns": 7509825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 12,
+      "video_frame_signal": 12,
+      "time_ns": 8193795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 13,
+      "video_frame_signal": 12,
+      "time_ns": 8193815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 13,
+      "video_frame_signal": 12,
+      "time_ns": 8193825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 13,
+      "video_frame_signal": 13,
+      "time_ns": 8877795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 14,
+      "video_frame_signal": 13,
+      "time_ns": 8877815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 14,
+      "video_frame_signal": 13,
+      "time_ns": 8877825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 14,
+      "video_frame_signal": 14,
+      "time_ns": 9561795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 15,
+      "video_frame_signal": 14,
+      "time_ns": 9561815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 15,
+      "video_frame_signal": 14,
+      "time_ns": 9561825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 15,
+      "video_frame_signal": 15,
+      "time_ns": 10245795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 16,
+      "video_frame_signal": 16,
+      "time_ns": 10929795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 17,
+      "video_frame_signal": 17,
+      "time_ns": 11613795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 18,
+      "video_frame_signal": 18,
+      "time_ns": 12297795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 19,
+      "video_frame_signal": 19,
+      "time_ns": 12981795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 20,
+      "video_frame_signal": 20,
+      "time_ns": 13665795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 21,
+      "video_frame_signal": 21,
+      "time_ns": 14349795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 22,
+      "video_frame_signal": 22,
+      "time_ns": 15033795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 23,
+      "video_frame_signal": 23,
+      "time_ns": 15717795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 24,
+      "video_frame_signal": 24,
+      "time_ns": 16401795
+    },
+    {
+      "kind": "H",
+      "uart_interval": 25,
+      "video_frame_signal": 25,
+      "time_ns": 17085795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 26,
+      "video_frame_signal": 25,
+      "time_ns": 17085815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 26,
+      "video_frame_signal": 25,
+      "time_ns": 17085825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 26,
+      "video_frame_signal": 26,
+      "time_ns": 17769795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 27,
+      "video_frame_signal": 26,
+      "time_ns": 17769815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 27,
+      "video_frame_signal": 26,
+      "time_ns": 17769825
+    },
+    {
+      "kind": "E",
+      "uart_interval": 27,
+      "video_frame_signal": 26,
+      "time_ns": 17769825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 27,
+      "video_frame_signal": 27,
+      "time_ns": 18453795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 28,
+      "video_frame_signal": 27,
+      "time_ns": 18453815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 28,
+      "video_frame_signal": 27,
+      "time_ns": 18453825
+    },
+    {
+      "kind": "H",
+      "uart_interval": 28,
+      "video_frame_signal": 28,
+      "time_ns": 19137795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 29,
+      "video_frame_signal": 28,
+      "time_ns": 19137815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 29,
+      "video_frame_signal": 28,
+      "time_ns": 19137825
+    },
+    {
+      "kind": "E",
+      "uart_interval": 29,
+      "video_frame_signal": 28,
+      "time_ns": 19137835
+    },
+    {
+      "kind": "H",
+      "uart_interval": 29,
+      "video_frame_signal": 29,
+      "time_ns": 19821795
+    },
+    {
+      "kind": "T",
+      "uart_interval": 30,
+      "video_frame_signal": 29,
+      "time_ns": 19821815
+    },
+    {
+      "kind": "T",
+      "uart_interval": 30,
+      "video_frame_signal": 29,
+      "time_ns": 19821825
+    }
+  ]
+}

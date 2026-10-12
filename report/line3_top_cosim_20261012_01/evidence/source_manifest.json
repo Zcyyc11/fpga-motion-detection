@@ -1,0 +1,28 @@
+{
+  "rtl_commit": "15e8e21ed253ff3e5fa9a44a972ece189495bd02",
+  "receiver_commit": "e30c456e8232be286ed195481608e0c5bb429ab3",
+  "board_test": false,
+  "files": {
+    "rtl_source/src/rtl/md_pipeline.v": "930094c56fc5423abc6a70929ea81ac20d5c7356d5c9e90966871dbb9e8a8841",
+    "rtl_source/src/rtl/video_timing.v": "79b9a8fbb3ed2a6490cbd49d2f94a1d603d314134babe1f5436dd337c421bfc8",
+    "rtl_source/src/rtl/pattern_gen.v": "7df2567adbe914c196ebe750e50a1d689def71e17643ce6ad721abe0bdc13ea8",
+    "rtl_source/src/rtl/downsample2x2.v": "836e336ea283ace829eb6dc5f5c59b506440c7e08f228ef4648ee40435ccee8f",
+    "rtl_source/src/rtl/frame_buf.v": "f65ce9c0b7f40a313f2c0b00ccfebcc6bdda690e01ef17bc58c1372549fccddc",
+    "rtl_source/src/rtl/diff_stage.v": "226d4516469ca7d8ea033a3de78c25f432d62d21511556f10ec2cd45f9d03fd3",
+    "rtl_source/src/rtl/threshold.v": "51767d554d0cdf02f7a51412042f3c67578b999418ee837712d594dd2109535d",
+    "rtl_source/src/rtl/morph3x3.v": "4120cff579b8f5b71e89f09644299fdb82dc578c77769a4a5ce3a2c33bb78b78",
+    "rtl_source/src/rtl/morph_open.v": "89b218b41f2f87cad04b026cebc01f4cb7431a99f0b44dc18c4ab14270f6cba2",
+    "rtl_source/src/rtl/bbox.v": "f1c874a592c1e835cc1dc5ca6bee58646cea4e3f400a54df4e88d626b33e3fe2",
+    "rtl_source/src/rtl/overlay.v": "4f7f5757066d59eccb93331ad4c946cc3874c8600b5a55304597ade756898f66",
+    "rtl_source/src/rtl/multi_bbox.v": "6bcb766d113cc71d9f44ef67f9c4853de7044927c051c12c613977bbc748b0f7",
+    "rtl_source/src/rtl/track.v": "711073297892d82c54f89fcae06bb3dbc57d2aea50f96bc9b1cb66524e65f6b4",
+    "rtl_source/src/rtl/alarm.v": "68caa32ea0e859430a8ede82ca9fa08f5fd96b345cfddd7cad281ae4ac8d508f",
+    "rtl_source/src/rtl/uart_tx.v": "86eca16180f6aaad1e89bfcb6e487359950ec9e7aa8e15fa6417a273110edc1f",
+    "rtl_source/src/rtl/regs.v": "f672e492ea943a7403b3806b669274f372ad03efb28c3339a19bbb3de97950af",
+    "rtl_source/src/rtl/bbox_snapshot.v": "2c25f1e99a8c4eaa011984ab68b9a59c570f5f157621d2f4c5475ea1323ce2f1",
+    "rtl_source/sim/tb/tb_md_pipeline_full.v": "94d8e604cfaa82c5e4a9753c4c3722e3a262a51b23e1d291a58a6d1a14548f20",
+    "pc_source/sim/line3/uart_protocol.py": "dc24a5ef2ebbd4026aa27f9bc7a300225bf2f05a6e7aad92b339495484599496",
+    "pc_source/sim/line3/uart_receiver.py": "d374c7f045f99cc2aea30de1fa65574e96cc6253a35e5a859bafd0d23aa5d189",
+    "pc_source/sim/line3/verify_uart_capture.py": "a7fcf5c1acf458fcec8967a787c4d15e4f6d9e5c11b25573e7b4cc6a7dcdc824"
+  }
+}

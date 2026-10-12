@@ -1,0 +1,58 @@
+{
+  "scope": "byte transport diagnostic only; semantic acceptance is separate",
+  "board_test": false,
+  "expected_packets": 62,
+  "observed_packets": 62,
+  "exact_ordered_values_match": true,
+  "decode_errors": [],
+  "source_duplicate_ids": [
+    {
+      "frame_id": 4,
+      "ids": {
+        "0": 2
+      },
+      "targets": [
+        {
+          "id": 0,
+          "x1": 20,
+          "y1": 40,
+          "x2": 27,
+          "y2": 54,
+          "flags": 0
+        },
+        {
+          "id": 0,
+          "x1": 40,
+          "y1": 40,
+          "x2": 47,
+          "y2": 54,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "frame_id": 26,
+      "ids": {
+        "2": 2
+      },
+      "targets": [
+        {
+          "id": 2,
+          "x1": 68,
+          "y1": 40,
+          "x2": 75,
+          "y2": 54,
+          "flags": 0
+        },
+        {
+          "id": 2,
+          "x1": 88,
+          "y1": 40,
+          "x2": 95,
+          "y2": 54,
+          "flags": 0
+        }
+      ]
+    }
+  ]
+}

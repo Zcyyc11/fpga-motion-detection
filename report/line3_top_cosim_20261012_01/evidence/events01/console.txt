@@ -1,0 +1,122 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/alarm.v" into library work
+INFO: [VRFC 10-311] analyzing module alarm
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox.v" into library work
+INFO: [VRFC 10-311] analyzing module bbox
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v" into library work
+INFO: [VRFC 10-311] analyzing module bbox_snapshot
+WARNING: [VRFC 10-3380] identifier 'ack' is used before its declaration [D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v:101]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/diff_stage.v" into library work
+INFO: [VRFC 10-311] analyzing module diff_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/downsample2x2.v" into library work
+INFO: [VRFC 10-311] analyzing module downsample2x2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/frame_buf.v" into library work
+INFO: [VRFC 10-311] analyzing module frame_buf
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/md_pipeline.v" into library work
+INFO: [VRFC 10-311] analyzing module md_pipeline
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/morph3x3.v" into library work
+INFO: [VRFC 10-311] analyzing module morph3x3
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/morph_open.v" into library work
+INFO: [VRFC 10-311] analyzing module morph_open
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/multi_bbox.v" into library work
+INFO: [VRFC 10-311] analyzing module multi_bbox
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/overlay.v" into library work
+INFO: [VRFC 10-311] analyzing module overlay
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/pattern_gen.v" into library work
+INFO: [VRFC 10-311] analyzing module pattern_gen
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/regs.v" into library work
+INFO: [VRFC 10-311] analyzing module regs
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/threshold.v" into library work
+INFO: [VRFC 10-311] analyzing module threshold
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/track.v" into library work
+INFO: [VRFC 10-311] analyzing module track
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/uart_tx.v" into library work
+INFO: [VRFC 10-311] analyzing module uart_tx
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/video_timing.v" into library work
+INFO: [VRFC 10-311] analyzing module video_timing
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/tb_line3_uart_cosim.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_line3_uart_cosim
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/uart_probe.v" into library work
+INFO: [VRFC 10-311] analyzing module line3_uart_probe
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical -timescale 1ns/1ps tb_line3_uart_cosim -generic_top EVENTS=1 -s cosim 
+Multi-threading is on. Using 22 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3645] port 'rx_de' remains unconnected for this instance [D:/line3_top_cosim_20261012_01/tb_line3_uart_cosim.v:57]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.video_timing_default
+Compiling module work.pattern_gen(H_ACTIVE=320,V_ACTIV...
+Compiling module work.downsample2x2(H_ACTIVE=320)
+Compiling module work.diff_stage
+Compiling module work.frame_buf(DEPTH=14400,AW=14)
+Compiling module work.threshold
+Compiling module work.morph3x3(W=160)
+Compiling module work.morph_open(W=160)
+Compiling module work.bbox
+Compiling module work.multi_bbox
+Compiling module work.track
+Compiling module work.alarm
+Compiling module work.uart_tx(BAUD_DIV=50)
+Compiling module work.bbox_snapshot
+Compiling module work.regs
+Compiling module work.overlay
+Compiling module work.md_pipeline(H_ACTIVE=320,V_ACTIV...
+Compiling module work.line3_uart_probe
+Compiling module work.tb_line3_uart_cosim(EVENTS=1)
+Built simulation snapshot cosim
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Mon Oct 12 20:01:16 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/cosim/xsim_script.tcl
+# xsim {cosim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+[RX] t=5205000 magic=5a
+[RX] t=674805000 magic=5a
+[RX] t=1358805000 magic=5a
+PASS: S1 THRESH \xff\xff\x99 \xff\xff\xff\xe8\xff\xff\xff洖 80
+PASS: S1 THRE\xff\xff\xff\xe6\xff\xff\xff 70
+PASS: S3 BBOX_X1 == bbox.x1
+PASS: S3 BBOX_Y1 == bbox.y1
+PASS: S3 BBOX_X2 == bbox.x2
+PASS: S3 BBOX_Y2 == bbox.y2
+PASS: S3 BBOX_VALID == bbox.valid
+PASS: RAME\xff\xff\xff\xb2\xff\xff\xff\xe5\xff\xff\xff\x9b\xff\xff\xff\xb0\xff\xff\xff\xe9\xff\xff\xff\x9b\xff\xff\xff\x89
+PASS: S2 STATUS bit0 = b_valid=1
+PASS:  obj_count =\xff\xff\xff\xbc\xff\xff\xff\x8c\xff\xff\xff\xe7\xff\xff\xff\xb8\xff\xff\xff\x89
+PASS: S2 STATUS frame_id\xff\xff\xff\x9d\xff\xff\xff\xb6
+PASS: \xff\xff\xff\xa4\xff\xff\xff\x85\xff\xff\xff\xe6\xff\xff\xff\xa7\xff\xff\xff\x91\xff\xff\xa7 \xff\xff\xff\xb8\xff\xff\xff\x89
+PASS: \xff\xff\xff\x8c\xff\xff\xff\x88\xff\xff\xff\xe4\xff\xff\xff\x86\xff\xff\xff\xb9\xff\xff\xa7 \xff\xff\xff\xb8\xff\xff\xff\x89
+PASS: \xff\xff\xff\x8c\xff\xff\xff\xa1\xff\xff\xff\xe5\xff\xff\xff\x80\xff\xff\xff\x87\xff\xff\xff\xe6\xff\xff\xff\xa4\xff\xff\xff\xa5
+PASS: \xff\xff\xff\x87 OBJ_CNT\xff\xff\xff\xbc\xff\xff\xff\x8c\xff\xff\xff\xe7\xff\xff\xff\xb8\xff\xff\xff\x89
+PASS: \xff\xff\xff\x8c\xff\xff\xff\xad\xff\xff\xff\xef\xff\x880/\xff\xff\xff\x89\xff\xff\xff\xe6\xff\xff\xff\x92\xff\xff\xff\xb7
+PASS: \xff\xff\xff\x9b\xff\xff\xff\x87\xff\xff\xff\xe5\xff\xff\xff\xa0\xff\xff\xff\x84\xff\xff\xff\xe6\xff\xff\xff\x95\xff\xff\xff\x86
+PASS: \xff\xff\xff\x9d\xff\xff\xff\x87\xff\xff\xff\xe5\xff\xff\xff\x83\xff\xff\xff\xa0\xff\xff\xff\xe8\xff\xff\xff\x9b\xff\xff\xff\x85
+PASS: \xff\xff\xff\x85\xff\xff圠INE_X/DWELL \xff\xff\xff\xe8\xff\xff\xff\x8f\xff\xff\xff\x89
+PASS: S6 \xff\xff\xff\xe7\xff\xff\xff棤 FI\xff\xff\xff\xe6\xff\xff\xff\xb8\xff\xff\xff\x85
+PASS: \xff\xff\xff\xe5\xff\xff\xff\xae\xff\xff\xff\xa7\xff\xff\x89/\xff\xff\xff\x88\xff\xff\xff\xe6\xff\xff\xff\xb8\xff\xff\xff\x89
+PASS: \xff\xff\xff\x8e b_valid\xff\xff\xff\xbc\xff\xff\xff\x80\xff\xff\xff\xe5\xff\xff\xff\x96\xff\xff\xff\x89
+PASS: S5 obj_count = 0
+PASS: CNT=\xff\xff\xff\x8c\xff\xff\xff\xe7\xff\xff\xff爣 ti\xff\xff\xff\xe6\xff\xff\xff\x95\xff\xff\xff\x89
+PASS: S5 STATUS bit0 = 0
+PASS:  THRESH=\xff\xff\xff\xe6\xff\xff\xff\xa4\xff\xff\xff\x8e\xff\xff\xff\xe6\xff\xff\xff\x81\xff\xff\xff\x8d
+PASS: \xff\xff\xff\xe5\xff\xff\xff▼ UA\xff\xff\xff\xe6\xff\xff\xff\xa4\xff\xff\xff\xa5
+PASS: nt scenario produced UART events
+LINE3_DRAIN_DONE
+==== PASS：tb_md_pipeline_full 集成全链通过 ====
+$finish called at time : 20028205 ns : File "D:/line3_top_cosim_20261012_01/tb_line3_uart_cosim.v" Line 310
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:14 . Memory (MB): peak = 227.285 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 12716 KB (Peak: 12716 KB), Simulation CPU Usage: 13046 ms
+INFO: [Common 17-206] Exiting xsim at Mon Oct 12 20:01:32 2026...
