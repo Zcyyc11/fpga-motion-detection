@@ -21,16 +21,13 @@
 
 ## 二、未闭环缺口（真正的卡点，勿被提交信息误导）
 
-**1. 顶层没接线（最关键，10/13 上板卡这）**
-- line2 `board_top.v` **既未例化 `uart_tx`、也未例化 `bbox_snapshot`**（已 grep 确认为空）。
-- 后果：现在真板上**既跑不出 UART 报文，也读不到 AXI bbox 快照**。
-- 线二 `bbox_snapshot.v` 注释明确"顶层接入（md_pipeline 由线一接）"→ **接线是线一的活**，需线二给 tap 点（见待决③）。
+**1. 顶层接线：已并入 main（2026-10-12），但甲通路默认关闭**
+- 线二 `uart-wiring@0a778c8` 已把 `uart_tx`（`md_pipeline.v` L338 `u_utx`）/`bbox_snapshot`（L399 `u_snap`）接进顶层并引出 `uart_txd`（XDC PIN Y18，PMOD A ja[0]），`tb_md_pipeline_uart` 13 项 PASS；已随 `0a778c8` 并入 main。
+- **但默认 `INCLUDE_PS=0`**：`regs`/`bbox_snapshot` 会被综合优化掉 → **UART（乙）生效，AXI 快照（甲/I4）默认不生效**。要开甲通路须改 `INCLUDE_PS=1`，重跑 `tb_md_pipeline_uart`/`tb_regs` 并重建 bit（`line2/top-integration@15e8e21` 即 INCLUDE_PS=1 版，可参考、未合并）。
 
-**2. 伟博接收端还吃不了板子数据**
-- `pc_receiver.py` 仍是 JSONL/TCP，首行自注"No board protocol has been agreed"。
-- `frame_id` 硬校验 `[0, 2^32-1]`（32 位），与线二 16 位帧号**对不上**（见待决①）。
-- JSON schema 无 `alarm/event` 字段，`0xC3` 事件无处安放（见待决②）。
-- 需伟博加 pyserial 串口分支 + 决定事件落点；其提案已预留"串口先补适配"。
+**2. 伟博接收端：严格版已交并并入 main（2026-10-12）**
+- `sim/line3/uart_receiver.py`（`9f7173a`，已并入 main）直接吃三包二进制：16 位帧号、事件独立 `events.jsonl`、来源标注/负例/退出码语义/原始流留档——**原待决①（按 16 位）与②（事件落点）就此闭环**。
+- 板测验收统一用它；`pc_receiver.py`（JSONL/TCP 历史模拟）与 `src/ps/uart_recv.py`（最小参考）均不作为验收依据。
 
 **3. 冻结表 I4 未跟上**
 - `interface_freeze_table.md` 仍只到 `STATUS 0x18`，未列 BBOX `0x1C–0x34`、未写 STATUS bit1。
@@ -59,28 +56,23 @@
 
 ---
 
-## 四、仍待决（原 11 问 → 收敛为 3 个 + 1 附带）
+## 四、待决清单（2026-10-12 全部闭环）
 
 **以下已闭环，不用再问**：Q3 valid 位（FLAGS=0 + OBJ_CNT=0 已覆盖空帧语义）、Q4 坐标域（定稿确认 640×360）、Q5 事件 CX（定稿=中心 X）、Q8 规格（定稿 §4.2 即权威规格）、Q9/Q10 机制（定稿双通道，非"UART 替代 AXI"二选一）。
 
-**待决① 帧号位宽（原 Q2/Q7）**
-线二 `frame_num`/`BBOX_FRAME` 均 16 位回绕；伟博 `pc_receiver.py` 硬校验 32 位 `frame_id`。
-建议：线二把帧号扩到 32 位（板端代价小，省得伟博写回绕解释），或伟博按 16 位解释。→ **需线二 + 伟博拍板。**
+**待决① 帧号位宽（原 Q2/Q7）：已闭环**——线三接收端按 **16 位**实现（65535→0 回绕接受），线二维持 16 位，两端一致。
 
-**待决② 事件 0xC3 落点（原 Q6）**
-伟博 JSON 无 alarm 字段。选：加 `alarms:[{id,type,center_x}]` 数组，还是单落 `alarm_events.jsonl`？→ **需伟博定。**
+**待决② 事件 0xC3 落点（原 Q6）：已闭环**——线三接收端落 `events.jsonl`（独立事件日志、按帧关联）。
 
-**待决③ 顶层接线 tap 点（原 Q1）**
-线一 10/13 前把 `uart_tx` + `bbox_snapshot` 接进 `board_top/md_pipeline`；需线二确认：
-`i_latch` 生成判据、`i_frame_idx` 来源（`md_pipeline.frame_idx`）、`i_obj_count` 取 multi_bbox 帧结算、PMOD 引脚、波特率(115200)。→ **线一主责接线，线二给 tap。**
+**待决③ 顶层接线 tap 点（原 Q1）：已闭环**——`0a778c8` 已接线（`u_utx` L338 / `u_snap` L399，`uart_txd`→PMOD A ja[0]=PIN Y18，115200/BAUD_DIV=645）。
 
-**附带（线一，群确认后）**：合线二分支时更新 `interface_freeze_table.md`，补 BBOX `0x1C–0x34` + STATUS bit1。
+**附带（线一）**：已完成——并线 docs 提交已补 `interface_freeze_table.md`（BBOX 0x1C–0x34 + STATUS 位表）。
 
 ---
 
 ## 五、下一步（按影响力排序）
 
-1. **线一**：接线（uart_tx + bbox_snapshot 进 board_top）→ 重出 bit → 10/13 上板出真实报文 + 抓帧样本。
-2. **线二**：确认接线 tap 点 + PMOD + 帧号是否扩 32 位。
-3. **伟博**：接收端加 UART 串口分支 + 定事件落点。
-4. **线一**：合线二分支时同步冻结表（补 BBOX 0x1C）。
+1. **线一/线二**：用并线后的 main 重出 bit（`build_vivado.bat 0 1`，generic 空格分隔）→ 10/13 上板出真实报文 + 抓帧样本；如需甲通路，另出 INCLUDE_PS=1 版并重跑 tb。
+2. **线二**：盯 bit 出来后烧录（`build/scripts/burn_jtag.tcl`），grep 日志确认 `bound to` 真绑定。
+3. **伟博**：用 `sim/line3/uart_receiver.py` 收真实报文，按 `docs/line3_uart_receiver.md` 的对照流程核（10/14 样本）。
+4. **线一**：已完成（冻结表补齐、接收端定唯一权威、接口文档对齐）。

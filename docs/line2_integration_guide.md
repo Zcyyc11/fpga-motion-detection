@@ -1,8 +1,8 @@
-# 线二模块《接入说明》
+# 线二模块《接入说明》（已并入 main）
 
-> 分支 `line2/multi-bbox-gray`，提交链 4545cb7 → e27e263 → a217256。
+> 提交链 4545cb7 → e27e263 → a217256（`line2/multi-bbox-gray`，**2026-10-12 已并入 main**，顶层接线见 `0a778c8`）。
 > 面向：线一（接顶层）、线三（回传链路 / PS 侧）。线二自己不碰 `md_pipeline.v`，本文只讲"怎么接"。
-> 所有接口遵守 `docs/接口冻结表.md`，未新增任何公共约定。
+> 所有接口遵守 `docs/interface_freeze_table.md`，未新增任何公共约定。
 
 ---
 
@@ -101,8 +101,8 @@ dvi2rgb (RGB24, I1 总线) → gray_conv → downsample2x2
 
 ### 2.1 板端
 
-`uart_tx` 输出 `uart_txd`（1 位）→ 板上 PMOD/扩展口 TX 引脚 → USB-UART → PC。
-参数：115200-8-N-1。`BAUD_DIV = clk_hz/115200`（100MHz → 868，为顶层实际时钟）。
+`uart_tx` 输出 `uart_txd`（1 位）→ 板上 PMOD A 引脚 1（`ja[0]`，**PIN Y18**，已写入 `board/pynq_z2_hdmi_out.xdc`）→ USB-UART → PC。
+参数：115200-8-N-1。`BAUD_DIV = clk_hz/115200`（像素钟 **74.25MHz → 645**，即 `md_pipeline.v` 的 `UART_BAUD_DIV` 默认值；旧版"100MHz→868"是按错时钟算的，作废）。
 
 ### 2.2 协议（《回传协议草案.md》v0.2）
 
@@ -126,14 +126,16 @@ python src/ps/uart_recv.py --replay                     # 无板自测
 
 输出：每帧目标列表打印 + `alarm_events.csv` 追加事件。
 
+**★ 接收端唯一权威（2026-10-12 定）**：板测/验收一律用线三 `sim/line3/uart_receiver.py`（严格版：来源标注、负例、退出码语义、原始流留档）；`src/ps/uart_recv.py` 只作最小参考实现，不用于验收。
+
 ---
 
 ## 3. 已知限制 / 待办（诚实清单）
 
 | 项 | 状态 |
 |---|---|
-| 接入 md_pipeline | **未做**（顶层冻结，等线一接；本文即交接依据） |
-| AXI-Lite 壳 | 未做（regs 瘦总线已预留，包壳即可） |
+| 接入 md_pipeline | **已并入 main**（`0a778c8`：`u_utx` L338 / `u_snap` L399；但 `INCLUDE_PS=0` 时 regs/bbox_snapshot 被综合优化掉，甲通路需 INCLUDE_PS=1 重验） |
+| AXI-Lite 壳 | axi_lite_slave 已在 main（`147aea1`）；INCLUDE_PS=1 时接 regs 瘦总线 |
 | overlay 多框 | 未做（见 §1.5） |
 | track 8bit id 回绕 | 已知取舍：255 个 id 不回收，回绕前不撞号 |
 | uart FIFO 满丢包 | **已进 STATUS**：STATUS bit31 = 丢包粘存位（uart_tx.drop 置位，PS 写 STATUS 任意值清除；bit 分配待线一在冻结表确认） |

@@ -70,8 +70,7 @@ video_timing → downsample2x2 → frame_buf → diff_stage → threshold
 - 用 `valid` 区分「第 N 个目标」和「没有更多目标了」
 - 坐标是**大像素域**（I2），要用回原图需 ×2
 
-**★ 当前状态**：`main` 上 `bbox.v` 仍只输出**全局并集框**（一个框）；多目标 RTL（`multi_bbox.v` 等）已在 `line2/multi-bbox-gray` 分支（徐一夫，6 仿真台 PASS），10/12-13 接顶层后生效。
-"每目标一个框"冻结的是**目标格式**，不是"main 已实现"——接顶层前按单框验收。
+**★ 当前状态（2026-10-12 并线后）**：多目标 RTL 已并入 main——`md_pipeline.v` 已例化 `multi_bbox`（每目标一框）并由 `overlay_multi` 画多框；`bbox.v`（全局并集单框）保留为历史实现。I3 目标流格式已在顶层实际生效，按多框验收。
 
 ---
 
@@ -85,7 +84,14 @@ video_timing → downsample2x2 → frame_buf → diff_stage → threshold
 | `LINE_X` | 0x0C | 11 | 640 | 警戒线 X 坐标（大像素域） |
 | `DWELL` | 0x10 | 16 | 90 | 停留告警帧数（90 帧 @30fps = 3 秒） |
 | `ENABLE` | 0x14 | 1 | 0 | 1 = 开背景建模，0 = 帧差法 |
-| `STATUS` | 0x18 | 32 | — | 只读：目标数 / 告警标志 / 帧计数 |
+| `STATUS` | 0x18 | 32 | — | 只读（bit31=UART 丢包粘存，写任意值清除；bit1=告警帧级粘存；15:8=目标数；30:16=帧号低 15 位；bit0=b_valid；其余=i_status） |
+| `BBOX_X1` | 0x1C | 16 | RO | 快照左上 X（大像素域，帧边界连同帧号同拍锁存） |
+| `BBOX_Y1` | 0x20 | 16 | RO | 快照左上 Y |
+| `BBOX_X2` | 0x24 | 16 | RO | 快照右下 X |
+| `BBOX_Y2` | 0x28 | 16 | RO | 快照右下 Y |
+| `BBOX_CNT` | 0x2C | 16 | RO | 前景像素计数（16 位饱和） |
+| `BBOX_VALID` | 0x30 | 1 | RO | 快照所属帧有目标 |
+| `BBOX_FRAME` | 0x34 | 16 | RO | 快照所属帧号（与快照同拍锁存，CDC 整帧一致） |
 
 **约定**：地址 4 字节对齐，小端。
 
@@ -110,3 +116,4 @@ video_timing → downsample2x2 → frame_buf → diff_stage → threshold
 | 2026-10-08 | — | — | 首次冻结 | — |
 | 2026-10-11 | STATUS（I4） | 未分配位 | **提案**：bit31 = UART 丢包粘存位（读语义不变，写=清除） | regs.v / tb_regs.v（**待群确认后转正式**） |
 | 2026-10-12 | STATUS（I4） | 提案 | **已定稿生效**（main@f15fbce）：bit31=UART 丢包粘存、bit1=alarm(A)、低 31 位=`i_status`；BBOX 快照只读 0x1C–0x34（X1/Y1/X2/Y2/CNT/VALID/FRAME）；ps_addr 加宽 [5:0] | `regs.v`（线二，`3e51dbd`）+ 协议定稿 |
+| 2026-10-12 | BBOX_*（I4） | 表格未列 | **补齐 0x1C–0x34 七寄存器 + STATUS 位表**（本行只补契约，与 f15fbce 定稿、`regs.v@3e51dbd` 实现对齐，无接口变更）；I3 状态更新：多目标已接顶层 | `regs.v` / `bbox_snapshot.v` / `tb_regs` |
