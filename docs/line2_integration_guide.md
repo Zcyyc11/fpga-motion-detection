@@ -104,7 +104,7 @@ dvi2rgb (RGB24, I1 总线) → gray_conv → downsample2x2
 `uart_tx` 输出 `uart_txd`（1 位）→ 板上 PMOD A 引脚 1（`ja[0]`，**PIN Y18**，已写入 `board/pynq_z2_hdmi_out.xdc`）→ USB-UART → PC。
 参数：115200-8-N-1。`BAUD_DIV = clk_hz/115200`（像素钟 **74.25MHz → 645**，即 `md_pipeline.v` 的 `UART_BAUD_DIV` 默认值；旧版"100MHz→868"是按错时钟算的，作废）。
 
-### 2.2 协议（《回传协议草案.md》v0.2）
+### 2.2 协议（v0.2，权威文档 `docs/protocol_and_interface_requirements.md` §4）
 
 小端 + 字节累加和校验，PC 端按 MAGIC 分流：
 

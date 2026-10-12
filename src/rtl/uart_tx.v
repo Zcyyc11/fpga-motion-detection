@@ -2,7 +2,7 @@
 // -----------------------------------------------------------------------------
 // uart_tx —— 线二任务：板端回传发送（协议打包 + UART 串行化）
 //
-// 协议：《回传协议草案.md》v0.1 + v0.2 增补，小端，字节累加和校验：
+// 协议：docs/protocol_and_interface_requirements.md §4（v0.1 草案 + v0.2 增补），小端，字节累加和校验：
 //   帧头包 0x5A（5B）：MAGIC, FRAME_L, FRAME_H, OBJ_CNT, CHK
 //   目标包 0xA5（14B）：MAGIC, FRAME_L, FRAME_H, ID, X1L,X1H,Y1L,Y1H,
 //                       X2L,X2H,Y2L,Y2H, FLAGS, CHK

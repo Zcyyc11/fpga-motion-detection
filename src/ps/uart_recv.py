@@ -7,7 +7,7 @@
   2) 接真实板子时画框可视化：python src/ps/uart_recv.py --port COM5
   3) 接口联调期无板子时，回放文本报文：python src/ps/uart_recv.py --replay 报文.txt
 
-协议要点（与《回传协议草案.md》一致，小端，字节累加和）：
+协议要点（与 docs/protocol_and_interface_requirements.md §4 一致，小端，字节累加和）：
   帧头包 0x5A（5B）：MAGIC, FRAME_L, FRAME_H, OBJ_CNT, CHK
   目标包 0xA5（14B）：MAGIC, FRAME_L, FRAME_H, ID, X1L,X1H,Y1L,Y1H,
                       X2L,X2H,Y2L,Y2H, FLAGS, CHK

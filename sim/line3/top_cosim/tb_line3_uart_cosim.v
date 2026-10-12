@@ -2,7 +2,7 @@
 // -----------------------------------------------------------------------------
 // tb_md_pipeline_full —— 顶层集成仿真台：元数据链 + I4 寄存器通路 + UART 回传
 //
-// 覆盖（对应 docs/接入说明.md 的接线，2026-10-12 顶层接入验收）：
+// 覆盖（对应 docs/line2_integration_guide.md 的接线，2026-10-12 顶层接入验收）：
 //   S1  regs 瘦总线写/读回环（THRESH 80 → 读回 → 恢复 70）
 //   S2  STATUS（0x18）位表：bit0=b_valid、15:8=obj_count、30:16=frame_idx
 //   S3  BBOX 快照（0x1C~0x34）：坐标/VALID/FRAME 与 bbox 输出一致（防撕裂组）
