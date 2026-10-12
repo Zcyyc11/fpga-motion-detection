@@ -9,9 +9,9 @@
 
 | 你要的三样 | 状态 | 说明 |
 |---|---|---|
-| **最小字段表** | 🟡 线一已起草，待线二对齐定稿 | `docs/line1_uart_field_table_draft.md`：线一负责那半张——bbox 快照寄存器（BBOX_X1..FRAME，0x1C–0x34，帧边界锁存＋CDC）、STATUS 低 31 位分配（bit0 b_valid / bit1 alarm / 15:8 obj_count / 30:16 frame_idx 镜像）、读出口径（坐标大像素域×2 / 闭区间包含 / 16位帧号18.2min回绕 / 跳帧 BBOX_VALID==0 / cnt 16位饱和）。线二认 ps_addr 加宽后，线一出 Word 版交你。 |
-| **首批样本安排** | 🟢 乙 run-book 已就绪，可立刻上板 | `docs/board_runbook.md`：指 `board_top_hdmiin.bit`（INPUT_SEL=1，WNS 0.932）。线一上板抓帧即出样本。甲的 CSV 样本待 PS 构建（见下）。 |
-| **预计日期** | 🟡 见第三节（tentative，等你俩确认） | 提交截止 2026-11-04，余 ~24 天，节奏可控。 |
+| **最小字段表** | 🟢 **已定稿生效**（`main@f15fbce`） | `docs/protocol_and_interface_requirements.md`（f15fbce）为最终口径；`docs/line1_uart_field_table_draft.md` 为草案过程稿。bbox 快照寄存器（BBOX_X1..FRAME，0x1C–0x34，帧边界锁存＋CDC）已由线二实现（`3e51dbd`），STATUS 低 31 位分配已定稿（bit1 alarm / bit31 UART 丢包粘存 / 低 31 位 i_status）。 |
+| **首批样本安排** | 🟢 **上板实测已完成** | `board/logs/board_test_20261012.md`（`37c1d2c`，PASS：强运动检出 89%、静止误检 0%、单框）；`board_runbook.md` 已同步。 |
+| **预计日期** | 🟢 已钉死（分工表 10/12 压缩） | **10/13 上板（全链真回传）、10/14 线二交真实报文**，余 ~24 天，节奏可控。 |
 
 ## 二、甲 / 乙 通路真实状态（已核代码）
 
@@ -22,8 +22,7 @@
   - `tb_axi_lite_slave.v`（协议验证台，待你/线二跑互验）
   - `mmio_readout.py`（Jupyter MMIO 读 bbox/写 THRESH、出 CSV）
   - `axi_min_verify_plan.md` + `axi_ps_integration_recipe.md`（PS 接入施工单）
-  - **卡点在线二**：`regs.v` 的 `ps_addr` 只有 5 位（装不下 0x20+ 的 BBOX 寄存器，须加宽到 [5:0]），
-    且 bbox 快照寄存器（伟博硬要求①②）尚未写。线二补完，线一跑 PS 集成出 `board_top_axi.bit/.hwh` 即可。
+  - **卡点已解除**：线二 10/12 已交付 `regs.v` 对齐（`3e51dbd`：ps_addr 加宽 [5:0]、bbox 快照 0x1C–0x34、STATUS 位表落地）；协议已定稿（`f15fbce`）。下一步线一跑 PS 集成出 `board_top_axi.bit/.hwh`。
 
 ## 三、预计日期（tentative，等你俩回认后钉死）
 
