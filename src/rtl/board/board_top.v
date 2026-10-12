@@ -179,6 +179,7 @@ module board_top #(
     wire [7:0]  vr, vg, vb;
     wire [15:0] b_x1, b_y1, b_x2, b_y2, b_cnt;
     wire        b_valid;
+    wire [7:0]  b_obj_count;
     wire        m_valid, m_bit;
     wire [15:0] m_x, m_y;
     wire [15:0] frame_idx;
@@ -198,7 +199,7 @@ module board_top #(
         .vde(vde), .vx(vx), .vy(vy), .vhs(vhs), .vvs(vvs),
         .vr(vr), .vg(vg), .vb(vb),
         .b_x1(b_x1), .b_y1(b_y1), .b_x2(b_x2), .b_y2(b_y2),
-        .b_cnt(b_cnt), .b_valid(b_valid),
+        .b_cnt(b_cnt), .b_valid(b_valid), .b_obj_count(b_obj_count),
         .m_valid(m_valid), .m_x(m_x), .m_y(m_y), .m_bit(m_bit),
         .frame_idx(frame_idx)
     );

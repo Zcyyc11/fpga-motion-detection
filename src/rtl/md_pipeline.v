@@ -75,6 +75,7 @@ module md_pipeline #(
     output wire [15:0] b_y2,
     output wire [15:0] b_cnt,
     output wire        b_valid,
+    output wire [7:0]  b_obj_count,   // 上一帧目标数（多目标）
     // ---- 掩码流（大像素坐标，供仿真可视化/探针）----
     output wire        m_valid,
     output wire [15:0] m_x,
@@ -234,25 +235,37 @@ module md_pipeline #(
         .o_valid(o_valid), .o_x(o_x), .o_y(o_y), .o_mask(o_bit)
     );
 
-    // ======================= ⑧ 包围盒 =======================
-    bbox #(.MIN_CNT(MIN_CNT)) u_bb (
+    // ======================= ⑧ 多目标包围盒（multi_bbox 替代 bbox）=======================
+    wire        t_valid;
+    wire [15:0] t_x1, t_y1, t_x2, t_y2, t_cnt;
+    wire [7:0]  t_id;
+    wire        t_last;
+
+    multi_bbox #(.MIN_CNT(MIN_CNT)) u_mbb (
         .clk(clk), .rst_n(rst_n),
         .in_valid(o_valid), .in_x(o_x), .in_y(o_y), .in_mask(o_bit),
-        .x1(b_x1), .y1(b_y1), .x2(b_x2), .y2(b_y2),
-        .cnt(b_cnt), .valid(b_valid)
+        .o_valid(t_valid), .o_x1(t_x1), .o_y1(t_y1), .o_x2(t_x2), .o_y2(t_y2),
+        .o_cnt(t_cnt), .o_id(t_id), .o_last(t_last)
     );
 
-    // ======================= ⑨ 叠加显示 =======================
-    // 大像素坐标 → 像素坐标（×2）。显示用的框来自**上一帧**的检测结果。
-    wire [15:0] px1 = {b_x1[14:0], 1'b0};
-    wire [15:0] py1 = {b_y1[14:0], 1'b0};
-    wire [15:0] px2 = {b_x2[14:0], 1'b0};
-    wire [15:0] py2 = {b_y2[14:0], 1'b0};
+    // 掩码流帧边界（检测域 y 回绕，与 multi_bbox 结算同拍）→ overlay_multi 发布用
+    reg [15:0] m_y_prev;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)  m_y_prev <= 16'hFFFF;
+        else if (o_valid) m_y_prev <= o_y;
+    end
+    wire f_edge = o_valid && (o_y < m_y_prev);
 
-    overlay #() u_ov (
+    // ======================= ⑨ 叠加显示（多目标）=======================
+    overlay_multi #() u_ovm (
+        .clk(clk), .rst_n(rst_n),
         .de(p_vde), .x(p_x), .y(p_y), .gray(p_pix),
-        .bx1(px1), .by1(py1), .bx2(px2), .by2(py2), .bvalid(b_valid),
-        .r(vr), .g(vg), .b(vb)
+        .f_edge(f_edge),
+        .t_valid(t_valid), .t_x1(t_x1), .t_y1(t_y1), .t_x2(t_x2), .t_y2(t_y2),
+        .t_cnt(t_cnt), .t_last(t_last),
+        .r(vr), .g(vg), .b(vb),
+        .o_x1(b_x1), .o_y1(b_y1), .o_x2(b_x2), .o_y2(b_y2), .o_cnt(b_cnt),
+        .o_valid(b_valid), .o_obj_count(b_obj_count)
     );
 
     assign vde = p_vde;
