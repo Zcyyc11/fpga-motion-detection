@@ -52,14 +52,19 @@ module tb_axi_lite_slave;
         .ps_en(ps_en), .ps_we(ps_we), .ps_addr(ps_addr), .ps_wdata(ps_wdata), .ps_rdata(ps_rdata)
     );
 
-    // ---- 简易 AXI master 任务（阻塞赋值，时序确定，避免 NB 0 延迟竞争）----
+    // ---- 简易 AXI master 任务（协议正确版：VALID 保持到 READY，等 RVALID/BVALID 握手）----
+    // 原版只拉 1 拍 VALID：从机 BVALID 晚清一拍背压时写就整笔丢失（FAIL② 根因），
+    // 真实 PS 主控不会这样。
     task axi_write(input [31:0] a, input [31:0] d);
         begin
             @(posedge aclk);
             awaddr = a; wdata = d; awvalid = 1; wvalid = 1; bready = 0;
             @(posedge aclk);
-            awvalid = 0; wvalid = 0; bready = 1;
-            @(posedge aclk);
+            while (!(awready === 1'b1 && wready === 1'b1)) @(posedge aclk);
+            awvalid = 0; wvalid = 0;      // 从机已在本沿接受
+            bready = 1;                   // 先备好 bready（下一沿从机采样）
+            @(posedge aclk);              // 该沿从机见 BVALID&&BREADY → 清 BVALID
+            while (bvalid) @(posedge aclk); // 等 BVALID 实际清除，再撤 bready
             bready = 0;
         end
     endtask
@@ -69,12 +74,12 @@ module tb_axi_lite_slave;
             @(posedge aclk);
             araddr = a; arvalid = 1; rready = 0;
             @(posedge aclk);
-            arvalid = 0; rready = 1;   // 地址已收，拉 rready 等数据
-            // 桥有 1 拍读延迟（rd_pend→下一拍 ps_rdata 稳定才送 RVALID），
-            // 等到 RVALID 起后再采一拍，保证采到有效数据而非上一拍残值
-            while (rvalid !== 1'b1) @(posedge aclk);
+            while (!(arready === 1'b1)) @(posedge aclk);
+            arvalid = 0;                  // 从机已在本沿接受读地址
+            while (!rvalid) @(posedge aclk);
+            d = rdata;                    // rvalid 高电平期间 rdata 已寄存稳定
+            rready = 1;
             @(posedge aclk);
-            d = rdata;
             rready = 0;
         end
     endtask

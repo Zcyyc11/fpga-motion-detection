@@ -47,7 +47,12 @@ module md_pipeline #(
     parameter integer SHIFT    = 6,      // 背景更新 α = 1/2^SHIFT
     parameter integer MODE_BG  = 0,      // 0 = 帧差法（v1）／1 = 背景建模（v2）
     parameter integer MIN_CNT  = 64,     // 包围盒面积门限（大像素个数）
-    parameter integer INPUT_SEL = 0      // 0 = 内部自测激励／1 = 外部 HDMI 输入（构建定死）
+    parameter integer INPUT_SEL = 0,     // 0 = 内部自测激励／1 = 外部 HDMI 输入（构建定死）
+    // ---- 线二回传链（2026-10-12 移植，线一状态文档指派归线二）----
+    parameter integer INCLUDE_PS   = 0,  // 1 = 例化 regs+bbox_snapshot（接 AXI）；0 = 纯 PL
+    parameter integer UART_BAUD_DIV = 645, // uart_tx 分频：74.25MHz/115200 ≈ 645
+    parameter integer LINE_X_DEFAULT = 640, // INCLUDE_PS=0 时的警戒线（大像素域）
+    parameter integer DWELL_DEFAULT  = 90    // INCLUDE_PS=0 时的停留告警帧数
 )(
     input  wire        clk,
     input  wire        rst_n,
@@ -75,13 +80,28 @@ module md_pipeline #(
     output wire [15:0] b_y2,
     output wire [15:0] b_cnt,
     output wire        b_valid,
+    output wire [7:0]  b_obj_count,   // 上一帧目标数（多目标）
     // ---- 掩码流（大像素坐标，供仿真可视化/探针）----
     output wire        m_valid,
     output wire [15:0] m_x,
     output wire [15:0] m_y,
     output wire        m_bit,
     // ---- 当前帧号（自测 = pattern_gen 的；HDMI = 外部 sof 计帧）----
-    output wire [15:0] frame_idx
+    output wire [15:0] frame_idx,
+    // ---- 线二回传元数据链（协议 v0.2，uart_json_adapter_spec.md）----
+    output wire        uart_txd,         // 板→PC 回传（115200-8-N-1）
+    output wire        uart_drop,        // UART FIFO 满丢包脉冲（STATUS bit31 粘存源）
+    output wire        alarm_evt,        // 自本帧 frame_tick 起发生过告警（粘存，LED/探针）
+    // ---- PS/AXI 钟域（INCLUDE_PS=1 时使用；0 时悬空，综合优化掉）----
+    input  wire        clk_axi,          // AXI-Lite 时钟（PS FCLK，PYNQ 上 100MHz）
+    input  wire        rst_n_axi,
+    // regs 瘦总线：桥是主机——ps_en/we/addr/wdata 由桥驱动（输入），
+    // ps_rdata 是 regs 读寄存输出（输出，桥在脉冲后 1 拍采样）
+    input  wire        ps_en,
+    input  wire        ps_we,
+    input  wire [5:0]  ps_addr,          // 字节地址 0x00..0x34（regs 已加宽 6 位）
+    input  wire [31:0] ps_wdata,
+    output wire [31:0] ps_rdata
 );
 
     localparam integer BW = H_ACTIVE / 2;      // 大像素宽 640
@@ -168,6 +188,13 @@ module md_pipeline #(
     end
 
     // ======================= ⑤ 差分 =======================
+    // I4 运行时参数（像素钟域）：INCLUDE_PS=1 来自 regs 过 2FF 同步；=0 编译期直通
+    wire [15:0] cfg_thresh;
+    wire [4:0]  cfg_shift;
+    wire        cfg_enable;
+    wire [10:0] cfg_line_x;
+    wire [15:0] cfg_dwell;
+
     wire [9:0]  ref_px;              // 读出的旧值（上一帧 / 背景图）
     wire [10:0] absdiff;
     wire [9:0]  wr_data;
@@ -191,9 +218,10 @@ module md_pipeline #(
     end
     wire init_phase = (fid <= 16'd1) & ~mask_phase;   // 首帧：缓存直接写当前帧
 
-    diff_stage #(.SHIFT(SHIFT)) u_diff (
+    diff_stage #() u_diff (
         .mode_bg(MODE_BG[0]),
         .init_phase(init_phase),
+        .shift_amt(cfg_shift),
         .cur(cur_d1),
         .ref_px(ref_px),
         .absdiff(absdiff),
@@ -216,8 +244,9 @@ module md_pipeline #(
     wire mask_en = (fid >= 16'd2) | mask_phase;        // 回绕后仍保持掩码开启
     wire t_valid, t_mask;
 
-    threshold #(.THRESH(THRESH)) u_th (
+    threshold #() u_th (
         .clk(clk), .rst_n(rst_n),
+        .thresh(cfg_thresh),
         .in_valid(valid_d1 && mask_en),
         .absdiff(absdiff),
         .out_valid(t_valid), .mask(t_mask)
@@ -234,26 +263,205 @@ module md_pipeline #(
         .o_valid(o_valid), .o_x(o_x), .o_y(o_y), .o_mask(o_bit)
     );
 
-    // ======================= ⑧ 包围盒 =======================
-    bbox #(.MIN_CNT(MIN_CNT)) u_bb (
+    // ======================= ⑧ 多目标包围盒（multi_bbox 替代 bbox）=======================
+    wire        mb_valid;
+    wire [15:0] t_x1, t_y1, t_x2, t_y2, t_cnt;
+    wire [7:0]  t_id;
+    wire        t_last;
+
+    multi_bbox #(.MIN_CNT(MIN_CNT)) u_mbb (
         .clk(clk), .rst_n(rst_n),
         .in_valid(o_valid), .in_x(o_x), .in_y(o_y), .in_mask(o_bit),
-        .x1(b_x1), .y1(b_y1), .x2(b_x2), .y2(b_y2),
-        .cnt(b_cnt), .valid(b_valid)
+        .o_valid(mb_valid), .o_x1(t_x1), .o_y1(t_y1), .o_x2(t_x2), .o_y2(t_y2),
+        .o_cnt(t_cnt), .o_id(t_id), .o_last(t_last)
     );
 
-    // ======================= ⑨ 叠加显示 =======================
-    // 大像素坐标 → 像素坐标（×2）。显示用的框来自**上一帧**的检测结果。
-    wire [15:0] px1 = {b_x1[14:0], 1'b0};
-    wire [15:0] py1 = {b_y1[14:0], 1'b0};
-    wire [15:0] px2 = {b_x2[14:0], 1'b0};
-    wire [15:0] py2 = {b_y2[14:0], 1'b0};
+    // 掩码流帧边界（检测域 y 回绕，与 multi_bbox 结算同拍）→ overlay_multi 发布用
+    reg [15:0] m_y_prev;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)  m_y_prev <= 16'hFFFF;
+        else if (o_valid) m_y_prev <= o_y;
+    end
+    wire f_edge = o_valid && (o_y < m_y_prev);
 
-    overlay #() u_ov (
+    // ======================= ⑨ 叠加显示（多目标）=======================
+    overlay_multi #() u_ovm (
+        .clk(clk), .rst_n(rst_n),
         .de(p_vde), .x(p_x), .y(p_y), .gray(p_pix),
-        .bx1(px1), .by1(py1), .bx2(px2), .by2(py2), .bvalid(b_valid),
-        .r(vr), .g(vg), .b(vb)
+        .f_edge(f_edge),
+        .t_valid(mb_valid), .t_x1(t_x1), .t_y1(t_y1), .t_x2(t_x2), .t_y2(t_y2),
+        .t_cnt(t_cnt), .t_last(t_last),
+        .r(vr), .g(vg), .b(vb),
+        .o_x1(b_x1), .o_y1(b_y1), .o_x2(b_x2), .o_y2(b_y2), .o_cnt(b_cnt),
+        .o_valid(b_valid), .o_obj_count(b_obj_count)
     );
+
+    // ======================= ⑩ 回传元数据链（线二，协议 v0.2）=======================
+    // multi_bbox 目标流（I3）→ track（持续 id）→ alarm（越界/停留）→ uart_tx（打包回传）
+    // 与显示链并联，原链行为不变。详见 docs/uart_json_adapter_spec.md。
+    //
+    // ---- frame_tick：vsync 上升沿，每帧 1 拍 ----
+    // ★ 零目标帧也必须有 tick：否则 track 轨迹永不老化、uart_tx 帧头永不发出。
+    reg  vs_d;
+    always @(posedge clk or negedge rst_n)
+        if (!rst_n) vs_d <= 1'b0; else vs_d <= vs;
+    wire frame_tick = vs & ~vs_d;
+
+    wire        tk_valid, tk_last;
+    wire [7:0]  tk_id;
+    wire [15:0] tk_x1, tk_y1, tk_x2, tk_y2, tk_dwell;
+
+    track u_trk (
+        .clk(clk), .rst_n(rst_n),
+        .t_valid(mb_valid), .t_id(t_id),           // 输入 id 被忽略，输出持续 id
+        .t_x1(t_x1), .t_y1(t_y1), .t_x2(t_x2), .t_y2(t_y2), .t_last(t_last),
+        .frame_tick(frame_tick),
+        .o_valid(tk_valid), .o_id(tk_id),
+        .o_x1(tk_x1), .o_y1(tk_y1), .o_x2(tk_x2), .o_y2(tk_y2),
+        .o_dwell(tk_dwell), .o_last(tk_last)
+    );
+
+    wire        al_valid;
+    wire [7:0]  al_id;
+    wire [1:0]  al_type;
+    wire [15:0] al_cx;
+
+    alarm u_alm (
+        .clk(clk), .rst_n(rst_n),
+        .LINE_X({5'd0, cfg_line_x}),               // 11 位警戒线零扩展到 16 位
+        .DWELL(cfg_dwell),
+        .t_valid(tk_valid), .t_id(tk_id),
+        .t_x1(tk_x1), .t_y1(tk_y1), .t_x2(tk_x2), .t_y2(tk_y2), .t_dwell(tk_dwell),
+        .a_valid(al_valid), .a_id(al_id), .a_type(al_type), .a_cx(al_cx)
+    );
+
+    uart_tx #(.BAUD_DIV(UART_BAUD_DIV)) u_utx (
+        .clk(clk), .rst_n(rst_n),
+        .s_valid(tk_valid), .s_id(tk_id),
+        .s_x1(tk_x1), .s_y1(tk_y1), .s_x2(tk_x2), .s_y2(tk_y2),
+        .e_valid(al_valid), .e_id(al_id), .e_type(al_type), .e_cx(al_cx),
+        .frame_tick(frame_tick),
+        .tx(uart_txd), .drop(uart_drop)
+    );
+
+    // ---- 本帧告警粘存（LED/探针用；frame_tick 清零）----
+    reg alarm_sticky;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)            alarm_sticky <= 1'b0;
+        else if (frame_tick)   alarm_sticky <= 1'b0;
+        else if (al_valid)     alarm_sticky <= 1'b1;
+    end
+    assign alarm_evt = alarm_sticky;
+
+    // ---- 快照锁存拍：帧边界（f_edge，与 multi_bbox 结算同拍）+ 目标串发完 ----
+    // BBOX_*/b_obj_count（上一帧，帧内稳定）、frame_idx 同一拍稳定后一起锁进
+    // bbox_snapshot（防撕裂）。有目标：t_last 次拍触发；零目标：边界后 32 拍超时。
+    reg [5:0] latch_cnt;
+    reg       latch_armed, latch_fire;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            latch_cnt <= 6'd0; latch_armed <= 1'b0; latch_fire <= 1'b0;
+        end else begin
+            latch_fire <= 1'b0;
+            if (f_edge) begin
+                latch_armed <= 1'b1;
+                latch_cnt   <= 6'd0;
+            end else if (latch_armed) begin
+                if (t_last || (latch_cnt == 6'd32)) begin
+                    latch_fire  <= 1'b1;   // 次拍锁存：最后一个计数已在本拍写入
+                    latch_armed <= 1'b0;
+                end else begin
+                    latch_cnt <= latch_cnt + 6'd1;
+                end
+            end
+        end
+    end
+    wire snap_latch = latch_fire;
+
+    // ======================= ⑪ I4 参数通路 + PS/AXI 域 =======================
+    generate
+        if (INCLUDE_PS != 0) begin : g_ps
+            // ---- regs（AXI 钟域）----
+            wire [15:0] r_thresh, r_thresh_rel, r_dwell;
+            wire [4:0]  r_shift;
+            wire [10:0] r_line_x;
+            wire        r_enable;
+            // bbox 快照（AXI 钟域稳定副本）
+            wire [15:0] s_x1q, s_y1q, s_x2q, s_y2q, s_cntq, s_frameq;
+            wire        s_validq, s_bvalidq, s_alarmq;
+            wire [7:0]  s_objq;
+            // uart drop：像素→AXI 2FF 同步
+            reg drop_q1, drop_q2;
+            always @(posedge clk_axi or negedge rst_n_axi)
+                if (!rst_n_axi) {drop_q1, drop_q2} <= 2'b00;
+                else            {drop_q1, drop_q2} <= {uart_drop, drop_q1};
+
+            bbox_snapshot u_snap (
+                .clk_px(clk), .rst_n_px(rst_n),
+                .i_x1(b_x1), .i_y1(b_y1), .i_x2(b_x2), .i_y2(b_y2), .i_cnt(b_cnt),
+                .i_valid(b_valid),
+                .i_frame_idx(fid), .i_obj_count(b_obj_count), .i_alarm_pulse(al_valid),
+                .i_latch(snap_latch),
+                .clk_axi(clk_axi), .rst_n_axi(rst_n_axi),
+                .o_x1(s_x1q), .o_y1(s_y1q), .o_x2(s_x2q), .o_y2(s_y2q), .o_cnt(s_cntq),
+                .o_valid(s_validq), .o_frame(s_frameq), .o_obj_count(s_objq),
+                .o_b_valid(s_bvalidq), .o_alarm(s_alarmq)
+            );
+
+            regs u_regs (
+                .clk(clk_axi), .rst_n(rst_n_axi),
+                .ps_en(ps_en), .ps_we(ps_we), .ps_addr(ps_addr),
+                .ps_wdata(ps_wdata), .ps_rdata(ps_rdata),
+                .o_thresh(r_thresh), .o_thresh_rel(r_thresh_rel),
+                .o_alpha_shift(r_shift), .o_line_x(r_line_x),
+                .o_dwell(r_dwell), .o_enable(r_enable),
+                .i_snap_x1(s_x1q), .i_snap_y1(s_y1q),
+                .i_snap_x2(s_x2q), .i_snap_y2(s_y2q), .i_snap_cnt(s_cntq),
+                .i_snap_valid(s_validq), .i_snap_frame(s_frameq),
+                .i_snap_obj_count(s_objq), .i_snap_b_valid(s_bvalidq),
+                .i_snap_alarm(s_alarmq),
+                .i_uart_drop(drop_q2)
+            );
+
+            // ---- AXI→像素 2FF 同步 ----
+            // 复位值取编译期参数（=原行为），regs 时钟起来后被寄存器复位值
+            // 覆盖（70/6/0/640/90）。多位总线在「写参数瞬间」可能一拍位间
+            // 不一致——配置型信号已知取舍，下拍自愈。
+            reg [15:0] thresh_q1,  thresh_q2;
+            reg [4:0]  shift_q1,   shift_q2;
+            reg        enable_q1,  enable_q2;
+            reg [10:0] line_x_q1,  line_x_q2;
+            reg [15:0] dwell_q1,   dwell_q2;
+            always @(posedge clk or negedge rst_n) begin
+                if (!rst_n) begin
+                    thresh_q1 <= THRESH[15:0];  thresh_q2 <= THRESH[15:0];
+                    shift_q1  <= SHIFT[4:0];    shift_q2  <= SHIFT[4:0];
+                    enable_q1 <= MODE_BG[0];    enable_q2 <= MODE_BG[0];
+                    line_x_q1 <= LINE_X_DEFAULT[10:0]; line_x_q2 <= LINE_X_DEFAULT[10:0];
+                    dwell_q1  <= DWELL_DEFAULT[15:0];  dwell_q2  <= DWELL_DEFAULT[15:0];
+                end else begin
+                    thresh_q1 <= r_thresh;  thresh_q2 <= thresh_q1;
+                    shift_q1  <= r_shift;   shift_q2  <= shift_q1;
+                    enable_q1 <= r_enable;  enable_q2 <= enable_q1;
+                    line_x_q1 <= r_line_x;  line_x_q2 <= line_x_q1;
+                    dwell_q1  <= r_dwell;   dwell_q2  <= dwell_q1;
+                end
+            end
+            assign cfg_thresh = thresh_q2;
+            assign cfg_shift  = shift_q2;
+            assign cfg_enable = enable_q2;
+            assign cfg_line_x = line_x_q2;
+            assign cfg_dwell  = dwell_q2;
+        end else begin : g_nops
+            // 纯 PL 构建：编译期参数直通（INCLUDE_PS=0，当前 10/13 bit 用这个）
+            assign cfg_thresh = THRESH[15:0];
+            assign cfg_shift  = SHIFT[4:0];
+            assign cfg_enable = MODE_BG[0];
+            assign cfg_line_x = LINE_X_DEFAULT[10:0];
+            assign cfg_dwell  = DWELL_DEFAULT[15:0];
+            assign ps_rdata   = 32'd0;       // 无 regs：桥读回 0（输入悬空不驱动）
+        end
+    endgenerate
 
     assign vde = p_vde;
     assign vx  = p_x;

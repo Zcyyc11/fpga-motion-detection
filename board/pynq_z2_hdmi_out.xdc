@@ -41,3 +41,8 @@ set_property -dict { PACKAGE_PIN H18   IOSTANDARD TMDS_33  } [get_ports { hdmi_t
 # ---- 未用到的板级引脚 ---------------------------------------------------------
 # HDMI 的 HPD / CEC / DDC（B9,B13,R19,G15 等）本设计不接，因此不写约束：
 # 没有对应端口就不会被实现工具拉进去。等接 HDMI 输入的版本再补。
+
+# ---- 线二回传 UART（PL 侧，协议 v0.2 115200-8-N-1）----------------------------
+# uart_txd → PMOD A 引脚 1（ja[0]，Y18）。不与 HDMI 收发同 bank 冲突（bank 34），
+# GND 就近取 PMOD A 的 pin 7/8。出处：pynq-z2_v1.0_official.xdc 的 PmodA 段。
+set_property -dict { PACKAGE_PIN Y18   IOSTANDARD LVCMOS33 } [get_ports { uart_txd }];

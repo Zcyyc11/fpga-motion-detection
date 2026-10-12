@@ -28,6 +28,7 @@ module board_top #(
 )(
     input  wire       sys_clk,             // 125 MHz，H16
     output wire [3:0] led,                 // LED0..LED3，高电平点亮
+    output wire       uart_txd,            // ★线二回传：PL 侧 UART（协议 v0.2，115200-8-N-1），PMOD A ja[0]
     output wire       hdmi_tx_clk_p,       // HDMI J11（source）
     output wire       hdmi_tx_clk_n,
     output wire [2:0] hdmi_tx_d_p,
@@ -179,6 +180,7 @@ module board_top #(
     wire [7:0]  vr, vg, vb;
     wire [15:0] b_x1, b_y1, b_x2, b_y2, b_cnt;
     wire        b_valid;
+    wire [7:0]  b_obj_count;
     wire        m_valid, m_bit;
     wire [15:0] m_x, m_y;
     wire [15:0] frame_idx;
@@ -198,9 +200,15 @@ module board_top #(
         .vde(vde), .vx(vx), .vy(vy), .vhs(vhs), .vvs(vvs),
         .vr(vr), .vg(vg), .vb(vb),
         .b_x1(b_x1), .b_y1(b_y1), .b_x2(b_x2), .b_y2(b_y2),
-        .b_cnt(b_cnt), .b_valid(b_valid),
+        .b_cnt(b_cnt), .b_valid(b_valid), .b_obj_count(b_obj_count),
         .m_valid(m_valid), .m_x(m_x), .m_y(m_y), .m_bit(m_bit),
-        .frame_idx(frame_idx)
+        .frame_idx(frame_idx),
+        // ---- 线二回传链（INCLUDE_PS=0：AXI 口悬空，UART 链无条件生效）----
+        .INCLUDE_PS(0),
+        .clk_axi(1'b0), .rst_n_axi(1'b0),
+        .ps_en(1'b0), .ps_we(1'b0), .ps_addr(6'd0), .ps_wdata(32'd0),
+        .ps_rdata(),
+        .uart_txd(uart_txd), .uart_drop(), .alarm_evt()
     );
 
     // ---------------- ⑥ HDMI 输出：TMDS 编码 + 串化 ----------------
