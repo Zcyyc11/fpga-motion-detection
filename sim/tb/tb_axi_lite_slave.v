@@ -69,7 +69,10 @@ module tb_axi_lite_slave;
             @(posedge aclk);
             araddr = a; arvalid = 1; rready = 0;
             @(posedge aclk);
-            arvalid = 0; rready = 1;
+            arvalid = 0; rready = 1;   // 地址已收，拉 rready 等数据
+            // 桥有 1 拍读延迟（rd_pend→下一拍 ps_rdata 稳定才送 RVALID），
+            // 等到 RVALID 起后再采一拍，保证采到有效数据而非上一拍残值
+            while (rvalid !== 1'b1) @(posedge aclk);
             @(posedge aclk);
             d = rdata;
             rready = 0;
