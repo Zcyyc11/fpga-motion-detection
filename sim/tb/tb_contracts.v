@@ -6,7 +6,7 @@ module tb_contracts;
     reg tv=0;
     reg [10:0] td=0;
     wire tov, tm;
-    threshold th(.clk(clk),.rst_n(rst_n),.in_valid(tv),.absdiff(td),.out_valid(tov),.mask(tm));
+    threshold th(.clk(clk),.rst_n(rst_n),.thresh(16'd70),.in_valid(tv),.absdiff(td),.out_valid(tov),.mask(tm));
     reg mv=0, mb=0;
     reg [15:0] mx=0,my=0;
     wire mov,mom;

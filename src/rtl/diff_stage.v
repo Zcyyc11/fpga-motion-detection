@@ -24,11 +24,14 @@
 //   本模块在「cur/ref 同时有效」那一拍组合算出 absdiff 与 wr_data；
 //   上层把 absdiff 寄存一拍、把 wr_data 寄存一拍后写到**同一地址**。
 //   因为读发生在写之前两拍，读到的必然是改之前的值 —— 不依赖 READ_FIRST 语义。
+//
+// ★ 2026-10-12 线二接入改动：SHIFT 由编译期参数改为**运行时输入端口**
+//   （学习率来自 regs 寄存器堆 0x08，PS 运行时可改，见接口冻结表 I4 与
+//   docs/接入说明.md §1.3）。移位量运行时可变综合为桶形移位器，无 DSP。
 // -----------------------------------------------------------------------------
-module diff_stage #(
-    parameter integer SHIFT = 6          // α = 1/2^SHIFT
-)(
-    input  wire        mode_bg,          // 0 = 帧差（缓存=上一帧），1 = 背景建模
+module diff_stage (
+    input  wire [4:0]  shift_amt,      // α = 1/2^shift_amt（来自 regs 0x08）
+    input  wire        mode_bg,        // 0 = 帧差（缓存=上一帧），1 = 背景建模
     input  wire        init_phase,       // 1 = 首帧：缓存直接写当前帧（只对 bg 模式有意义）
     input  wire [9:0]  cur,              // 当前帧大像素 I
     input  wire [9:0]  ref_px,           // 缓存读出的旧值（上一帧 或 背景图）
@@ -43,8 +46,8 @@ module diff_stage #(
     // ---- 绝对值 ----
     wire [12:0] ad = d[12] ? (~d + 13'd1) : d;
 
-    // ---- 背景更新 B' = B + (I − B)/2^SHIFT，钳到 0..1023 ----
-    wire signed [12:0] inc = d >>> SHIFT;
+    // ---- 背景更新 B' = B + (I − B)/2^shift_amt，钳到 0..1023 ----
+    wire signed [12:0] inc = d >>> shift_amt;
     wire signed [12:0] nxt = $signed({3'b000, ref_px}) + inc;
     wire        [9:0]  bg_next = (nxt < 13'sd0)     ? 10'd0 :
                                  (nxt > 13'sd1023)  ? 10'd1023 :
