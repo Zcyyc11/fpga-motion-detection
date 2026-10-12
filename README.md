@@ -2,7 +2,7 @@
 
 # fpga-motion-detection
 
-2026 FPGA竞赛项目，团队GGBOND。当前主线 `main @ f15fbce`（2026-10-12），线三交付（codex 分支）、线一 HDMI 输入通路、AXI-Lite 寄存器接口均已合入；分工表修订版见 `docs/team_division_20261011.md`。
+2026 FPGA竞赛项目，团队GGBOND。当前主线 `main @ c3f7040`（2026-10-12；协议定稿锚点 `f15fbce`），线三交付（codex 分支）、线一 HDMI 输入通路、AXI-Lite 寄存器接口均已合入；分工表修订版见 `docs/team_division_20261011.md`。
 
 **12 段 CDnet 子集的原入口成绩复现已完成，板级顶层两种模式布局布线通过，两版固件为正确配置（自测 INPUT_SEL=0、HDMI 输入 INPUT_SEL=1，WNS 收敛、DRC 干净），回传协议与接口设计已定稿（f15fbce），HDMI 输入版上板实测已 PASS（37c1d2c：强运动检出率 89%、静止误检率 0%、单框确认）。** 未闭合项收窄为：板端回传集成（线二接顶层 `md_pipeline.v`，授权进行中）、全链真回传实测、18 分钟帧号回绕长测、他人评审——不能称为整体验收通过。
 
@@ -17,6 +17,8 @@
 | [本轮新证据](report/line3_review_20261009/README.md) | 命令、退出码、数据、仿真和来源哈希 |
 | [线三报告初稿](report/line3_20261009/report_draft.md) | 历史九章初稿，缺项须补证后才能定稿 |
 | [原始分工](docs/review_inputs/team_division_20261008.txt) | 原DOCX逐段提取，完成声明仍须验证 |
+| [回传协议与接口设计（定稿）](docs/protocol_and_interface_requirements.md) | UART 三包（0x5A/0xA5/0xC3）+ AXI 寄存器表，10/12 定稿生效（f15fbce） |
+| [上板实测记录](board/logs/board_test_20261012.md) | HDMI 输入版 PASS：强运动检出 89%、静止误检 0%、单框确认（37c1d2c） |
 
 PL实现是自生激励、2×2求和、差分/背景建模、阈值、形态学、包围盒及HDMI输出。仓库的PC多目标跟踪/告警与PL实现属于不同路径。查实际源码判断功能，不能把PC功能自动算进PL。
 
