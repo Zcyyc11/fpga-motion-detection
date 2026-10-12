@@ -10,8 +10,8 @@
 - **执行日期、时间及时区**：2026-10-09，20:28–22:05，UTC+8（北京时间）
 - **是否独立新会话**：是。本审查在独立新会话中执行，与原作者（OpenAI Codex）的会话无共享上下文。
 - **已接触的作者结论或历史材料**（按接触顺序）：
-  1. 先读：`docs/independent_review.md`、空白模板、分工/计划原文、`CONTRIBUTING.md`、`README.md`、`docs/入门.md`、源码（rtl_golden.py、cdnet_official.py、sim/line3/*、build/scripts/* 等）。
-  2. 诚实披露：`README.md` 首页含作者声明"线三离线交付已有证据，但原始职责没有全部完成"，我在导航时不可避免读到；`docs/入门.md` 含若干结果口径说明。我的第一轮判断（`first_round_notes.md`，21:15 落笔）在此之后、**读作者汇总之前**完成并先行存档。
+  1. 先读：`docs/independent_review.md`、空白模板、分工/计划原文、`CONTRIBUTING.md`、`README.md`、`docs/getting_started.md`、源码（rtl_golden.py、cdnet_official.py、sim/line3/*、build/scripts/* 等）。
+  2. 诚实披露：`README.md` 首页含作者声明"线三离线交付已有证据，但原始职责没有全部完成"，我在导航时不可避免读到；`docs/getting_started.md` 含若干结果口径说明。我的第一轮判断（`first_round_notes.md`，21:15 落笔）在此之后、**读作者汇总之前**完成并先行存档。
   3. 第一轮完成后才读：`docs/line3_status_20261009.md`、`docs/reproduce_line3.md`、`docs/captain_feedback_20261009.txt`、`docs/verification_fixes_20261009.md`、`report/line3_review_20261009/README.md`、`report/line3_20261009/*.md`（issues/report_draft/team_evidence/results_ledger）、工作区 `handoff.md`、`maintenance_20261009/*.json`、`delivery/manifest.json`。
   4. 未读：`docs/independent_review_prompt.md`（委托方给"另一 AI"的提示词，非证据）。
 - **仓库、分支、完整 Git SHA、工作区差异**：
@@ -70,7 +70,7 @@
 - 影响：不构成"假通过"（作者用退出 2 显式暴露），但仓库默认归档证据 `sim/wave/bbox_rtl.csv`（11 行）与 `sim/logs/model_vs_rtl.txt` 的"完全一致"声明实际只覆盖 11 帧，引用时必须带此限定（作者台账已带）。
 
 ### F4【D】入门.md 的告警预期描述与实际产物矛盾
-- `docs/入门.md` 4.4 称 alarm_events\*.csv "应该只有 3 行左右（2 次闯入 + 1 次离开）"。实际仓库归档与我的复跑均为 **2 行、全部 cross_in、无离开事件**（与 F1 的 cross_out 缺陷互为因果）。
+- `docs/getting_started.md` 4.4 称 alarm_events\*.csv "应该只有 3 行左右（2 次闯入 + 1 次离开）"。实际仓库归档与我的复跑均为 **2 行、全部 cross_in、无离开事件**（与 F1 的 cross_out 缺陷互为因果）。
 - 影响：照文档自查的队友会把"缺离开事件"当成自己跑错。建议把该行改为描述当前实际行为并注明已知缺陷。
 
 ### F5【D】归档"clean"视频实为 algo 产物（作者已自曝 CSV 同问题，我补视频侧证据）

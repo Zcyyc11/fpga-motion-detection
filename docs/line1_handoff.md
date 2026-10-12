@@ -60,7 +60,7 @@
 
 ## 4. 参数控制实现状态（第二批）
 
-- 寄存器映射见 `docs/接口冻结表.md` I4：THRESH(0x00)/THRESH_REL(0x04)/ALPHA_SHIFT(0x08)/LINE_X(0x0C)/DWELL(0x10)/ENABLE(0x14)/STATUS(0x18)。
+- 寄存器映射见 `docs/interface_freeze_table.md` I4：THRESH(0x00)/THRESH_REL(0x04)/ALPHA_SHIFT(0x08)/LINE_X(0x0C)/DWELL(0x10)/ENABLE(0x14)/STATUS(0x18)。
 - **ENABLE 等参数是编译时（generic MODE_BG/INPUT_SEL）还是运行时 AXI 可改：待线一确认并测切换。**（当前顶层用 `parameter` 编译时选择，运行时切换未验证）
 - 复位值、读写示例：**TODO 线一补**。
 

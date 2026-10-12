@@ -452,4 +452,4 @@ git -c url."https://140.82.112.3/".insteadOf="https://github.com/" \
 
 1. **`CONTRIBUTING.md`** —— 协作规矩。一句话版：**`main` 分支只有 @Zcyyc11 能推**，
    其他人建自己的分支、提 PR、review 过再合。
-2. **`docs/接口冻结表.md`** —— 接口定义。接口是三个人共用的，改错了三个人一起翻车。
+2. **`docs/interface_freeze_table.md`** —— 接口定义。接口是三个人共用的，改错了三个人一起翻车。

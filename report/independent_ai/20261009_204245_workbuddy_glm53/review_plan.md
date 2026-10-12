@@ -13,7 +13,7 @@
 - `docs/review_inputs/team_division_20261008.txt`（分工原文）
 - `docs/review_inputs/team_plan_20261008.txt`（计划原文）
 - `CONTRIBUTING.md`（协作规范）
-- `README.md`、`docs/入门.md`（导航性质文档。注意：README 首页含作者自述结论
+- `README.md`、`docs/getting_started.md`（导航性质文档。注意：README 首页含作者自述结论
   「线三离线交付已有证据，但原始职责没有全部完成」，我已不可避免接触到该声明；
   本计划不受其引导，所有结论以我自己的执行为准）
 - 代码通读：`src/ps/rtl_golden.py`、`src/ps/cdnet_official.py`、`sim/line3/run.py`、`sim/line3/cases.py`
