@@ -3,31 +3,50 @@
 // regs —— 线二任务：参数控制寄存器堆（接口冻结表 I4 的 RTL 落地）
 //
 // 作用：PS 侧（Python）运行时读写阈值/警戒线/学习率等参数，PL 侧流水线
-//   拿到的是普通线网 —— 改参数不用重新烧板。这是清单里"参数控制实现状态"
-//   从「映射已冻结、实现未完成」变成「已实现」的这一步。
+//   拿到的是普通线网 —— 改参数不用重新烧板。
 //
-// 寄存器映射（与 docs/接口冻结表.md I4 严格一致，地址 4 字节对齐，小端）：
-//   0x00 THRESH      16  复位 70   绝对阈值（和域）
-//   0x04 THRESH_REL  16  复位 15   相对阈值百分比
-//   0x08 ALPHA_SHIFT  5  复位 5    背景学习率 = 1/2^SHIFT
-//   0x0C LINE_X      11  复位 640  警戒线 X（大像素域）
-//   0x10 DWELL       16  复位 90   停留告警帧数
-//   0x14 ENABLE       1  复位 0    1=背景建模 0=帧差法
-//   0x18 STATUS      32  只读      bit31 = UART 丢包粘存位（i_uart_drop 置位，
-//                                  PS 写 STATUS 任意值清除）；低 31 位 = i_status
-//                                  （位分配待线一在冻结表补充，读语义不变）
+// 寄存器映射（字节地址，4 字节对齐，小端；0x1C 起为 bbox 快照，见
+// docs/line1_uart_field_table_draft.md，线一 2026-10-12 确认）：
+//   0x00 THRESH      16  复位 70   绝对阈值（和域）        读写
+//   0x04 THRESH_REL  16  复位 15   相对阈值百分比          读写
+//   0x08 ALPHA_SHIFT  5  复位 5    背景学习率 = 1/2^SHIFT  读写
+//   0x0C LINE_X      11  复位 640  警戒线 X（大像素域）    读写
+//   0x10 DWELL       16  复位 90   停留告警帧数            读写
+//   0x14 ENABLE       1  复位 0    1=背景建模 0=帧差法     读写
+//   0x18 STATUS      32  只读      见下方位分配
+//   0x1C BBOX_X1     16  只读      包围盒左上 X（大像素域，帧快照）
+//   0x20 BBOX_Y1     16  只读      左上 Y
+//   0x24 BBOX_X2     16  只读      右下 X
+//   0x28 BBOX_Y2     16  只读      右下 Y
+//   0x2C BBOX_CNT    16  只读      前景像素计数（16 位饱和）
+//   0x30 BBOX_VALID   1  只读      快照所属帧有目标
+//   0x34 BBOX_FRAME  16  只读      快照所属帧号（与快照同拍锁存）
 //
-// PS 总线故意做得很瘦（en/we/addr/wdata/rdata）——将来无论挂 AXI-Lite
-// 还是 GPIO 翻译层，都只改外面一层壳，本模块不动。
+// STATUS 位分配（线一 2026-10-12 冻结）：
+//   bit0    = b_valid    快照所属帧有目标（bbox_snapshot 副本）
+//   bit1    = alarm      快照所属帧内发生过告警（帧级粘存，方案 A，
+//                        帧边界随快照刷新；事件本身是单拍脉冲，
+//                        直接接 PS 轮询读不到）
+//   bit7:2  = 保留
+//   bit15:8 = obj_count  快照所属帧目标数
+//   bit30:16= frame_idx 低 15 位镜像（16 位 @60fps 约 18.2 分钟回绕）
+//   bit31   = UART 丢包粘存位（i_uart_drop 置位，PS 写 STATUS 清除）
+//
+// ps_addr 为 6 位字节地址（0x00..0x34）：与 src/rtl/board/axi_lite_slave.v
+// 的 ADDR_W=6 输出对齐；此前 [4:0] 会把 0x20+ 截断错位（静默错），已加宽。
+//
+// 快照来源：bbox_snapshot.v 在像素钟域帧边界连同 frame_idx 一起锁存并经
+// 四段握手 CDC 送入 AXI 钟域稳定副本 —— 本模块只读副本，无跨钟逻辑。
+// PS 总线保持瘦（en/we/addr/wdata/rdata），AXI 协议层由 axi_lite_slave 承担。
 // 写在第 1 拍生效；读为寄存输出（第 2 拍有效），综合时序友好。
 // -----------------------------------------------------------------------------
 module regs (
-    input  wire        clk,
+    input  wire        clk,           // AXI 钟域
     input  wire        rst_n,
-    // PS 侧简单总线
+    // PS 侧简单总线（axi_lite_slave 驱动）
     input  wire        ps_en,        // 1 = 本次访问有效
     input  wire        ps_we,        // 1 = 写，0 = 读
-    input  wire [4:0]  ps_addr,      // 字节地址（0x00..0x18）
+    input  wire [5:0]  ps_addr,      // 字节地址（0x00..0x34）
     input  wire [31:0] ps_wdata,
     output reg  [31:0] ps_rdata,     // 读寄存输出（ps_en&!we 后 1 拍有效）
     // 流水线参数输出（随时更新，随写随生效）
@@ -37,24 +56,44 @@ module regs (
     output reg  [10:0] o_line_x,
     output reg  [15:0] o_dwell,
     output reg         o_enable,
-    // 只读状态（流水线侧驱动）
-    input  wire [31:0] i_status,
+    // bbox 快照（bbox_snapshot.v 的 AXI 钟域稳定副本，整帧一致）
+    input  wire [15:0] i_snap_x1, i_snap_y1, i_snap_x2, i_snap_y2, i_snap_cnt,
+    input  wire        i_snap_valid,
+    input  wire [15:0] i_snap_frame,
+    input  wire [7:0]  i_snap_obj_count,
+    input  wire        i_snap_b_valid,
+    input  wire        i_snap_alarm,
     // UART 丢包标志（uart_tx.drop，粘存进 STATUS bit31）
     input  wire        i_uart_drop
 );
 
     reg uart_drop_sticky;   // FIFO 满发生过一次即置位，PS 写 STATUS 清除
 
+    // STATUS 拼装（位分配见文件头）：1+15+8+6+1+1 = 32 bit
+    wire [31:0] status_val = {uart_drop_sticky,        // 31
+                              i_snap_frame[14:0],      // 30:16
+                              i_snap_obj_count,        // 15:8
+                              6'd0,                    // 7:2 保留
+                              i_snap_alarm,            // bit1
+                              i_snap_b_valid};         // bit0
+
     // 读译码函数（Verilog-2001 不支持 case 表达式）
-    function [31:0] rd_decode(input [4:0] a);
+    function [31:0] rd_decode(input [5:0] a);
         case (a)
-            5'h00: rd_decode = {16'd0, o_thresh};
-            5'h04: rd_decode = {16'd0, o_thresh_rel};
-            5'h08: rd_decode = {27'd0, o_alpha_shift};
-            5'h0C: rd_decode = {21'd0, o_line_x};
-            5'h10: rd_decode = {16'd0, o_dwell};
-            5'h14: rd_decode = {31'd0, o_enable};
-            5'h18: rd_decode = i_status | {uart_drop_sticky, 31'd0};
+            6'h00: rd_decode = {16'd0, o_thresh};
+            6'h04: rd_decode = {16'd0, o_thresh_rel};
+            6'h08: rd_decode = {27'd0, o_alpha_shift};
+            6'h0C: rd_decode = {21'd0, o_line_x};
+            6'h10: rd_decode = {16'd0, o_dwell};
+            6'h14: rd_decode = {31'd0, o_enable};
+            6'h18: rd_decode = status_val;
+            6'h1C: rd_decode = {16'd0, i_snap_x1};
+            6'h20: rd_decode = {16'd0, i_snap_y1};
+            6'h24: rd_decode = {16'd0, i_snap_x2};
+            6'h28: rd_decode = {16'd0, i_snap_y2};
+            6'h2C: rd_decode = {16'd0, i_snap_cnt};
+            6'h30: rd_decode = {31'd0, i_snap_valid};
+            6'h34: rd_decode = {16'd0, i_snap_frame};
             default: rd_decode = 32'd0;
         endcase
     endfunction
@@ -72,12 +111,12 @@ module regs (
         end else begin
             if (ps_en && ps_we) begin
                 case (ps_addr)
-                    5'h00: o_thresh      <= ps_wdata[15:0];
-                    5'h04: o_thresh_rel  <= ps_wdata[15:0];
-                    5'h08: o_alpha_shift <= ps_wdata[4:0];
-                    5'h0C: o_line_x      <= ps_wdata[10:0];
-                    5'h10: o_dwell       <= ps_wdata[15:0];
-                    5'h14: o_enable      <= ps_wdata[0];
+                    6'h00: o_thresh      <= ps_wdata[15:0];
+                    6'h04: o_thresh_rel  <= ps_wdata[15:0];
+                    6'h08: o_alpha_shift <= ps_wdata[4:0];
+                    6'h0C: o_line_x      <= ps_wdata[10:0];
+                    6'h10: o_dwell       <= ps_wdata[15:0];
+                    6'h14: o_enable      <= ps_wdata[0];
                     default: ;           // 其余只读
                 endcase
             end
@@ -89,7 +128,7 @@ module regs (
     // 丢包粘存：uart_tx 报过一次 FIFO 满就记住，直到 PS 主动清除
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n)                          uart_drop_sticky <= 1'b0;
-        else if (ps_en && ps_we && ps_addr == 5'h18) uart_drop_sticky <= 1'b0;
+        else if (ps_en && ps_we && ps_addr == 6'h18) uart_drop_sticky <= 1'b0;
         else if (i_uart_drop)                uart_drop_sticky <= 1'b1;
     end
 

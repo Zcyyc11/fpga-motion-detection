@@ -17,9 +17,19 @@
 //   本桥按 6 位字节地址输出，与加宽后的 regs 直接对接。
 //
 // 写：AW/W 同时有效且未持 B → 锁存、发 1 拍 ps_en 脉冲、拉 BVALID；
-//     等 BREADY 清 BVALID。读：AR 有效且未持 R → 发 1 拍读 ps_en、下一拍
-//     ps_rdata 就绪 → 拉 RVALID 送出；等 RREADY 清。
+//     等 BREADY 清 BVALID。读：AR 有效且未持 R → 发 1 拍读 ps_en、
+//     ps_en 脉冲结束后 ps_rdata 稳定 → 拉 RVALID 送出；等 RREADY 清。
 // 单拍、非突发、全 32 位对齐（PS MMIO 即此用法）。
+//
+// ⚠️ 2026-10-12 线二互验修复（原版 tb_axi_lite_slave 跑出 2 FAIL）：
+//   1) 原版写/读通道是两个 always 块，ps_en/ps_we 双驱动 —— 综合报
+//      multi-driven net，仿真中两块的默认清零互相覆盖对方的 1 拍脉冲
+//      （FAIL①② 的根因，④ 偶过是双驱动非确定性）。
+//      现合并为单一时序块，ps_en/ps_we 单一驱动源。
+//   2) 原版读采样在 ps_en 脉冲当拍就锁 ps_rdata —— 对组合型寄存器堆
+//      （tb 的 stub）成立，但对 regs.v 的**寄存输出**早一拍（regs 在
+//      ps_en 脉冲结束后 1 拍才把 ps_rdata 更新好）。现改为
+//      「ps_en 已回 0 且本拍无新接受」才采样，组合/寄存两种消费者都兼容。
 // -----------------------------------------------------------------------------
 module axi_lite_slave #(
     parameter integer ADDR_W = 6     // 字节地址位宽，覆盖 0x00..0x34
@@ -58,21 +68,37 @@ module axi_lite_slave #(
     assign S_AXI_BRESP   = 2'b00;          // OKAY
     assign S_AXI_RRESP   = 2'b00;
 
-    // ---------------- 写通道 ----------------
+    // ---------------- 写通道 + 读通道（单一时序块，ps_en/ps_we 单驱动）----------------
     reg [ADDR_W-1:0] aw_addr_r;
     reg [31:0]      wdata_r;
+    reg [31:0] rdata_r;
+    reg        rd_pend;
+
+    // 接受条件（组合，便于同拍互斥判断）
+    wire w_accept = S_AXI_AWVALID && S_AXI_AWREADY &&
+                    S_AXI_WVALID  && S_AXI_WREADY;
+    wire r_accept = S_AXI_ARVALID && S_AXI_ARREADY && !w_accept; // 写优先，读等一拍
+    // 读数据采样条件：读已挂起、未送 R、ps_en 脉冲已结束、本拍无新接受
+    // （兼容组合型 stub 与 regs.v 的寄存输出两种 ps_rdata 时序）
+    wire r_sample = rd_pend && !S_AXI_RVALID && !ps_en && !w_accept && !r_accept;
 
     always @(posedge S_AXI_ACLK or negedge S_AXI_ARESETN) begin
         if (!S_AXI_ARESETN) begin
             S_AXI_BVALID <= 1'b0;
+            S_AXI_RVALID <= 1'b0;
             ps_en  <= 1'b0;
             ps_we  <= 1'b0;
+            ps_addr   <= {ADDR_W{1'b0}};
+            ps_wdata  <= 32'd0;
             aw_addr_r <= {ADDR_W{1'b0}};
-            wdata_r <= 32'd0;
+            wdata_r   <= 32'd0;
+            rdata_r   <= 32'd0;
+            rd_pend   <= 1'b0;
         end else begin
-            ps_en <= 1'b0;   // 默认无脉冲
-            if (S_AXI_AWVALID && S_AXI_AWREADY && S_AXI_WVALID && S_AXI_WREADY) begin
-                // 接受本次写：锁存并产 1 拍 ps_en 脉冲，拉 BVALID
+            ps_en <= 1'b0;   // 默认无脉冲（唯一驱动点）
+
+            // ---- 写通道 ----
+            if (w_accept) begin
                 aw_addr_r <= S_AXI_AWADDR[ADDR_W-1:0];
                 wdata_r   <= S_AXI_WDATA;
                 ps_en     <= 1'b1;
@@ -80,40 +106,23 @@ module axi_lite_slave #(
                 ps_addr   <= S_AXI_AWADDR[ADDR_W-1:0];
                 ps_wdata  <= S_AXI_WDATA;
                 S_AXI_BVALID <= 1'b1;
-                $display("[slave] WRITE accept addr=0x%h data=0x%h", S_AXI_AWADDR[ADDR_W-1:0], S_AXI_WDATA);
+                $display("[slave] WRITE accept addr=0x%h data=0x%h",
+                         S_AXI_AWADDR[ADDR_W-1:0], S_AXI_WDATA);
             end else if (S_AXI_BVALID && S_AXI_BREADY) begin
                 S_AXI_BVALID <= 1'b0;   // 写响应完成
             end
-        end
-    end
 
-    // ---------------- 读通道 ----------------
-    // 读数据来自 regs：ps_rdata 在 ps_en(读) 当拍更新，下一拍稳定 → 送出。
-    // 用 rd_pend 锁存"已发读、待数据"状态（ps_en 只脉冲一拍，不能靠它判数据稳）。
-    reg [31:0] rdata_r;
-    reg        rd_pend;
-
-    always @(posedge S_AXI_ACLK or negedge S_AXI_ARESETN) begin
-        if (!S_AXI_ARESETN) begin
-            S_AXI_RVALID <= 1'b0;
-            ps_en <= 1'b0;
-            ps_we <= 1'b0;
-            rdata_r <= 32'd0;
-            rd_pend <= 1'b0;
-        end else begin
-            ps_en <= 1'b0;
-            if (S_AXI_ARVALID && S_AXI_ARREADY) begin
-                // 接受读地址：发 1 拍读 ps_en，锁 rd_pend
+            // ---- 读通道 ----
+            if (r_accept) begin
                 ps_en   <= 1'b1;
                 ps_we   <= 1'b0;
                 ps_addr <= S_AXI_ARADDR[ADDR_W-1:0];
                 rd_pend <= 1'b1;
                 $display("[slave] READ accept addr=0x%h", S_AXI_ARADDR[ADDR_W-1:0]);
-            end else if (rd_pend && !S_AXI_RVALID) begin
-                // ps_rdata 已稳定（ps_en 当拍更新），送出并清 pend
-                rdata_r <= ps_rdata;
+            end else if (r_sample) begin
+                rdata_r  <= ps_rdata;   // ps_rdata 此时已稳定
                 S_AXI_RVALID <= 1'b1;
-                rd_pend <= 1'b0;
+                rd_pend  <= 1'b0;
             end else if (S_AXI_RVALID && S_AXI_RREADY) begin
                 S_AXI_RVALID <= 1'b0;
             end
