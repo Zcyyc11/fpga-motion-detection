@@ -2,9 +2,9 @@
 
 # fpga-motion-detection
 
-2026 FPGA竞赛项目，团队GGBOND。当前主线 `main @ eda3e2f`（2026-10-11），线三交付（codex 分支）与线一 HDMI 输入通路均已合入；分工表修订版见 `docs/team_division_20261011.md`。
+2026 FPGA竞赛项目，团队GGBOND。当前主线 `main @ f15fbce`（2026-10-12），线三交付（codex 分支）、线一 HDMI 输入通路、AXI-Lite 寄存器接口均已合入；分工表修订版见 `docs/team_division_20261011.md`。
 
-**12 段 CDnet 子集的原入口成绩复现已完成，板级顶层两种模式布局布线通过，两版固件已重建为正确配置（自测 INPUT_SEL=0、HDMI 输入 INPUT_SEL=1，WNS 收敛、DRC 干净）。** HDMI 输入侧已组装并合入 main；未闭合项剩：真实回传、上板实测、他人评审，不能称为整体验收通过。
+**12 段 CDnet 子集的原入口成绩复现已完成，板级顶层两种模式布局布线通过，两版固件为正确配置（自测 INPUT_SEL=0、HDMI 输入 INPUT_SEL=1，WNS 收敛、DRC 干净），回传协议与接口设计已定稿（f15fbce），HDMI 输入版上板实测已 PASS（37c1d2c：强运动检出率 89%、静止误检率 0%、单框确认）。** 未闭合项收窄为：板端回传集成（线二接顶层 `md_pipeline.v`，授权进行中）、全链真回传实测、18 分钟帧号回绕长测、他人评审——不能称为整体验收通过。
 
 | 入口 | 用途 |
 | --- | --- |
@@ -24,4 +24,4 @@ PL实现是自生激励、2×2求和、差分/背景建模、阈值、形态学�
 
 report/line3_20261009记录旧线三基线，report/verification_20261009记录后续修复。两者保留历史成功与失败，不回填为新版本结果。旧docs/line3_run.md及verification_fixes_20261009.md已标为历史，请从当前复现说明启动。
 
-本次已合入 main 的变更：hdmi-in 通路组装（b07bc63）、rgb2dvi 打包顺序与帧号回绕修复（df34371/3685507）、构建 generic 参数格式修复（0aff121）、两版 bit 重建为正确配置（b7656a8）、分工表修订（73757f1）、最新 HDMI 构建收编（eda3e2f）。尚未下载到板卡实测。main 合入不等于整体验收通过。
+已合入 main 的变更（截至 2026-10-12）：hdmi-in 通路组装（b07bc63）、rgb2dvi 打包顺序与帧号回绕修复（df34371/3685507）、构建 generic 参数格式修复（0aff121）、两版 bit 重建为正确配置（b7656a8）、分工表修订（73757f1）、最新 HDMI 构建收编（eda3e2f）、AXI-Lite 从机+桥与 PS 读出（147aea1）、红线整改（纯英文文件名 85f214d、大模型协作交互记录 099d8f0、Vivado generic 技能包 4405e3a）、回传协议与接口设计定稿（f15fbce）、上板实测记录（37c1d2c，PASS）。main 合入不等于整体验收通过。
