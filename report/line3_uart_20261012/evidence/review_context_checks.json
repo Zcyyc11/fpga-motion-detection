@@ -1,0 +1,317 @@
+{
+  "checks": [
+    {
+      "name": "event before target and after final target accepted",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "events may exist in zero-target frame",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "16-bit wrap accepted",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all frames admit event-loss uncertainty",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "200 random chunkings equivalent",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "unknown flags retained with error",
+      "passed": true,
+      "details": {
+        "frames": [
+          {
+            "sequence": 1,
+            "frame_id": 7,
+            "expected_count": 1,
+            "targets": [
+              {
+                "frame_id": 7,
+                "raw_hex": "a5070007000000007f026701ff9b",
+                "kind": "target",
+                "id": 7,
+                "x1": 0,
+                "y1": 0,
+                "x2": 639,
+                "y2": 359,
+                "flags": 255,
+                "offset": 5
+              }
+            ],
+            "events": [],
+            "problems": [
+              "undefined_flags"
+            ],
+            "boundary": "end_of_capture",
+            "events_complete": false,
+            "next_header_seen": false,
+            "valid": false
+          }
+        ],
+        "events": [],
+        "errors": [
+          {
+            "reason": "undefined_flags",
+            "frame_id": 7,
+            "flags": 255
+          }
+        ],
+        "wraps": 0,
+        "missing": 0
+      }
+    },
+    {
+      "name": "wrong-frame event not assigned",
+      "passed": true,
+      "details": {
+        "frames": [
+          {
+            "sequence": 1,
+            "frame_id": 7,
+            "expected_count": 0,
+            "targets": [],
+            "events": [],
+            "problems": [
+              "orphan_packet"
+            ],
+            "boundary": "end_of_capture",
+            "events_complete": false,
+            "next_header_seen": false,
+            "valid": false
+          }
+        ],
+        "events": [],
+        "errors": [
+          {
+            "reason": "orphan_packet",
+            "kind": "event",
+            "frame_id": 8
+          }
+        ],
+        "wraps": 0,
+        "missing": 0
+      }
+    },
+    {
+      "name": "missing frame across wrap detected",
+      "passed": true,
+      "details": {
+        "frames": [
+          {
+            "sequence": 1,
+            "frame_id": 65534,
+            "expected_count": 0,
+            "targets": [],
+            "events": [],
+            "problems": [],
+            "boundary": "next_header",
+            "events_complete": false,
+            "next_header_seen": true,
+            "valid": true
+          },
+          {
+            "sequence": 2,
+            "frame_id": 0,
+            "expected_count": 0,
+            "targets": [],
+            "events": [],
+            "problems": [
+              "missing_frames"
+            ],
+            "boundary": "end_of_capture",
+            "events_complete": false,
+            "next_header_seen": false,
+            "valid": false
+          }
+        ],
+        "events": [],
+        "errors": [
+          {
+            "reason": "missing_frames",
+            "count": 1,
+            "previous": 65534,
+            "frame_id": 0
+          }
+        ],
+        "wraps": 1,
+        "missing": 1
+      }
+    },
+    {
+      "name": "backwards frame flagged",
+      "passed": true,
+      "details": {
+        "frames": [
+          {
+            "sequence": 1,
+            "frame_id": 100,
+            "expected_count": 0,
+            "targets": [],
+            "events": [],
+            "problems": [],
+            "boundary": "next_header",
+            "events_complete": false,
+            "next_header_seen": true,
+            "valid": true
+          },
+          {
+            "sequence": 2,
+            "frame_id": 99,
+            "expected_count": 0,
+            "targets": [],
+            "events": [],
+            "problems": [
+              "backward_frame_or_reset"
+            ],
+            "boundary": "end_of_capture",
+            "events_complete": false,
+            "next_header_seen": false,
+            "valid": false
+          }
+        ],
+        "events": [],
+        "errors": [
+          {
+            "reason": "backward_frame_or_reset",
+            "previous": 100,
+            "frame_id": 99
+          }
+        ],
+        "wraps": 0,
+        "missing": 0
+      }
+    },
+    {
+      "name": "bad checksum resynchronizes",
+      "passed": true,
+      "details": {
+        "frames": [
+          {
+            "sequence": 1,
+            "frame_id": 7,
+            "expected_count": 1,
+            "targets": [],
+            "events": [],
+            "problems": [
+              "checksum",
+              "noise",
+              "target_count_mismatch"
+            ],
+            "boundary": "next_header",
+            "events_complete": false,
+            "next_header_seen": true,
+            "valid": false
+          },
+          {
+            "sequence": 2,
+            "frame_id": 8,
+            "expected_count": 0,
+            "targets": [],
+            "events": [
+              {
+                "frame_id": 8,
+                "raw_hex": "c3080007017f0254",
+                "kind": "event",
+                "id": 7,
+                "type": 1,
+                "center_x": 639,
+                "name": "crossing",
+                "offset": 24
+              }
+            ],
+            "problems": [],
+            "boundary": "end_of_capture",
+            "events_complete": false,
+            "next_header_seen": false,
+            "valid": true
+          }
+        ],
+        "events": [
+          {
+            "frame_id": 8,
+            "raw_hex": "c3080007017f0254",
+            "kind": "event",
+            "id": 7,
+            "type": 1,
+            "center_x": 639,
+            "name": "crossing",
+            "offset": 24
+          }
+        ],
+        "errors": [
+          {
+            "reason": "checksum",
+            "offset": 5,
+            "length": 1,
+            "raw_hex": "a5"
+          },
+          {
+            "reason": "noise",
+            "offset": 6,
+            "length": 13,
+            "raw_hex": "070007000000007f02670100ff"
+          },
+          {
+            "reason": "target_count_mismatch",
+            "frame_id": 7,
+            "expected": 1,
+            "actual": 0
+          }
+        ],
+        "wraps": 0,
+        "missing": 0
+      }
+    },
+    {
+      "name": "exact comparison accepts matching table",
+      "passed": true,
+      "details": {
+        "exit_code": 0,
+        "errors": [],
+        "compared_frames": 4,
+        "actual_frames": 4,
+        "reference_frames": 4,
+        "raw_sha256": "02034f318ae5164e0451232a351e55d8213c41b09d19d5e92a75d197a49a6c99",
+        "reference_sha256": "6a7e4f2e88fd17b08b02e250fc724b413ccd285dd39cd7bcf0612abb2690c24a",
+        "board_test": false,
+        "scope": "exact table comparison; hardware origin and video alignment require independent evidence"
+      }
+    },
+    {
+      "name": "comparison rejects omitted event",
+      "passed": true,
+      "details": {
+        "exit_code": 1,
+        "errors": [
+          "frame 1: frame id / targets / events differ"
+        ],
+        "compared_frames": 4,
+        "actual_frames": 4,
+        "reference_frames": 4,
+        "raw_sha256": "02034f318ae5164e0451232a351e55d8213c41b09d19d5e92a75d197a49a6c99",
+        "reference_sha256": "c4c339142c7f76f4b86d8c8299988cdd015d66451694d20376b7a0ed6d46e69e",
+        "board_test": false,
+        "scope": "exact table comparison; hardware origin and video alignment require independent evidence"
+      }
+    }
+  ],
+  "passed": 12,
+  "total": 12,
+  "sources_sha256": {
+    "sim/line3/uart_protocol.py": "dc24a5ef2ebbd4026aa27f9bc7a300225bf2f05a6e7aad92b339495484599496",
+    "sim/line3/uart_receiver.py": "f57663c0bc69bba8aa8a53588ae1fd3324411399055e7bf9f5c067f2b68de837",
+    "sim/line3/verify_uart_capture.py": "a140e5229512a45335265e22e13e4437014cd29b2de5f044d355aa8fbbc9e4b1",
+    "docs/protocol_and_interface_requirements.md": "dcf2855aeb47fa98e6d9324f4691453608e60aa7b18dc7f67d8fc6cd064cb637"
+  },
+  "board_test": false
+}

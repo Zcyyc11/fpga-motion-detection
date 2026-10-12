@@ -1,0 +1,8 @@
+{
+  "sim/line3/check_uart_evidence.py": "3d3cfef16f3de8bc887a97363e64c929e432263809289f6bbb5f05e42b05fb14",
+  "sim/line3/check_uart_receiver.py": "250be6e355db49d4581451739d2ec27f874e6869d0db79f8bbcefb8aba008322",
+  "sim/line3/uart_protocol.py": "dc24a5ef2ebbd4026aa27f9bc7a300225bf2f05a6e7aad92b339495484599496",
+  "sim/line3/uart_receiver.py": "47be301086b0791868e6886eca0fdc3b99cbfe143ce1569b1649c011816f101d",
+  "sim/line3/verify_uart_capture.py": "9b47eacd5e9e70532aef16e26093836dac2dbcbb58395f8daf6709994c7728a5",
+  "sim/line3/requirements-uart.txt": "6e2a47c8e1bceb0eec3fd5b7c180d1cbbe76574b5f2f97a604ca9b93cf66fdb2"
+}
