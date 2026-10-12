@@ -1,0 +1,2 @@
+{"frame_id": 65535, "raw_hex": "c3ffff07011400dd", "kind": "event", "id": 7, "type": 1, "center_x": 20, "name": "crossing", "offset": 24}
+{"frame_id": 0, "raw_hex": "c30000030263002b", "kind": "event", "id": 3, "type": 2, "center_x": 99, "name": "dwell", "offset": 261}

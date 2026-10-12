@@ -1,0 +1,32 @@
+{
+  "protocol": "uart-v0.2-f15fbce",
+  "started_utc": "2026-10-12T11:36:52.262109+00:00",
+  "source": "simulated",
+  "board_test": false,
+  "video_synchronized": false,
+  "bytes_saved": 262144,
+  "packets": 0,
+  "frames": 0,
+  "valid_frames": 0,
+  "events": 0,
+  "images": 0,
+  "max_frames": 10000,
+  "max_bytes": 16777216,
+  "save_images": 0,
+  "metadata": {},
+  "errors": 262144,
+  "transport_error": null,
+  "max_error_details": 10000,
+  "error_details_written": 10000,
+  "error_details_suppressed": 252144,
+  "last_frame_event_completeness": "unverifiable: no end packet or event count",
+  "missing_frames": 0,
+  "frame_wraps": 0,
+  "error_counts": {
+    "checksum": 262131,
+    "truncated_packet": 13
+  },
+  "raw_sha256": "b9b8561490d31103a2783ddcbf67ffcb6aa02b1aa71a9800aad615aeb20c8c55",
+  "finished_utc": "2026-10-12T11:36:52.756334+00:00",
+  "exit_code": 1
+}

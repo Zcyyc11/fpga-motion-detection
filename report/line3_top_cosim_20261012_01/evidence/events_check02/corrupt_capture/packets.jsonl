@@ -1,0 +1,67 @@
+{"frame_id": 1, "raw_hex": "5a0100005b", "kind": "header", "count": 0, "offset": 5}
+{"frame_id": 2, "raw_hex": "5a0200005c", "kind": "header", "count": 0, "offset": 10}
+{"frame_id": 3, "raw_hex": "5a0300005d", "kind": "header", "count": 0, "offset": 15}
+{"frame_id": 4, "raw_hex": "5a04000260", "kind": "header", "count": 2, "offset": 20}
+{"frame_id": 4, "raw_hex": "a5040000140028001b0036000036", "kind": "target", "id": 0, "x1": 20, "y1": 40, "x2": 27, "y2": 54, "flags": 0, "offset": 25}
+{"frame_id": 4, "raw_hex": "a5040000280028002f003600005e", "kind": "target", "id": 0, "x1": 40, "y1": 40, "x2": 47, "y2": 54, "flags": 0, "offset": 39}
+{"frame_id": 5, "raw_hex": "5a05000261", "kind": "header", "count": 2, "offset": 53}
+{"frame_id": 5, "raw_hex": "a50500001c002800230036000047", "kind": "target", "id": 0, "x1": 28, "y1": 40, "x2": 35, "y2": 54, "flags": 0, "offset": 58}
+{"frame_id": 5, "raw_hex": "a505000130002800370036000070", "kind": "target", "id": 1, "x1": 48, "y1": 40, "x2": 55, "y2": 54, "flags": 0, "offset": 72}
+{"frame_id": 5, "raw_hex": "c3050000021f00e9", "kind": "event", "id": 0, "type": 2, "center_x": 31, "name": "dwell", "offset": 86}
+{"frame_id": 6, "raw_hex": "5a06000262", "kind": "header", "count": 2, "offset": 94}
+{"frame_id": 6, "raw_hex": "a5060000240028002b0036000058", "kind": "target", "id": 0, "x1": 36, "y1": 40, "x2": 43, "y2": 54, "flags": 0, "offset": 99}
+{"frame_id": 6, "raw_hex": "a5060001380028003f0036000081", "kind": "target", "id": 1, "x1": 56, "y1": 40, "x2": 63, "y2": 54, "flags": 0, "offset": 113}
+{"frame_id": 6, "raw_hex": "c3060001013b0006", "kind": "event", "id": 1, "type": 1, "center_x": 59, "name": "crossing", "offset": 127}
+{"frame_id": 7, "raw_hex": "5a07000263", "kind": "header", "count": 2, "offset": 135}
+{"frame_id": 7, "raw_hex": "a50700002c002800330036000069", "kind": "target", "id": 0, "x1": 44, "y1": 40, "x2": 51, "y2": 54, "flags": 0, "offset": 140}
+{"frame_id": 7, "raw_hex": "a507000140002800470036000092", "kind": "target", "id": 1, "x1": 64, "y1": 40, "x2": 71, "y2": 54, "flags": 0, "offset": 154}
+{"frame_id": 7, "raw_hex": "c307000102430010", "kind": "event", "id": 1, "type": 2, "center_x": 67, "name": "dwell", "offset": 168}
+{"frame_id": 8, "raw_hex": "5a08000264", "kind": "header", "count": 2, "offset": 176}
+{"frame_id": 8, "raw_hex": "a5080000340028003b003600007a", "kind": "target", "id": 0, "x1": 52, "y1": 40, "x2": 59, "y2": 54, "flags": 0, "offset": 181}
+{"frame_id": 8, "raw_hex": "a5080001480028004f00360000a3", "kind": "target", "id": 1, "x1": 72, "y1": 40, "x2": 79, "y2": 54, "flags": 0, "offset": 195}
+{"frame_id": 8, "raw_hex": "c308000001370003", "kind": "event", "id": 0, "type": 1, "center_x": 55, "name": "crossing", "offset": 209}
+{"frame_id": 9, "raw_hex": "5a09000265", "kind": "header", "count": 2, "offset": 217}
+{"frame_id": 9, "raw_hex": "a50900003c00280043003600008b", "kind": "target", "id": 0, "x1": 60, "y1": 40, "x2": 67, "y2": 54, "flags": 0, "offset": 222}
+{"frame_id": 9, "raw_hex": "a5090001500028005700360000b4", "kind": "target", "id": 1, "x1": 80, "y1": 40, "x2": 87, "y2": 54, "flags": 0, "offset": 236}
+{"frame_id": 10, "raw_hex": "5a0a000266", "kind": "header", "count": 2, "offset": 250}
+{"frame_id": 10, "raw_hex": "a50a0000440028004b003600009c", "kind": "target", "id": 0, "x1": 68, "y1": 40, "x2": 75, "y2": 54, "flags": 0, "offset": 255}
+{"frame_id": 10, "raw_hex": "a50a0001580028005f00360000c5", "kind": "target", "id": 1, "x1": 88, "y1": 40, "x2": 95, "y2": 54, "flags": 0, "offset": 269}
+{"frame_id": 11, "raw_hex": "5a0b000267", "kind": "header", "count": 2, "offset": 283}
+{"frame_id": 11, "raw_hex": "a50b00004c0028005300360000ad", "kind": "target", "id": 0, "x1": 76, "y1": 40, "x2": 83, "y2": 54, "flags": 0, "offset": 288}
+{"frame_id": 11, "raw_hex": "a50b0001600028006700360000d6", "kind": "target", "id": 1, "x1": 96, "y1": 40, "x2": 103, "y2": 54, "flags": 0, "offset": 302}
+{"frame_id": 12, "raw_hex": "5a0c000268", "kind": "header", "count": 2, "offset": 316}
+{"frame_id": 12, "raw_hex": "a50c0000540028005b00360000be", "kind": "target", "id": 0, "x1": 84, "y1": 40, "x2": 91, "y2": 54, "flags": 0, "offset": 321}
+{"frame_id": 12, "raw_hex": "a50c0001680028006f00360000e7", "kind": "target", "id": 1, "x1": 104, "y1": 40, "x2": 111, "y2": 54, "flags": 0, "offset": 335}
+{"frame_id": 13, "raw_hex": "5a0d000269", "kind": "header", "count": 2, "offset": 349}
+{"frame_id": 13, "raw_hex": "a50d00005c0028006300360000cf", "kind": "target", "id": 0, "x1": 92, "y1": 40, "x2": 99, "y2": 54, "flags": 0, "offset": 354}
+{"frame_id": 13, "raw_hex": "a50d0001700028007700360000f8", "kind": "target", "id": 1, "x1": 112, "y1": 40, "x2": 119, "y2": 54, "flags": 0, "offset": 368}
+{"frame_id": 14, "raw_hex": "5a0e00026a", "kind": "header", "count": 2, "offset": 382}
+{"frame_id": 14, "raw_hex": "a50e0000640028006b00360000e0", "kind": "target", "id": 0, "x1": 100, "y1": 40, "x2": 107, "y2": 54, "flags": 0, "offset": 387}
+{"frame_id": 14, "raw_hex": "a50e0001780028007f0036000009", "kind": "target", "id": 1, "x1": 120, "y1": 40, "x2": 127, "y2": 54, "flags": 0, "offset": 401}
+{"frame_id": 15, "raw_hex": "5a0f00026b", "kind": "header", "count": 2, "offset": 415}
+{"frame_id": 15, "raw_hex": "a50f00006c0028007300360000f1", "kind": "target", "id": 0, "x1": 108, "y1": 40, "x2": 115, "y2": 54, "flags": 0, "offset": 420}
+{"frame_id": 15, "raw_hex": "a50f00018000280087003600001a", "kind": "target", "id": 1, "x1": 128, "y1": 40, "x2": 135, "y2": 54, "flags": 0, "offset": 434}
+{"frame_id": 16, "raw_hex": "5a1000006a", "kind": "header", "count": 0, "offset": 448}
+{"frame_id": 17, "raw_hex": "5a1100006b", "kind": "header", "count": 0, "offset": 453}
+{"frame_id": 18, "raw_hex": "5a1200006c", "kind": "header", "count": 0, "offset": 458}
+{"frame_id": 19, "raw_hex": "5a1300006d", "kind": "header", "count": 0, "offset": 463}
+{"frame_id": 20, "raw_hex": "5a1400006e", "kind": "header", "count": 0, "offset": 468}
+{"frame_id": 21, "raw_hex": "5a1500006f", "kind": "header", "count": 0, "offset": 473}
+{"frame_id": 22, "raw_hex": "5a16000070", "kind": "header", "count": 0, "offset": 478}
+{"frame_id": 23, "raw_hex": "5a17000071", "kind": "header", "count": 0, "offset": 483}
+{"frame_id": 24, "raw_hex": "5a18000072", "kind": "header", "count": 0, "offset": 488}
+{"frame_id": 25, "raw_hex": "5a19000073", "kind": "header", "count": 0, "offset": 493}
+{"frame_id": 26, "raw_hex": "5a1a000276", "kind": "header", "count": 2, "offset": 498}
+{"frame_id": 26, "raw_hex": "a51a0002440028004b00360000ae", "kind": "target", "id": 2, "x1": 68, "y1": 40, "x2": 75, "y2": 54, "flags": 0, "offset": 503}
+{"frame_id": 26, "raw_hex": "a51a0002580028005f00360000d6", "kind": "target", "id": 2, "x1": 88, "y1": 40, "x2": 95, "y2": 54, "flags": 0, "offset": 517}
+{"frame_id": 27, "raw_hex": "5a1b000277", "kind": "header", "count": 2, "offset": 531}
+{"frame_id": 27, "raw_hex": "a51b00024c0028005300360000bf", "kind": "target", "id": 2, "x1": 76, "y1": 40, "x2": 83, "y2": 54, "flags": 0, "offset": 536}
+{"frame_id": 27, "raw_hex": "a51b0003600028006700360000e8", "kind": "target", "id": 3, "x1": 96, "y1": 40, "x2": 103, "y2": 54, "flags": 0, "offset": 550}
+{"frame_id": 27, "raw_hex": "c31b0002024f0031", "kind": "event", "id": 2, "type": 2, "center_x": 79, "name": "dwell", "offset": 564}
+{"frame_id": 28, "raw_hex": "5a1c000278", "kind": "header", "count": 2, "offset": 572}
+{"frame_id": 28, "raw_hex": "a51c0002540028005b00360000d0", "kind": "target", "id": 2, "x1": 84, "y1": 40, "x2": 91, "y2": 54, "flags": 0, "offset": 577}
+{"frame_id": 28, "raw_hex": "a51c0003680028006f00360000f9", "kind": "target", "id": 3, "x1": 104, "y1": 40, "x2": 111, "y2": 54, "flags": 0, "offset": 591}
+{"frame_id": 29, "raw_hex": "5a1d000279", "kind": "header", "count": 2, "offset": 605}
+{"frame_id": 29, "raw_hex": "a51d00025c0028006300360000e1", "kind": "target", "id": 2, "x1": 92, "y1": 40, "x2": 99, "y2": 54, "flags": 0, "offset": 610}
+{"frame_id": 29, "raw_hex": "a51d00037000280077003600000a", "kind": "target", "id": 3, "x1": 112, "y1": 40, "x2": 119, "y2": 54, "flags": 0, "offset": 624}
+{"frame_id": 29, "raw_hex": "c31d000302730058", "kind": "event", "id": 3, "type": 2, "center_x": 115, "name": "dwell", "offset": 638}

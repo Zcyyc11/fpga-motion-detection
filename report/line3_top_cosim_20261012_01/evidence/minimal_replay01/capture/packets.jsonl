@@ -1,0 +1,3 @@
+{"frame_id": 4, "raw_hex": "5a04000260", "kind": "header", "count": 2, "offset": 0}
+{"frame_id": 4, "raw_hex": "a5040000140028001b0036000036", "kind": "target", "id": 0, "x1": 20, "y1": 40, "x2": 27, "y2": 54, "flags": 0, "offset": 5}
+{"frame_id": 4, "raw_hex": "a5040000280028002f003600005e", "kind": "target", "id": 0, "x1": 40, "y1": 40, "x2": 47, "y2": 54, "flags": 0, "offset": 19}

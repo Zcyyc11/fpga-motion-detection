@@ -1,0 +1,22 @@
+{
+  "pid": 41020,
+  "scenario": "track",
+  "started_utc": "2026-10-12T12:04:14.481605+00:00",
+  "command": [
+    "cmd.exe",
+    "/d",
+    "/c",
+    "D:\\line3_top_cosim_20261012_01\\track_probe01\\run.bat"
+  ],
+  "status": "finished",
+  "exit_code": 0,
+  "seconds": 10.289,
+  "completion_banner": true,
+  "failures": [
+    "FAIL: LINE3_NEAR_DUPLICATE nc=2 ids=0,0"
+  ],
+  "pass_assertions": 1,
+  "drain_done": false,
+  "board_test": false,
+  "passed": false
+}

@@ -1,0 +1,171 @@
+{
+  "board_test": false,
+  "source": "SIMULATED",
+  "tests": [
+    {
+      "name": "all decoded fields match independent literal table",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier accepts independently specified exact table",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier rejects changed target id",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier rejects changed target x1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier rejects changed target y1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier rejects changed target x2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier rejects changed target y2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier rejects changed target flags",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier rejects changed event id",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier rejects changed event type",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier rejects changed event center_x",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier CLI rejects absent mapping and saves diagnostic",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier rejects raw hash mismatch",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent mixed fields fragmentation seed case 0",
+      "pass": true,
+      "detail": {
+        "bytes": 472,
+        "frames": 4,
+        "errors": []
+      }
+    },
+    {
+      "name": "independent mixed fields fragmentation seed case 1",
+      "pass": true,
+      "detail": {
+        "bytes": 614,
+        "frames": 4,
+        "errors": []
+      }
+    },
+    {
+      "name": "independent mixed fields fragmentation seed case 2",
+      "pass": true,
+      "detail": {
+        "bytes": 404,
+        "frames": 4,
+        "errors": []
+      }
+    },
+    {
+      "name": "independent mixed fields fragmentation seed case 3",
+      "pass": true,
+      "detail": {
+        "bytes": 706,
+        "frames": 4,
+        "errors": []
+      }
+    },
+    {
+      "name": "independent mixed fields fragmentation seed case 4",
+      "pass": true,
+      "detail": {
+        "bytes": 732,
+        "frames": 4,
+        "errors": []
+      }
+    },
+    {
+      "name": "independent mixed fields fragmentation seed case 5",
+      "pass": true,
+      "detail": {
+        "bytes": 572,
+        "frames": 4,
+        "errors": []
+      }
+    },
+    {
+      "name": "independent mixed fields fragmentation seed case 6",
+      "pass": true,
+      "detail": {
+        "bytes": 656,
+        "frames": 4,
+        "errors": []
+      }
+    },
+    {
+      "name": "independent mixed fields fragmentation seed case 7",
+      "pass": true,
+      "detail": {
+        "bytes": 350,
+        "frames": 4,
+        "errors": []
+      }
+    }
+  ],
+  "passed": 21,
+  "total": 21,
+  "observations": [
+    {
+      "name": "raw/frame-table linkage",
+      "raw_decoded_x1": 10,
+      "frame_table_x1": 11,
+      "reference_x1": 11,
+      "result": {
+        "exit_code": 0,
+        "errors": [],
+        "compared_frames": 1,
+        "actual_frames": 1,
+        "reference_frames": 1,
+        "raw_sha256": "c97dad2d37fe295fa25cdec5c93e4bb00010f53de671a76539bcde1fd755b406",
+        "reference_sha256": "ecb1360ea8a532065022c5168acbb0c0dd6b621167acf38e405e8d1fa281847f",
+        "board_test": false,
+        "scope": "exact table comparison; hardware origin and video alignment require independent evidence"
+      },
+      "raw_hash_unchanged": true
+    }
+  ],
+  "source_sha256": {
+    "sim\\line3\\check_uart_receiver.py": "250be6e355db49d4581451739d2ec27f874e6869d0db79f8bbcefb8aba008322",
+    "sim\\line3\\uart_protocol.py": "dc24a5ef2ebbd4026aa27f9bc7a300225bf2f05a6e7aad92b339495484599496",
+    "sim\\line3\\uart_receiver.py": "f57663c0bc69bba8aa8a53588ae1fd3324411399055e7bf9f5c067f2b68de837",
+    "sim\\line3\\verify_uart_capture.py": "a140e5229512a45335265e22e13e4437014cd29b2de5f044d355aa8fbbc9e4b1"
+  }
+}

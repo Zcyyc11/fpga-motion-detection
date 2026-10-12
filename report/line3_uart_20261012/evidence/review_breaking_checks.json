@@ -1,0 +1,179 @@
+{
+  "checks": [
+    {
+      "name": "serial_read_disconnect",
+      "passed": true,
+      "detail": {
+        "closed": true,
+        "summary": {
+          "protocol": "uart-v0.2-f15fbce",
+          "started_utc": "2026-10-12T10:19:37.710073+00:00",
+          "source": "simulated",
+          "board_test": false,
+          "video_synchronized": false,
+          "bytes_saved": 5,
+          "packets": 1,
+          "frames": 1,
+          "valid_frames": 0,
+          "events": 0,
+          "images": 0,
+          "max_frames": 10000,
+          "max_bytes": 16777216,
+          "save_images": 0,
+          "metadata": {},
+          "errors": 1,
+          "transport_error": "OSError: simulated unplug",
+          "last_frame_event_completeness": "unverifiable: no end packet or event count",
+          "missing_frames": 0,
+          "frame_wraps": 0,
+          "error_counts": {
+            "transport_or_processing_error": 1
+          },
+          "raw_sha256": "e85e0357fdc8b0f7c5341cdc2081e20b9baf95b92d694353bd7386dfd4b62730",
+          "finished_utc": "2026-10-12T10:19:37.713417+00:00",
+          "exit_code": 1
+        }
+      }
+    },
+    {
+      "name": "serial_ctrl_c",
+      "passed": true,
+      "detail": {
+        "closed": true,
+        "summary": {
+          "protocol": "uart-v0.2-f15fbce",
+          "started_utc": "2026-10-12T10:19:37.714513+00:00",
+          "source": "simulated",
+          "board_test": false,
+          "video_synchronized": false,
+          "bytes_saved": 5,
+          "packets": 1,
+          "frames": 1,
+          "valid_frames": 0,
+          "events": 0,
+          "images": 0,
+          "max_frames": 10000,
+          "max_bytes": 16777216,
+          "save_images": 0,
+          "metadata": {},
+          "errors": 1,
+          "transport_error": "KeyboardInterrupt: simulated Ctrl+C",
+          "last_frame_event_completeness": "unverifiable: no end packet or event count",
+          "missing_frames": 0,
+          "frame_wraps": 0,
+          "error_counts": {
+            "transport_or_processing_error": 1
+          },
+          "raw_sha256": "e85e0357fdc8b0f7c5341cdc2081e20b9baf95b92d694353bd7386dfd4b62730",
+          "finished_utc": "2026-10-12T10:19:37.716662+00:00",
+          "exit_code": 1
+        }
+      }
+    },
+    {
+      "name": "frame_limit_closes_serial",
+      "passed": true,
+      "detail": {
+        "closed": true,
+        "summary": {
+          "protocol": "uart-v0.2-f15fbce",
+          "started_utc": "2026-10-12T10:19:37.717447+00:00",
+          "source": "simulated",
+          "board_test": false,
+          "video_synchronized": false,
+          "bytes_saved": 10,
+          "packets": 2,
+          "frames": 1,
+          "valid_frames": 0,
+          "events": 0,
+          "images": 0,
+          "max_frames": 1,
+          "max_bytes": 16777216,
+          "save_images": 0,
+          "metadata": {},
+          "errors": 1,
+          "transport_error": "RuntimeError: frame limit reached; capture stopped",
+          "last_frame_event_completeness": "unverifiable: no end packet or event count",
+          "missing_frames": 0,
+          "frame_wraps": 0,
+          "error_counts": {
+            "transport_or_processing_error": 1
+          },
+          "raw_sha256": "7472070f0bb84b0e99d278c082a73e572047b9c06b48d86a49f53e9cfd0fccf5",
+          "finished_utc": "2026-10-12T10:19:37.719087+00:00",
+          "exit_code": 1
+        }
+      }
+    },
+    {
+      "name": "verifier_clean_mismatch_mapping_and_failed_capture",
+      "passed": true,
+      "detail": {
+        "clean": {
+          "exit_code": 0,
+          "errors": [],
+          "compared_frames": 2,
+          "actual_frames": 2,
+          "reference_frames": 2,
+          "raw_sha256": "7472070f0bb84b0e99d278c082a73e572047b9c06b48d86a49f53e9cfd0fccf5",
+          "reference_sha256": "d50836bc627a7b724f982bb621320508389da09d2f81b0feeb2a5356438b6454",
+          "board_test": false,
+          "scope": "exact table comparison; hardware origin and video alignment require independent evidence"
+        },
+        "wrong_frame": {
+          "exit_code": 1,
+          "errors": [
+            "frame 2: frame id / targets / events differ"
+          ],
+          "compared_frames": 2,
+          "actual_frames": 2,
+          "reference_frames": 2,
+          "raw_sha256": "7472070f0bb84b0e99d278c082a73e572047b9c06b48d86a49f53e9cfd0fccf5",
+          "reference_sha256": "6ba882578f70ba50ba61a56f7b86f38286782fa887afbf53f82a425c8c30eac2",
+          "board_test": false,
+          "scope": "exact table comparison; hardware origin and video alignment require independent evidence"
+        }
+      }
+    },
+    {
+      "name": "cli_help",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "name": "cli_list_ports",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "name": "cli_nan_duration",
+      "passed": true,
+      "exit_code": 2
+    },
+    {
+      "name": "cli_nonexistent_file",
+      "passed": true,
+      "exit_code": 1
+    }
+  ],
+  "passed": 8,
+  "total": 8,
+  "cleanup_fault_observation": {
+    "raised": "OSError('simulated serial close failure')",
+    "closed": true,
+    "summary_exists": false,
+    "retained_files": [
+      "errors.jsonl",
+      "events.jsonl",
+      "frames.jsonl",
+      "packets.jsonl",
+      "raw_stream.bin"
+    ]
+  },
+  "source_hashes": {
+    "check_uart_receiver.py": "250be6e355db49d4581451739d2ec27f874e6869d0db79f8bbcefb8aba008322",
+    "uart_protocol.py": "dc24a5ef2ebbd4026aa27f9bc7a300225bf2f05a6e7aad92b339495484599496",
+    "uart_receiver.py": "f57663c0bc69bba8aa8a53588ae1fd3324411399055e7bf9f5c067f2b68de837",
+    "verify_uart_capture.py": "a140e5229512a45335265e22e13e4437014cd29b2de5f044d355aa8fbbc9e4b1"
+  }
+}

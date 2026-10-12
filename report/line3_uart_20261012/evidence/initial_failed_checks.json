@@ -1,0 +1,202 @@
+{
+  "board_test": false,
+  "input": "SIMULATED",
+  "checks": [
+    {
+      "name": "fixed little-endian golden bytes",
+      "pass": false,
+      "error": "AssertionError({'frames': [{'sequence': 1, 'frame_id': 4660, 'expected_count': 1, 'targets': [], 'events': [{'frame_id': 4660, 'raw_hex': 'c334120701140025', 'kind': 'event', 'id': 7, 'type': 1, 'center_x': 20, 'name': 'crossing', 'offset': 19}], 'problems': ['checksum', 'noise', 'target_count_mismatch'], 'boundary': 'end_of_capture', 'events_complete': False, 'valid': False}], 'events': [{'frame_id': 4660, 'raw_hex': 'c334120701140025', 'kind': 'event', 'id': 7, 'type': 1, 'center_x': 20, 'name': 'crossing', 'offset': 19}], 'errors': [{'reason': 'checksum', 'offset': 5, 'length': 1, 'raw_hex': 'a5'}, {'reason': 'noise', 'offset': 6, 'length': 13, 'raw_hex': '3412070a0014001e0028000046'}, {'reason': 'target_count_mismatch', 'frame_id': 4660, 'expected': 1, 'actual': 0}], 'packets': [{'frame_id': 4660, 'raw_hex': '5a341201a1', 'kind': 'header', 'count': 1, 'offset': 0}, {'frame_id': 4660, 'raw_hex': 'c334120701140025', 'kind': 'event', 'id': 7, 'type': 1, 'center_x': 20, 'name': 'crossing', 'offset': 19}], 'missing': 0, 'wraps': 0})"
+    },
+    {
+      "name": "zero single sixteen targets and events",
+      "pass": true
+    },
+    {
+      "name": "fragmentation 1",
+      "pass": true
+    },
+    {
+      "name": "fragmentation 2",
+      "pass": true
+    },
+    {
+      "name": "fragmentation 3",
+      "pass": true
+    },
+    {
+      "name": "fragmentation 4",
+      "pass": true
+    },
+    {
+      "name": "fragmentation 5",
+      "pass": true
+    },
+    {
+      "name": "fragmentation 7",
+      "pass": true
+    },
+    {
+      "name": "fragmentation 13",
+      "pass": true
+    },
+    {
+      "name": "fragmentation 14",
+      "pass": true
+    },
+    {
+      "name": "fragmentation 19",
+      "pass": true
+    },
+    {
+      "name": "fragmentation 4096",
+      "pass": true
+    },
+    {
+      "name": "checksum",
+      "pass": true
+    },
+    {
+      "name": "noise",
+      "pass": true
+    },
+    {
+      "name": "truncated target",
+      "pass": true
+    },
+    {
+      "name": "truncated header containing valid shorter packet",
+      "pass": true
+    },
+    {
+      "name": "count seventeen",
+      "pass": true
+    },
+    {
+      "name": "missing target",
+      "pass": true
+    },
+    {
+      "name": "extra target",
+      "pass": true
+    },
+    {
+      "name": "duplicate ID",
+      "pass": true
+    },
+    {
+      "name": "orphan target",
+      "pass": true
+    },
+    {
+      "name": "wrong target frame",
+      "pass": true
+    },
+    {
+      "name": "orphan event",
+      "pass": true
+    },
+    {
+      "name": "duplicate frame",
+      "pass": true
+    },
+    {
+      "name": "backward frame",
+      "pass": true
+    },
+    {
+      "name": "missing frames",
+      "pass": true
+    },
+    {
+      "name": "ambiguous large jump",
+      "pass": true
+    },
+    {
+      "name": "unknown FLAGS retained and flagged",
+      "pass": true
+    },
+    {
+      "name": "x overflow",
+      "pass": true
+    },
+    {
+      "name": "y overflow",
+      "pass": true
+    },
+    {
+      "name": "inverted box",
+      "pass": true
+    },
+    {
+      "name": "unknown event type",
+      "pass": true
+    },
+    {
+      "name": "event center overflow",
+      "pass": true
+    },
+    {
+      "name": "per-frame event bound",
+      "pass": true
+    },
+    {
+      "name": "bad packet resynchronization",
+      "pass": true
+    },
+    {
+      "name": "MAGIC in valid payload",
+      "pass": true
+    },
+    {
+      "name": "event emitted before next header",
+      "pass": true
+    },
+    {
+      "name": "replay raw hash images frame and event logs",
+      "pass": true
+    },
+    {
+      "name": "inclusive extreme corner coordinates",
+      "pass": true
+    },
+    {
+      "name": "empty stream fails",
+      "pass": true
+    },
+    {
+      "name": "byte bound preserves prefix",
+      "pass": true
+    },
+    {
+      "name": "frame bound",
+      "pass": true
+    },
+    {
+      "name": "disconnect retains capture and failure",
+      "pass": true
+    },
+    {
+      "name": "Ctrl+C retains capture and failure",
+      "pass": true
+    },
+    {
+      "name": "existing output protected",
+      "pass": true
+    },
+    {
+      "name": "actual pyserial loopback simulated transport",
+      "pass": true
+    },
+    {
+      "name": "serial idle timeout",
+      "pass": true
+    },
+    {
+      "name": "CLI file replay",
+      "pass": true
+    }
+  ],
+  "passed": 47,
+  "total": 48,
+  "exit_code": 1
+}

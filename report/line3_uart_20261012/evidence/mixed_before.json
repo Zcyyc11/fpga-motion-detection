@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "errors": [],
+  "compared_frames": 1,
+  "actual_frames": 1,
+  "reference_frames": 1,
+  "raw_sha256": "c97dad2d37fe295fa25cdec5c93e4bb00010f53de671a76539bcde1fd755b406",
+  "reference_sha256": "ecb1360ea8a532065022c5168acbb0c0dd6b621167acf38e405e8d1fa281847f",
+  "board_test": false,
+  "scope": "exact table comparison; hardware origin and video alignment require independent evidence"
+}

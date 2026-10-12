@@ -1,0 +1,6 @@
+{"reason": "checksum", "offset": 0, "length": 1, "raw_hex": "5a"}
+{"reason": "noise", "offset": 1, "length": 4, "raw_hex": "0000005b"}
+{"reason": "duplicate_target_id", "frame_id": 4, "id": 0}
+{"reason": "target_count_mismatch", "frame_id": 4, "expected": 2, "actual": 1}
+{"reason": "duplicate_target_id", "frame_id": 26, "id": 2}
+{"reason": "target_count_mismatch", "frame_id": 26, "expected": 2, "actual": 1}

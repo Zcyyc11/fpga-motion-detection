@@ -1,0 +1,35 @@
+{
+  "protocol": "uart-v0.2-f15fbce",
+  "started_utc": "2026-10-12T12:05:54.015741+00:00",
+  "source": "simulated",
+  "board_test": false,
+  "video_synchronized": false,
+  "bytes_saved": 33,
+  "packets": 3,
+  "frames": 1,
+  "valid_frames": 0,
+  "events": 0,
+  "images": 0,
+  "max_frames": 10000,
+  "max_bytes": 16777216,
+  "save_images": 0,
+  "metadata": {
+    "source": "normal01 serial-pin sample bytes [20:53]",
+    "rtl_commit": "15e8e21ed253ff3e5fa9a44a972ece189495bd02"
+  },
+  "errors": 2,
+  "transport_error": null,
+  "max_error_details": 10000,
+  "error_details_written": 2,
+  "error_details_suppressed": 0,
+  "last_frame_event_completeness": "unverifiable: no end packet or event count",
+  "missing_frames": 0,
+  "frame_wraps": 0,
+  "error_counts": {
+    "duplicate_target_id": 1,
+    "target_count_mismatch": 1
+  },
+  "raw_sha256": "47abdd99ad2269237fc14aaeb02c5cb57bb3d8d9674579716ee2a55b77bd689a",
+  "finished_utc": "2026-10-12T12:05:54.017473+00:00",
+  "exit_code": 1
+}

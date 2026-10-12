@@ -1,0 +1,6 @@
+{"frame_id": 5, "raw_hex": "c3050000021f00e9", "kind": "event", "id": 0, "type": 2, "center_x": 31, "name": "dwell", "offset": 86}
+{"frame_id": 6, "raw_hex": "c3060001013b0006", "kind": "event", "id": 1, "type": 1, "center_x": 59, "name": "crossing", "offset": 127}
+{"frame_id": 7, "raw_hex": "c307000102430010", "kind": "event", "id": 1, "type": 2, "center_x": 67, "name": "dwell", "offset": 168}
+{"frame_id": 8, "raw_hex": "c308000001370003", "kind": "event", "id": 0, "type": 1, "center_x": 55, "name": "crossing", "offset": 209}
+{"frame_id": 27, "raw_hex": "c31b0002024f0031", "kind": "event", "id": 2, "type": 2, "center_x": 79, "name": "dwell", "offset": 564}
+{"frame_id": 29, "raw_hex": "c31d000302730058", "kind": "event", "id": 3, "type": 2, "center_x": 115, "name": "dwell", "offset": 638}

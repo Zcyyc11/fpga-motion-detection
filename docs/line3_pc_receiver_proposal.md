@@ -2,6 +2,10 @@
 
 # 电脑端接收与画框：可运行的协议提案
 
+> **线三新入口（2026-10-12）**：正式 UART 三包适配见
+> [串口接收与样本验收](line3_uart_receiver.md)，程序为 `sim/line3/uart_receiver.py`。
+> 下文及 `pc_receiver.py` 保留旧 JSONL/TCP 模拟结果，不代表新串口工具状态。
+
 > **状态（2026-10-12）**：本文为 2026-10-10 的**草案历史**，回传协议已于 `main@f15fbce` **定稿生效**（UART 115200 + 帧头/目标/事件三包 0x5A/0xA5/0xC3，BBOX 快照 0x1C 起）——接收端请以 `docs/protocol_and_interface_requirements.md` 为准，本草案仅作背景。
 
 2026-10-10。用户确认队友尚未提供板端回传方式和包格式，先完成电脑端模拟接收与画框。本工具没有改动 `docs/interface_freeze_table.md` 或任何 RTL。

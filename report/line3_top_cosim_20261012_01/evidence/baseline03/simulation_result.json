@@ -1,0 +1,20 @@
+{
+  "pid": 19344,
+  "scenario": "baseline",
+  "started_utc": "2026-10-12T11:59:29.837015+00:00",
+  "command": [
+    "cmd.exe",
+    "/d",
+    "/c",
+    "D:\\line3_top_cosim_20261012_01\\baseline03\\run.bat"
+  ],
+  "status": "finished",
+  "exit_code": 0,
+  "seconds": 35.404,
+  "completion_banner": true,
+  "failures": [],
+  "pass_assertions": 27,
+  "drain_done": false,
+  "board_test": false,
+  "passed": true
+}

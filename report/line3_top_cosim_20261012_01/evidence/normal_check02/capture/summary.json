@@ -1,0 +1,43 @@
+{
+  "protocol": "uart-v0.2-f15fbce",
+  "started_utc": "2026-10-12T12:05:00.797449+00:00",
+  "source": "simulated",
+  "board_test": false,
+  "video_synchronized": false,
+  "bytes_saved": 598,
+  "packets": 62,
+  "frames": 30,
+  "valid_frames": 28,
+  "events": 0,
+  "images": 3,
+  "max_frames": 10000,
+  "max_bytes": 16777216,
+  "save_images": 3,
+  "metadata": {
+    "transport": "RTL serial-pin sampling",
+    "supplied": {
+      "rtl_commit": "15e8e21ed253ff3e5fa9a44a972ece189495bd02",
+      "receiver_commit": "e30c456e8232be286ed195481608e0c5bb429ab3",
+      "scenario": "normal",
+      "baud_div": 50,
+      "pixel_clock_hz": 100000000,
+      "input_video": "SIMULATED internal pattern_gen 320x180",
+      "frame_mapping": "tx_inputs.csv logs frame_idx and independent UART tick count; not physical video alignment"
+    }
+  },
+  "errors": 4,
+  "transport_error": null,
+  "max_error_details": 10000,
+  "error_details_written": 4,
+  "error_details_suppressed": 0,
+  "last_frame_event_completeness": "unverifiable: no end packet or event count",
+  "missing_frames": 0,
+  "frame_wraps": 0,
+  "error_counts": {
+    "duplicate_target_id": 2,
+    "target_count_mismatch": 2
+  },
+  "raw_sha256": "5873c4b9228f84abae29cc51579f5f0065868d05283aa514b16b9503f9600a3e",
+  "finished_utc": "2026-10-12T12:05:00.834202+00:00",
+  "exit_code": 1
+}

@@ -1,0 +1,23 @@
+{
+  "exit_code": 0,
+  "errors": [],
+  "compared_frames": 1,
+  "actual_frames": 1,
+  "reference_frames": 1,
+  "raw_sha256": "dff4e83c92f170985fd584fdeb2374aee9887a3d1dbe9fdcc6b7b6011954e5f9",
+  "reference_sha256": "592e69fb2745fa352b3ef32ee1650959d8d8c3e21bd8066e6087e436ea861f72",
+  "capture_path": "D:\\line3_uart_20261012\\type1_20261012_01\\tests01\\board-unverified",
+  "summary_path": "D:\\line3_uart_20261012\\type1_20261012_01\\tests01\\board-unverified\\summary.json",
+  "summary_sha256": "5e05d49abc1eb6c3bda2a9648fadd281cc5aa9997ee400cb4717859ac5eac5dd",
+  "source": "board-unverified",
+  "capture_metadata": {
+    "supplied": {
+      "operator": "模拟操作人",
+      "board": "声明不认证"
+    }
+  },
+  "source_label": "UNVERIFIED INPUT - BOARD ORIGIN NOT VERIFIED",
+  "source_verified": false,
+  "board_test": false,
+  "scope": "exact table comparison; source/metadata are unverified declarations; hardware origin and video alignment require independent evidence"
+}

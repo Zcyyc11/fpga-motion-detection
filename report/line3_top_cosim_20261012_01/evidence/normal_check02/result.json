@@ -1,0 +1,135 @@
+{
+  "board_test": false,
+  "simulation_only": true,
+  "rtl_commit": "15e8e21ed253ff3e5fa9a44a972ece189495bd02",
+  "receiver_commit": "e30c456e8232be286ed195481608e0c5bb429ab3",
+  "scenario": "normal",
+  "source_integrity": {
+    "rtl_source/src/rtl/md_pipeline.v": true,
+    "rtl_source/src/rtl/video_timing.v": true,
+    "rtl_source/src/rtl/pattern_gen.v": true,
+    "rtl_source/src/rtl/downsample2x2.v": true,
+    "rtl_source/src/rtl/frame_buf.v": true,
+    "rtl_source/src/rtl/diff_stage.v": true,
+    "rtl_source/src/rtl/threshold.v": true,
+    "rtl_source/src/rtl/morph3x3.v": true,
+    "rtl_source/src/rtl/morph_open.v": true,
+    "rtl_source/src/rtl/bbox.v": true,
+    "rtl_source/src/rtl/overlay.v": true,
+    "rtl_source/src/rtl/multi_bbox.v": true,
+    "rtl_source/src/rtl/track.v": true,
+    "rtl_source/src/rtl/alarm.v": true,
+    "rtl_source/src/rtl/uart_tx.v": true,
+    "rtl_source/src/rtl/regs.v": true,
+    "rtl_source/src/rtl/bbox_snapshot.v": true,
+    "rtl_source/sim/tb/tb_md_pipeline_full.v": true,
+    "pc_source/sim/line3/uart_protocol.py": true,
+    "pc_source/sim/line3/uart_receiver.py": true,
+    "pc_source/sim/line3/verify_uart_capture.py": true
+  },
+  "raw_sha256": "5873c4b9228f84abae29cc51579f5f0065868d05283aa514b16b9503f9600a3e",
+  "raw_bytes": 598,
+  "frames": 30,
+  "frame_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29
+  ],
+  "target_count_distribution": {
+    "0": 14,
+    "2": 16
+  },
+  "total_targets": 32,
+  "event_types": {},
+  "receiver_exit": 1,
+  "comparison_exit": 1,
+  "probe_faults": "",
+  "uncommitted_tail_frames": [
+    30
+  ],
+  "errors": [
+    "receiver rejected RTL stream",
+    "exact raw/frame/reference comparison failed"
+  ],
+  "passed": false,
+  "transport_exact": true,
+  "source_duplicate_ids": [
+    {
+      "frame_id": 4,
+      "ids": {
+        "0": 2
+      },
+      "targets": [
+        {
+          "id": 0,
+          "x1": 20,
+          "y1": 40,
+          "x2": 27,
+          "y2": 54,
+          "flags": 0
+        },
+        {
+          "id": 0,
+          "x1": 40,
+          "y1": 40,
+          "x2": 47,
+          "y2": 54,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "frame_id": 26,
+      "ids": {
+        "2": 2
+      },
+      "targets": [
+        {
+          "id": 2,
+          "x1": 68,
+          "y1": 40,
+          "x2": 75,
+          "y2": 54,
+          "flags": 0
+        },
+        {
+          "id": 2,
+          "x1": 88,
+          "y1": 40,
+          "x2": 95,
+          "y2": 54,
+          "flags": 0
+        }
+      ]
+    }
+  ],
+  "negative_checks_conclusive": false,
+  "scope": "small accelerated RTL to UART serial-pin bytes to PC; pre-UART signal values, not algorithm truth or hardware"
+}

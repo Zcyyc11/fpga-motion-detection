@@ -1,0 +1,85 @@
+{
+  "board_test": false,
+  "input": "SIMULATED",
+  "checks": [
+    {
+      "name": "independent literal reference matches",
+      "passed": true
+    },
+    {
+      "name": "reject changed targets id",
+      "passed": true
+    },
+    {
+      "name": "reject changed targets x1",
+      "passed": true
+    },
+    {
+      "name": "reject changed targets y1",
+      "passed": true
+    },
+    {
+      "name": "reject changed targets x2",
+      "passed": true
+    },
+    {
+      "name": "reject changed targets y2",
+      "passed": true
+    },
+    {
+      "name": "reject changed targets flags",
+      "passed": true
+    },
+    {
+      "name": "reject changed events id",
+      "passed": true
+    },
+    {
+      "name": "reject changed events type",
+      "passed": true
+    },
+    {
+      "name": "reject changed events center_x",
+      "passed": true
+    },
+    {
+      "name": "reject empty",
+      "passed": true
+    },
+    {
+      "name": "reject extra",
+      "passed": true
+    },
+    {
+      "name": "reject missing_event",
+      "passed": true
+    },
+    {
+      "name": "reject duplicate_event",
+      "passed": true
+    },
+    {
+      "name": "reject wrong_frame",
+      "passed": true
+    },
+    {
+      "name": "reject matching wrong frame table and reference against raw",
+      "passed": true
+    },
+    {
+      "name": "reject changed raw stream",
+      "passed": true
+    },
+    {
+      "name": "CLI rejects absent frame mapping",
+      "passed": true
+    },
+    {
+      "name": "cleanup error still saves summary and raw",
+      "passed": true
+    }
+  ],
+  "passed": 19,
+  "total": 19,
+  "exit_code": 0
+}
