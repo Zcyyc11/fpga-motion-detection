@@ -1,14 +1,14 @@
 # 全队任务清单（2026-10-13 版）
 
-> 更新：2026-10-13（线一审定）
-> 权威依据：`docs/multitarget_integration_status.md`（10-12 21:10）＋ `docs/handoff_line2_multibbox_20261013.md` ＋ `docs/team_division_20261011.md`
-> 用途：三线共享的"谁做什么、做到哪、差什么"单点。与分工表冲突时以本清单为准。
+> 更新：2026-10-13 17:5x（线一审定 · **已并入"两遍对照优化方案"**，two_pass_opt_plan_20261013.md 同时标记存档）
+> 权威依据：`docs/handoff_code_fixes_20261013.md`（治本与验收标准的唯一权威）＋ `docs/team_division_20261011.md`
+> 用途：三线共享的"谁做什么、做到哪、差什么"**单点权威**。与其他文档冲突时以本清单为准。
 
 ---
 
 ## 一句话现状
 
-**单目标通路已实测 PASS；多目标 + UART 回传全链已并入 main，但 multi_bbox 资源爆炸（96,997/53,200 LUT，182%）导致多目标 bit 未产出——全队卡在线二治本这一步。**
+**单目标通路已实测 PASS；多目标+回传全链已并入 main 且全套可运行仿真 9/9 全 PASS（线一 16:30 实测，修复了 3 处声明顺序/文件集问题）。两线均已开工：徐一夫治本阶段版已推 `line2/multibbox-pipeline`（8 目标，声称 LUT 11,913 待验收），孙伟博测试补强已推 `line3/verify-cleanup`。走"两遍对照"：第一遍（徐一夫版）达标即出 bit 保节点，第二遍（孙伟博版）后置求更好。**
 
 ---
 
@@ -21,12 +21,13 @@
 | 3 | 上板实测多目标（4 项） | ❌ 未做 | 多框检出 / 18 分钟回绕 / 换视频（vehicles、market-square、people-walking）/ `verify_board.py` 自动取证到 `board/logs/` |
 | 4 | 演示视频 | ❌ 未做 | 分工表节点 10/13 |
 | 5 | 性能/资源对比表素材（报告用） | ⏳ 部分 | 单目标基线 10,605 LUT 有（综合 19.93%，build/reports/synth_utilization.rpt 实测）；多目标治本后数据待补；WNS 0.932ns（10/11 hdmiin 版）可引用 |
+| 6 | 全套仿真修复+实测 | ✅ 完成 | 修 bbox_snapshot/tb_uart_tx 声明顺序 + run_sim.py 补拷 board 模块 → **9/9 全 PASS**（tb_gray_conv 随备用版归档 rtl_pending）；tb_gray_conv 两版取舍归线二拍板 |
 
 ## 线二（徐一夫）任务——按优先级
 
 | # | 任务 | 状态 | 说明 |
 |---|---|---|---|
-| 1 | **multi_bbox 治本（拆流水）** | ❌ 未开始 | **卡全队的核心**。根因：16 路并行+并查集一拍完成 → 组合爆炸。目标：回到 16 目标、LUT < 50%。详见 `docs/handoff_line2_multibbox_20261013.md` |
+| 1 | **multi_bbox 治本** | 🔄 阶段版已推 | 分支 `line2/multibbox-pipeline`（3 笔）：find_root 限深 4 + MAX_RUN 16→4 + **MAX_LABEL 16→8，声称 LUT 11,913**。⚠️ 分支基点 7bb17db，**不含 main 最新仿真修复**（bbox_snapshot 声明顺序），合并前需 rebase/merge main。两版取舍（8 目标阶段版 vs 16 目标完整版）→ 治本细节权威=`docs/handoff_code_fixes_20261013.md` |
 | 2 | 板端发送程序完整化 | ⏳ 部分 | uart_txd 已引出（Y18/PMOD A ja[0]）✅；板上发送逻辑完整化待办 |
 | 3 | 真实报文样本 | ❌ 未做 | 10/14 交：零/单/多目标样本 + 帧号对照表（覆盖要求见分工表⑥） |
 | 4 | 换手复跑签字（cfg_enable） | ❌ 待办 | `761926a`（PS 写 ENABLE 切帧差/背景建模）自测 PASS，按互验门需线二/线三复跑签字 |
@@ -36,11 +37,19 @@
 
 | # | 任务 | 状态 | 说明 |
 |---|---|---|---|
-| 1 | 换手复跑签字（cfg_enable） | ❌ 待办 | 与线二共同完成互验门 |
-| 2 | 真实报文接收验证 | ⏳ 部分 | 接收端权威 `sim/line3/uart_receiver.py` 已定 ✅；待真实报文到手后闭合验证链（收到线二⑥后） |
-| 3 | 报告/证据材料 | ⏳ 进行中 | 独立复核（CDnet 复跑等）✅；报告初稿待汇总 |
+| 1 | 测试补强 | 🔄 进行中 | 分支 `line3/verify-cleanup`（33d4580：capacity/wrap/接口验证）——对应 handoff_code_fixes 第 6 项 |
+| 2 | 换手复跑签字（cfg_enable） | ❌ 待办 | 与线二共同完成互验门（线一已 9/9 预跑绿，跑法见 `run_sim.py --top`） |
+| 3 | 真实报文接收验证 | ⏳ 部分 | 接收端权威 `sim/line3/uart_receiver.py` 已定 ✅；待真实报文到手后闭合验证链 |
+| 4 | 报告/证据材料 | ⏳ 进行中 | 独立复核（CDnet 复跑等）✅；报告初稿待汇总 |
+| 5 | 整体优化接力（第二遍） | ⏳ 等信号 | 徐一夫治本验收后，基于其版开 `line3/opt-pass2` 整体优化（两遍对照，见 two_pass 方案要点） |
 
 ---
+
+## 两遍对照（已定，防两版打架）
+
+- **第一遍**：徐一夫阶段版（8 目标）→ 线一验收（tb+综合 LUT 复测）→ **先出 bit 保 10/13-14 节点**
+- **第二遍**：孙伟博基于徐一夫版整体优化 → 不赶 deadline，达标后对照选优/合并进 main
+- **分支纪律**：徐一夫 `line2/multibbox-pipeline`、孙伟博 `line3/opt-pass2`、顺序进行不抢文件；验收标准两版通用（`handoff_code_fixes_20261013.md` 第五节）
 
 ## 时间表（分工表节点）
 
