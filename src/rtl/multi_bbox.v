@@ -37,13 +37,18 @@
 // -----------------------------------------------------------------------------
 module multi_bbox #(
     parameter integer MIN_CNT   = 64,   // 面积门限：与 bbox.v 同口径
-    parameter integer MAX_LABEL = 16,   // 并查集标签容量（一帧最多 MAX_LABEL 个目标）
+    parameter integer MAX_LABEL = 8,    // 并查集标签容量（一帧最多 MAX_LABEL 个目标）
     // ★ XIF123 治本第 2 步（2026-10-13）：MAX_RUN 16→4 降并行度
     //   原 16 路并行匹配 + 16 级 find_root = multi_bbox 占 83,286 LUT（96,997/53,200 爆限）。
     //   配合 find_root 限深 4（治本第 1 步），4 路 × 4 级 ≈ 原 1/16 组合量。
     //   开运算后每行游程数个位数，MAX_RUN=4 覆盖常见场景；密集场景超出的游程
     //   被丢弃（头部说明已允许），不影响已分配标签的连通性。
     //   完整串行化（FIFO+状态机）见 stash serial-wip，待 prow NBA 坑 debug 后续补。
+    // ★ XIF123 治本第 3 步（2026-10-13）：MAX_LABEL 16→8 降标签表动态索引 mux
+    //   OOC 综合验证：MAX_RUN=4+find_root限深4+MAX_LABEL=16 时 LUT 33,118（62.25%），
+    //   超目标 26,600。标签表 lab_*/parent 的动态索引是 5264 个 16-bit mux 主因。
+    //   MAX_LABEL 16→8 使数组 [0:7]，综合器可把 16:1 mux 优化成 8:1（越界 8-15 消除）。
+    //   多目标能力 8 个（覆盖常见监控场景，密集场景超出目标被丢弃，连通性不受影响）。
     parameter integer MAX_RUN   = 4     // 上一行参与匹配的最大游程数（治本：16→4）
 )(
     input  wire        clk,
