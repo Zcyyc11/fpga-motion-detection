@@ -219,7 +219,7 @@ module md_pipeline #(
     wire init_phase = (fid <= 16'd1) & ~mask_phase;   // 首帧：缓存直接写当前帧
 
     diff_stage #() u_diff (
-        .mode_bg(MODE_BG[0]),
+        .mode_bg(cfg_enable),    // 算法模式：g_nops=编译期 MODE_BG[0]；g_ps=regs 0x14 ENABLE 运行时切帧差/背景建模
         .init_phase(init_phase),
         .shift_amt(cfg_shift),
         .cur(cur_d1),
