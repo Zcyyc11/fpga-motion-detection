@@ -127,6 +127,12 @@ puts "加入的 RTL："
 foreach f [get_files -of [get_filesets sources_1]] { puts "   $f" }
 
 # ---------------------------------------------------------------- 4) 综合 → 实现 → bit
+# 综合策略开关：设环境变量 SYNTH_DIRECTIVE 时应用（如 RuntimeOptimized 加速巨型组合），
+# 默认不设 = Vivado 默认策略，不影响队友。
+if {[info exists ::env(SYNTH_DIRECTIVE)] && $::env(SYNTH_DIRECTIVE) ne ""} {
+    set_property STEPS.SYNTH_DESIGN.ARGS.DIRECTIVE $::env(SYNTH_DIRECTIVE) [get_runs synth_1]
+    puts "SYNTH_DIRECTIVE=$::env(SYNTH_DIRECTIVE)"
+}
 launch_runs synth_1 -jobs 2
 wait_on_run synth_1
 if {[get_property PROGRESS [get_runs synth_1]] != "100%"} {
