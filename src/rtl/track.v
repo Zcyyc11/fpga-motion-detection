@@ -21,6 +21,10 @@
 //
 // ★ 匹配只用加减比较（中心距），没有乘除 —— 综合友好。
 //   IoU 匹配是后续升级项，接口不变，只改内部。
+//
+// ★ 综合修复（line1）：原 6 处循环以 integer 变量 tr_n / c_n 作循环上界
+//   （Synth 8-3380 不可综合）。统一改为以常量 MAX_TRACK / MAX_TARGET 展开，
+//   再用 `if (idx < tr_n/c_n)` 门控，逻辑语义与原动态上界完全一致。
 // -----------------------------------------------------------------------------
 module track #(
     parameter integer MAX_TRACK  = 16,   // 同时存在的轨迹数上限
@@ -40,8 +44,8 @@ module track #(
     // 跟踪后的目标流输出（frame_tick 之后发出）
     output reg         o_valid,
     output reg  [7:0]  o_id,          // ★ 跨帧持续 id
-    output reg  [15:0] o_x1, o_y1, o_x2, o_y2,
-    output reg  [15:0] o_dwell,       // 连续出现帧数（停留计数的直接依据）
+    output reg [15:0] o_x1, o_y1, o_x2, o_y2,
+    output reg [15:0] o_dwell,       // 连续出现帧数（停留计数的直接依据）
     output reg         o_last
 );
 
@@ -107,11 +111,13 @@ module track #(
                 for (i = 0; i < MAX_TRACK; i = i + 1)
                     tr_m[i] = 1'b0;
 
-                for (k = 0; k < c_n; k = k + 1) begin
+                for (k = 0; k < MAX_TARGET; k = k + 1) begin
+                    if (k < c_n) begin
                     cx = (c_x1[k] + c_x2[k]) >> 1;
                     cy = (c_y1[k] + c_y2[k]) >> 1;
                     best = -1; bd = MATCH_DIST + 1;
-                    for (i = 0; i < tr_n; i = i + 1) begin
+                    for (i = 0; i < MAX_TRACK; i = i + 1) begin
+                        if (i < tr_n) begin
                         if (tr_act[i] && !tr_m[i]) begin
                             dcx = cx - (( (tr_x1[i] + tr_x2[i]) >> 1 ));
                             dcy = cy - (( (tr_y1[i] + tr_y2[i]) >> 1 ));
@@ -120,6 +126,7 @@ module track #(
                             if (dx <= MATCH_DIST && dy <= MATCH_DIST && (dx + dy) < bd) begin
                                 bd = dx + dy; best = i;
                             end
+                        end
                         end
                     end
                     if (best >= 0) begin
@@ -142,39 +149,47 @@ module track #(
                         end
                         // 表满：丢弃目标（见头部限制）
                     end
+                    end
                 end
                 // 2) 未匹配轨迹老化；删除到期轨迹（压缩表）
-                for (i = 0; i < tr_n; i = i + 1) begin
+                for (i = 0; i < MAX_TRACK; i = i + 1) begin
+                    if (i < tr_n) begin
                     if (tr_act[i] && !tr_m[i]) begin
                         if (tr_miss[i] != 16'hFFFF) tr_miss[i] = tr_miss[i] + 1;
+                    end
                     end
                 end
                 begin : compact
                     integer w, r;
                     w = 0;
-                    for (r = 0; r < tr_n; r = r + 1) begin
+                    for (r = 0; r < MAX_TRACK; r = r + 1) begin
+                        if (r < tr_n) begin
                         if (tr_act[r] && (tr_miss[r] <= MISSED_MAX)) begin
                             tr_act[w]=tr_act[r]; tr_id[w]=tr_id[r];
                             tr_x1[w]=tr_x1[r]; tr_y1[w]=tr_y1[r];
                             tr_x2[w]=tr_x2[r]; tr_y2[w]=tr_y2[r];
                             tr_seen[w]=tr_seen[r]; tr_miss[w]=tr_miss[r];
                             // 更新 c_hit 里的轨迹号引用
-                            for (k = 0; k < c_n; k = k + 1)
+                            for (k = 0; k < MAX_TARGET; k = k + 1) if (k < c_n) begin
                                 if (c_hit[k] == r[7:0]) c_hit[k] = w[7:0];
+                            end
                             w = w + 1;
+                        end
                         end
                     end
                     tr_n = w;
                 end
                 // 3) 生成本帧输出列表（跟踪后 id + dwell）
                 out_n = 0;
-                for (k = 0; k < c_n; k = k + 1) begin
+                for (k = 0; k < MAX_TARGET; k = k + 1) begin
+                    if (k < c_n) begin
                     if (c_hit[k] != 8'hFF) begin
                         out_id[out_n]  = tr_id[c_hit[k]];
                         out_x1[out_n]  = c_x1[k]; out_y1[out_n] = c_y1[k];
                         out_x2[out_n]  = c_x2[k]; out_y2[out_n] = c_y2[k];
                         out_dw[out_n]  = tr_seen[c_hit[k]];
                         out_n          = out_n + 1;
+                    end
                     end
                 end
                 out_k = 0;
