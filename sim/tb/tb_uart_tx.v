@@ -44,7 +44,9 @@ module tb_uart_tx;
     );
 
     // ---------------- UART BFM：收一个字节 ----------------
-    task recv_byte(output [7:0] data);
+    integer errs = 0;   // 错误计数（声明须先于使用，xvlog 要求；原声明在 task 之后）
+
+task recv_byte(output [7:0] data);
         integer b;
         begin
             // 定位起始位：若上一字节后紧跟新字节，当前已处于起始位（tx=0）；
@@ -66,7 +68,6 @@ module tb_uart_tx;
     endtask
 
     // 收一包并校验
-    integer errs = 0;
     reg [7:0] pkt [0:15];
     integer plen;
 

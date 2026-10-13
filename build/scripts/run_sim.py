@@ -166,7 +166,7 @@ def main():
                             or str(Path(tempfile.gettempdir()) / 'fpga_sim'), 'scratch')
         if scratch == ROOT or ROOT in scratch.parents:
             raise ValueError('scratch 必须在源码目录外，避免在工程内生成仿真产物')
-        rtl = sorted((ROOT / 'src/rtl').glob('*.v'))
+        rtl = sorted((ROOT / 'src/rtl').glob('*.v')) + sorted((ROOT / 'src/rtl/board').glob('*.v'))
         tb = ROOT / 'sim/tb' / (args.top + '.v')
         if not rtl or not tb.is_file():
             raise ValueError('缺少 RTL 或仿真台：%s' % tb)
@@ -185,7 +185,7 @@ def main():
             sources[rel.as_posix()] = sha256(dest)
             if sha256(source) != sources[rel.as_posix()]:
                 raise ValueError('复制过程中源文件发生变化：%s' % source)
-        paths = ['../src/rtl/' + p.name for p in rtl] + ['tb/' + tb.name]
+        paths = ['../' + p.relative_to(ROOT).as_posix() for p in rtl] + ['tb/' + tb.name]
         (sim / 'files.f').write_text(''.join('"' + p + '"\n' for p in paths), encoding='ascii')
         command = 'call "%s" "%s" "sim_%s" "files.f"' % (sim / "run_sim.bat", args.top, args.top)
         env['FPGA_SIM_ISOLATED_RUN'] = '1'
