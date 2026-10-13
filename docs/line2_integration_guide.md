@@ -19,7 +19,7 @@
 | `uart_tx.v` | src/rtl | 协议 v0.2 打包 + UART 串行化（115200） | `track`/`alarm` 输出 → 板上 UART TX 引脚 |
 | `uart_recv.py` | src/ps | PC 端接收参考脚本（`--replay` 可自测） | PC 侧，USB-UART |
 
-仿真台（sim/tb，全部 PASS）：`tb_multi_bbox`、`tb_gray_conv`、`tb_track_alarm`、`tb_regs`、`tb_uart_tx`。
+仿真台：`tb_multi_bbox`、`tb_track_alarm`、`tb_regs`、`tb_uart_tx`（sim/tb，全 PASS）；`tb_gray_conv` 与线二新版 gray_conv 配对存于 `src/rtl_pending/`（新版未进构建前不跑）。
 跑法：`sim/run_sim.bat`（Icarus Verilog）。
 
 ---
