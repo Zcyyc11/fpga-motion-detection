@@ -1,0 +1,42 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/multi_bbox.v" into library work
+INFO: [VRFC 10-311] analyzing module multi_bbox
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_multi_bbox_limits
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_multi_bbox_limits -generic_top RUN_LIMIT=4 -s check 
+Multi-threading is on. Using 22 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.multi_bbox(MIN_CNT=1,MAX_RUN=4)
+Compiling module work.tb_multi_bbox_limits(RUN_LIMIT=4...
+Built simulation snapshot check
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Tue Oct 13 16:41:30 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/check/xsim_script.tcl
+# xsim {check} -autoloadwcfg -tclbatch {finish.tcl}
+Time resolution is 1 ps
+source finish.tcl
+## run 20 ms
+BOX 0 2 2 3 3 4 0
+BOX 1 6 2 7 3 4 0
+BOX 2 10 2 11 3 4 0
+BOX 3 14 2 15 3 4 0
+BOX 4 18 2 19 2 2 0
+BOX 5 18 3 19 3 2 1
+VERIFY_DONE bbox
+$finish called at time : 8700 ns : File "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" Line 34
+## quit
+INFO: [Common 17-206] Exiting xsim at Tue Oct 13 16:41:32 2026...

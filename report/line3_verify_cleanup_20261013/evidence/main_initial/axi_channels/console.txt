@@ -1,0 +1,55 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/board/axi_lite_slave.v" into library work
+INFO: [VRFC 10-311] analyzing module axi_lite_slave
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_axi_channels_verify.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_axi_channels_verify
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_axi_channels_verify -s check 
+Multi-threading is on. Using 22 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.axi_lite_slave
+Compiling module work.tb_axi_channels_verify
+Built simulation snapshot check
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Tue Oct 13 16:42:29 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/check/xsim_script.tcl
+# xsim {check} -autoloadwcfg -tclbatch {finish.tcl}
+Time resolution is 1 ps
+source finish.tcl
+## run 20 ms
+PASS write address accepted
+PASS write data accepted
+FAIL split channels produce BVALID
+FAIL split channels write once
+PASS write data accepted
+PASS write address accepted
+FAIL split channels produce BVALID
+FAIL split channels write once
+PASS simultaneous write handshake
+[slave] WRITE accept addr=0x00 data=0x00005678
+PASS write response held
+PASS read accepted
+[slave] READ accept addr=0x00
+PASS registered slave read
+PASS read held under backpressure
+PASS read held under backpressure
+PASS read held under backpressure
+PASS read held under backpressure
+PASS read held under backpressure
+VERIFY_DONE axi errors=4
+$finish called at time : 810 ns : File "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_axi_channels_verify.v" Line 53
+## quit
+INFO: [Common 17-206] Exiting xsim at Tue Oct 13 16:42:31 2026...
