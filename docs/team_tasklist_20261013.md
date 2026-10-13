@@ -20,7 +20,7 @@
 | 2 | 多目标 bit 构建（等线二治本） | ⏳ 被卡 | 治本后 `build_vivado.bat 0 1` 重出；**红线：grep bound to 验真绑定** |
 | 3 | 上板实测多目标（4 项） | ❌ 未做 | 多框检出 / 18 分钟回绕 / 换视频（vehicles、market-square、people-walking）/ `verify_board.py` 自动取证到 `board/logs/` |
 | 4 | 演示视频 | ❌ 未做 | 分工表节点 10/13 |
-| 5 | 性能/资源对比表素材（报告用） | ⏳ 部分 | 单目标基线 12,867 LUT 有；多目标治本后数据待补；WNS 0.932ns（10/11 hdmiin 版）可引用 |
+| 5 | 性能/资源对比表素材（报告用） | ⏳ 部分 | 单目标基线 10,605 LUT 有（综合 19.93%，build/reports/synth_utilization.rpt 实测）；多目标治本后数据待补；WNS 0.932ns（10/11 hdmiin 版）可引用 |
 
 ## 线二（徐一夫）任务——按优先级
 

@@ -52,6 +52,7 @@
 
 - `tb_multi_bbox` **只测 2 个目标**——无 16 目标打满、无游程超限（MAX_RUN）、无标签表满、无 id 回绕用例。multi_bbox 从未进过真实综合，雷就是这么埋下的。
 - **要求**：治本后补齐上述用例，特别是 16 目标满配 + 跨帧合并路径。
+- **另发现**：`tb_gray_conv` 按线二新版 gray_conv 接口编写（in_de/in_hsync/in_vsync/in_rgb），而构建实际使用 `board/gray_conv.v` 旧接口（vde/x/y/pix_in）→ 该 tb 当前**测的是 rtl_pending 备用版而非部署版**，仿真链对不上部署实现。两版取舍归线二拍板后，tb 必须与部署版对齐（全套仿真 9/10 通过的例外即此条）。
 
 ### 7. dvi2rgb IP 树残留 ILA 孤儿（工程卫生）
 
