@@ -68,14 +68,22 @@ module multi_bbox #(
     reg [15:0] lab_cnt [0:MAX_LABEL-1];
 
     integer i;
-    // 查根：union 时总是「小 id 吸收大 id」，链深有限，循环上限 MAX_LABEL 兜底
+    // ★★ XIF123 治本第 1 步（2026-10-13）：find_root 限深 4 ★★
+    //   原 `for (k=0; k<MAX_LABEL; k++)` 让综合器展开 16 级动态索引 mux 链
+    //   （parent[l] 动态索引 → 16:1 mux × 16 级），是 multi_bbox 综合 LUT
+    //   96,997/53,200（182%）爆限的主因之一。本模块并查集采用「小 id 吸收
+    //   大 id」策略（union 时 parent[hi]=lo, hi>lo），实际树深 ≤2，限深 4
+    //   绰绰有余。改 4 步手写代替 for 循环，把 16 级 mux 链砍到 4 级。
+    //   极端情况若链深 >4（理论不发生），返回当前节点，下一拍再查，
+    //   保守不丢合并（等价于 find 没走完，本拍用未压缩标签，下拍修正）。
     function [3:0] find_root(input [3:0] l0);
-        integer k;
         reg [3:0] l;
         begin
             l = l0;
-            for (k = 0; k < MAX_LABEL; k = k + 1)
-                if (parent[l] != l) l = parent[l];
+            if (parent[l] != l) l = parent[l];
+            if (parent[l] != l) l = parent[l];
+            if (parent[l] != l) l = parent[l];
+            if (parent[l] != l) l = parent[l];
             find_root = l;
         end
     endfunction
