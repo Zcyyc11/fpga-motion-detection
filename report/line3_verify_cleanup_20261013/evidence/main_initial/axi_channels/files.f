@@ -1,0 +1,2 @@
+"D:/line3_verify_cleanup_20261013_01/source/src/rtl/board/axi_lite_slave.v"
+"D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_axi_channels_verify.v"

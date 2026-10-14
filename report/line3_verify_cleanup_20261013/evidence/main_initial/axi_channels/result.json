@@ -1,0 +1,13 @@
+{
+  "job": "axi_channels",
+  "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+  "passed": false,
+  "returncode": 0,
+  "failures": [
+    "FAIL split channels produce BVALID",
+    "FAIL split channels write once",
+    "FAIL split channels produce BVALID",
+    "FAIL split channels write once"
+  ],
+  "board_test": false
+}

@@ -1,0 +1,42 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/track.v" into library work
+INFO: [VRFC 10-311] analyzing module track
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/alarm.v" into library work
+INFO: [VRFC 10-311] analyzing module alarm
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_track_id_wrap.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_track_id_wrap
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_track_id_wrap -s check 
+Multi-threading is on. Using 22 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.track(MISSED_MAX=2)
+Compiling module work.alarm
+Compiling module work.tb_track_id_wrap
+Built simulation snapshot check
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Tue Oct 13 16:42:08 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/check/xsim_script.tcl
+# xsim {check} -autoloadwcfg -tclbatch {finish.tcl}
+Time resolution is 1 ps
+source finish.tcl
+## run 20 ms
+EVENT 0 1 60
+FAIL new lifetime must not inherit old left position
+EVENT 0 1 60
+VERIFY_DONE wrap errors=1
+$finish called at time : 1057850 ns : File "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_track_id_wrap.v" Line 40
+## quit
+INFO: [Common 17-206] Exiting xsim at Tue Oct 13 16:42:10 2026...

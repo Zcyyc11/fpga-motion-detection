@@ -1,0 +1,105 @@
+[
+  {
+    "job": "full16",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  },
+  {
+    "job": "overflow",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  },
+  {
+    "job": "label_full",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  },
+  {
+    "job": "bridge",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  },
+  {
+    "job": "reuse",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  },
+  {
+    "job": "wrap",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": false,
+    "returncode": 0,
+    "failures": [
+      "FAIL new lifetime must not inherit old left position"
+    ],
+    "board_test": false
+  },
+  {
+    "job": "cfg",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  },
+  {
+    "job": "axi_channels",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": false,
+    "returncode": 0,
+    "failures": [
+      "FAIL split channels produce BVALID",
+      "FAIL split channels write once",
+      "FAIL split channels produce BVALID",
+      "FAIL split channels write once"
+    ],
+    "board_test": false
+  },
+  {
+    "job": "axi_original",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  },
+  {
+    "job": "track_original",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  },
+  {
+    "job": "regs_original",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  },
+  {
+    "job": "bbox_original",
+    "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  }
+]

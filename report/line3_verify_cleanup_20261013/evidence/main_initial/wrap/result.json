@@ -1,0 +1,10 @@
+{
+  "job": "wrap",
+  "commit": "3d9f411d213df3ee5aa2284b90348e8d7c584aa8",
+  "passed": false,
+  "returncode": 0,
+  "failures": [
+    "FAIL new lifetime must not inherit old left position"
+  ],
+  "board_test": false
+}
