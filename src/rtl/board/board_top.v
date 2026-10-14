@@ -192,7 +192,8 @@ module board_top #(
         .SYNC_POS(1),
         .OBJ_W(160), .OBJ_H(120), .X0(60), .Y0(300), .DX(16),
         .THRESH(70), .SHIFT(6), .MODE_BG(MODE_BG), .MIN_CNT(64),
-        .INPUT_SEL(INPUT_SEL)
+        .INPUT_SEL(INPUT_SEL),
+        .INCLUDE_PS(0)          // 0 = 纯 PL（AXI 口悬空，UART 链无条件生效）
     ) u_pipe (
         .clk(clk_pipe), .rst_n(rst_n),
         .rx_de(g_vde), .rx_hs(in_hs), .rx_vs(in_vs), .rx_sof(in_sof),
@@ -203,8 +204,7 @@ module board_top #(
         .b_cnt(b_cnt), .b_valid(b_valid), .b_obj_count(b_obj_count),
         .m_valid(m_valid), .m_x(m_x), .m_y(m_y), .m_bit(m_bit),
         .frame_idx(frame_idx),
-        // ---- 线二回传链（INCLUDE_PS=0：AXI 口悬空，UART 链无条件生效）----
-        .INCLUDE_PS(0),
+        // ---- 线二回传链：INCLUDE_PS=0 ⇒ AXI 口悬空，UART 链无条件生效（参数已在 #() 覆盖，非端口）----
         .clk_axi(1'b0), .rst_n_axi(1'b0),
         .ps_en(1'b0), .ps_we(1'b0), .ps_addr(6'd0), .ps_wdata(32'd0),
         .ps_rdata(),
