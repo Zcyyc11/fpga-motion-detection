@@ -81,7 +81,9 @@ module multi_bbox #(
 );
 
     // ---------------- 并查集 + 包围盒表 ----------------
-    reg [3:0]  parent [0:MAX_LABEL-1];  // 父指针；parent[i]==i 即根
+    // ★ 标签 5 位（2026-10-15 full16 定位）：4'hF 哨兵占掉 4 位编码，id15 与哨兵
+    //   重码 → 第 16 个标签永远匹配不上（box15 cnt=2 实锤）。扩 5 位+哨兵 5'h1F。
+    reg [4:0]  parent [0:MAX_LABEL-1];  // 父指针；parent[i]==i 即根
     reg        used    [0:MAX_LABEL-1];
     reg [15:0] lab_mnx [0:MAX_LABEL-1];
     reg [15:0] lab_mny [0:MAX_LABEL-1];
@@ -92,8 +94,8 @@ module multi_bbox #(
     // ★ find_root 限深 4（治本第 1 步）：手写 4 步代替 for k=0..15，
     //   把 16 级 parent[l] 动态索引 mux 链砍到 4 级。
     //   小 id 吸收大 id 策略下实际树深 ≤2，限深 4 充裕。
-    function [3:0] find_root(input [3:0] l0);
-        reg [3:0] l;
+    function [4:0] find_root(input [4:0] l0);
+        reg [4:0] l;
         begin
             l = l0;
             if (parent[l] != l) l = parent[l];
@@ -107,12 +109,12 @@ module multi_bbox #(
     // ---------------- 上一行 / 当前行的游程表 ----------------
     reg [15:0] pr_s [0:MAX_RUN-1];      // 上一行游程起点
     reg [15:0] pr_e [0:MAX_RUN-1];      // 上一行游程终点
-    reg [3:0]  pr_lab[0:MAX_RUN-1];     // 上一行游程的标签
+    reg [4:0]  pr_lab[0:MAX_RUN-1];     // 上一行游程的标签
     reg [5:0]  pr_n;                    // 上一行游程数（0..MAX_RUN）
 
     reg [15:0] cr_s [0:MAX_RUN-1];      // 当前行游程起点
     reg [15:0] cr_e [0:MAX_RUN-1];
-    reg [3:0]  cr_lab[0:MAX_RUN-1];
+    reg [4:0]  cr_lab[0:MAX_RUN-1];
     reg [5:0]  cr_n;
 
     // ---------------- 流式状态 ----------------
@@ -145,7 +147,7 @@ module multi_bbox #(
     reg [2:0]  state;
 
     reg [5:0]  mk;                      // 匹配游标 0..MAX_RUN
-    reg [3:0]  mroot;                   // 当前匹配根
+    reg [4:0]  mroot;                   // 当前匹配根
     reg        mfound;                  // 是否命中过
 
     // 闭合游程缓存（游程关闭时锁存，供 ST_MATCH/ST_ALLOC 用）
@@ -212,19 +214,19 @@ module multi_bbox #(
     integer    out_k;
 
     integer i, j;
-    reg [3:0] lj, lo, hi;
+    reg [4:0] lj, lo, hi;
     reg hit;
 
     // ★ 修复 ST_ALLOC 的 NBA 时序坑：for 循环里 `!mfound` 读 NBA 旧值，
     //   导致同拍内所有 !used 标签都被分配。改用组合优先编码选出 first_free。
-    reg [3:0] first_free_lbl;
+    reg [4:0] first_free_lbl;
     reg       first_free_valid;
     integer kk;
     always @(*) begin
         first_free_valid = 1'b0; first_free_lbl = 4'd0;
         for (kk = 0; kk < MAX_LABEL; kk = kk + 1) begin
             if (!used[kk] && !first_free_valid) begin
-                first_free_lbl = kk[3:0]; first_free_valid = 1'b1;
+                first_free_lbl = kk[4:0]; first_free_valid = 1'b1;
             end
         end
     end
@@ -249,7 +251,7 @@ module multi_bbox #(
             pend_valid <= 1'b0; pend_x <= 0; pend_y <= 0; pend_mask <= 1'b0;
             out_n = 0; out_k = 0;
             for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                parent[i] <= i[3:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
+                parent[i] <= i[4:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
                 lab_mnx[i] <= 16'hFFFF; lab_mny[i] <= 16'hFFFF;
                 lab_mxx[i] <= 16'd0;    lab_mxy[i] <= 16'd0;
             end
@@ -285,7 +287,7 @@ module multi_bbox #(
                                 // 末行有未闭合游程 → 触发匹配
                                 close_s <= rs; close_e <= px; close_row <= prow;
                                 close_type <= CL_FRAME;
-                                mk <= 0; mroot <= 4'hF; mfound <= 1'b0;
+                                mk <= 0; mroot <= 5'h1F; mfound <= 1'b0;
                                 state <= ST_MATCH;
                                 // 当前样本（新帧第一行）pending
                                 pend_valid <= 1'b1;
@@ -296,7 +298,7 @@ module multi_bbox #(
                                 // 无末行游程 → 直接结算 + 清表 + 开新帧
                                 out_n = 0;
                                 for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                    if (used[i] && (parent[i] == i[3:0]) &&
+                                    if (used[i] && (parent[i] == i[4:0]) &&
                                         (lab_cnt[i] >= MIN_CNT[15:0]) &&
                                         (lab_mnx[i] <= lab_mxx[i]) && (lab_mny[i] <= lab_mxy[i])) begin
                                         out_x1[out_n] = lab_mnx[i]; out_y1[out_n] = lab_mny[i];
@@ -307,7 +309,7 @@ module multi_bbox #(
                                 end
                                 out_k = 0;
                                 for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                    parent[i] <= i[3:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
+                                    parent[i] <= i[4:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
                                     lab_mnx[i] <= 16'hFFFF; lab_mny[i] <= 16'hFFFF;
                                     lab_mxx[i] <= 16'd0;    lab_mxy[i] <= 16'd0;
                                 end
@@ -326,7 +328,7 @@ module multi_bbox #(
                             if (run_open) begin
                                 close_s <= rs; close_e <= px; close_row <= prow;
                                 close_type <= CL_ROW;
-                                mk <= 0; mroot <= 4'hF; mfound <= 1'b0;
+                                mk <= 0; mroot <= 5'h1F; mfound <= 1'b0;
                                 state <= ST_MATCH;
                                 pend_valid <= 1'b1;
                                 pend_x <= cur_x; pend_y <= cur_y; pend_mask <= cur_mask;
@@ -359,7 +361,7 @@ module multi_bbox #(
                                 // 游程关闭 → 触发匹配（当前样本是 !mask，已处理 px）
                                 close_s <= rs; close_e <= px; close_row <= prow;
                                 close_type <= CL_SAME;
-                                mk <= 0; mroot <= 4'hF; mfound <= 1'b0;
+                                mk <= 0; mroot <= 5'h1F; mfound <= 1'b0;
                                 state <= ST_MATCH;
                                 px <= cur_x;
                                 pend_valid <= 1'b0;  // ★ 修复：CL_SAME 闭合时清 pending（消费当前样本）
@@ -382,9 +384,9 @@ module multi_bbox #(
                 ST_MATCH: begin
                     if (mk < pr_n) begin
                         // 重叠判断（1 套组合逻辑，不是 16 套）
-                        // ★ 守卫 pr_lab==4'hF（上一行该游程无标签，如表满丢弃）：
-                        //   否则 find_root(4'hF) 越界读 parent[0xF] 返回 x，污染 mroot
-                        hit = (pr_lab[mk] != 4'hF) &&
+                        // ★ 守卫 pr_lab==5'h1F（上一行该游程无标签，如表满丢弃）：
+                        //   否则 find_root(5'h1F) 越界读 parent[0x1F] 返回 x，污染 mroot
+                        hit = (pr_lab[mk] != 5'h1F) &&
                               (pr_s[mk] <= close_e) && (pr_e[mk] >= close_s);
                         if (hit) begin
                             lj = find_root(pr_lab[mk]);
@@ -438,12 +440,12 @@ module multi_bbox #(
                         cr_s[cr_n] <= close_s; cr_e[cr_n] <= close_e;
                         // ★ 核心修复（prow bug 真身）：cr_lab 不能直接 <= mroot——
                         //   「分配新标签」分支里 mroot <= first_free_lbl 与本句同拍 NBA，
-                        //   这里读到的是旧值 4'hF，导致下一行 find_root(0xF) 越界、
+                        //   这里读到的是旧值哨兵，导致下一行 find_root(哨兵) 越界、
                         //   cnt 永不累积、结算时 cnt<MIN_CNT → out_n=0。
                         //   改用本拍实际生效的根：命中旧根用 mroot，新分配用 first_free_lbl，
-                        //   表满丢弃记 4'hF（ST_MATCH 已加守卫跳过）。
+                        //   表满丢弃记 5'h1F（ST_MATCH 已加守卫跳过）。
                         cr_lab[cr_n] <= mfound ? mroot :
-                                         (first_free_valid ? first_free_lbl : 4'hF);
+                                         (first_free_valid ? first_free_lbl : 5'h1F);
                         cr_n <= cr_n + 6'd1;
                     end
                     state <= ST_FINISH;
@@ -477,7 +479,7 @@ module multi_bbox #(
                             // 结算上一帧
                             out_n = 0;
                             for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                if (used[i] && (parent[i] == i[3:0]) &&
+                                if (used[i] && (parent[i] == i[4:0]) &&
                                     (lab_cnt[i] >= MIN_CNT[15:0]) &&
                                     (lab_mnx[i] <= lab_mxx[i]) && (lab_mny[i] <= lab_mxy[i])) begin
                                     out_x1[out_n] = lab_mnx[i]; out_y1[out_n] = lab_mny[i];
@@ -489,7 +491,7 @@ module multi_bbox #(
                             out_k = 0;
                             // 清表
                             for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                parent[i] <= i[3:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
+                                parent[i] <= i[4:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
                                 lab_mnx[i] <= 16'hFFFF; lab_mny[i] <= 16'hFFFF;
                                 lab_mxx[i] <= 16'd0;    lab_mxy[i] <= 16'd0;
                             end
