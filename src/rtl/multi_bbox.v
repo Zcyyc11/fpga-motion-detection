@@ -124,12 +124,17 @@ module multi_bbox #(
 
     // ---------------- 输入缓存 FIFO（治本第 2 步新增）----------------
     // ST_MATCH/ST_ALLOC/ST_FINISH 期间上游来的 in_valid 样本缓存于此。
-    // 深度 256（原 32 偏小：f7f4134 复核满配16目标每行游程≥8 即溢出静默丢样）；
-    // 256 覆盖到每行 ≤~250 前景像素的密集行。宽度 {valid,x,y,mask}=34bit。
-    localparam integer SF_DEPTH = 256;
+    // 深度 512（2026-10-15 full16 定位实测：256 仍不够——串行 ST_MATCH 每关一个
+    // 游程要 MAX_RUN+2≈18 拍，一行 16 游程净欠 ~336 拍，FIFO 峰值积压 ~336 > 256
+    // → 溢出丢样（丢行/帧边界样本）→ 永不结算 → 0 框，full16/label_full 复现；
+    // bridge/reuse/overflow(MAX_RUN=4) 欠账小所以过。512 覆盖 full16/label_full
+    // 峰值积压并留余量。已知局限：full16_64（16 目标×32 行、行行 16 游程）净欠
+    // ~7800 拍，任何可行深度都救不了，属串行化结构性上限，见
+    // docs/multibbox_16_vs_mainstream_20261015.md）。宽度 {valid,x,y,mask}=34bit。
+    localparam integer SF_DEPTH = 512;
     reg [33:0] sf [0:SF_DEPTH-1];
-    reg [7:0]  sf_wr, sf_rd;            // 0..SF_DEPTH-1
-    reg [8:0]  sf_cnt;                  // 0..SF_DEPTH
+    reg [8:0]  sf_wr, sf_rd;            // 0..SF_DEPTH-1（512 需 9 位）
+    reg [9:0]  sf_cnt;                  // 0..SF_DEPTH（512 需 10 位）
     reg        fifo_overflow;           // 满仍要写=静默丢样时粘存（不再静默，供 PS 读）
 
     // ---------------- 匹配状态机（治本第 2 步）----------------
@@ -257,12 +262,12 @@ module multi_bbox #(
             //   修复原写与排 FIFO 同拍对 sf_cnt 冲突 NBA（last-write-wins）
             if (fifo_we) begin
                 sf[sf_wr] <= {1'b1, in_x, in_y, in_mask};
-                sf_wr <= (sf_wr == SF_DEPTH-1) ? 8'd0 : sf_wr + 8'd1;
+                sf_wr <= (sf_wr == SF_DEPTH-1) ? 9'd0 : sf_wr + 9'd1;
             end
             if (fifo_re) begin
-                sf_rd <= (sf_rd == SF_DEPTH-1) ? 8'd0 : sf_rd + 8'd1;
+                sf_rd <= (sf_rd == SF_DEPTH-1) ? 9'd0 : sf_rd + 9'd1;
             end
-            sf_cnt <= sf_cnt + (fifo_we ? 9'd1 : 9'd0) - (fifo_re ? 9'd1 : 9'd0);
+            sf_cnt <= sf_cnt + (fifo_we ? 10'd1 : 10'd0) - (fifo_re ? 10'd1 : 10'd0);
             // 溢出粘存：FIFO 满仍要写 = 静默丢样，锁存标志（不再静默丢失）
             if (new_frame) fifo_overflow <= 1'b0;        // 每帧开始清，PS 按帧感知
             if (in_valid && (sf_cnt == SF_DEPTH)) fifo_overflow <= 1'b1;
