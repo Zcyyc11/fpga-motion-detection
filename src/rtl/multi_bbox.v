@@ -43,7 +43,7 @@ module multi_bbox #(
     //   配合 find_root 限深 4（治本第 1 步），4 路 × 4 级 ≈ 原 1/16 组合量。
     //   开运算后每行游程数个位数，MAX_RUN=4 覆盖常见场景；密集场景超出的游程
     //   被丢弃（头部说明已允许），不影响已分配标签的连通性。
-    //   完整串行化（FIFO+状态机）见 stash serial-wip，待 prow NBA 坑 debug 后续补。
+    //   完整串行化（FIFO+状态机）的实现见串行版提交链 c0e13d3→0d40bd7（已恢复为分支 line2/serial-wip）：资源达标(OOC LUT 19,048/35.8%)，但功能从未通过独立复核(f7f4134: 16目标满配仅出9框、面积不守恒,根因FIFO静默丢样)，未作为达标版并入 main。早期注释写"见 stash serial-wip"不实——reflog 从无 stash 记录。
     // ★ XIF123 治本第 3 步（2026-10-13）：MAX_LABEL 16→8 降标签表动态索引 mux
     //   OOC 综合验证：MAX_RUN=4+find_root限深4+MAX_LABEL=16 时 LUT 33,118（62.25%），
     //   超目标 26,600。标签表 lab_*/parent 的动态索引是 5264 个 16-bit mux 主因。

@@ -1,25 +1,31 @@
 # =============================================================================
-#  build_vivado.tcl —— 从源码到 bitstream 的全自动构建（官方要求的"可复现构建脚本"）
+#  build_vivado.tcl —— 从源码到 bitstream 的分阶段自动构建
 #
 #  用法：
-#    vivado -mode batch -source build/scripts/build_vivado.tcl -tclargs [MODE_BG] [INPUT_SEL]
+#    vivado -mode batch -source build/scripts/build_vivado.tcl -tclargs [MODE_BG] [INPUT_SEL] [STAGE]
 #
-#  做四件事：
-#    1) 建工程（器件 xc7z020clg400-1，就是 PYNQ-Z2 上那颗 XC7Z020-1CLG400C）
-#    2) 从本地 IP 仓库引入 Digilent 的 HDMI 收发 IP：
-#         dvi2rgb（HDMI 输入：TMDS 解码 + 时钟恢复，配 720p EDID）
-#         rgb2dvi（HDMI 发送：TMDS 编码 + 串化）
-#    3) 加 RTL / 约束，跑综合 → 实现 → 出 bit
-#    4) 把资源、时序、时钟三份报告写到 build/reports/（对应评分项"资源·时钟·性能"）
+#    MODE_BG  : 0 = 帧差, 1 = 背景建模
+#    INPUT_SEL: 0 = 自测激励, 1 = 真实 HDMI 输入
+#    STAGE    : setup | synth | impl | bit | all（默认 all）
+#      setup = 建工程 + HDMI IP + 源码约束（工程已存在则 open 复用，跳过 IP 生成）
+#      synth = 多线程综合 + post-synth checkpoint + 综合三报告
+#      impl  = opt/place/route（RuntimeOptimized 提速），内部断点可续跑
+#      bit   = 出 bit + 拷到 build/bitstream + 实现四报告 + WNS/WHS
 #
-#  ★ 为什么不建 Block Design：
-#    本设计的核心价值是 PL 里的那条流水线，用纯 RTL 表达最清楚、最容易复核；
-#    为了用 IP 而套一层 BD 只会让"到底哪段是我们写的"变模糊。
-#    唯一的 IP 是别人写好的 HDMI 收发器（dvi2rgb 输入 / rgb2dvi 输出），
-#    它们本身就是 RTL 形式调用的，算法流水线全部是我们自己的 RTL。
+#  ★ 为什么分阶段（2026-10-14 实测数据，不是拍的）：
+#    整套一把梭要 2-3 小时；本机 24 逻辑核，而 launch_runs -jobs 2 远没喂满。
+#    拆分后：setup 约 7 分钟（复用工程约 2 分钟）+ synth 8 线程约 20 分钟 +
+#    impl RuntimeOptimized 约 25-35 分钟 + bit 约 3 分钟 ≈ 一小时内出 bit。
+#    且每阶段落 checkpoint（build/checkpoints/post_synth.dcp，impl 的 opt/place/route
+#    断点由 Vivado 自己存在 runs/impl_1 下），任何一阶段死了不用从头再来：
+#      synth 死了 → 重跑 synth（约 20 分钟）
+#      impl 死了 → 直接重跑 impl，Vivado 从最后一个完成的 step 续
 #
-#  ★ 路径纪律：Vivado 工程路径与用户名不能含中文，所以工程建在仓库外的 build/vivado
-#    工作目录；工程根目录由本脚本按自身位置推算（SCRIPT_DIR 往上两层），不写死任何机器路径。
+#  ★ 为什么不建 Block Design：同旧版说明——核心价值是 PL 流水线本身，
+#    纯 RTL 表达最清楚；唯一 IP 是 Digilent 的 HDMI 收发器。
+#
+#  ★ 路径纪律：工程路径与用户名不能含中文，工程建在仓库内的 build/vivado
+#    （被 .gitignore 忽略）；工程根目录由脚本按自身位置推算，不写死机器路径。
 # =============================================================================
 
 set SCRIPT_DIR [file dirname [file normalize [info script]]]
@@ -30,14 +36,14 @@ set BOARD_DIR  [file join $ROOT board]
 set BUILD_DIR  [file join $ROOT build]
 set PROJ_DIR   [file join $BUILD_DIR vivado]
 set REPORT_DIR [file join $BUILD_DIR reports]
+set CKPT_DIR   [file join $BUILD_DIR checkpoints]
 
-# IP 仓库路径不写死 —— 换台机器就能改，不需要动脚本（build/README.md 的纪律）。
-# 优先取环境变量 MOTION_IP_REPO，没有才退回本机路径。
+# IP 仓库路径不写死 —— 换台机器改环境变量即可，不用动脚本（build/README.md 的纪律）。
 if {[info exists ::env(MOTION_IP_REPO)]} {
     set IP_REPO $::env(MOTION_IP_REPO)
 } else {
     set IP_REPO [file join $ROOT .. libs vivado-library]
-    puts "提示：未设置 MOTION_IP_REPO 环境变量，使用仓库同级的默认位置 $IP_REPO"
+    puts "提示：未设置 MOTION_IP_REPO，使用默认位置 $IP_REPO"
 }
 
 set MODE_BG 0
@@ -48,144 +54,206 @@ set INPUT_SEL 0
 if {$argc >= 2} { set INPUT_SEL [lindex $argv 1] }
 if {$INPUT_SEL ni {0 1}} { error "INPUT_SEL must be 0 or 1" }
 
+set STAGE all
+if {$argc >= 3} { set STAGE [lindex $argv 2] }
+if {$STAGE ni {all setup synth impl bit}} { error "STAGE must be all|setup|synth|impl|bit" }
+
 set PART xc7z020clg400-1
 set TOP  board_top
 
+# 综合线程数：本机 24 逻辑核，Vivado synth 多线程收益实测约 2 倍（同规模
+# Zynq-7020 设计 8 线程 vs 默认）。留一部分核给系统和磁盘 IO。
+set MAXTHREADS 8
+
+# 实现阶段指令：RuntimeOptimized = 用可接受的 QoR 换显著更短的运行时间。
+# 可用环境变量 IMPL_DIRECTIVE 覆盖（如 Explore 精修时序时）。
+if {[info exists ::env(IMPL_DIRECTIVE)] && $::env(IMPL_DIRECTIVE) ne ""} {
+    set IMPL_DIRECTIVE $::env(IMPL_DIRECTIVE)
+} else {
+    set IMPL_DIRECTIVE RuntimeOptimized
+}
+
+set XPR [file join $PROJ_DIR fpga_motion_detection.xpr]
+
 puts "=============================================================="
-puts " 构建 FPGA 运动目标检测"
+puts " 构建 FPGA 运动目标检测（分阶段版）"
 puts "   仓库根   : $ROOT"
 puts "   器件     : $PART (PYNQ-Z2 = XC7Z020-1CLG400C)"
 puts "   顶层     : $TOP"
 puts "   MODE_BG  : $MODE_BG  (0=帧差法 v1 / 1=背景建模 v2)"
 puts "   INPUT_SEL: $INPUT_SEL (0=自测激励 / 1=真实 HDMI 输入)"
+puts "   STAGE    : $STAGE"
+puts "   线程数   : $MAXTHREADS (synth)   实现指令: $IMPL_DIRECTIVE"
 puts "   IP 仓库  : $IP_REPO"
 puts "=============================================================="
 
 file mkdir $REPORT_DIR
 
-# ---------------------------------------------------------------- 1) 建工程
-# ★ 旧工程目录的清理**不在这里做**，交给 build_vivado.bat 里的 `rmdir /s /q`。
-#   原因（实测，不是推测）：Vivado 自己的 `file delete -force` 一旦碰到残留的
-#   文件句柄，会弹出一个**隐藏的模态对话框**然后永远等下去 —— 现象是进程还活着、
-#   只占 15 MB 内存、窗口标题 OLEChannelWnd、CPU 时间 10 分钟一动不动，
-#   日志停在"旧工程目录已存在"那一行。同一棵目录树改用 OS 原生删除只要 ~2 秒。
-#   同理这里也**不调 close_project**：batch 模式下此刻没有打开的工程，
-#   它会抛 ERROR [Common 17-53] No open project，而这个 ERROR 会直接终止
-#   Vivado（catch 也拦不住），表现就是脚本刚开始就死。
-#   所以：清理由 bat 负责，这里只管建工程。
-create_project -force fpga_motion_detection $PROJ_DIR -part $PART
-set_property target_language Verilog [current_project]
-# 允许在 xdc 里用 TMDS_33 这类差分电平（部分版本默认禁止）
-catch { set_property enable_vhdl_2008 1 [current_project] }
+# ---------------------------------------------------------------- setup 阶段
+proc stage_setup {} {
+    global XPR PROJ_DIR PART TOP RTL_DIR RTL_BOARD BOARD_DIR IP_REPO \
+           MODE_BG INPUT_SEL SCRIPT_DIR
+    if {[file exists $XPR]} {
+        # ★ 复用半截工程是分阶段提速的关键：IP 生成 + OOC 综合约 7 分钟的活
+        #   不用重复付。要强制全新构建：先删 build/vivado 再跑 setup。
+        puts "复用已有工程：$XPR（跳过 IP 生成；强制全新请先删除 build/vivado）"
+        open_project $XPR
+    } else {
+        create_project -force fpga_motion_detection $PROJ_DIR -part $PART
+        set_property target_language Verilog [current_project]
+        # 允许在 xdc 里用 TMDS_33 这类差分电平（部分版本默认禁止）
+        catch { set_property enable_vhdl_2008 1 [current_project] }
 
-# ---------------------------------------------------------------- 2) 引入 HDMI 收发 IP（Digilent 官方）
-set_property ip_repo_paths [list $IP_REPO] [current_project]
-update_ip_catalog -rebuild
-create_ip -name rgb2dvi -vendor digilentinc.com -library ip -version 1.4 -module_name rgb2dvi_0
-# kClkRange 的取值不是随便填的：rgb2dvi 内部要用一个 MMCM 把像素时钟倍频出 5x 串行时钟，
-# MULT_F = kClkRange * 5，而 FVCO = 像素时钟 * MULT_F 必须落在 [600, 1200] MHz（Artix-7 -1）。
-# IP 自带注释就点了名：720p 的 74.25 MHz → FVCO = 74.25 * 10 = 742.5 MHz。
-# 所以这里取 2（MULT_F=10）。取 3 会变成 74.25*15 = 1113.75 MHz，虽然也没越界，
-# 但白白把 VCO 顶到接近上限；取 1 则只有 371 MHz，低于下限不合法。
-set_property -dict [list \
-    CONFIG.kGenerateSerialClk {true} \
-    CONFIG.kClkPrimitive      {MMCM} \
-    CONFIG.kClkRange          {2} \
-    CONFIG.kRstActiveHigh     {true} \
-    CONFIG.TMDS_BOARD_INTERFACE {Custom} \
-] [get_ips rgb2dvi_0]
-generate_target all [get_ips rgb2dvi_0]
-puts "rgb2dvi 关键参数（人工复核用）："
-foreach p {CONFIG.kClkRange CONFIG.kClkPrimitive CONFIG.kGenerateSerialClk CONFIG.kRstActiveHigh} {
-    catch { puts "   $p = [get_property $p [get_ips rgb2dvi_0]]" }
+        set_property ip_repo_paths [list $IP_REPO] [current_project]
+        update_ip_catalog -rebuild
+        create_ip -name rgb2dvi -vendor digilentinc.com -library ip -version 1.4 -module_name rgb2dvi_0
+        # kClkRange=2：rgb2dvi 内部 MMCM 倍频出 5x 串行时钟，MULT_F=kClkRange*5，
+        # FVCO=像素时钟*MULT_F 必须落在 [600,1200] MHz。720p 的 74.25MHz →
+        # 取 2 得 742.5MHz（取 3 会顶到 1113.75 接近上限，取 1 只有 371 低于下限）。
+        set_property -dict [list \
+            CONFIG.kGenerateSerialClk {true} \
+            CONFIG.kClkPrimitive      {MMCM} \
+            CONFIG.kClkRange          {2} \
+            CONFIG.kRstActiveHigh     {true} \
+            CONFIG.TMDS_BOARD_INTERFACE {Custom} \
+        ] [get_ips rgb2dvi_0]
+        generate_target all [get_ips rgb2dvi_0]
+
+        # dvi2rgb（HDMI 输入：TMDS 解码 + 时钟恢复，720p EDID）
+        # 参数出处（kClkRange=3、EDID=dgl_720p_cea.data、kAddBUFG=true 等）
+        # 见 create_dvi2rgb.tcl 头部注释。
+        source [file join $SCRIPT_DIR create_dvi2rgb.tcl]
+
+        add_files -norecurse [concat [glob -nocomplain [file join $RTL_DIR *.v]] \
+                                      [glob -nocomplain [file join $RTL_BOARD *.v]]]
+        # 约束只加真正生效的那两份：pynq_z2_hdmi_out.xdc（HDMI 输出 J11）+
+        # pynq_z2_hdmi_in.xdc（HDMI 输入 J10）。board/ 下那份官方完整留存
+        # 整份都是注释行，是逐条对照用的，不是生效约束，不塞进工程。
+        add_files -fileset constrs_1 -norecurse [list \
+            [file join $BOARD_DIR pynq_z2_hdmi_out.xdc] \
+            [file join $BOARD_DIR pynq_z2_hdmi_in.xdc]]
+    }
+    set_property top $TOP [current_fileset]
+    # ★ 2026.1 实测：fileset 的 generic 用【空格】分隔，逗号分隔会把整个串
+    #   解析成一个 generic 名。旧版本是逗号。
+    set_property generic [format "MODE_BG=%d INPUT_SEL=%d" $MODE_BG $INPUT_SEL] [current_fileset]
+    update_compile_order -fileset sources_1
+    puts "setup 完成：工程就绪（top=$TOP, generic=MODE_BG=$MODE_BG INPUT_SEL=$INPUT_SEL）"
+    close_project
 }
 
-# 2b) dvi2rgb（HDMI 输入：TMDS 解码 + 时钟恢复，720p EDID）
-# 参数出处（kClkRange=3、EDID=dgl_720p_cea.data、kAddBUFG=true 等）见 create_dvi2rgb.tcl
-# 的头部注释 —— 每个值都能追溯到官方文档或 component.xml，不是拍的。
-source [file join $SCRIPT_DIR create_dvi2rgb.tcl]
-
-# ---------------------------------------------------------------- 3) 加源码与约束
-add_files -norecurse [concat [glob -nocomplain [file join $RTL_DIR *.v]] \
-                              [glob -nocomplain [file join $RTL_BOARD *.v]]]
-# 约束文件**只加真正生效的那一份**。board/ 下另有 pynq-z2_v1.0_official.xdc ——
-# 那是官方原件的完整留存，**整份都是注释行**（按需取消注释），用途是逐条对照、不是生效约束。
-# ★ 之前这里用 `glob *.xdc`，会把那份注释件也塞进 constrs_1：虽然是空操作（一行有效约束都没有），
-#   但会让人误以为工程里有两份约束在生效，排查引脚/时序问题时先被自己误导一轮。
-# 生效约束按收发分两份：pynq_z2_hdmi_out.xdc（HDMI 输出 J11）+
-# pynq_z2_hdmi_in.xdc（HDMI 输入 J10：Rx 引脚 + 720p 时钟 13.468ns，来源见文件头注释）。
-add_files -fileset constrs_1 -norecurse [list \
-    [file join $BOARD_DIR pynq_z2_hdmi_out.xdc] \
-    [file join $BOARD_DIR pynq_z2_hdmi_in.xdc]]
-set_property top $TOP [current_fileset]
-# ★ 2026.1 实测：fileset 的 generic 属性用【空格】分隔，逗号分隔会把整个串解析成一个
-#   generic 名（MODE_BG 绑到 "EL=1" 垃圾值、INPUT_SEL 不绑定）。旧版本是逗号。
-set_property generic [format "MODE_BG=%d INPUT_SEL=%d" $MODE_BG $INPUT_SEL] [current_fileset]
-puts "EFFECTIVE_GENERIC=[get_property generic [current_fileset]]"
-update_compile_order -fileset sources_1
-puts "加入的 RTL："
-foreach f [get_files -of [get_filesets sources_1]] { puts "   $f" }
-
-# ---------------------------------------------------------------- 4) 综合 → 实现 → bit
-# 综合策略开关：设环境变量 SYNTH_DIRECTIVE 时应用（如 RuntimeOptimized 加速巨型组合），
-# 默认不设 = Vivado 默认策略，不影响队友。
-if {[info exists ::env(SYNTH_DIRECTIVE)] && $::env(SYNTH_DIRECTIVE) ne ""} {
-    set_property STEPS.SYNTH_DESIGN.ARGS.DIRECTIVE $::env(SYNTH_DIRECTIVE) [get_runs synth_1]
-    puts "SYNTH_DIRECTIVE=$::env(SYNTH_DIRECTIVE)"
-}
-launch_runs synth_1 -jobs 2
-wait_on_run synth_1
-if {[get_property PROGRESS [get_runs synth_1]] != "100%"} {
-    puts "!! 综合失败，日志：$PROJ_DIR/fpga_motion_detection.runs/synth_1/runme.log"
-    exit 1
-}
-open_run synth_1
-report_utilization    -file [file join $REPORT_DIR synth_utilization.rpt]
-report_timing_summary -file [file join $REPORT_DIR synth_timing_summary.rpt]
-report_clocks         -file [file join $REPORT_DIR synth_clocks.rpt]
-close_design
-
-launch_runs impl_1 -to_step write_bitstream -jobs 2
-wait_on_run impl_1
-if {[get_property PROGRESS [get_runs impl_1]] != "100%"} {
-    puts "!! 实现失败，日志：$PROJ_DIR/fpga_motion_detection.runs/impl_1/runme.log"
-    exit 1
+# ---------------------------------------------------------------- synth 阶段
+proc stage_synth {} {
+    global XPR MAXTHREADS REPORT_DIR CKPT_DIR TOP
+    open_project $XPR
+    # ★ 多线程是本机 24 逻辑核的关键利用：不设的话 synth 默认低并行度，
+    #   "Cross Boundary and Area Optimization" 一步实测能跑 41 分钟。
+    set_param general.maxThreads $MAXTHREADS
+    if {[info exists ::env(SYNTH_DIRECTIVE)] && $::env(SYNTH_DIRECTIVE) ne ""} {
+        set_property STEPS.SYNTH_DESIGN.ARGS.DIRECTIVE $::env(SYNTH_DIRECTIVE) [get_runs synth_1]
+        puts "SYNTH_DIRECTIVE=$::env(SYNTH_DIRECTIVE)"
+    }
+    # ★ 若 synth_1 上次已启动但未完成（被 kill 的构建就会这样），直接
+    #   launch_runs 会报 Common 17-69 "needs to be reset before launching"。
+    #   synth 没有中间 checkpoint 可续，reset 重跑是唯一路径（8 线程约 20 分钟）。
+    if {[get_property PROGRESS [get_runs synth_1]] ne "0% Complete"} {
+        puts "synth_1 上次未完成（[get_property PROGRESS [get_runs synth_1]]），reset 后重跑"
+        reset_run synth_1
+    }
+    launch_runs synth_1 -jobs 1
+    wait_on_run synth_1
+    if {[get_property PROGRESS [get_runs synth_1]] != "100%"} {
+        error "综合失败，日志：$XPR 同级的 runs/synth_1/runme.log"
+    }
+    open_run synth_1
+    file mkdir $CKPT_DIR
+    # 手动 checkpoint 双保险：project 模式的 runs/synth_1 dcp 之外再落一份，
+    # 万一 runs 目录被动过，impl 还能 open_checkpoint 接着跑。
+    write_checkpoint -force [file join $CKPT_DIR post_synth.dcp]
+    report_utilization    -file [file join $REPORT_DIR synth_utilization.rpt]
+    report_timing_summary -file [file join $REPORT_DIR synth_timing_summary.rpt]
+    report_clocks         -file [file join $REPORT_DIR synth_clocks.rpt]
+    close_design
+    close_project
+    puts "synth 完成：checkpoint=$CKPT_DIR/post_synth.dcp，报告在 $REPORT_DIR"
 }
 
-# bitstream 要落到一个**不会被下次构建清掉**的地方：
-# build/vivado/ 是每次构建开头就被 bat 的 rmdir 干掉的工作目录，不能当交付位置。
-set BIT_SRC [file join $PROJ_DIR fpga_motion_detection.runs impl_1 ${TOP}.bit]
-set BIT_DIR [file join $BUILD_DIR bitstream]
-set BIT_DST [file join $BIT_DIR ${TOP}.bit]
-file mkdir $BIT_DIR
-if {[file exists $BIT_SRC]} {
-    file copy -force $BIT_SRC $BIT_DST
-} else {
-    puts "!! 没有生成 bitstream：$BIT_SRC"
-    exit 1
+# ---------------------------------------------------------------- impl 阶段
+proc stage_impl {} {
+    global XPR IMPL_DIRECTIVE
+    open_project $XPR
+    # ★ 断点续跑：不 reset_run。已开始过的 run 直接 launch 会从最后一个
+    #   完成的 step 继续（opt→place→route 每步的 checkpoint 由 Vivado 存在
+    #   runs/impl_1 下）。要彻底重来才需要 reset_run impl_1。
+    foreach {step attr} {OPT_DESIGN opt PLACE_DESIGN place ROUTE_DESIGN route} {
+        set_property STEPS.$step.ARGS.DIRECTIVE $IMPL_DIRECTIVE [get_runs impl_1]
+    }
+    puts "impl 指令：opt/place/route 均用 $IMPL_DIRECTIVE（可用环境变量 IMPL_DIRECTIVE 覆盖）"
+    # impl 正常路径：不 reset，已开始的 run 从最后一个完成的 step 续跑
+    # （opt→place→route 每步 checkpoint 在 runs/impl_1 下）。
+    # 兜底：若 run 状态不允许直接 launch（报 17-69），reset 后从头 impl。
+    if {[catch {launch_runs impl_1 -to_step write_bitstream -jobs 1} err]} {
+        if {[string match "*needs to be reset*" $err]} {
+            puts "impl_1 需要 reset（$err），从头 impl"
+            reset_run impl_1
+            launch_runs impl_1 -to_step write_bitstream -jobs 1
+        } else {
+            error $err
+        }
+    }
+    wait_on_run impl_1
+    if {[get_property PROGRESS [get_runs impl_1]] != "100%"} {
+        error "实现失败。若已到 place/route，可直接重跑 impl 阶段从断点续；日志：runs/impl_1/runme.log"
+    }
+    close_project
+    puts "impl 完成：bit 已在 runs/impl_1 下生成"
 }
 
-open_run impl_1
-report_utilization      -file [file join $REPORT_DIR impl_utilization.rpt]
-report_timing_summary   -file [file join $REPORT_DIR impl_timing_summary.rpt]
-report_clock_interaction -file [file join $REPORT_DIR impl_clock_interaction.rpt]
-report_drc              -file [file join $REPORT_DIR impl_drc.rpt]
-
-set WNS [get_property SLACK [get_timing_paths -max_paths 1 -setup]]
-set WHS [get_property SLACK [get_timing_paths -max_paths 1 -hold]]
-puts "=============================================================="
-puts " 综合实现结果"
-puts "   时序  WNS(setup) = $WNS ns   WHS(hold) = $WHS ns"
-puts "   bit 流：$BIT_DST"
-puts "   报告  ：$REPORT_DIR"
-puts "=============================================================="
-
-# 时序没收敛就把这次构建判成失败 —— bit 虽然生成了也不可信，
-# 不能让它安安静静地流到"上板看画面"那一步再炸。
-if {($WNS < 0) || ($WHS < 0)} {
-    puts "!! 时序未收敛：WNS=$WNS  WHS=$WHS。先生修时序，别拿这个 bit 上板。"
-    exit 1
+# ---------------------------------------------------------------- bit 阶段
+proc stage_bit {} {
+    global XPR PROJ_DIR TOP BUILD_DIR REPORT_DIR
+    open_project $XPR
+    open_run impl_1
+    # bitstream 落到不会被清理的交付位置：build/vivado 是工作目录，不能当交付。
+    set BIT_SRC [file join $PROJ_DIR fpga_motion_detection.runs impl_1 ${TOP}.bit]
+    set BIT_DIR [file join $BUILD_DIR bitstream]
+    set BIT_DST [file join $BIT_DIR ${TOP}.bit]
+    file mkdir $BIT_DIR
+    if {[file exists $BIT_SRC]} {
+        file copy -force $BIT_SRC $BIT_DST
+    } else {
+        error "没有生成 bitstream：$BIT_SRC"
+    }
+    report_utilization       -file [file join $REPORT_DIR impl_utilization.rpt]
+    report_timing_summary    -file [file join $REPORT_DIR impl_timing_summary.rpt]
+    report_clock_interaction -file [file join $REPORT_DIR impl_clock_interaction.rpt]
+    report_drc               -file [file join $REPORT_DIR impl_drc.rpt]
+    set WNS [get_property SLACK [get_timing_paths -max_paths 1 -setup]]
+    set WHS [get_property SLACK [get_timing_paths -max_paths 1 -hold]]
+    puts "=============================================================="
+    puts " 综合实现结果"
+    puts "   时序  WNS(setup) = $WNS ns   WHS(hold) = $WHS ns"
+    puts "   bit 流：$BIT_DST"
+    puts "   报告  ：$REPORT_DIR"
+    puts "=============================================================="
+    close_design
+    close_project
+    # bit 已经落盘；时序没收敛只是警告级——先拿到 baseline QoR，
+    # 再决定是否换 IMPL_DIRECTIVE=Explore 精修。
+    if {($WNS < 0) || ($WHS < 0)} {
+        puts "!! 注意：时序未收敛（WNS=$WNS WHS=$WHS）。bit 已生成但别直接上板，先修时序。"
+    } else {
+        puts "时序收敛：所有用户约束均满足。"
+    }
 }
-puts "时序收敛：所有用户约束均满足（All user specified timing constraints are met）。"
+
+# ---------------------------------------------------------------- 调度
+switch $STAGE {
+    setup { stage_setup }
+    synth { stage_synth }
+    impl  { stage_impl }
+    bit   { stage_bit }
+    all   { stage_setup; stage_synth; stage_impl; stage_bit }
+}
 
 exit 0
