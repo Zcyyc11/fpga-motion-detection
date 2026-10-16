@@ -1,0 +1,8 @@
+{
+  "job": "label_full",
+  "commit": "37c08fbf57ddb2ede556230be977a8eb3c498fea",
+  "passed": true,
+  "returncode": 0,
+  "failures": [],
+  "board_test": false
+}

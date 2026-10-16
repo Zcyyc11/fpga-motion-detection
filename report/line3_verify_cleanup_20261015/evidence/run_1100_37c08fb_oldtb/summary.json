@@ -1,0 +1,46 @@
+[
+  {
+    "job": "full16",
+    "commit": "37c08fbf57ddb2ede556230be977a8eb3c498fea",
+    "passed": false,
+    "returncode": 0,
+    "failures": [
+      "component oracle mismatch"
+    ],
+    "board_test": false
+  },
+  {
+    "job": "label_full",
+    "commit": "37c08fbf57ddb2ede556230be977a8eb3c498fea",
+    "passed": false,
+    "returncode": 0,
+    "failures": [
+      "label saturation corrupts or duplicates retained components"
+    ],
+    "board_test": false
+  },
+  {
+    "job": "bridge",
+    "commit": "37c08fbf57ddb2ede556230be977a8eb3c498fea",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  },
+  {
+    "job": "reuse",
+    "commit": "37c08fbf57ddb2ede556230be977a8eb3c498fea",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  },
+  {
+    "job": "overflow",
+    "commit": "37c08fbf57ddb2ede556230be977a8eb3c498fea",
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "board_test": false
+  }
+]

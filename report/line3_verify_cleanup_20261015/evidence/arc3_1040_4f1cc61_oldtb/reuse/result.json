@@ -1,0 +1,8 @@
+{
+  "job": "reuse",
+  "commit": "4f1cc6197db472b4d8e88a86cc278420c44ee146",
+  "passed": true,
+  "returncode": 0,
+  "failures": [],
+  "board_test": false
+}

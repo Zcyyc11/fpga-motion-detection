@@ -1,0 +1,10 @@
+{
+  "job": "label_full",
+  "commit": "4f1cc6197db472b4d8e88a86cc278420c44ee146",
+  "passed": false,
+  "returncode": 0,
+  "failures": [
+    "label saturation corrupts or duplicates retained components"
+  ],
+  "board_test": false
+}

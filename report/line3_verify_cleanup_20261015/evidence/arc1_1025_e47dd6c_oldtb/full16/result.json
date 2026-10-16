@@ -1,0 +1,10 @@
+{
+  "job": "full16",
+  "commit": "e47dd6cba69f752b89bd58df120f92da0aa31893",
+  "passed": false,
+  "returncode": 0,
+  "failures": [
+    "component oracle mismatch"
+  ],
+  "board_test": false
+}

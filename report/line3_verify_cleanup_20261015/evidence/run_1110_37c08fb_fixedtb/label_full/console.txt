@@ -1,0 +1,53 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/FPGA/verify16_final2_1015_1110/source/src/rtl/multi_bbox.v" into library work
+INFO: [VRFC 10-311] analyzing module multi_bbox
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/FPGA/verify16_final2_1015_1110/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_multi_bbox_limits
+Vivado Simulator v2026.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/AMDDesignTools/2026.1/Vivado/bin/unwrapped/win64.o/xelab.exe tb_multi_bbox_limits -s check 
+Multi-threading is on. Using 22 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3645] port 'o_overflow' remains unconnected for this instance [D:/FPGA/verify16_final2_1015_1110/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v:11]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.multi_bbox(MIN_CNT=1)
+Compiling module work.tb_multi_bbox_limits
+Built simulation snapshot check
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Thu Oct 15 18:32:05 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/check/xsim_script.tcl
+# xsim {check} -autoloadwcfg -tclbatch {finish.tcl}
+Time resolution is 1 ps
+source finish.tcl
+## run 20 ms
+BOX 0 2 2 3 3 4 0
+BOX 1 6 2 7 3 4 0
+BOX 2 10 2 11 3 4 0
+BOX 3 14 2 15 3 4 0
+BOX 4 18 2 19 3 4 0
+BOX 5 22 2 23 3 4 0
+BOX 6 26 2 27 3 4 0
+BOX 7 30 2 31 3 4 0
+BOX 8 34 2 35 3 4 0
+BOX 9 38 2 39 3 4 0
+BOX 10 42 2 43 3 4 0
+BOX 11 46 2 47 3 4 0
+BOX 12 50 2 51 3 4 0
+BOX 13 54 2 55 3 4 0
+BOX 14 58 2 59 3 4 0
+BOX 15 62 2 63 3 4 1
+VERIFY_DONE bbox
+$finish called at time : 45580 ns : File "D:/FPGA/verify16_final2_1015_1110/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" Line 35
+## quit
+INFO: [Common 17-206] Exiting xsim at Thu Oct 15 18:32:07 2026...
