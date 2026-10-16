@@ -1,0 +1,43 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Fri Oct 16 20:45:49 2026
+| Host         : LAPTOP-RRVGFMON running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file D:/FPGA/hier_util_20261016.rpt
+| Design       : board_top
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------+--------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+|    Instance    |          Module          | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP Blocks |
++----------------+--------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+| board_top      |                    (top) |     209627 |     209467 |     160 |    0 | 36941 |     80 |      0 |          1 |
+|   (board_top)  |                    (top) |         11 |         11 |       0 |    0 |    39 |      0 |      0 |          0 |
+|   u_gray       |                gray_conv |       1399 |       1399 |       0 |    0 |    57 |      0 |      0 |          0 |
+|   u_in_ctrl    |             hdmi_in_ctrl |        265 |        265 |       0 |    0 |   118 |      0 |      0 |          0 |
+|   u_pipe       |              md_pipeline |     208656 |     208496 |     160 |    0 | 36727 |     80 |      0 |          1 |
+|     (u_pipe)   |              md_pipeline |          2 |          2 |       0 |    0 |   174 |      0 |      0 |          1 |
+|     u_alm      |                    alarm |       1079 |       1079 |       0 |    0 |  2615 |      0 |      0 |          0 |
+|     u_ds       |            downsample2x2 |        183 |         23 |     160 |    0 |    50 |      0 |      0 |          0 |
+|     u_fb       |                frame_buf |         59 |         59 |       0 |    0 |     2 |     80 |      0 |          0 |
+|     u_mbb      |               multi_bbox |      21523 |      21523 |       0 |    0 | 20848 |      0 |      0 |          0 |
+|     u_mo       |               morph_open |       7385 |       7385 |       0 |    0 |  4240 |      0 |      0 |          0 |
+|       u_dilate | morph3x3__parameterized0 |       3517 |       3517 |       0 |    0 |  2229 |      0 |      0 |          0 |
+|       u_erode  |                 morph3x3 |       3875 |       3875 |       0 |    0 |  2011 |      0 |      0 |          0 |
+|     u_ovm      |            overlay_multi |        768 |        768 |       0 |    0 |  1936 |      0 |      0 |          0 |
+|     u_trk      |                    track |     143042 |     143042 |       0 |    0 |  4483 |      0 |      0 |          0 |
+|     u_utx      |                  uart_tx |      34569 |      34569 |       0 |    0 |  2358 |      0 |      0 |          0 |
++----------------+--------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+
+
