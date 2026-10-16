@@ -37,6 +37,10 @@ set BUILD_DIR  [file join $ROOT build]
 set PROJ_DIR   [file join $BUILD_DIR vivado]
 set REPORT_DIR [file join $BUILD_DIR reports]
 set CKPT_DIR   [file join $BUILD_DIR checkpoints]
+# ★ IP 缓存（2026-10-16 新增）：放工程外（仓库根的上一级），删 build/vivado 重建也不丢。
+#   原理：Vivado 按「IP配置+器件+工具版本」指纹存取 IP 综合结果（.dcp），命中即跳过
+#   IP 生成 + OOC 综合（实测该段约 50 分钟）。不命中自动退回重综合，零正确性风险。
+set IP_CACHE_DIR [file normalize [file join $ROOT .. fmd_ip_cache]]
 
 # IP 仓库路径不写死 —— 换台机器改环境变量即可，不用动脚本（build/README.md 的纪律）。
 if {[info exists ::env(MOTION_IP_REPO)]} {
@@ -92,7 +96,7 @@ file mkdir $REPORT_DIR
 # ---------------------------------------------------------------- setup 阶段
 proc stage_setup {} {
     global XPR PROJ_DIR PART TOP RTL_DIR RTL_BOARD BOARD_DIR IP_REPO \
-           MODE_BG INPUT_SEL SCRIPT_DIR
+           MODE_BG INPUT_SEL SCRIPT_DIR IP_CACHE_DIR
     if {[file exists $XPR]} {
         # ★ 复用半截工程是分阶段提速的关键：IP 生成 + OOC 综合约 7 分钟的活
         #   不用重复付。要强制全新构建：先删 build/vivado 再跑 setup。
@@ -133,6 +137,10 @@ proc stage_setup {} {
             [file join $BOARD_DIR pynq_z2_hdmi_out.xdc] \
             [file join $BOARD_DIR pynq_z2_hdmi_in.xdc]]
     }
+    # ★ IP 缓存：工程一打开就挂上共享缓存目录（create/open 两条路都要走这）
+    file mkdir $IP_CACHE_DIR
+    set_property ip_output_repo $IP_CACHE_DIR [current_project]
+    set_property ip_cache_permissions {read write} [current_project]
     set_property top $TOP [current_fileset]
     # ★ 2026.1 实测：fileset 的 generic 用【空格】分隔，逗号分隔会把整个串
     #   解析成一个 generic 名。旧版本是逗号。
