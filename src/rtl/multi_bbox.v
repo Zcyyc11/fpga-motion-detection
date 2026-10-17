@@ -107,6 +107,11 @@ module multi_bbox #(
         end
     endfunction
 
+    function [15:0] sat_add(input [15:0] a, input [16:0] b);
+        reg [17:0] sum;
+        begin sum={2'b0,a}+{1'b0,b}; sat_add=(sum>65535)?16'hffff:sum[15:0]; end
+    endfunction
+
     // ---------------- 上一行 / 当前行的游程表 ----------------
     reg [15:0] pr_s [0:MAX_RUN-1];      // 上一行游程起点
     reg [15:0] pr_e [0:MAX_RUN-1];      // 上一行游程终点
@@ -141,7 +146,7 @@ module multi_bbox #(
     localparam [2:0] ST_IDLE   = 3'd0,  // 正常流式（处理 FIFO/in_valid/pending）
                      ST_MATCH  = 3'd1,  // 串行匹配上一行游程，每拍 1 个
                      ST_ALLOC  = 3'd2,  // 分配新标签 + 写 bbox + 写当前行表
-                     ST_FINISH = 3'd3;  // 收尾：转表/结算/开新行/开新帧
+                     ST_FINISH = 3'd3, ST_COLLECT=3'd4, ST_PUBLISH=3'd5, ST_CLEAR=3'd6;  // 收尾：转表/结算/开新行/开新帧
     reg [2:0]  state;
 
     reg [5:0]  mk;                      // 匹配游标 0..MAX_RUN
@@ -207,8 +212,9 @@ module multi_bbox #(
     reg [15:0] out_x2 [0:MAX_LABEL-1];
     reg [15:0] out_y2 [0:MAX_LABEL-1];
     reg [15:0] out_cnt[0:MAX_LABEL-1];
-    integer    out_n;
-    integer    out_k;
+    reg [5:0] out_n;
+    reg [5:0] collect_k;
+    reg [5:0] out_k;
 
     integer i, j;
     reg [4:0] lj, lo, hi;
@@ -246,7 +252,7 @@ module multi_bbox #(
             mk <= 0; mroot <= 4'h0; mfound <= 1'b0;
             close_s <= 0; close_e <= 0; close_row <= 0; close_type <= CL_SAME;
             pend_valid <= 1'b0; pend_x <= 0; pend_y <= 0; pend_mask <= 1'b0;
-            out_n = 0; out_k = 0;
+            out_n = 0; out_k = 0; collect_k<=0;
             for (i = 0; i < MAX_LABEL; i = i + 1) begin
                 parent[i] <= i[4:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
                 lab_mnx[i] <= 16'hFFFF; lab_mny[i] <= 16'hFFFF;
@@ -297,32 +303,9 @@ module multi_bbox #(
                                 // 出队（若来自 FIFO）
                                 // 出队由 fifo_re 统一处理（治本第 2 步重构）
                             end else begin
-                                // 无末行游程 → 直接结算 + 清表 + 开新帧
-                                out_n = 0;
-                                for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                    if (used[i] && (parent[i] == i[4:0]) &&
-                                        (lab_cnt[i] >= MIN_CNT[15:0]) &&
-                                        (lab_mnx[i] <= lab_mxx[i]) && (lab_mny[i] <= lab_mxy[i])) begin
-                                        out_x1[out_n] = lab_mnx[i]; out_y1[out_n] = lab_mny[i];
-                                        out_x2[out_n] = lab_mxx[i]; out_y2[out_n] = lab_mxy[i];
-                                        out_cnt[out_n] = lab_cnt[i];
-                                        out_n = out_n + 1;
-                                    end
-                                end
-                                out_k = 0;
-                                for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                    parent[i] <= i[4:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
-                                    lab_mnx[i] <= 16'hFFFF; lab_mny[i] <= 16'hFFFF;
-                                    lab_mxx[i] <= 16'd0;    lab_mxy[i] <= 16'd0;
-                                end
-                                pr_n <= 0; cr_n <= 0;
-                                prow <= cur_y; px <= cur_x;
-                                if (cur_mask) begin
-                                    run_open <= 1'b1; rs <= cur_x;
-                                end else begin
-                                    run_open <= 1'b0;
-                                end
-                                // 出队由 fifo_re 统一处理（治本第 2 步重构）
+                                // Retain boundary sample while serial frame finalization runs.
+                                pend_valid<=1;pend_x<=cur_x;pend_y<=cur_y;pend_mask<=cur_mask;
+                                collect_k<=0;out_n=0;out_k=0;state<=ST_COLLECT;
                             end
                         end
                         // ---------- 行边界 ----------
@@ -391,19 +374,27 @@ module multi_bbox #(
                         hit = (pr_lab[mk] != 5'h1F) &&
                               (pr_s[mk] <= close_e) && (pr_e[mk] >= close_s);
                         if (hit) begin
-                            lj = find_root(pr_lab[mk]);
+                            lj = pr_lab[mk];
                             if (!mfound) begin
                                 mroot <= lj; mfound <= 1'b1;
                             end else if (lj != mroot) begin
                                 // 合并：小 id 吸收大 id
                                 if (mroot < lj) begin lo = mroot; hi = lj; end
                                 else            begin lo = lj;    hi = mroot; end
+                                // Canonicalize every live alias before hi is made reusable.
+                                // Run labels always name roots; no parent chain survives a merge.
+                                for (j=0;j<MAX_RUN;j=j+1) begin
+                                    if(pr_lab[j]==hi) pr_lab[j]<=lo;
+                                    if(cr_lab[j]==hi) cr_lab[j]<=lo;
+                                end
+                                for (j=0;j<MAX_LABEL;j=j+1)
+                                    if(parent[j]==hi) parent[j]<=lo;
                                 parent[hi] <= lo;
                                 if (lab_mnx[hi] < lab_mnx[lo]) lab_mnx[lo] <= lab_mnx[hi];
                                 if (lab_mny[hi] < lab_mny[lo]) lab_mny[lo] <= lab_mny[hi];
                                 if (lab_mxx[hi] > lab_mxx[lo]) lab_mxx[lo] <= lab_mxx[hi];
                                 if (lab_mxy[hi] > lab_mxy[lo]) lab_mxy[lo] <= lab_mxy[hi];
-                                lab_cnt[lo] <= lab_cnt[lo] + lab_cnt[hi];
+                                lab_cnt[lo] <= sat_add(lab_cnt[lo],{1'b0,lab_cnt[hi]});
                                 lab_cnt[hi] <= 16'd0; used[hi] <= 1'b0;
                                 mroot <= lo;
                             end
@@ -425,7 +416,7 @@ module multi_bbox #(
                             lab_mny[first_free_lbl] <= close_row;
                             lab_mxx[first_free_lbl] <= close_e;
                             lab_mxy[first_free_lbl] <= close_row;
-                            lab_cnt[first_free_lbl] <= close_e - close_s + 16'd1;
+                            lab_cnt[first_free_lbl] <= sat_add(16'd0,{1'b0,close_e}-{1'b0,close_s}+17'd1);
                             mroot <= first_free_lbl; mfound <= 1'b1;
                         end
                         // else 标签表满，丢弃（见头部限制说明）
@@ -435,7 +426,7 @@ module multi_bbox #(
                         if (close_row < lab_mny[mroot]) lab_mny[mroot] <= close_row;
                         if (close_e   > lab_mxx[mroot]) lab_mxx[mroot] <= close_e;
                         if (close_row > lab_mxy[mroot]) lab_mxy[mroot] <= close_row;
-                        lab_cnt[mroot] <= lab_cnt[mroot] + (close_e - close_s + 16'd1);
+                        lab_cnt[mroot] <= sat_add(lab_cnt[mroot],{1'b0,close_e}-{1'b0,close_s}+17'd1);
                     end
                     // 写当前行表
                     if (cr_n < MAX_RUN) begin
@@ -478,45 +469,41 @@ module multi_bbox #(
                             state <= ST_IDLE;
                         end
                         CL_FRAME: begin
-                            // 结算上一帧
-                            out_n = 0;
-                            for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                if (used[i] && (parent[i] == i[4:0]) &&
-                                    (lab_cnt[i] >= MIN_CNT[15:0]) &&
-                                    (lab_mnx[i] <= lab_mxx[i]) && (lab_mny[i] <= lab_mxy[i])) begin
-                                    out_x1[out_n] = lab_mnx[i]; out_y1[out_n] = lab_mny[i];
-                                    out_x2[out_n] = lab_mxx[i]; out_y2[out_n] = lab_mxy[i];
-                                    out_cnt[out_n] = lab_cnt[i];
-                                    out_n = out_n + 1;
-                                end
-                            end
-                            out_k = 0;
-                            // 清表
-                            for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                parent[i] <= i[4:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
-                                lab_mnx[i] <= 16'hFFFF; lab_mny[i] <= 16'hFFFF;
-                                lab_mxx[i] <= 16'd0;    lab_mxy[i] <= 16'd0;
-                            end
-                            pr_n <= 0; cr_n <= 0;
-                            // 消费 pending 开新帧
-                            prow <= pend_y; px <= pend_x;
-                            if (pend_mask) begin
-                                run_open <= 1'b1; rs <= pend_x;
-                            end else begin
-                                run_open <= 1'b0;
-                            end
-                            pend_valid <= 1'b0;
-                            state <= ST_IDLE;
+                            collect_k<=0;out_n=0;out_k=0;state<=ST_COLLECT;
                         end
                         default: state <= ST_IDLE;
                     endcase
+                end
+
+                ST_COLLECT: begin
+                    if(collect_k<MAX_LABEL)begin
+                        if(used[collect_k] && parent[collect_k]==collect_k &&
+                           lab_cnt[collect_k]>=MIN_CNT &&
+                           lab_mnx[collect_k]<=lab_mxx[collect_k] && lab_mny[collect_k]<=lab_mxy[collect_k])begin
+                            out_x1[out_n]<=lab_mnx[collect_k];out_y1[out_n]<=lab_mny[collect_k];
+                            out_x2[out_n]<=lab_mxx[collect_k];out_y2[out_n]<=lab_mxy[collect_k];
+                            out_cnt[out_n]<=lab_cnt[collect_k];out_n=out_n+1'b1;
+                        end
+                        collect_k<=collect_k+1'b1;
+                    end else begin out_k=0;state<=ST_PUBLISH;end
+                end
+                ST_PUBLISH: if(out_k==out_n)begin collect_k<=0;state<=ST_CLEAR;end
+                ST_CLEAR: begin
+                    if(collect_k<MAX_LABEL)begin
+                        parent[collect_k]<=collect_k;used[collect_k]<=0;lab_cnt[collect_k]<=0;
+                        lab_mnx[collect_k]<=16'hffff;lab_mny[collect_k]<=16'hffff;
+                        lab_mxx[collect_k]<=0;lab_mxy[collect_k]<=0;collect_k<=collect_k+1'b1;
+                    end else begin
+                        pr_n<=0;cr_n<=0;prow<=pend_y;px<=pend_x;
+                        run_open<=pend_mask;rs<=pend_x;pend_valid<=0;state<=ST_IDLE;
+                    end
                 end
 
                 default: state <= ST_IDLE;
             endcase
 
             // ---------- 输出：把结算列表逐拍发出去 ----------
-            if (out_k < out_n) begin
+            if (state==ST_PUBLISH && out_k < out_n) begin
                 o_valid <= 1'b1;
                 o_x1  <= out_x1[out_k];
                 o_y1  <= out_y1[out_k];
