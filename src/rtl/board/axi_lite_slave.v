@@ -39,8 +39,9 @@ module axi_lite_slave #(
     reg [3:0] wstrb_r;
     reg [1:0] bresp_r;
     reg [1:0] rd_phase;
-    assign S_AXI_AWREADY = S_AXI_ARESETN && !aw_full && !S_AXI_BVALID;
-    assign S_AXI_WREADY  = S_AXI_ARESETN && !w_full && !S_AXI_BVALID;
+    reg wr_pending;
+    assign S_AXI_AWREADY = S_AXI_ARESETN && !aw_full && !S_AXI_BVALID && !wr_pending;
+    assign S_AXI_WREADY  = S_AXI_ARESETN && !w_full && !S_AXI_BVALID && !wr_pending;
     assign S_AXI_ARREADY = S_AXI_ARESETN && !ar_full && !S_AXI_RVALID && rd_phase==0;
     assign S_AXI_BRESP = bresp_r;
     assign S_AXI_RRESP = 2'b00;
@@ -50,7 +51,7 @@ module axi_lite_slave #(
         if (!S_AXI_ARESETN) begin
             aw_full<=0;w_full<=0;ar_full<=0;
             aw_addr_r<=0;ar_addr_r<=0;wdata_r<=0;wstrb_r<=0;
-            rdata_r<=0;bresp_r<=0;rd_phase<=0;
+            rdata_r<=0;bresp_r<=0;rd_phase<=0;wr_pending<=0;
             S_AXI_BVALID<=0;S_AXI_RVALID<=0;
             ps_en<=0;ps_we<=0;ps_addr<=0;ps_wdata<=0;
         end else begin
@@ -70,11 +71,14 @@ module axi_lite_slave #(
             // Shared register port: never overwrite a read while it is in flight.
             // regs.v samples ps_en next edge and registers its result; capture
             // two edges after issue, before its subsequent idle zero update.
-            if(rd_phase==1) rd_phase<=2;
+            // A response becomes visible only when regs samples the issued write.
+            if(wr_pending) begin
+                wr_pending<=0;S_AXI_BVALID<=1;
+            end else if(rd_phase==1) rd_phase<=2;
             else if(rd_phase==2) begin
                 rdata_r<=ps_rdata;S_AXI_RVALID<=1;rd_phase<=0;
             end else if(aw_full && w_full && !S_AXI_BVALID) begin
-                aw_full<=0;w_full<=0;S_AXI_BVALID<=1;
+                aw_full<=0;w_full<=0;wr_pending<=1;
                 bresp_r<=0;
                 // No byte-enable exists on the downstream bus. Zero strobe is
                 // a legal no-op. Partial/unaligned writes return SLVERR rather
