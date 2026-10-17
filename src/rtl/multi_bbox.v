@@ -510,7 +510,7 @@ module multi_bbox #(
                 o_x2  <= out_x2[out_k];
                 o_y2  <= out_y2[out_k];
                 o_cnt <= out_cnt[out_k];
-                o_id  <= out_k[7:0];
+                o_id  <= {2'b00,out_k};
                 o_last <= (out_k == out_n - 1);
                 out_k = out_k + 1;
             end
