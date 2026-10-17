@@ -59,6 +59,7 @@ module multi_bbox #(
     //   「16 目标满配 PASS」（docs/handoff_code_fixes_20261013.md）。
     //   MAX_RUN 只影响匹配时长（16 拍）与 FIFO 积压（约 18 拍），不增 LUT。
     parameter integer MAX_LABEL = 16,   // 并查集标签容量（一帧最多 MAX_LABEL 个目标）
+    parameter integer SF_DEPTH = 4096,  // bounded sample backlog, mapped to block RAM
     parameter integer MAX_RUN   = 16    // 上一行参与匹配的最大游程数
 )(
     input  wire        clk,
@@ -124,20 +125,17 @@ module multi_bbox #(
     reg [15:0] px;                      // 上一个有效样本的 x
     reg        seen_any;                // 是否已见过第一个有效样本
 
-    // ---------------- 输入缓存 FIFO（治本第 2 步新增）----------------
-    // ST_MATCH/ST_ALLOC/ST_FINISH 期间上游来的 in_valid 样本缓存于此。
-    // 深度 512（2026-10-15 full16 定位实测：256 仍不够——串行 ST_MATCH 每关一个
-    // 游程要 MAX_RUN+2≈18 拍，一行 16 游程净欠 ~336 拍，FIFO 峰值积压 ~336 > 256
-    // → 溢出丢样（丢行/帧边界样本）→ 永不结算 → 0 框，full16/label_full 复现；
-    // bridge/reuse/overflow(MAX_RUN=4) 欠账小所以过。512 覆盖 full16/label_full
-    // 峰值积压并留余量。已知局限：full16_64（16 目标×32 行、行行 16 游程）净欠
-    // ~7800 拍，任何可行深度都救不了，属串行化结构性上限，见
-    // docs/multibbox_16_vs_mainstream_20261015.md）。宽度 {valid,x,y,mask}=34bit。
-    localparam integer SF_DEPTH = 512;
-    reg [33:0] sf [0:SF_DEPTH-1];
-    reg [8:0]  sf_wr, sf_rd;            // 0..SF_DEPTH-1（512 需 9 位）
-    reg [9:0]  sf_cnt;                  // 0..SF_DEPTH（512 需 10 位）
-    reg        fifo_overflow;           // 满仍要写=静默丢样时粘存（不再静默，供 PS 读）
+    // Synchronous simple-dual-port sample FIFO, plus one prefetched item.
+    // 4096 samples cover the 76x36 dense MIN_CNT64 test frame. Real 640-wide
+    // input has >=2 clocks/sample plus blanking; arbitrary sustained input
+    // beyond the serial service rate remains bounded and raises o_overflow.
+    localparam integer SF_AW = $clog2(SF_DEPTH);
+    (* ram_style="block" *) reg [33:0] sf [0:SF_DEPTH-1];
+    reg [SF_AW-1:0] sf_wr, sf_rd;
+    reg [SF_AW:0] sf_cnt;
+    reg [33:0] sf_data;
+    reg sf_valid;
+    reg fifo_overflow;
 
     // ---------------- 匹配状态机（治本第 2 步）----------------
     localparam [2:0] ST_IDLE   = 3'd0,  // 正常流式（处理 FIFO/in_valid/pending）
@@ -172,15 +170,17 @@ module multi_bbox #(
             if (pend_valid) begin
                 cur_valid = 1'b1;  cur_x = pend_x;  cur_y = pend_y;  cur_mask = pend_mask;
                 cur_from_fifo = 1'b0;
-            end else if (sf_cnt > 0) begin
-                cur_valid = sf[sf_rd][33];
-                cur_x     = sf[sf_rd][32:17];
-                cur_y     = sf[sf_rd][16:1];
-                cur_mask  = sf[sf_rd][0];
+            end else if (sf_valid) begin
+                cur_valid = sf_data[33];
+                cur_x     = sf_data[32:17];
+                cur_y     = sf_data[16:1];
+                cur_mask  = sf_data[0];
                 cur_from_fifo = 1'b1;
-            end else begin
+            end else if (sf_cnt == 0) begin
                 cur_valid = in_valid; cur_x = in_x; cur_y = in_y; cur_mask = in_mask;
                 cur_from_fifo = 1'b0;
+            end else begin
+                cur_valid=0;cur_x=0;cur_y=0;cur_mask=0;cur_from_fifo=0;
             end
         end else begin
             cur_valid = 1'b0; cur_x = 16'd0; cur_y = 16'd0; cur_mask = 1'b0;
@@ -191,17 +191,14 @@ module multi_bbox #(
     wire new_frame = cur_valid && seen_any && (cur_y < prow);
     wire new_row   = cur_valid && seen_any && !new_frame && (cur_y != prow);
 
-    // ★ 统一 FIFO 读写使能（修复 sf_cnt NBA 冲突：原写与排 FIFO 同拍对 sf_cnt
-    //   重复 NBA 赋值，last-write-wins 导致指针/计数不同步、样本乱序）
-    reg fifo_we, fifo_re;
-    always @(*) begin
-        fifo_we = 1'b0;
-        // 写：非「ST_IDLE 直处理 in_valid」时都缓存
-        if (in_valid && (sf_cnt < SF_DEPTH) &&
-            (state != ST_IDLE || pend_valid || (sf_cnt > 0)))
-            fifo_we = 1'b1;
-        // 读：ST_IDLE 排 FIFO（cur 来自 FIFO）时出队
-        fifo_re = (state == ST_IDLE) && cur_valid && cur_from_fifo;
+    wire fifo_consume = (state==ST_IDLE) && cur_valid && cur_from_fifo;
+    wire fifo_re = (sf_cnt!=0) && (!sf_valid || fifo_consume);
+    wire must_queue = (state!=ST_IDLE) || pend_valid || sf_valid || (sf_cnt!=0);
+    wire fifo_we = in_valid && must_queue && ((sf_cnt<SF_DEPTH) || fifo_re);
+    // Memory has no asynchronous reset. Reset invalidates pointers and cache.
+    always @(posedge clk) begin
+        if(rst_n && fifo_we) sf[sf_wr] <= {1'b1,in_x,in_y,in_mask};
+        if(rst_n && fifo_re) sf_data <= sf[sf_rd];
     end
 
     // ---------------- 结算输出区 ----------------
@@ -245,7 +242,7 @@ module multi_bbox #(
             o_valid <= 1'b0; o_x1 <= 0; o_y1 <= 0; o_x2 <= 0; o_y2 <= 0;
             o_cnt <= 0; o_id <= 0; o_last <= 1'b0;
             pr_n <= 0; cr_n <= 0;
-            sf_wr <= 0; sf_rd <= 0; sf_cnt <= 0; fifo_overflow <= 1'b0; o_overflow <= 1'b0;
+            sf_wr <= 0; sf_rd <= 0; sf_cnt <= 0; sf_valid <= 0; fifo_overflow <= 1'b0; o_overflow <= 1'b0;
             mk <= 0; mroot <= 4'h0; mfound <= 1'b0;
             close_s <= 0; close_e <= 0; close_row <= 0; close_type <= CL_SAME;
             pend_valid <= 1'b0; pend_x <= 0; pend_y <= 0; pend_mask <= 1'b0;
@@ -263,16 +260,21 @@ module multi_bbox #(
             // ★ 统一 FIFO 读写指针/计数更新（fifo_we/fifo_re 在组合 always 里算）
             //   修复原写与排 FIFO 同拍对 sf_cnt 冲突 NBA（last-write-wins）
             if (fifo_we) begin
-                sf[sf_wr] <= {1'b1, in_x, in_y, in_mask};
-                sf_wr <= (sf_wr == SF_DEPTH-1) ? 9'd0 : sf_wr + 9'd1;
+                sf_wr <= (sf_wr == SF_DEPTH-1) ? 0 : sf_wr + 1'b1;
             end
             if (fifo_re) begin
-                sf_rd <= (sf_rd == SF_DEPTH-1) ? 9'd0 : sf_rd + 9'd1;
+                sf_rd <= (sf_rd == SF_DEPTH-1) ? 0 : sf_rd + 1'b1;
             end
-            sf_cnt <= sf_cnt + (fifo_we ? 10'd1 : 10'd0) - (fifo_re ? 10'd1 : 10'd0);
+            case ({fifo_we,fifo_re})
+              2'b10: sf_cnt<=sf_cnt+1'b1;
+              2'b01: sf_cnt<=sf_cnt-1'b1;
+              default: sf_cnt<=sf_cnt;
+            endcase
+            if(fifo_re) sf_valid<=1;
+            else if(fifo_consume) sf_valid<=0;
             // 溢出粘存：FIFO 满仍要写 = 静默丢样，锁存标志（不再静默丢失）
             if (new_frame) fifo_overflow <= 1'b0;        // 每帧开始清，PS 按帧感知
-            if (in_valid && (sf_cnt == SF_DEPTH)) fifo_overflow <= 1'b1;
+            if (in_valid && must_queue && !fifo_we) fifo_overflow <= 1'b1;
             o_overflow <= fifo_overflow;
 
             case (state)
