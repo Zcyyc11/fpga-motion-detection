@@ -1,0 +1,14 @@
+{
+  "scope": "visible message excerpts only; no system, developer, tool or environment content",
+  "records": 33,
+  "source_files": [
+    {
+      "file": "rollout-2026-10-17T17-16-58-01a14926-6fb4-7381-9a13-279c3beff461.jsonl",
+      "sha256": "0fb7cc18315788fb0aa40e090d5ded4b0d1f1e205d94cb4eab4201418f0441fe"
+    },
+    {
+      "file": "rollout-2026-10-17T17-37-57-01a14939-a486-7ad1-8f9e-c0cb7a3f276b.jsonl",
+      "sha256": "dc6da2048768c6dc927d5d8fcd5450a7c2160a8c38ce7232f78f6120c9062c7d"
+    }
+  ]
+}
