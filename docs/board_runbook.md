@@ -10,6 +10,11 @@
 
 用 `board_top_hdmiin.bit`（INPUT_SEL=1）上板，HDMI 信源进 J10、HDMI 输出 J11 接采集设备，**抓"带红框的真实画面"**，逐帧留档，填运行记录表。**上板实测已于 2026-10-12 完成并 PASS**（记录见 `board/logs/board_test_20261012.md`，`37c1d2c`）；本 run-book 用于复跑 / 补测（18 分钟回绕长测、LED 记录、演示视频）。
 
+> 🔴 **2026-10-20 新增前置硬条件：板子必须插网线。** 不插则板载 125 MHz 参考时钟不稳，
+> 输出呈「黑 / 采集卡报 *Video Format Not Supported* / 正常」三态周期性跳锁（约 10 秒一轮，
+> 正常画面每分钟仅 4–5 次）。插网线后 60 秒采样 **61/61 全亮**。
+> 详见 `docs/hdmi-lock-instability-postmortem-20261020.md`、实测 `board/logs/board_test_20261020.md`。
+
 ---
 
 ## 1. 要烧哪个 bit（已入库 `build/bitstream/`）
@@ -23,7 +28,7 @@
 
 ## 2. 上板（顺序见 SOP §2/§3）
 
-1. 接线：12V 电源、TF 卡、Micro-USB(PROG+串口)、网线、**HDMI 输出 J11→采集卡/录屏盒→电脑**、**HDMI 输入：电脑/播放器→J10**。
+1. 接线：12V 电源、TF 卡、Micro-USB(PROG+串口)、**网线（🔴 必须插，见 §0）**、**HDMI 输出 J11→采集卡/录屏盒→电脑**、**HDMI 输入：电脑/播放器→J10**。
 2. 上电，等 **LED0 亮**（= dvi2rgb 时钟恢复锁定，信源已按 720p 输出）。
 3. 重载 `board_top_hdmiin.bit`（SOP §3 方式 A 或 B）。
 4. **先确认画面**再插 HDMI 输入（SOP §2.4）。
