@@ -1,0 +1,14 @@
+scene: ce621313_v4
+video: D:\FPGA\test_videos\vehicles.mp4
+device: 1 (MSMF)
+negotiated: 640x480
+duration: 45s
+frames: 1220
+fps: 27.0
+brightness avg: 109.4
+lit frames (>=20): 1220 / 1220 (100%)
+motion avg diff: 2.23 max: 8.88
+verdict: MOVING
+red frames: 391 / 1220 (32%) max_red_px: 2876
+color frames(px>40): 391 / 1220 max_color_px: 3583
+captured at: 2026-10-21 19:43:59

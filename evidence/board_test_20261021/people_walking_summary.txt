@@ -1,0 +1,14 @@
+scene: ce621313_pw
+video: D:\FPGA\test_videos\people-walking.mp4
+device: 1 (MSMF)
+negotiated: 640x480
+duration: 45s
+frames: 1342
+fps: 29.7
+brightness avg: 188.2
+lit frames (>=20): 1342 / 1342 (100%)
+motion avg diff: 2.69 max: 24.74
+verdict: MOVING
+red frames: 163 / 1342 (12%) max_red_px: 3210
+color frames(px>40): 163 / 1342 max_color_px: 3701
+captured at: 2026-10-21 19:47:13
