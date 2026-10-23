@@ -66,7 +66,7 @@ if {$argc >= 3} { set STAGE [lindex $argv 2] }
 if {$STAGE ni {all setup synth impl bit}} { error "STAGE must be all|setup|synth|impl|bit" }
 
 set PART xc7z020clg400-1
-set TOP  board_top
+set TOP  board_top_legacy
 
 # 综合线程数：本机 24 逻辑核，Vivado synth 多线程收益实测约 2 倍（同规模
 # Zynq-7020 设计 8 线程 vs 默认）。留一部分核给系统和磁盘 IO。
@@ -147,7 +147,11 @@ proc stage_setup {} {
     set_property top $TOP [current_fileset]
     # ★ 2026.1 实测：fileset 的 generic 用【空格】分隔，逗号分隔会把整个串
     #   解析成一个 generic 名。旧版本是逗号。
-    set_property generic [format "MODE_BG=%d INPUT_SEL=%d" $MODE_BG $INPUT_SEL] [current_fileset]
+    set BG_FRAC_BITS 0
+    if {[info exists ::env(MOTION_BG_FRAC_BITS)]} { set BG_FRAC_BITS $::env(MOTION_BG_FRAC_BITS) }
+    set BG_SHIFT 6
+    if {[info exists ::env(MOTION_BG_SHIFT)]} { set BG_SHIFT $::env(MOTION_BG_SHIFT) }
+    set_property generic [format "MODE_BG=%d INPUT_SEL=%d BG_SHIFT=%d BG_FRAC_BITS=%d" $MODE_BG $INPUT_SEL $BG_SHIFT $BG_FRAC_BITS] [current_fileset]
     update_compile_order -fileset sources_1
     puts "setup 完成：工程就绪（top=$TOP, generic=MODE_BG=$MODE_BG INPUT_SEL=$INPUT_SEL）"
     close_project

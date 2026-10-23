@@ -24,8 +24,21 @@
 // -----------------------------------------------------------------------------
 module board_top #(
     parameter integer MODE_BG   = 0,     // 0 = 帧差法（v1）／1 = 背景建模（v2）
+    parameter integer INCLUDE_PS = 0,
+    parameter integer BG_SHIFT = 6,
+    parameter integer BG_FRAC_BITS = 0,
+    parameter integer DET_THRESH = 70,
+    parameter integer DET_MIN_CNT = 64,
+    parameter integer UART_DIV = 645,
     parameter integer INPUT_SEL = 0      // 0 = 内部自测激励／1 = 真实 HDMI 输入
 )(
+    input wire clk_axi,
+    input wire rst_n_axi,
+    input wire ps_en,
+    input wire ps_we,
+    input wire [5:0] ps_addr,
+    input wire [31:0] ps_wdata,
+    output wire [31:0] ps_rdata,
     input  wire       sys_clk,             // 125 MHz，H16
     output wire [3:0] led,                 // LED0..LED3，高电平点亮
     output wire       uart_txd,            // ★线二回传：PL 侧 UART（协议 v0.2，115200-8-N-1），PMOD A ja[0]
@@ -191,9 +204,10 @@ module board_top #(
         .V_FP(5),   .V_SYNC(5),  .V_BP(20),
         .SYNC_POS(1),
         .OBJ_W(160), .OBJ_H(120), .X0(60), .Y0(300), .DX(16),
-        .THRESH(70), .SHIFT(6), .MODE_BG(MODE_BG), .MIN_CNT(64),
+        .THRESH(DET_THRESH), .SHIFT(BG_SHIFT), .MODE_BG(MODE_BG), .MIN_CNT(DET_MIN_CNT),
+        .UART_BAUD_DIV(UART_DIV), .BG_FRAC_BITS(BG_FRAC_BITS),
         .INPUT_SEL(INPUT_SEL),
-        .INCLUDE_PS(0)          // 0 = 纯 PL（AXI 口悬空，UART 链无条件生效）
+        .INCLUDE_PS(INCLUDE_PS)          // 0 = 纯 PL（AXI 口悬空，UART 链无条件生效）
     ) u_pipe (
         .clk(clk_pipe), .rst_n(rst_n),
         .rx_de(g_vde), .rx_hs(in_hs), .rx_vs(in_vs), .rx_sof(in_sof),
@@ -205,9 +219,9 @@ module board_top #(
         .m_valid(m_valid), .m_x(m_x), .m_y(m_y), .m_bit(m_bit),
         .frame_idx(frame_idx),
         // ---- 线二回传链：INCLUDE_PS=0 ⇒ AXI 口悬空，UART 链无条件生效（参数已在 #() 覆盖，非端口）----
-        .clk_axi(1'b0), .rst_n_axi(1'b0),
-        .ps_en(1'b0), .ps_we(1'b0), .ps_addr(6'd0), .ps_wdata(32'd0),
-        .ps_rdata(),
+        .clk_axi(clk_axi), .rst_n_axi(rst_n_axi),
+        .ps_en(ps_en), .ps_we(ps_we), .ps_addr(ps_addr), .ps_wdata(ps_wdata),
+        .ps_rdata(ps_rdata),
         .uart_txd(uart_txd), .uart_drop(), .alarm_evt()
     );
 
