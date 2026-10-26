@@ -91,13 +91,14 @@ module bbox_snapshot #(
     reg         ack;         // AXI 钟域：ack 跟随同步后的 req（声明须先于使用，xvlog 要求）
 
     // ack 的两级同步（AXI 钟 → 像素钟）
-    reg [1:0] ack_sync_ff;
+    (* ASYNC_REG = "TRUE" *) reg [1:0] ack_sync_ff;
     wire      idle = (req == ack_sync_ff[1]);   // 上次握手完成才可改数据
 
     always @(posedge clk_px or negedge rst_n_px) begin
         if (!rst_n_px) begin
             snap_hold <= 118'd0;
             req       <= 1'b0;
+            ack_sync_ff <= 2'b00;
         end else begin
             ack_sync_ff <= {ack_sync_ff[0], ack};
             if (i_latch && idle) begin
@@ -111,7 +112,7 @@ module bbox_snapshot #(
 
     // ================ AXI 钟域：同步 + 整组采样 ================
 
-    reg [1:0] req_sync_ff;   // req 的两级同步
+    (* ASYNC_REG = "TRUE" *) reg [1:0] req_sync_ff;   // req 的两级同步
 
     always @(posedge clk_axi or negedge rst_n_axi)
         if (!rst_n_axi) req_sync_ff <= 2'b00;

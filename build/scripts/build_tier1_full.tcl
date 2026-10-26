@@ -10,6 +10,11 @@ set ::env(MOTION_TIER1_OUT) [file join $BUILD_DIR ps]
 source [file join $SCRIPT_DIR create_tier1.tcl]
 remove_files [get_files [file join $BOARD_DIR pynq_z2_hdmi_out.xdc]]
 add_files -fileset constrs_1 -norecurse [file join $BOARD_DIR pynq_z2_tier1_out.xdc]
+# Endpoint queries refer to the synthesized design; read late for implementation.
+set CDC_XDC [file join $BOARD_DIR tier1_cdc.xdc]
+add_files -fileset constrs_1 -norecurse $CDC_XDC
+set_property USED_IN_SYNTHESIS false [get_files $CDC_XDC]
+set_property PROCESSING_ORDER LATE [get_files $CDC_XDC]
 set_property top $TOP [current_fileset]
 update_compile_order -fileset sources_1
 close_project

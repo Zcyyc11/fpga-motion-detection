@@ -238,9 +238,14 @@ proc stage_impl {} {
 
 # ---------------------------------------------------------------- bit 阶段
 proc stage_bit {} {
-    global XPR PROJ_DIR TOP BUILD_DIR REPORT_DIR
+    global XPR PROJ_DIR TOP BUILD_DIR REPORT_DIR SCRIPT_DIR
     open_project $XPR
     open_run impl_1
+    # Use the project top for resumed bit-only builds, not the default PL top.
+    set TOP [get_property TOP [get_filesets sources_1]]
+    if {$TOP eq "board_top_tier1"} {
+        source [file join $SCRIPT_DIR tier1_cdc_gate.tcl]
+    }
     # bitstream 落到不会被清理的交付位置：build/vivado 是工作目录，不能当交付。
     set BIT_DIR [file join $BUILD_DIR bitstream]
     set BIT_DST [file join $BIT_DIR ${TOP}.bit]
