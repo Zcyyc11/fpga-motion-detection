@@ -187,6 +187,14 @@ module board_top #(
         .gray  (g_gray)
     );
 
+    // gray_conv registers pixels, DE and coordinates by one cycle.
+    // Register sync markers by the same amount before entering md_pipeline.
+    reg g_hs, g_vs, g_sof;
+    always @(posedge pixel_clk_rx or negedge rst_n) begin
+        if (!rst_n) begin g_hs<=0; g_vs<=0; g_sof<=0; end
+        else begin g_hs<=in_hs; g_vs<=in_vs; g_sof<=in_sof; end
+    end
+
     // ---------------- ⑤ 检测流水线 ----------------
     wire        vde, vhs, vvs;
     wire [15:0] vx, vy;
@@ -210,7 +218,7 @@ module board_top #(
         .INCLUDE_PS(INCLUDE_PS)          // 0 = 纯 PL（AXI 口悬空，UART 链无条件生效）
     ) u_pipe (
         .clk(clk_pipe), .rst_n(rst_n),
-        .rx_de(g_vde), .rx_hs(in_hs), .rx_vs(in_vs), .rx_sof(in_sof),
+        .rx_de(g_vde), .rx_hs(g_hs), .rx_vs(g_vs), .rx_sof(g_sof),
         .rx_x(g_x), .rx_y(g_y), .rx_gray(g_gray),
         .vde(vde), .vx(vx), .vy(vy), .vhs(vhs), .vvs(vvs),
         .vr(vr), .vg(vg), .vb(vb),

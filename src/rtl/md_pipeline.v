@@ -222,7 +222,14 @@ module md_pipeline #(
     end
     wire init_phase = (fid <= 16'd1) & ~mask_phase;   // 首帧：缓存直接写当前帧
 
+    wire fb_write_valid;
+    wire [AW-1:0] fb_write_addr;
+    wire [FW-1:0] fb_write_data;
     generate if(BG_FRAC_BITS==0) begin : g_legacy_background
+    assign fb_write_valid=valid_d2;
+    assign fb_write_addr=addr_d2;
+    assign fb_write_data=wr_data_r;
+
     diff_stage #() u_diff (
         .mode_bg(cfg_enable),    // 算法模式：g_nops=编译期 MODE_BG[0]；g_ps=regs 0x14 ENABLE 运行时切帧差/背景建模
         .init_phase(init_phase),
@@ -236,7 +243,13 @@ module md_pipeline #(
     end else begin : g_fixed_background
         background_fixed #(.FRAC_BITS(BG_FRAC_BITS),.FG_SHIFT(BG_FG_SHIFT)) u_diff (
             .mode_bg(cfg_enable),.init_phase(init_phase),.shift_amt(cfg_shift),
-            .thresh(cfg_thresh),.cur(cur_d1),.ref_px(ref_px),.absdiff(absdiff),.wr_data(wr_data));
+            .thresh(cfg_thresh),.cur(cur_d1),.ref_px(ref_px),.absdiff(absdiff),.wr_data());
+        background_fixed_pipe #(.FRAC_BITS(BG_FRAC_BITS),.FG_SHIFT(BG_FG_SHIFT),.AW(AW)) u_update (
+            .clk(clk),.rst_n(rst_n),.in_valid(valid_d1),.in_addr(addr_d1),
+            .mode_bg(cfg_enable),.init_phase(init_phase),.shift_amt(cfg_shift),
+            .thresh(cfg_thresh),.cur(cur_d1),.ref_px(ref_px),
+            .out_valid(fb_write_valid),.out_addr(fb_write_addr),.wr_data(wr_data));
+        assign fb_write_data=wr_data;
     end endgenerate
 
     always @(posedge clk or negedge rst_n) begin
@@ -247,7 +260,7 @@ module md_pipeline #(
     frame_buf #(.DEPTH(BW * BH), .AW(AW), .DW(FW)) u_fb (
         .clk(clk),
         .re(d_valid),   .raddr(addr),     .dout(ref_px),
-        .we(valid_d2),  .waddr(addr_d2),  .din(wr_data_r)
+        .we(fb_write_valid), .waddr(fb_write_addr), .din(fb_write_data)
     );
 
     // ======================= ⑥ 阈值 =======================

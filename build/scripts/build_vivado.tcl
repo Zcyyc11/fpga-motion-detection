@@ -107,6 +107,10 @@ proc stage_setup {} {
         open_project $XPR
     } else {
         create_project -force fpga_motion_detection $PROJ_DIR -part $PART
+        # Board metadata must be selected BEFORE creating board-aware HDMI IP.
+        if {[info exists ::env(MOTION_BOARD_PART)]} {
+            set_property board_part $::env(MOTION_BOARD_PART) [current_project]
+        }
         set_property target_language Verilog [current_project]
         # 允许在 xdc 里用 TMDS_33 这类差分电平（部分版本默认禁止）
         catch { set_property enable_vhdl_2008 1 [current_project] }
@@ -139,6 +143,14 @@ proc stage_setup {} {
         add_files -fileset constrs_1 -norecurse [list \
             [file join $BOARD_DIR pynq_z2_hdmi_out.xdc] \
             [file join $BOARD_DIR pynq_z2_hdmi_in.xdc]]
+    }
+    # Reconcile RTL membership on BOTH new and reused projects.
+    # Existing IP products stay intact; newly added modules must not be skipped.
+    foreach src [concat [glob -nocomplain [file join $RTL_DIR *.v]] \
+                        [glob -nocomplain [file join $RTL_BOARD *.v]]] {
+        if {[llength [get_files -quiet $src]] == 0} {
+            add_files -norecurse $src
+        }
     }
     # ★ IP 缓存：工程一打开就挂上共享缓存目录（create/open 两条路都要走这）
     file mkdir $IP_CACHE_DIR
@@ -264,6 +276,7 @@ proc stage_bit {} {
 }
 
 # ---------------------------------------------------------------- 调度
+if {![info exists ::env(MOTION_BUILD_LIBRARY)]} {
 switch $STAGE {
     setup { stage_setup }
     synth { stage_synth }
@@ -273,3 +286,5 @@ switch $STAGE {
 }
 
 exit 0
+
+}

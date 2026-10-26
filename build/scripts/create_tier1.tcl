@@ -1,11 +1,17 @@
 # Standalone PS/AXI BD generation and validation. Does not program hardware.
-set ROOT D:/fpga_upgrade_20261022/work
-set OUT D:/fpga_upgrade_20261022/tier1d
+set SCRIPT_DIR [file dirname [file normalize [info script]]]
+set ROOT [file normalize [file join $SCRIPT_DIR .. ..]]
+set OUT [file join $ROOT build tier1]
+if {[info exists ::env(MOTION_TIER1_OUT)]} { set OUT $::env(MOTION_TIER1_OUT) }
 file mkdir $OUT
-create_project tier1 $OUT/project -part xc7z020clg400-1
+if {![info exists ::env(MOTION_TIER1_IN_PROJECT)]} {
+    create_project tier1 $OUT/project -part xc7z020clg400-1
+}
 set_property board_part tul.com.tw:pynq-z2:part0:1.0 [current_project]
 set_property target_language Verilog [current_project]
-add_files $ROOT/src/rtl/board/axi_lite_slave.v
+if {[llength [get_files -quiet $ROOT/src/rtl/board/axi_lite_slave.v]]==0} {
+    add_files $ROOT/src/rtl/board/axi_lite_slave.v
+}
 create_bd_design ps_system
 set ps [create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 ps7]
 apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 -config {make_external "FIXED_IO, DDR" apply_board_preset "1" Master "Disable" Slave "Disable"} $ps
@@ -21,8 +27,8 @@ set zero [create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 constant_ze
 set_property CONFIG.CONST_VAL 0 $zero
 connect_bd_net [get_bd_pins ps7/FCLK_CLK1] [get_bd_pins ps7/M_AXI_GP0_ACLK] [get_bd_pins axi_ic/ACLK] [get_bd_pins axi_ic/S00_ACLK] [get_bd_pins axi_ic/M00_ACLK] [get_bd_pins bridge/S_AXI_ACLK] [get_bd_pins axi_reset/slowest_sync_clk]
 connect_bd_net [get_bd_pins ps7/FCLK_RESET1_N] [get_bd_pins axi_reset/ext_reset_in]
-connect_bd_net [get_bd_pins constant_one/dout] [get_bd_pins axi_reset/dcm_locked]
-connect_bd_net [get_bd_pins constant_zero/dout] [get_bd_pins axi_reset/aux_reset_in] [get_bd_pins axi_reset/mb_debug_sys_rst]
+connect_bd_net [get_bd_pins constant_one/dout] [get_bd_pins axi_reset/dcm_locked] [get_bd_pins axi_reset/aux_reset_in]
+connect_bd_net [get_bd_pins constant_zero/dout] [get_bd_pins axi_reset/mb_debug_sys_rst]
 connect_bd_net [get_bd_pins axi_reset/interconnect_aresetn] [get_bd_pins axi_ic/ARESETN]
 connect_bd_net [get_bd_pins axi_reset/peripheral_aresetn] [get_bd_pins axi_ic/S00_ARESETN] [get_bd_pins axi_ic/M00_ARESETN] [get_bd_pins bridge/S_AXI_ARESETN]
 foreach name {ps_en ps_we ps_addr ps_wdata ps_rdata} {
@@ -42,7 +48,8 @@ assign_bd_address -offset 0x43C00000 -range 0x00010000 -target_address_space [ge
 validate_bd_design
 save_bd_design
 generate_target all [get_files ps_system.bd]
-make_wrapper -files [get_files ps_system.bd] -top
+set wrapper [make_wrapper -files [get_files ps_system.bd] -top]
+add_files -norecurse $wrapper
 write_bd_tcl $OUT/ps_system_recreate.tcl
 puts TIER1_BD_VALIDATED
-exit
+if {![info exists ::env(MOTION_TIER1_IN_PROJECT)]} { exit }
