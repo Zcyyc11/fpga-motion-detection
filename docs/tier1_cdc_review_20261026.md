@@ -14,6 +14,10 @@ One actionable review finding was addressed: the original patch placed the gate 
 
 Gate parser tests using retained report text and mocked Vivado queries reject the user Critical, negative skew, missing skew report, and missing ASYNC_REG. Independent review also exercised missing drop stage and insufficient endpoint coverage. These are parser/control-flow tests and do not replace the r4 routed checks.
 
-At this checkpoint, `full_tier1_cdc_r4` is still running. No Tier1 bit, positive timing or all-CDC closure is claimed. The source build manifest and eventual release summary are authoritative. Pure PL's previously gated bit remains unchanged.
+The `full_tier1_cdc_r4` build completed at 16:15:54 (Asia/Shanghai). Actual routed setup WNS is +0.093 ns and hold WHS +0.019 ns. Bus skew is 1.380 ns against a 5 ns requirement (slack +3.620 ns). Coverage is 52 first-stage cells, 104 chain cells, and 103 payload source/destination cells. The ack CDC-1 no longer appears. Five legacy HDMI IP Critical findings remain (three CDC-7 and two CDC-11); four configuration-bus CDC-6 and 103 handshake-payload CDC-15 warnings remain. DRC has warnings, including RAM asynchronous-control warnings, but no Error/Critical Warning blocking the candidate gate. Reset/clock-loss and long-run behavior remain board acceptance requirements.
+
+Tier1 resources: 18467 LUT, 16879 FF, 117.5 BRAM tiles, 1 DSP. Bit size 4045691 bytes, SHA256 `e4f1e25c0d3a71b6f126fa7e2f7fff248a9e4b267c932b641a2016aaf46d6559`. Matching HWH and XSA exist. The source build manifest and release summary are authoritative. Pure PL's previously gated bit remains unchanged. No all-CDC or board-pass claim is made.
+
+The bit-only gate correction was independently rechecked with controlled in-memory Tcl calls: user Critical, negative skew and insufficient endpoint coverage prevent write_bitstream; valid Tier1 invokes CDC/skew before writing, and valid PL retains its original path. No additional source issue remained from the four review roles.
 
 Runtime multi-bit configuration is synchronized per bit and is not atomic. Configure before starting video; ENABLE selects the algorithm and is not a pause control. After changing settings, restart/re-warm the test before scoring. Board SD/PYNQ/MMIO, HDMI/UART, long-run, power and human signoff remain external acceptance tasks.
