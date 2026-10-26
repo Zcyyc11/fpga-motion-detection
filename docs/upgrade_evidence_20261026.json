@@ -97,5 +97,23 @@
       "opencv_mog2": 0.3839314145714844
     },
     "board_test": false
+  },
+  "regs_post_synthesis_red": {
+    "passed": false,
+    "rc": 0,
+    "post_synthesis": true,
+    "board_test": false
+  },
+  "regs_post_synthesis_green": {
+    "passed": true,
+    "rc": 0,
+    "post_synthesis": true,
+    "board_test": false
+  },
+  "pl_bit": {
+    "sha256": "648c16a7a8b528e0e2cdae504714d36a79e2d147172a93e44f6b12886cb0bf74",
+    "wns_ns": 0.073,
+    "whs_ns": 0.05,
+    "board_test": false
   }
 }
