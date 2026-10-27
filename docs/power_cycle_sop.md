@@ -50,6 +50,23 @@
 > 同源病例：PYNQ 官方论坛 `HDMI output signal issue on the Z2`（2019），
 > darren 原话 *"the 125MHz clock isn't stable unless I have the ethernet connected or a loopback plug inserted"*。
 
+### 2.1.1 环回头（loopback plug）替代网线 —— 更便携，但需实测
+
+不想拖一根网线到路由器时，可用 RJ45 环回头插在板子网口上，让 PHY 认为链路已建立。
+（引脚编号：水晶头金属触点朝自己、卡扣朝下，从左往右 1~8）
+
+| 目标速率 | 短接引脚 | 说明 |
+|---|---|---|
+| 10/100M | **1↔3、2↔6** | 只环回发送/接收两对 |
+| 千兆 | 1↔3、2↔6、**4↔7、5↔8** | 四对全环回 |
+
+⚠ **已知风险（务必实测）**：千兆 PHY 带 **NEXT（近端串扰）检测**，可能把环回头判定为"极端串扰"而拒绝建立链路，
+表现为插上后网口灯不亮。公开资料显示此现象在千兆网卡上常见（部分网卡驱动/BIOS 也不提供关闭 NEXT 的开关）。
+
+**建议**：花 5 分钟试一下——先做千兆版（四对全环回），不行再试百兆版（只 1↔3、2↔6）。
+成功则演示/录视频时不必拖网线；不成功就回到"接路由器"，两者效果等价（目标都是让 PHY link up）。
+判定标准与网线完全相同：**看板子 RJ45 的 link 灯是否常亮、LED0 是否常亮**。
+
 ## 3. bit 重载两条路（任选）
 
 | 方式 | 步骤 | 适用 |
@@ -90,3 +107,53 @@ bit 文件（构建产物，已入库 `build/bitstream/`）：
 - 《硬件产品级审查与 HDMI 输入方案_20261011.md》§5.2 下板操作步骤 / §5.1 验收 4 / 红项 3 / 黄项 7
 - 《硬件连接说明_20261011.md》第 2 节接线
 - 构建提交：`b7656a8`（两版 bit 已重建为正确配置——注意 `f7d7088` 时代两版 bit 用逗号格式绑定失败、同为默认配置，已废弃；WNS 自测 0.800 / 输入 0.932）
+
+
+---
+
+## S3  PYNQ SD 卡路线（PS 后备/主力路径；2026-10-21 建立）
+
+### S3.0 为什么有这一节
+- 我们原架构是 INCLUDE_PS=0 纯 PL。要把 PS 用起来（FCLK 摆脱以太网 PHY 的 125MHz 坑、PS 接管 track/uart、PS 跑 OpenCV），必须先让 PS 启动。
+- **Vitis 2026.1 禁用了 XSCT**（`xsct.bat` 直接报 `XSCT is disabled in Vitis 2026.1 release`，注意退出码仍是 0），`vitis-run.bat` 只是 HLS 入口不是 Python Console。**命令行建裸机工程这条路在 2026.1 断了。**
+- → 改走 **PYNQ 官方 SD 卡镜像**：自带 FSBL + U-Boot + Linux + Python + OpenCV，**不需要 Vitis**。
+
+### S3.1 硬件与工具（★ 2026-10-03 已全部实测通过，权威源：skill/pynq_overlay_bringup/README.md）
+- **一根 Micro-USB 搞定三件事：供电 + JTAG + 串口**（FTDI FT2232HL，`VID_0403+PID_6010`，COM4，序列号 `1234-TULB`）。**不需要网线、不需要显示器。**
+- SD 卡（10-03 实测用 16GB）+ 读卡器
+- 写卡工具：**Rufus 4.9 → 必须选「DD 映像」模式**（分区模式会失败）；10-03 实测耗时 **05:37**
+- 镜像：`D:\FPGA\images\pynq_z2_v3.1.1.img`（7,951 MB，**本机 2026-09-28 就位，别再下载**）
+
+### S3.2 烧卡判据（别看容量，容量会骗人）
+- 写完后 Windows 只显示一个 **0.13 GB** 的 FAT 分区是**正常**的（另有一个 ext4 rootfs 分区 Windows 不认，开机后自动扩到整卡，10-03 实测扩到 14G）
+- 判成功看：**卷标变为 `PYNQ`** + BOOT 分区含 `BOOT.BIN` / `image.ub` / `boot.py` / `boot.scr` / `REVISION`
+
+### S3.3 跳线与接线（★ J9，不是 JP6——2026-10-21 我曾写错）
+- **JP1 → SD 启动**
+- **J9 → USB 供电**（走 12V 适配器时另选 REG）
+- Micro-USB 接电脑 PROG/UART 口
+- **读卡器：先插卡再插 USB**（顺序反了设备不重新枚举，表现为"盘符不出现"）
+
+### S3.4 登录与校验（10-03 实测判据：不看报错，只看可核验数据）
+- 串口 **115200-8N1**，**自动登录**（直接落到 `xilinx@pynq:~$`，无需账号密码）
+- 板子默认静态 IP `192.168.2.99`，Jupyter 端口 `9090`；**没插网线时 eth0 = NO-CARRIER / state DOWN，属正常**
+- | 查什么 | 期望值 |
+  |---|---|
+  | `pynq.__version__` | `3.1.1` |
+  | 加载后 `ip_blocks` | base = **21** |
+  | `/sys/class/fpga_manager/fpga0/state` | `operating` |
+  | 肉眼 | 4 个 LED 灭 1 秒 → 闪 4 下 → 停在亮 |
+
+### S3.5 加载我们自己的 bit
+- PYNQ 3.x：`from pynq import Overlay; ol = Overlay("design_1_wrapper.bit")`（需同目录同名 `.hwh`）
+- **命令行跑代码必须先 source 两行，且绝不要 sudo**（症状极易被误判成权限问题，10-03 踩过）：
+  `source /etc/profile.d/pynq_venv.sh; source /etc/profile.d/xrt_setup.sh`
+  然后 `/usr/local/share/pynq-venv/bin/python3 xxx.py`（**Jupyter 里不需要**，内核自己注入环境）
+- ★ **PYNQ 路线下 FSBL/U-Boot 会配好 PS 的 PLL，FCLK 必然有输出 → 125MHz/PHY 时钟坑自动绕过**
+
+### S3.6 与 ps_probe 探雷的关系（两条路别混淆）
+- **JTAG 直烧路线**（`burn_ps_probe.tcl`，不跑任何 PS 软件）：LED0 闪 = FCLK 白给；灭 = 必须软件启动 PS。**这才是探雷实验。**
+- **PYNQ 路线**：PS 必然起来、FCLK 必然有，是保底可通路径。
+- ★ 关键洞察（10-03 技能包「失效条件」）：**加载纯 PL bitstream（没实例化 PS）时，PYNQ 的串口这条路用不上** —— 没有 PS 在跑，不会有点位打印，只能看 LED 与 HDMI。**这正是我们 board_top（INCLUDE_PS=0）一直只能用 JTAG 烧 + 采集卡看结果的原因。**
+  反之 **ps_probe 例化了 PS，加载后串口立刻有输出** → PYNQ 路线下它比 LED 更早给出"PS 活着"的证据。
+- PYNQ 路线真正价值：自带 Python + OpenCV → 黄金参考比对、演示可视化、参数在线调参。
