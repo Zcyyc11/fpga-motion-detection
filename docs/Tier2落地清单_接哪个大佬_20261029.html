@@ -30,6 +30,18 @@
 <tr><td>背景建模算法（ViBe/GMM）</td><td><b>无现成 HDL 可抄</b>：算法思想来自 IEEE TVLSI（Virtex-6 GMM）、HotEdgeVideo'19（ZCU102）、2024《舰船电子工程》（同芯片 ViBe，放 DDR）</td><td>在 PS/软件侧或 PL 软逻辑实现，模型权重存 DDR</td></tr>
 </table>
 
+<h2>一·补、参考仓库地址与版本（按此拉取）</h2>
+<p>下面全是公开库，不用找我要文件：<code>git clone &lt;地址&gt; &amp;&amp; git checkout &lt;commit前7位&gt;</code>。PYNQ 自带的 <code>pynq.lib.video.AxiVDMA</code> 随 PYNQ 镜像，无需拉取。</p>
+<table>
+<tr><th>项目</th><th>仓库地址</th><th>版本(commit)</th><th>用途</th></tr>
+<tr><td>nick-nuti/HDMI_OUT_PYNQ_Z2</td><td><code>https://github.com/nick-nuti/HDMI_OUT_PYNQ_Z2</code></td><td><code>75dda6a</code></td><td>VDMA 帧缓冲最干净模板（design_1.tcl）</td></tr>
+<tr><td>2cc2ic/Motion-Detection-…Background-Reconstruction</td><td><code>https://github.com/2cc2ic/Motion-Detection-System-Based-On-Background-Reconstruction</code></td><td><code>a8a1184</code></td><td>咱算法血统 + 帧管线结构（bd.tcl）</td></tr>
+<tr><td>Ssingh5535/FPGA_OV7670_HDMI</td><td><code>https://github.com/Ssingh5535/FPGA_OV7670_HDMI</code></td><td><code>da96e64</code></td><td>OV7670→HDMI 帧缓冲参考</td></tr>
+<tr><td>Sreeram-Ramesh/zynq-axi-dma-test</td><td><code>https://github.com/Sreeram-Ramesh/zynq-axi-dma-test</code></td><td><code>4c42214</code></td><td>AXI-DMA 上板测试参考</td></tr>
+<tr><td>hyojun01/PYNQ_Z2_FMCW_Radar</td><td><code>https://github.com/hyojun01/PYNQ_Z2_FMCW_Radar</code></td><td><code>421144b</code></td><td>PYNQ_Z2 全栈参考</td></tr>
+</table>
+
+
 <h2>二、接口怎么对（关键映射）</h2>
 <ul>
 <li><b>PL→DDR：</b>现有视频管线输出帧，经 VDMA S2MM 写 DDR（HP0 端口），不要手撸 AXI。</li>
