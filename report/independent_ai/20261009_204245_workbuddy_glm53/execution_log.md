@@ -1,7 +1,7 @@
 # 实际执行日志（execution_log.md）
 
-时间均为 2026-10-09 UTC+8。Shell：Git Bash。`$PY` = `C:\Users\孙伟博\.workbuddy\binaries\python\envs\default\Scripts\python.exe`。
-临时工作目录 `$T` = `C:\Users\孙伟博\AppData\Local\Temp\ind_review_20261009`（仓库外，全部运行产物保留于此）。
+时间均为 2026-10-09 UTC+8。Shell：Git Bash。`$PY` = `<USER_HOME>\孙伟博\.workbuddy\binaries\python\envs\default\Scripts\python.exe`。
+临时工作目录 `$T` = `<USER_HOME>\孙伟博\AppData\Local\Temp\ind_review_20261009`（仓库外，全部运行产物保留于此）。
 
 ## §0 准备（20:28–20:44）
 
@@ -13,7 +13,7 @@
 
 ## §1 干净检出（20:45）
 
-`mkdir -p $T && git clone --no-hardlinks "C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo" $T/clone` → exit 0（602 文件）；
+`mkdir -p $T && git clone --no-hardlinks "<USER_HOME>\孙伟博\Desktop\FPGA大赛资料\captain_repo" $T/clone` → exit 0（602 文件）；
 `git checkout -q 783cd7c…` → HEAD 一致、`git status` 干净。
 
 ## §2 软件复现（20:46–20:55）

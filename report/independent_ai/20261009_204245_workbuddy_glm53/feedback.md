@@ -15,9 +15,9 @@
   3. 第一轮完成后才读：`docs/line3_status_20261009.md`、`docs/reproduce_line3.md`、`docs/captain_feedback_20261009.txt`、`docs/verification_fixes_20261009.md`、`report/line3_review_20261009/README.md`、`report/line3_20261009/*.md`（issues/report_draft/team_evidence/results_ledger）、工作区 `handoff.md`、`maintenance_20261009/*.json`、`delivery/manifest.json`。
   4. 未读：`docs/independent_review_prompt.md`（委托方给"另一 AI"的提示词，非证据）。
 - **仓库、分支、完整 Git SHA、工作区差异**：
-  本地 `C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo`，分支 `codex/line3-review-20261009`，
+  本地 `<USER_HOME>\孙伟博\Desktop\FPGA大赛资料\captain_repo`，分支 `codex/line3-review-20261009`，
   **受测 SHA = `783cd7c49f474bab711671ed1dc644a0f58386ea`**，`git diff HEAD` 为空、无 stash。
-  干净检出为 `git clone --no-hardlinks` 到仓库外 `C:\Users\孙伟博\AppData\Local\Temp\ind_review_20261009\clone` 后 checkout 该 SHA（602 文件）。
+  干净检出为 `git clone --no-hardlinks` 到仓库外 `<USER_HOME>\孙伟博\AppData\Local\Temp\ind_review_20261009\clone` 后 checkout 该 SHA（602 文件）。
   注意：作者自报"受测整合提交 bd10e2e"；我核对 `git diff bd10e2e 783cd7c` 仅含文档/证据/新增 verify_runner_live.py，**src/ 与 sim/ 代码零差异**，两者对本次复现等价。
 - **操作系统、解释器、依赖、仿真工具**：Windows（win32）；托管 Python 3.13.12 新建 venv（numpy 2.5.3、opencv-python 4.14.0、matplotlib 3.10.x，均符合 `src/ps/requirements.txt` 区间）；Git for Windows；Vivado 2025.2（`D:\AMD2025.2\2025.2\Vivado`，与推荐 2026.1 不同，已注意版本差）。
 - **可执行与不可执行的范围及原因**：

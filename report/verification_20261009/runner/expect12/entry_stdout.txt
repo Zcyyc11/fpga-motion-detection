@@ -1,8 +1,8 @@
 Vivado 环境来源：--vivado-settings
-本次运行目录（全部保留）：C:\Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\完整性检查_runs\run_20261009T114634Z_uf_nz9m0
+本次运行目录（全部保留）：<USER_HOME>\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\完整性检查_runs\run_20261009T114634Z_uf_nz9m0
 仿真流程：通过
 检测记录：11 条，帧号 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 帧完整性：{'checked': True, 'expected_count': 12, 'first_frame': 0, 'actual_count': 11, 'missing': [11], 'unexpected': [], 'passed': False}
 失败原因：帧范围不完整；查看 completeness.missing/unexpected
-日志：C:\Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\完整性检查_runs\run_20261009T114634Z_uf_nz9m0\sim\logs\sim_run.log
-结果：C:\Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\完整性检查_runs\run_20261009T114634Z_uf_nz9m0\result.json
+日志：<USER_HOME>\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\完整性检查_runs\run_20261009T114634Z_uf_nz9m0\sim\logs\sim_run.log
+结果：<USER_HOME>\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\完整性检查_runs\run_20261009T114634Z_uf_nz9m0\result.json

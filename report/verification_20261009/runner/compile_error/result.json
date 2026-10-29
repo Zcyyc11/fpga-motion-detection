@@ -8,7 +8,7 @@
   "done": false,
   "x_hits": [],
   "errors": [
-    "ERROR: [VRFC 10-4982] syntax error near 'syntax' [C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/sim/tb/tb_md_pipeline.v:215]"
+    "ERROR: [VRFC 10-4982] syntax error near 'syntax' [<USER_HOME>/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/sim/tb/tb_md_pipeline.v:215]"
   ],
   "failures": [
     "子进程非零退出：2",

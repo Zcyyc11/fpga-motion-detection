@@ -1,6 +1,6 @@
 ==============================================================================
 数据守卫回归测试（只用构造的小数据，不碰 CDnet 数据集与已归档结果）
-临时目录：C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\feedback_validation_20261009\run_20261010_r2\data_guard
+临时目录：<USER_HOME>\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\feedback_validation_20261009\run_20261010_r2\data_guard
 ==============================================================================
 
 【A/B】cdnet_official 入口 —— 六种坏法 + 正常 + 预热无真值
@@ -36,4 +36,4 @@
 ==============================================================================
 合计：22 通过 / 0 失败
 ==============================================================================
-临时目录保留：C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\feedback_validation_20261009\run_20261010_r2\data_guard
+临时目录保留：<USER_HOME>\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\feedback_validation_20261009\run_20261010_r2\data_guard

@@ -1,12 +1,12 @@
 scene: vehicles_final
-video: D:/FPGA/test_videos/vehicles.mp4
+video: test_videos/vehicles.mp4
 device: 1 (MSMF)
 negotiated: 640x480
 duration: 60s
 captured frames: 1376
 written to video: 1376
 capture fps: 22.9
-video file: D:\FPGA\output\evidence\vehicles_final\vehicles_final_hdmi_out.mp4
+video file: output\evidence\vehicles_final\vehicles_final_hdmi_out.mp4
 brightness avg: 111.5
 lit frames (>=20): 1359 / 1376 (99%)
 motion avg diff: 2.02 max: 109.56

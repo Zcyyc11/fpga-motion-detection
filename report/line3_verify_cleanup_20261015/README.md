@@ -8,7 +8,7 @@
 ## 固定版本与结论
 
 - 被测 RTL：`--ref` 逐轮记录（e47dd6cb / 4f1cc619 / 37c08fb，见下表）；测试夹具（tb）由运行器同目录取当前版本。
-- Vivado 2026.1（settings64.bat 实际路径 D:/AMDDesignTools/2026.1/Vivado/settings64.bat）；
+- Vivado 2026.1（settings64.bat 实际路径 <VIVADO_INSTALL>Tools/2026.1/Vivado/settings64.bat）；
   本轮是 RTL 仿真，无综合、布局布线、bit 或板上验证。
 - **验收基线 = 37c08fb + 修复后 tb（flush 4096）**：full16 / label_full / bridge / reuse / overflow 全 PASS。
 - 仍 FAIL 未修（10-13 首轮已记录，本轮未触及）：wrap（track id 回绕首现误报）、axi_channels（AXI 分拍写丢失）。
@@ -44,7 +44,7 @@ tb 修复见提交 99f0129（flush 256→4096）。
 在仓库根目录（Python + Vivado，输出必须是新的 ASCII 目录）：
 
 ```powershell
-python -X utf8 sim/line3/verify_cleanup/run_verify_cleanup.py --repo . --ref <SHA> --out D:/line3_verify_new --settings D:/AMDDesignTools/2026.1/Vivado/settings64.bat
+python -X utf8 sim/line3/verify_cleanup/run_verify_cleanup.py --repo . --ref <SHA> --out D:/line3_verify_new --settings <VIVADO_INSTALL>Tools/2026.1/Vivado/settings64.bat
 ```
 
 最小单项：`--jobs full16` / `--jobs label_full` / `--jobs wrap` / `--jobs cfg` / `--jobs axi_channels`。
@@ -52,7 +52,7 @@ python -X utf8 sim/line3/verify_cleanup/run_verify_cleanup.py --repo . --ref <SH
 首轮（10-13）证据在 `../line3_verify_cleanup_20261013/evidence/`；失败证据未被覆盖，两轮原始文件均保留。
 
 完整源快照（含各轮 source/ 与 xsim 中间产物）在本地 ZIP：
-`D:\FPGA\line3_verify16_snapshots_20261015.zip`（未入库，按既有惯例仓库只保留小体积证据）。
+`<PROJECT_ROOT>\line3_verify16_snapshots_20261015.zip`（未入库，按既有惯例仓库只保留小体积证据）。
 
 ## 互验与后续门槛
 

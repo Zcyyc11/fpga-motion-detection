@@ -13,9 +13,9 @@
 | E04 | `maintenance_20261009/github_sync.json` | 作者 20:20:48 ls-remote 记录：远程分支=783cd7c、main=452075f、无 PR、未合并 | [史]（与 E03 一致） |
 | E05 | `git diff bd10e2e 783cd7c` | 作者受测提交与本次受测提交之间 src/、sim/ 代码零差异（仅文档/证据/新增 verify_runner_live.py） | [新] |
 
-## 2. 干净检出与软件复现（工作目录 `C:\Users\孙伟博\AppData\Local\Temp\ind_review_20261009\clone`）
+## 2. 干净检出与软件复现（工作目录 `<USER_HOME>\孙伟博\AppData\Local\Temp\ind_review_20261009\clone`）
 
-解释器：`C:\Users\孙伟博\.workbuddy\binaries\python\envs\default\Scripts\python.exe`（3.13.12；numpy 2.5.3、opencv 4.14.0、matplotlib 3.10.x；venv 为本次新建）。
+解释器：`<USER_HOME>\孙伟博\.workbuddy\binaries\python\envs\default\Scripts\python.exe`（3.13.12；numpy 2.5.3、opencv 4.14.0、matplotlib 3.10.x；venv 为本次新建）。
 
 | # | 命令（克隆体根目录，`python -X utf8` 前缀略） | 退出码 | 关键结果 | 原始证据 |
 |---|---|---|---|---|

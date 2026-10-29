@@ -10,7 +10,7 @@
 | 烧录方式 | Vivado 2026.1 JTAG batch（`connect_hw_server → open_hw_target → program_hw_devices`） |
 | 输入信号 | 电脑 HDMI 输出（1280×720@60）→ 板子 J10 |
 | 输出采集 | 板子 J11 → UGREEN 25854 HDMI 采集卡（USB）→ OpenCV 5.0 读取 1280×720 |
-| 测试视频 | vehicles.mp4（Roboflow 官方演示视频，道路车流场景，见 D:\FPGA\test_videos\） |
+| 测试视频 | vehicles.mp4（Roboflow 官方演示视频，道路车流场景，见 test_videos\） |
 
 ## 测试方法（自动化视觉验证）
 

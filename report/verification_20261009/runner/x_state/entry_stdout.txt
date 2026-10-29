@@ -1,9 +1,9 @@
 Vivado 环境来源：--vivado-settings
-本次运行目录（全部保留）：C:\Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\未知态_runs\run_20261009T114647Z_5bfhezts
+本次运行目录（全部保留）：<USER_HOME>\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\未知态_runs\run_20261009T114647Z_5bfhezts
 仿真流程：失败
 检测记录：11 条，帧号 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 帧完整性：未检查（可指定 --expect-frames）；未进行模型一致性比较
 失败原因：检测到未知态 X
 失败原因：缺少 x_hits 检查结果
-日志：C:\Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\未知态_runs\run_20261009T114647Z_5bfhezts\sim\logs\sim_run.log
-结果：C:\Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\未知态_runs\run_20261009T114647Z_5bfhezts\result.json
+日志：<USER_HOME>\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\未知态_runs\run_20261009T114647Z_5bfhezts\sim\logs\sim_run.log
+结果：<USER_HOME>\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\未知态_runs\run_20261009T114647Z_5bfhezts\result.json

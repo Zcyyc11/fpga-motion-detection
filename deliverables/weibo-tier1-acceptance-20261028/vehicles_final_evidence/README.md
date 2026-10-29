@@ -15,7 +15,7 @@
 ## 如何观看视频
 原始 `vehicles_final_hdmi_out.mp4` 为 OpenCV `mp4v`（MPEG-4 Part 2）封装，部分播放器 / VLC 解不出。
 本机另存了一份 VLC 可直接播放的镜像 `vehicles_final_preview.avi`（MJPEG 封装，与本 mp4 内容一致）；
-若仓库内无该 avi，可用 `D:\FPGA\output\reencode_mjpeg.py` 由 mp4 重新生成。
+若仓库内无该 avi，可用 `output\reencode_mjpeg.py` 由 mp4 重新生成。
 
 ## 功耗说明
 团队判定功耗非验收必要指标（验收看真实硬件跑通 + 实测 + 声明芯片型号），板子 12V 无内置功耗传感器，

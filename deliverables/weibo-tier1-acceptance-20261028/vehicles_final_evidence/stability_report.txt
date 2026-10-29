@@ -1,6 +1,6 @@
 === 长稳/功耗报告 ===
 scene: vehicles_final
-video: D:/FPGA/test_videos/vehicles.mp4
+video: test_videos/vehicles.mp4
 device: 1
 negotiated: 640x480
 target_minutes: 10.0

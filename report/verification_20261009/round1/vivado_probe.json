@@ -12,7 +12,7 @@
       "xvlog"
     ],
     "errors": [
-      "ERROR: [XSIM 43-4316] Can not find file: C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/vivado_probe1/中文工程1/src/rtl/bbox.v"
+      "ERROR: [XSIM 43-4316] Can not find file: <USER_HOME>/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/vivado_probe1/中文工程1/src/rtl/bbox.v"
     ],
     "frames": [],
     "line_encodings": [
@@ -34,7 +34,7 @@
       "xvlog"
     ],
     "errors": [
-      "ERROR: [XSIM 43-4316] Can not find file: C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/vivado_probe1/中文工程2/src/rtl/bbox.v"
+      "ERROR: [XSIM 43-4316] Can not find file: <USER_HOME>/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/vivado_probe1/中文工程2/src/rtl/bbox.v"
     ],
     "frames": [],
     "line_encodings": [

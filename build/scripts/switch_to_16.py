@@ -1,7 +1,7 @@
 import subprocess, sys
 
-REPO = r'D:\FPGA\fpga-motion-detection'
-GIT = r'D:\FPGA\fpga-motion-detection\.git'
+REPO = r'.'
+GIT = r'.\.git'
 
 def g(args):
     r = subprocess.run(

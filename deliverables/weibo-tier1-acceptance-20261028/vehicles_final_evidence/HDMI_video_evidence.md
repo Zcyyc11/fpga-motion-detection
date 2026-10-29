@@ -8,7 +8,7 @@
 
 | 项 | 值 |
 |---|---|
-| 文件 | `D:/FPGA/test_videos/vehicles.mp4` |
+| 文件 | `test_videos/vehicles.mp4` |
 | SHA256 | `AC81100D9310BD4E9C02BC0B13B6492781D009742CED347766B2601BE3C44AD4` |
 | 大小 | 35,345,757 bytes（35.3MB） |
 | 分辨率 | 1280×720 |
@@ -23,11 +23,11 @@
 | 项 | 值 |
 |---|---|
 | 采集设备 | UGREEN USB 采集卡，OpenCV `dev=1`（MSMF），协商 640×480 |
-| 采集脚本 | `D:\FPGA\output\play_and_capture.py` |
+| 采集脚本 | `output\play_and_capture.py` |
 | 采集时间 | 2026-10-28 22:13:44 |
 | 统计量 | 976 帧 / 100% 亮帧（≥20）/ 100% 红框帧 / max_red_px=7438 / motion avg 2.11 |
 
-### 已存盘的视觉证据（4 张连续帧截图，路径均在 `D:\FPGA\output\evidence\vehicles_final\`）
+### 已存盘的视觉证据（4 张连续帧截图，路径均在 `output\evidence\vehicles_final\`）
 - `vehicles_final_first.png`（503KB）—— 片头首帧，红框已叠加
 - `vehicles_final_mid.png`（499KB）—— 中段帧
 - `vehicles_final_last.png`（495KB）—— 末段帧
@@ -81,7 +81,7 @@
 
 ## 六、复位/断开重连测试（韦博 PR#3 回传清单 ④，2026-10-29）
 
-脚本：`D:\FPGA\output\reset_reconnect_test.py`（编排：喂视频→断输入→重连；再 sudo reboot→重下 bit→恢复）。判活口径 `fps>10 && motion>1.0 && red_ratio>0.5`。数据见 `reset_reconnect_report.json/.txt`。
+脚本：`output\reset_reconnect_test.py`（编排：喂视频→断输入→重连；再 sudo reboot→重下 bit→恢复）。判活口径 `fps>10 && motion>1.0 && red_ratio>0.5`。数据见 `reset_reconnect_report.json/.txt`。
 
 ### 基线（复位前正常工作态）
 - fps 30.14 / motion 1.29 / red_ratio 1.0 / max_red 6322 —— 板端 HDMI 输出、运动目标红框叠加、采集卡链路均正常。

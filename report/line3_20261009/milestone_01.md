@@ -21,7 +21,7 @@
 | CDnet 历史表 | 读取各存量表，主表 V43 的 12 段/7 类类别均值为 0.7367119048，舍入为 0.737 | cdnet_audit.json |
 | 原始文件保全 | 本轮 Python 入口运行前后全部基线 Git 跟踪文件 SHA256 无变化 | manifest.json、results.json 的 protected_files_changed=[] |
 
-CDnet 数字来自存量 CSV 的四位小数分数再汇总，没有运行真实视频检测，没有原始 TP/FP/FN，不能独立复算像素混淆矩阵。未配置 CDNET_ROOT；检查的 `D:\FPGA\datasets\cdnet2014` 不存在，仓库没有 temporalROI.txt。没有扫描全盘寻找数据，也没有下载数据。
+CDnet 数字来自存量 CSV 的四位小数分数再汇总，没有运行真实视频检测，没有原始 TP/FP/FN，不能独立复算像素混淆矩阵。未配置 CDNET_ROOT；检查的 `<PROJECT_ROOT>\datasets\cdnet2014` 不存在，仓库没有 temporalROI.txt。没有扫描全盘寻找数据，也没有下载数据。
 
 ## 已确认的告警问题
 

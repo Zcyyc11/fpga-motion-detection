@@ -2,7 +2,7 @@
 
 - 审查者：WorkBuddy（底层模型 GLM，Z.ai；版本号按系统声明为 GLM-5.3，无法独立验证）
 - 计划落笔时间：2026-10-09 20:42:45 +0800（此时**尚未**运行任何复现命令，**尚未**读取作者汇总类文档）
-- 受测版本：仓库 `C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo`，
+- 受测版本：仓库 `<USER_HOME>\孙伟博\Desktop\FPGA大赛资料\captain_repo`，
   分支 `codex/line3-review-20261009`，提交 `783cd7c49f474bab711671ed1dc644a0f58386ea`（工作区干净，git diff HEAD 为空）
 
 ## 0. 已读材料与接触顺序声明（防"先看答案"）

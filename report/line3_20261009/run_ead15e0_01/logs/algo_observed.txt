@@ -19,6 +19,6 @@
 告警流水（前 12 条）:
   帧   43  闯入  id2   位置( 632.0, 356.0)  vx=-12.0
   帧  102  闯入  id1   位置( 628.0, 360.0)  vx=-16.0
-告警流水          : C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\line3_20261009\run_ead15e0_01\algo_observed\alarm_events_algo.csv
-逐帧结果          : C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\line3_20261009\run_ead15e0_01\algo_observed\multi_track_results_algo.csv
-可视化            : C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\line3_20261009\run_ead15e0_01\algo_observed\track_result_algo.mp4（绿细框=真值，红粗框=我们检出的，带 id 与瞬时速度）
+告警流水          : <USER_HOME>\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\line3_20261009\run_ead15e0_01\algo_observed\alarm_events_algo.csv
+逐帧结果          : <USER_HOME>\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\line3_20261009\run_ead15e0_01\algo_observed\multi_track_results_algo.csv
+可视化            : <USER_HOME>\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\line3_20261009\run_ead15e0_01\algo_observed\track_result_algo.mp4（绿细框=真值，红粗框=我们检出的，带 id 与瞬时速度）
