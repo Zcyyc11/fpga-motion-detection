@@ -18,6 +18,6 @@
 告警流水（前 12 条）:
   帧   43  闯入  id2   位置( 631.5, 355.5)  vx=-12.0
   帧  102  闯入  id1   位置( 627.5, 359.5)  vx=-16.0
-告警流水          : C:\Users\孙伟博\Desktop\FPGA大赛资料_清理备份_20261009_2004\current_checks\line3_tools\software_rerun\clean\alarm_events.csv
-逐帧结果          : C:\Users\孙伟博\Desktop\FPGA大赛资料_清理备份_20261009_2004\current_checks\line3_tools\software_rerun\clean\multi_track_results.csv
-可视化            : C:\Users\孙伟博\Desktop\FPGA大赛资料_清理备份_20261009_2004\current_checks\line3_tools\software_rerun\clean\track_result.mp4（绿细框=真值，红粗框=我们检出的，带 id 与瞬时速度）
+告警流水          : <DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料_清理备份_20261009_2004\current_checks\line3_tools\software_rerun\clean\alarm_events.csv
+逐帧结果          : <DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料_清理备份_20261009_2004\current_checks\line3_tools\software_rerun\clean\multi_track_results.csv
+可视化            : <DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料_清理备份_20261009_2004\current_checks\line3_tools\software_rerun\clean\track_result.mp4（绿细框=真值，红粗框=我们检出的，带 id 与瞬时速度）

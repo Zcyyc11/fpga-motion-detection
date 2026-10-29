@@ -8,7 +8,7 @@
   "completed_items": 7,
   "expected_items": 72,
   "reason_limit": "Reboot observed; exact termination mechanism before reboot is not established.",
-  "replacement_run": "D:/line3_cdnet_20261010_1700/evaluation02",
+  "replacement_run": "<DRIVE>/line3_cdnet_20261010_1700/evaluation02",
   "replacement_pid": 27788,
   "replacement_started_at": "2026-10-10T19:25:31+08:00",
   "source_sha": "ae5a7d8f77abe577a165b015a83d087f9cb65457",

@@ -1,5 +1,5 @@
 Vivado 环境来源：--vivado-settings
-本次运行目录（全部保留）：C:\Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\编译错误_runs\run_20261009T114645Z_ntmk_2qo
+本次运行目录（全部保留）：<DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\编译错误_runs\run_20261009T114645Z_ntmk_2qo
 仿真流程：失败
 检测记录：0 条，帧号 []
 帧完整性：未检查（可指定 --expect-frames）；未进行模型一致性比较
@@ -8,7 +8,7 @@ Vivado 环境来源：--vivado-settings
 失败原因：日志中存在 ERROR/FATAL
 失败原因：没有本次仿真结束标记
 失败原因：缺少 x_hits 检查结果
-失败原因：CSV 校验失败：[Errno 2] No such file or directory: 'C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\编译错误_runs\\run_20261009T114645Z_ntmk_2qo\\sim\\wave\\bbox_rtl.csv'
-ERROR: [VRFC 10-4982] syntax error near 'syntax' [C:/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/sim/tb/tb_md_pipeline.v:215]
-日志：C:\Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\编译错误_runs\run_20261009T114645Z_ntmk_2qo\sim\logs\sim_run.log
-结果：C:\Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\编译错误_runs\run_20261009T114645Z_ntmk_2qo\result.json
+失败原因：CSV 校验失败：[Errno 2] No such file or directory: '<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\编译错误_runs\\run_20261009T114645Z_ntmk_2qo\\sim\\wave\\bbox_rtl.csv'
+ERROR: [VRFC 10-4982] syntax error near 'syntax' [<DRIVE>/Users/孙伟博/Desktop/FPGA大赛资料/repair_20261009_round1/runner_live_final/编译错误_runs/run_20261009T114645Z_ntmk_2qo/sim/tb/tb_md_pipeline.v:215]
+日志：<DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\编译错误_runs\run_20261009T114645Z_ntmk_2qo\sim\logs\sim_run.log
+结果：<DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料\repair_20261009_round1\runner_live_final\编译错误_runs\run_20261009T114645Z_ntmk_2qo\result.json

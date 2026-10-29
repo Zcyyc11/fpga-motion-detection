@@ -9,24 +9,24 @@ UART 二进制三包，旧 `pc_receiver.py` 保留为 JSONL/TCP 历史模拟入�
 
 ```powershell
 python -m pip install -r sim/line3/requirements-uart.txt
-python sim/line3/check_uart_receiver.py --out D:/uart_check_new
-python sim/line3/check_uart_evidence.py --out D:/uart_evidence_check_new
-python sim/line3/check_uart_type1.py --out D:/uart_type1_check_new
-python sim/line3/uart_receiver.py --file D:/uart_check_new/simulated.bin --source simulated --out D:/uart_replay_new --show
+python sim/line3/check_uart_receiver.py --out <DRIVE>/uart_check_new
+python sim/line3/check_uart_evidence.py --out <DRIVE>/uart_evidence_check_new
+python sim/line3/check_uart_type1.py --out <DRIVE>/uart_type1_check_new
+python sim/line3/uart_receiver.py --file <DRIVE>/uart_check_new/simulated.bin --source simulated --out <DRIVE>/uart_replay_new --show
 ```
 
 所有输出目录必须尚不存在。路径含中文可以使用；不要复用历史输出目录。
 检查工具生成的是模拟报文；最后一条显示坐标画布和告警，**均不是板测**。
 
 本机本次隔离安装仅补 pyserial：运行前设置
-`$env:PYTHONPATH='D:/line3_uart_20261012/deps'`，Python 使用
-`D:/666666/Anaconda/python.exe`。其他机器按上面 requirements 安装即可。
+`$env:PYTHONPATH='<DRIVE>/line3_uart_20261012/deps'`，Python 使用
+`<DRIVE>/666666/Anaconda/python.exe`。其他机器按上面 requirements 安装即可。
 
 ## 接真实串口
 
 ```powershell
 python sim/line3/uart_receiver.py --list-ports
-python sim/line3/uart_receiver.py --port COM7 --out D:/uart_board_capture_new --duration 60 --idle-timeout 5 --show --metadata board_capture_metadata.json
+python sim/line3/uart_receiver.py --port COM7 --out <DRIVE>/uart_board_capture_new --duration 60 --idle-timeout 5 --show --metadata board_capture_metadata.json
 ```
 
 `COM7` 只是示例，请依据板端接线及设备管理器选择实际端口。不要把本机蓝牙 COM
@@ -108,8 +108,8 @@ PNG 文件名带采集序号和帧号，回卷不会覆盖旧图。
 ```
 
 ```powershell
-python sim/line3/uart_receiver.py --file board_raw.bin --out D:/uart_real_replay_new --metadata board_capture_metadata.json
-python sim/line3/verify_uart_capture.py --capture D:/uart_real_replay_new --expected expected_frames.jsonl --out D:/uart_compare_new.json
+python sim/line3/uart_receiver.py --file board_raw.bin --out <DRIVE>/uart_real_replay_new --metadata board_capture_metadata.json
+python sim/line3/verify_uart_capture.py --capture <DRIVE>/uart_real_replay_new --expected expected_frames.jsonl --out <DRIVE>/uart_compare_new.json
 ```
 
 对照工具重新解析原始流，先核对原始字节哈希及保存的帧表，再逐帧检查帧号、目标 ID、

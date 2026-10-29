@@ -44,4 +44,4 @@ PASS direct_batch_requires_isolated_launcher
 PASS batch_template_ascii_crlf
 PASS checkout_retains_batch_crlf
 PASS source_checkout_unchanged
-46/46 PASS; evidence: C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\feedback_validation_20261009\run_20261010_r2\runner
+46/46 PASS; evidence: <DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\feedback_validation_20261009\run_20261010_r2\runner

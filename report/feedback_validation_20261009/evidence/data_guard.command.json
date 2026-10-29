@@ -1,14 +1,14 @@
 {
   "argv": [
-    "D:\\666666\\Anaconda\\python.exe",
+    "<DRIVE>/\666666\\Anaconda\\python.exe",
     "-X",
     "utf8",
     "build/scripts/test_data_guard.py",
     "--tmpdir",
-    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\data_guard",
+    "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\data_guard",
     "--keep"
   ],
-  "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+  "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
   "started": "2026-10-10T10:15:24.803282+08:00",
   "seconds": 19.259,
   "returncode": 0

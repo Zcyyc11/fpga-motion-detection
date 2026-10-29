@@ -1,7 +1,7 @@
 # 实际执行日志（execution_log.md）
 
-时间均为 2026-10-09 UTC+8。Shell：Git Bash。`$PY` = `C:\Users\孙伟博\.workbuddy\binaries\python\envs\default\Scripts\python.exe`。
-临时工作目录 `$T` = `C:\Users\孙伟博\AppData\Local\Temp\ind_review_20261009`（仓库外，全部运行产物保留于此）。
+时间均为 2026-10-09 UTC+8。Shell：Git Bash。`$PY` = `<DRIVE>/Users\孙伟博\.workbuddy\binaries\python\envs\default\Scripts\python.exe`。
+临时工作目录 `$T` = `<DRIVE>/Users\孙伟博\AppData\Local\Temp\ind_review_20261009`（仓库外，全部运行产物保留于此）。
 
 ## §0 准备（20:28–20:44）
 
@@ -13,7 +13,7 @@
 
 ## §1 干净检出（20:45）
 
-`mkdir -p $T && git clone --no-hardlinks "C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo" $T/clone` → exit 0（602 文件）；
+`mkdir -p $T && git clone --no-hardlinks "<DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料\captain_repo" $T/clone` → exit 0（602 文件）；
 `git checkout -q 783cd7c…` → HEAD 一致、`git status` 干净。
 
 ## §2 软件复现（20:46–20:55）
@@ -37,12 +37,12 @@ results.json 要点：clean recall 1.0 / id_switches 0 / track_breaks 0；algo r
 
 | 时间 | 命令 | exit | 结果 |
 |---|---|---|---|
-| 20:48 | `run_sim.py --vivado-settings D:\AMD2025.2\2025.2\Vivado\settings64.bat --scratch-root $T\sim_scratch` | 2 | 内容完整（11 条、结束标记、x_hits=0）；子进程 0xC0000409 |
+| 20:48 | `run_sim.py --vivado-settings <DRIVE>/AMD2025.2\2025.2\Vivado\settings64.bat --scratch-root $T\sim_scratch` | 2 | 内容完整（11 条、结束标记、x_hits=0）；子进程 0xC0000409 |
 | 20:49 | 同上，`sim_scratch2` | 2 | 同上（复现） |
 | 20:49 | 归一化 cmp：我产出 CSV vs 仓库 `sim/wave/bbox_rtl.csv` | — | **内容一致** |
 | 21:08 | 排空实验：`sed` 改克隆体 tb `while (vframe <= FRAMES + 1)` → `run_sim.py --scratch-root $T\sim_scratch3`；比对其 CSV 与作者 expected.csv | 2 | **12 条帧 0..11，逐字节一致**；tb 还原，`git status` 干净 |
-| 21:19 | `verify_runner_live.py --repo $T/clone --out $T\out\rl3 --ascii-root D:/666666/Temp/ind_review_ascii --settings …` | 1 | compile_error/x_state 正确拒绝；expect12 正确失败；4 项路径变体均 0xC0000409 |
-| 21:20 | `run_sim.py`（非沙箱，`D:/666666/Temp/ind_review_nosandbox`） | 2 | 仍 0xC0000409 → 非沙箱因素 |
+| 21:19 | `verify_runner_live.py --repo $T/clone --out $T\out\rl3 --ascii-root <DRIVE>/666666/Temp/ind_review_ascii --settings …` | 1 | compile_error/x_state 正确拒绝；expect12 正确失败；4 项路径变体均 0xC0000409 |
+| 21:20 | `run_sim.py`（非沙箱，`<DRIVE>/666666/Temp/ind_review_nosandbox`） | 2 | 仍 0xC0000409 → 非沙箱因素 |
 
 ## §5 测试套件（20:52–21:05）
 
@@ -54,7 +54,7 @@ results.json 要点：clean recall 1.0 / id_switches 0 / track_breaks 0；algo r
 | `test_sim_runner.py --out <tempfile>` | 0 | 46/46 |
 | `sim/line3/check_tools.py --out <tempfile>` | 0 | 18/18 |
 | `cdnet_official.py --set r12 --seq all`（无数据） | 1 | 明确报错不产空表 |
-| `algo_lab.py --data-root C:/不存在… --list` | 1 | 明确报错 |
+| `algo_lab.py --data-root <DRIVE>/不存在… --list` | 1 | 明确报错 |
 
 ## §6 故障注入（20:50–21:00，克隆体）
 

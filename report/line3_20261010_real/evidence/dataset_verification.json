@@ -1,8 +1,8 @@
 {
-  "archive": "C:\\Users\\\u5b59\u4f1f\u535a\\Desktop\\dataset2014.zip",
+  "archive": "<DRIVE>/\Users\\\u5b59\u4f1f\u535a\\Desktop\\dataset2014.zip",
   "archive_bytes": 3918467615,
   "archive_sha256": "05c6d0dd64858b094cb0d309e5b63be42de52f2b5c5adff4a65e6a640dfd2a84",
-  "destination": "D:\\cdnet2014_line3_20261010_1700",
+  "destination": "<DRIVE>/\cdnet2014_line3_20261010_1700",
   "sequences": {
     "badWeather/snowFall": {
       "input": 6500,
@@ -187,7 +187,7 @@
   },
   "status": "PASS",
   "elapsed_seconds": 208.97154116630554,
-  "manifest": "D:\\cdnet2014_line3_20261010_1700\\file_manifest_resumed_1791622142677164300.csv",
+  "manifest": "<DRIVE>/\cdnet2014_line3_20261010_1700\\file_manifest_resumed_1791622142677164300.csv",
   "manifest_sha256": "2c7e434dfef587de2100bc1b5533096b0e87ecb48057a7c86272f78979cff7e6",
   "workers": 8,
   "resume_verify": true

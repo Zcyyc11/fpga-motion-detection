@@ -1,11 +1,11 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/board/axi_lite_slave.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/board/axi_lite_slave.v" into library work
 INFO: [VRFC 10-311] analyzing module axi_lite_slave
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/sim/tb/tb_axi_lite_slave.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/tb/tb_axi_lite_slave.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_axi_lite_slave
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_axi_lite_slave -s check 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_axi_lite_slave -s check 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -45,6 +45,6 @@ INFO ③ CNT 第二拍 00000032
 [slave] READ accept addr=0x00
 PASS ④ 无错位 00000099
 ==== RESULT: PASS —— AXI↔瘦总线翻译正确，PS↔PL 路径成立 ====
-$finish called at time : 735 ns : File "D:/line3_verify_cleanup_20261013_01/source/sim/tb/tb_axi_lite_slave.v" Line 125
+$finish called at time : 735 ns : File "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/tb/tb_axi_lite_slave.v" Line 125
 ## quit
 INFO: [Common 17-206] Exiting xsim at Tue Oct 13 16:42:41 2026...

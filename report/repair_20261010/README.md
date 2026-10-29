@@ -52,10 +52,10 @@
 在仓库根目录运行，替换为本机实际 Python、Vivado 路径，输出必须是仓库外尚不存在的英文目录：
 
 ```powershell
-python -X utf8 sim/line3/run_repair_regressions.py --settings D:/AMD2025.2/2025.2/Vivado/settings64.bat --out D:/666666/Temp/repair_review_new01
+python -X utf8 sim/line3/run_repair_regressions.py --settings <DRIVE>/AMD2025.2/2025.2/Vivado/settings64.bat --out <DRIVE>/666666/Temp/repair_review_new01
 ```
 
-最终原始产物为 `D:/666666/Temp/codex_repair_20261010_final01`，冻结 checkout 位于其下。输出的 jobs.json 必须包含全部 12 项且退出码全为 0，checkout_status.txt 必须为空。最终归档后的提交仅补报告、索引和证据；源代码与受测提交一致。
+最终原始产物为 `<DRIVE>/666666/Temp/codex_repair_20261010_final01`，冻结 checkout 位于其下。输出的 jobs.json 必须包含全部 12 项且退出码全为 0，checkout_status.txt 必须为空。最终归档后的提交仅补报告、索引和证据；源代码与受测提交一致。
 
 开发失败仍保留：[contracts01](contracts01/results.json)暴露模型 64/49 差异；[contracts02](contracts02/results.json)暴露旧 RTL 贴边残留；[contracts03](contracts03/results.json)是中间验证，最终以 final_evidence 为准。software_first 的 EXIT 打印 KeyError 已修复，software_second 与旧漏报 cross_out 的参考 CSV 差异仍保留，旧参考未改写。
 

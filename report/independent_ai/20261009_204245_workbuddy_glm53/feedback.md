@@ -15,14 +15,14 @@
   3. 第一轮完成后才读：`docs/line3_status_20261009.md`、`docs/reproduce_line3.md`、`docs/captain_feedback_20261009.txt`、`docs/verification_fixes_20261009.md`、`report/line3_review_20261009/README.md`、`report/line3_20261009/*.md`（issues/report_draft/team_evidence/results_ledger）、工作区 `handoff.md`、`maintenance_20261009/*.json`、`delivery/manifest.json`。
   4. 未读：`docs/independent_review_prompt.md`（委托方给"另一 AI"的提示词，非证据）。
 - **仓库、分支、完整 Git SHA、工作区差异**：
-  本地 `C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo`，分支 `codex/line3-review-20261009`，
+  本地 `<DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料\captain_repo`，分支 `codex/line3-review-20261009`，
   **受测 SHA = `783cd7c49f474bab711671ed1dc644a0f58386ea`**，`git diff HEAD` 为空、无 stash。
-  干净检出为 `git clone --no-hardlinks` 到仓库外 `C:\Users\孙伟博\AppData\Local\Temp\ind_review_20261009\clone` 后 checkout 该 SHA（602 文件）。
+  干净检出为 `git clone --no-hardlinks` 到仓库外 `<DRIVE>/Users\孙伟博\AppData\Local\Temp\ind_review_20261009\clone` 后 checkout 该 SHA（602 文件）。
   注意：作者自报"受测整合提交 bd10e2e"；我核对 `git diff bd10e2e 783cd7c` 仅含文档/证据/新增 verify_runner_live.py，**src/ 与 sim/ 代码零差异**，两者对本次复现等价。
-- **操作系统、解释器、依赖、仿真工具**：Windows（win32）；托管 Python 3.13.12 新建 venv（numpy 2.5.3、opencv-python 4.14.0、matplotlib 3.10.x，均符合 `src/ps/requirements.txt` 区间）；Git for Windows；Vivado 2025.2（`D:\AMD2025.2\2025.2\Vivado`，与推荐 2026.1 不同，已注意版本差）。
+- **操作系统、解释器、依赖、仿真工具**：Windows（win32）；托管 Python 3.13.12 新建 venv（numpy 2.5.3、opencv-python 4.14.0、matplotlib 3.10.x，均符合 `src/ps/requirements.txt` 区间）；Git for Windows；Vivado 2025.2（`<DRIVE>/AMD2025.2\2025.2\Vivado`，与推荐 2026.1 不同，已注意版本差）。
 - **可执行与不可执行的范围及原因**：
   - 可执行：B 路全部命令、线三取证器、全部 Python 测试套件、真实 xsim 仿真、故障注入、证据比对、交付包校验。
-  - **不可执行①：CDnet 真实数据复现**——本机无 CDnet2014 数据集（已搜 D:\ 全部两级、桌面三级、temporalROI 特征文件，均无；环境变量 CDNET_ROOT 未设）。0.737 复现**未执行**，缺数据集。
+  - **不可执行①：CDnet 真实数据复现**——本机无 CDnet2014 数据集（已搜 <DRIVE>/ 全部两级、桌面三级、temporalROI 特征文件，均无；环境变量 CDNET_ROOT 未设）。0.737 复现**未执行**，缺数据集。
   - **不可执行②：GitHub 远程实时核验**——仓库私有，本环境无凭据（`git ls-remote` 需交互用户名、匿名 API 404、`git credential fill` 挂起）。远程状态以本地缓存 `origin/*` 引用（最后一次成功 fetch 2026-10-09 20:22:04 +0800）为准，实时性不可复核。
   - **不可执行③：板卡/串口实物**——无硬件，D2 实物回传只能审代码与证据。
   - 环境异常声明：我会话中 xsim 每次在**完整产出正确结果后**以 0xC0000409 退出（沙箱内、非沙箱、纯英文路径均复现，共 4 次独立运行）；作者会话（PowerShell+Anaconda Python）rc=0。根因未定位，**不影响任何 CSV/日志内容**，但导致 run_sim.py 判"子进程非零退出"。

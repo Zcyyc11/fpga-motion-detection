@@ -13,7 +13,7 @@
 ```powershell
 $env:PYTHONUTF8 = '1'
 $env:PYTHONIOENCODING = 'utf-8'
-& 'D:\666666\Anaconda\python.exe' -X utf8 sim/line3/run.py --out report/line3_20261009/run_ead15e0_02
+& '<DRIVE>/666666\Anaconda\python.exe' -X utf8 sim/line3/run.py --out report/line3_20261009/run_ead15e0_02
 ```
 
 当前环境为 Python 3.13.5、NumPy 2.1.3、OpenCV 4.13.0、Matplotlib 3.10.0。沿用已有环境，没有升级或降级 base 环境。仓库要求 NumPy 2.2.6、opencv-python 4.12.0.88、Matplotlib 3.10.8、imageio-ffmpeg 0.6.0；本轮不是锁定依赖环境复现。实际解释器、参数、源码与输入 SHA256 见 `report/line3_20261009/run_ead15e0_01/manifest.json`。
@@ -37,7 +37,7 @@ $env:PYTHONIOENCODING = 'utf-8'
 单独比对 CSV：
 
 ```powershell
-& 'D:\666666\Anaconda\python.exe' -X utf8 sim/line3/compare.py expected.csv actual.csv --keys frame --out new_diff.json
+& '<DRIVE>/666666\Anaconda\python.exe' -X utf8 sim/line3/compare.py expected.csv actual.csv --keys frame --out new_diff.json
 ```
 
 无差异返回 0；发现差异或无效输入返回 2。`--out` 已存在时拒绝覆盖。告警表的键使用 `frame,tid,kind`。
@@ -45,20 +45,20 @@ $env:PYTHONIOENCODING = 'utf-8'
 ## 新 RTL 仿真入口
 
 ```powershell
-& 'D:\666666\Anaconda\python.exe' -X utf8 sim/line3/run_rtl.py --settings 'D:\AMD2025.2\2025.2\Vivado\settings64.bat' --out 'D:\666666\Temp\line3_xsim_reproduce_fd01' --evidence report/line3_reproduce/rtl_fd01 --drain-frames 1
+& '<DRIVE>/666666\Anaconda\python.exe' -X utf8 sim/line3/run_rtl.py --settings '<DRIVE>/AMD2025.2\2025.2\Vivado\settings64.bat' --out '<DRIVE>/666666\Temp\line3_xsim_reproduce_fd01' --evidence report/line3_reproduce/rtl_fd01 --drain-frames 1
 ```
 
 新目录参数仅为复现示例。该入口复制 11 份 RTL 和原 testbench 到新的英文目录，用实际安装的 settings64.bat 执行 xvlog、xelab、xsim；不调用写死 2026.1 路径的共享启动脚本。没有运行综合、实现、下载或板卡测试。改变模式用 `--mode bg` 并换新输出目录。
 
 `--drain-frames 1` 仅把 testbench 的 FRAMES 由12调13，让最后一次 bbox 结算有足够收尾时间，模型期望仍为0–11，不改任何源码。默认0保留原台行为。最终 framediff 在 `rtl_fd03/`、bg在 `rtl_bg01/` 均完整12行、全字段一致、x_hits=0；各自wave/保存12张输出及12张掩码PPM。结果只覆盖320×180小尺寸合成激励。
 
-首次结果在 `report/line3_20261009/rtl_fd01/`。工具确实运行完成且无 X，但完整 12 帧验收失败，详见 `result.json`。原始 PPM 和仿真构建产物保留在 `D:\666666\Temp\line3_xsim_20261009_fd01`，没有删除。
+首次结果在 `report/line3_20261009/rtl_fd01/`。工具确实运行完成且无 X，但完整 12 帧验收失败，详见 `result.json`。原始 PPM 和仿真构建产物保留在 `<DRIVE>/666666\Temp\line3_xsim_20261009_fd01`，没有删除。
 
 ## 工具验收与媒体检查
 
 ```powershell
-& 'D:\666666\Anaconda\python.exe' -X utf8 sim/line3/check_tools.py --out report/line3_reproduce/tools01
-& 'D:\666666\Anaconda\python.exe' -X utf8 sim/line3/inspect_media.py --out report/line3_reproduce/media01 --wave 'D:\666666\Temp\line3_xsim_reproduce_fd01/wave'
+& '<DRIVE>/666666\Anaconda\python.exe' -X utf8 sim/line3/check_tools.py --out report/line3_reproduce/tools01
+& '<DRIVE>/666666\Anaconda\python.exe' -X utf8 sim/line3/inspect_media.py --out report/line3_reproduce/media01 --wave '<DRIVE>/666666\Temp\line3_xsim_reproduce_fd01/wave'
 ```
 
 check_tools本轮18项通过；其中完整软件入口因为5项真实告警FAIL返回2，工具测试正确识别这个返回码。check_tools固定针对ead15e0已知反例；算法修复后应另建版本并审查期望，不能机械要求仍有5项失败。

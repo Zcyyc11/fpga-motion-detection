@@ -1,5 +1,5 @@
 @echo off
-call "D:/AMDDesignTools/2026.1/Vivado/settings64.bat"
+call "<VIVADO_INSTALL>Tools/2026.1/Vivado/settings64.bat"
 if errorlevel 1 exit /b 10
 call xvlog.bat --relax -sv -f files.f
 if errorlevel 1 exit /b 11

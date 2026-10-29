@@ -4,190 +4,190 @@
     {
       "name": "boundaries",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/test_verification_boundaries.py",
         "--out",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\boundaries"
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\boundaries"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 156.536
     },
     {
       "name": "runner",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/test_sim_runner.py",
         "--out",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\runner"
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\runner"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 32.149
     },
     {
       "name": "tools",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/check_tools.py",
         "--out",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\tools"
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\tools"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 24.216
     },
     {
       "name": "repairs",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/check_repairs.py",
         "--out",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\repairs"
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\repairs"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 2.403
     },
     {
       "name": "docs",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/check_doc_commands.py"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 5.628
     },
     {
       "name": "docs_self",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/check_doc_commands.py",
         "--self-test"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 1.645
     },
     {
       "name": "rtl_default",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/run_sim.py",
         "--vivado-settings",
-        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
         "--scratch-root",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\rtl_default",
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\rtl_default",
         "--expect-frames",
         "12"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 19.273
     },
     {
       "name": "rtl_fd",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/run_rtl.py",
         "--settings",
-        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
         "--out",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\fd_scratch",
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\fd_scratch",
         "--evidence",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\rtl_fd"
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\rtl_fd"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 10.113
     },
     {
       "name": "rtl_bg",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/run_rtl.py",
         "--settings",
-        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
         "--mode",
         "bg",
         "--out",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\bg_scratch",
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\bg_scratch",
         "--evidence",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\rtl_bg"
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\rtl_bg"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 10.284
     },
     {
       "name": "rtl_compat",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/run_rtl.py",
         "--settings",
-        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
         "--drain-frames",
         "1",
         "--out",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\compat_scratch",
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\compat_scratch",
         "--evidence",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\rtl_compat"
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\rtl_compat"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 10.304
     },
     {
       "name": "contracts",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/check_rtl_contracts.py",
         "--settings",
-        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
         "--out",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\contracts"
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\contracts"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 45.243
     },
     {
       "name": "data_guard",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\preserve_worker.py",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout\\build\\scripts\\test_data_guard.py",
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\preserve_worker.py",
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression",
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout\\build\\scripts\\test_data_guard.py",
         "--tmpdir",
-        "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\data_guard",
+        "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\data_guard",
         "--keep"
       ],
-      "cwd": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
+      "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\checkout",
       "exit_code": 0,
       "seconds": 17.714
     }

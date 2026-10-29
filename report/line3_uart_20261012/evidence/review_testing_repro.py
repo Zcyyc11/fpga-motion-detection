@@ -8,8 +8,8 @@ import struct
 import subprocess
 import sys
 
-WORK = Path('D:/line3_uart_20261012/work')
-ROOT = Path('D:/line3_uart_20261012/review_testing')
+WORK = Path('<DRIVE>/line3_uart_20261012/work')
+ROOT = Path('<DRIVE>/line3_uart_20261012/review_testing')
 sys.path.insert(0, str(WORK / 'sim/line3'))
 import uart_receiver as rx
 import verify_uart_capture as verifier

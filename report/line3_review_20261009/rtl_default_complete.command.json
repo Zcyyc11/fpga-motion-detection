@@ -1,20 +1,20 @@
 {
   "name": "rtl_default_complete",
   "command": [
-    "D:\\666666\\Anaconda\\python.exe",
+    "<DRIVE>/\666666\\Anaconda\\python.exe",
     "-X",
     "utf8",
     "build/scripts/run_sim.py",
     "--vivado-settings",
-    "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+    "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
     "--scratch-root",
-    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default",
+    "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default",
     "--expect-frames",
     "12"
   ],
-  "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+  "cwd": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
   "rc": 2,
   "seconds": 8.35,
-  "stdout_tail": "Vivado 环境来源：--vivado-settings\r\n本次运行目录（全部保留）：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default\\run_20261009T120849Z_xtq7m4u_\r\n仿真流程：通过\r\n检测记录：11 条，帧号 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\r\n帧完整性：{'checked': True, 'expected_count': 12, 'first_frame': 0, 'actual_count': 11, 'missing': [11], 'unexpected': [], 'passed': False}\r\n失败原因：帧范围不完整；查看 completeness.missing/unexpected\r\n日志：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default\\run_20261009T120849Z_xtq7m4u_\\sim\\logs\\sim_run.log\r\n结果：C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default\\run_20261009T120849Z_xtq7m4u_\\result.json\r\n",
+  "stdout_tail": "Vivado 环境来源：--vivado-settings\r\n本次运行目录（全部保留）：<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default\\run_20261009T120849Z_xtq7m4u_\r\n仿真流程：通过\r\n检测记录：11 条，帧号 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\r\n帧完整性：{'checked': True, 'expected_count': 12, 'first_frame': 0, 'actual_count': 11, 'missing': [11], 'unexpected': [], 'passed': False}\r\n失败原因：帧范围不完整；查看 completeness.missing/unexpected\r\n日志：<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default\\run_20261009T120849Z_xtq7m4u_\\sim\\logs\\sim_run.log\r\n结果：<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\rtl_default\\run_20261009T120849Z_xtq7m4u_\\result.json\r\n",
   "stderr_tail": ""
 }

@@ -21,4 +21,4 @@ RTL 硬件模型参考  dx=16, frames=12, h=180, obj_h=30, obj_w=40, w=320, x0=4
      10      1 (   20,   40)-(  119,   54)      600
      11      1 (   20,   40)-(  127,   54)      600
 
-已写出: C:\Users\孙伟博\Desktop\FPGA大赛资料_清理备份_20261009_2004\current_checks\line3_tools\software_rerun\bg.csv
+已写出: <DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料_清理备份_20261009_2004\current_checks\line3_tools\software_rerun\bg.csv

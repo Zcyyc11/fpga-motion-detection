@@ -143,7 +143,7 @@ CDnet旧反例表明损坏输入可能静默跳过或补零，须队长修复后
 ## 9. 复现说明
 
 1. 使用源码基线ead15e0并包含本线提交，保留原资料。建议在新的纯英文项目路径放置复现副本，按运行说明安装独立环境；不要直接降级已有base。
-2. 本轮实用环境：Windows、`D:\666666\Anaconda\python.exe`，Python3.13.5、NumPy2.1.3、OpenCV4.13.0、Matplotlib3.10.0。与requirements锁定版本不同，尚未做干净环境锁定版本复现。
+2. 本轮实用环境：Windows、`<DRIVE>/666666\Anaconda\python.exe`，Python3.13.5、NumPy2.1.3、OpenCV4.13.0、Matplotlib3.10.0。与requirements锁定版本不同，尚未做干净环境锁定版本复现。
 3. 从仓库根运行`python -X utf8 sim/line3/run.py --out <新目录>`。应得到两模式CSV/视频、观察记录、严格差异、小测试和CDnet存量审计；ead15e0有5项行为失败，应返回2。
 4. 运行`python -X utf8 sim/line3/check_tools.py --out <另一个新目录>`验证本线工具；它依赖已随仓保存的run_ead15e0_01观察记录并会重跑软件入口。当前期望18/18。
 5. 用已有Vivado2025.2的settings64.bat，按运行说明执行run_rtl.py，输出至新的英文scratch和新evidence目录，指定`--drain-frames 1`；bg另加`--mode bg`。应有完整12行、无X且严格差异为空。所有PPM随证据保存。

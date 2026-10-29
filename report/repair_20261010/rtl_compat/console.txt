@@ -1,35 +1,35 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/bbox.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/bbox.v" into library work
 INFO: [VRFC 10-311] analyzing module bbox
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/diff_stage.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/diff_stage.v" into library work
 INFO: [VRFC 10-311] analyzing module diff_stage
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/downsample2x2.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/downsample2x2.v" into library work
 INFO: [VRFC 10-311] analyzing module downsample2x2
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/frame_buf.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/frame_buf.v" into library work
 INFO: [VRFC 10-311] analyzing module frame_buf
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/md_pipeline.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/md_pipeline.v" into library work
 INFO: [VRFC 10-311] analyzing module md_pipeline
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/morph3x3.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/morph3x3.v" into library work
 INFO: [VRFC 10-311] analyzing module morph3x3
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/morph_open.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/morph_open.v" into library work
 INFO: [VRFC 10-311] analyzing module morph_open
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/overlay.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/overlay.v" into library work
 INFO: [VRFC 10-311] analyzing module overlay
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/pattern_gen.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/pattern_gen.v" into library work
 INFO: [VRFC 10-311] analyzing module pattern_gen
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/tb_md_pipeline.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/tb_md_pipeline.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_md_pipeline
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/threshold.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/threshold.v" into library work
 INFO: [VRFC 10-311] analyzing module threshold
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_compat/rtl/video_timing.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/video_timing.v" into library work
 INFO: [VRFC 10-311] analyzing module video_timing
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical -timescale 1ns/1ps tb_md_pipeline -generic_top MODE_BG=0 -generic_top FRAMES=12 -s line3_sim 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical -timescale 1ns/1ps tb_md_pipeline -generic_top MODE_BG=0 -generic_top FRAMES=12 -s line3_sim 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3645] port 'vhs' remains unconnected for this instance [D:/666666/Temp/codex_repair_20261010_compat/rtl/tb_md_pipeline.v:65]
+WARNING: [VRFC 10-3645] port 'vhs' remains unconnected for this instance [<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/tb_md_pipeline.v:65]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -74,6 +74,6 @@ t=7549535000  第 10 帧检测: bbox=(92,40)-(119,54)  cnt=240  valid=1
 t=8233535000  第 11 帧检测: bbox=(100,40)-(127,54)  cnt=240  valid=1
 ---- 仿真结束：共跑 13 个视频帧，bbox 见 wave/bbox_rtl.csv ----
 ---- X 检查：掩码流未出现未知态（x_hits=0）----
-$finish called at time : 8233540 ns : File "D:/666666/Temp/codex_repair_20261010_compat/rtl/tb_md_pipeline.v" Line 205
+$finish called at time : 8233540 ns : File "<DRIVE>/666666/Temp/codex_repair_20261010_compat/rtl/tb_md_pipeline.v" Line 205
 exit
 INFO: [Common 17-206] Exiting xsim at Sat Oct 10 10:29:44 2026...

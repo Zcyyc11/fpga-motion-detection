@@ -1,50 +1,50 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/alarm.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/alarm.v" into library work
 INFO: [VRFC 10-311] analyzing module alarm
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/bbox.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/bbox.v" into library work
 INFO: [VRFC 10-311] analyzing module bbox
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/bbox_snapshot.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/bbox_snapshot.v" into library work
 INFO: [VRFC 10-311] analyzing module bbox_snapshot
-WARNING: [VRFC 10-3380] identifier 'ack' is used before its declaration [D:/line3_verify_cleanup_20261013_01/source/src/rtl/bbox_snapshot.v:101]
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/diff_stage.v" into library work
+WARNING: [VRFC 10-3380] identifier 'ack' is used before its declaration [<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/bbox_snapshot.v:101]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/diff_stage.v" into library work
 INFO: [VRFC 10-311] analyzing module diff_stage
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/downsample2x2.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/downsample2x2.v" into library work
 INFO: [VRFC 10-311] analyzing module downsample2x2
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/frame_buf.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/frame_buf.v" into library work
 INFO: [VRFC 10-311] analyzing module frame_buf
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/md_pipeline.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/md_pipeline.v" into library work
 INFO: [VRFC 10-311] analyzing module md_pipeline
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/morph3x3.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/morph3x3.v" into library work
 INFO: [VRFC 10-311] analyzing module morph3x3
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/morph_open.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/morph_open.v" into library work
 INFO: [VRFC 10-311] analyzing module morph_open
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/multi_bbox.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/multi_bbox.v" into library work
 INFO: [VRFC 10-311] analyzing module multi_bbox
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/overlay.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/overlay.v" into library work
 INFO: [VRFC 10-311] analyzing module overlay
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/overlay_multi.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/overlay_multi.v" into library work
 INFO: [VRFC 10-311] analyzing module overlay_multi
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/pattern_gen.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/pattern_gen.v" into library work
 INFO: [VRFC 10-311] analyzing module pattern_gen
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/regs.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/regs.v" into library work
 INFO: [VRFC 10-311] analyzing module regs
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/threshold.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/threshold.v" into library work
 INFO: [VRFC 10-311] analyzing module threshold
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/track.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/track.v" into library work
 INFO: [VRFC 10-311] analyzing module track
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/uart_tx.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/uart_tx.v" into library work
 INFO: [VRFC 10-311] analyzing module uart_tx
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/video_timing.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/video_timing.v" into library work
 INFO: [VRFC 10-311] analyzing module video_timing
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_cfg_enable_verify.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_cfg_enable_verify.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_cfg_enable_verify
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_cfg_enable_verify -s check 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_cfg_enable_verify -s check 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3645] port 'vde' remains unconnected for this instance [D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_cfg_enable_verify.v:6]
+WARNING: [VRFC 10-3645] port 'vde' remains unconnected for this instance [<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_cfg_enable_verify.v:6]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -88,6 +88,6 @@ PASS ENABLE register readback
 PASS background mode nontrivial samples
 PASS ENABLE 0 restores diff mode
 VERIFY_DONE cfg errors=0
-$finish called at time : 100460 ns : File "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_cfg_enable_verify.v" Line 42
+$finish called at time : 100460 ns : File "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_cfg_enable_verify.v" Line 42
 ## quit
 INFO: [Common 17-206] Exiting xsim at Tue Oct 13 16:42:21 2026...

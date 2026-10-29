@@ -30,10 +30,10 @@ INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum o
 INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: max.
 INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
 # report_drc              -file [file join $REPORT_DIR impl_drc.rpt]
-Command: report_drc -file D:/line3_closeout_20261011_1000_work/board_integrated_mode0/build/reports/impl_drc.rpt
+Command: report_drc -file <DRIVE>/line3_closeout_20261011_1000_work/board_integrated_mode0/build/reports/impl_drc.rpt
 INFO: [IP_Flow 19-1839] IP Catalog is up to date.
 INFO: [DRC 23-27] Running DRC with 2 threads
-INFO: [Vivado_Tcl 2-168] The results of DRC are in file D:/line3_closeout_20261011_1000_work/board_integrated_mode0/build/reports/impl_drc.rpt.
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file <DRIVE>/line3_closeout_20261011_1000_work/board_integrated_mode0/build/reports/impl_drc.rpt.
 report_drc completed successfully
 # set WNS [get_property SLACK [get_timing_paths -max_paths 1 -setup]]
 # set WHS [get_property SLACK [get_timing_paths -max_paths 1 -hold]]
@@ -44,9 +44,9 @@ report_drc completed successfully
 # puts "   时序  WNS(setup) = $WNS ns   WHS(hold) = $WHS ns"
    时序  WNS(setup) = 0.780 ns   WHS(hold) = 0.037 ns
 # puts "   bit 流：$BIT_DST"
-   bit 流：D:/line3_closeout_20261011_1000_work/board_integrated_mode0/build/bitstream/board_top.bit
+   bit 流：<DRIVE>/line3_closeout_20261011_1000_work/board_integrated_mode0/build/bitstream/board_top.bit
 # puts "   报告  \xef\xbc?$REPORT_DIR"
-   报告  \xef\xbc?D:/line3_closeout_20261011_1000_work/board_integrated_mode0/build/reports
+   报告  \xef\xbc?<DRIVE>/line3_closeout_20261011_1000_work/board_integrated_mode0/build/reports
 # puts "=============================================================="
 ==============================================================
 # if {($WNS < 0) || ($WHS < 0)} {

@@ -1,13 +1,13 @@
 {
   "argv": [
-    "D:\\666666\\Anaconda\\python.exe",
+    "<DRIVE>/\666666\\Anaconda\\python.exe",
     "-X",
     "utf8",
     "sim/line3/check_tools.py",
     "--out",
-    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\tools"
+    "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\tools"
   ],
-  "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+  "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
   "started": "2026-10-10T10:14:51.061887+08:00",
   "seconds": 33.738,
   "returncode": 0

@@ -1,6 +1,6 @@
 @echo off
 setlocal
-call "D:\AMD2025.2\2025.2\Vivado\settings64.bat"
+call "<DRIVE>/AMD2025.2\2025.2\Vivado\settings64.bat"
 if errorlevel 1 exit /b 10
 call xvlog.bat --relax -sv -f files.f
 if errorlevel 1 exit /b 11

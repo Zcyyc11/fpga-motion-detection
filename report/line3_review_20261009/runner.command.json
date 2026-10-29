@@ -1,16 +1,16 @@
 {
   "name": "runner",
   "command": [
-    "D:\\666666\\Anaconda\\python.exe",
+    "<DRIVE>/\666666\\Anaconda\\python.exe",
     "-X",
     "utf8",
     "build/scripts/test_sim_runner.py",
     "--out",
-    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner"
+    "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner"
   ],
-  "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+  "cwd": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
   "rc": 0,
   "seconds": 30.01,
-  "stdout_tail": "PASS healthy\r\nPASS second_run_is_distinct_and_preserves_first\r\nPASS mixed\r\nPASS compile\r\nPASS elaborate\r\nPASS engine\r\nPASS engine_caps\r\nPASS bracket_error\r\nPASS fatal\r\nPASS lower_fatal\r\nPASS error\r\nPASS x_chinese\r\nPASS x_numeric\r\nPASS no_x_check\r\nPASS no_done\r\nPASS nonzero\r\nPASS timeout\r\nPASS no_output\r\nPASS no_csv\r\nPASS empty_csv\r\nPASS csv_x\r\nPASS duplicate\r\nPASS gap\r\nPASS reverse\r\nPASS bad_bytes\r\nPASS missing_settings\r\nPASS failed_settings\r\nPASS scratch_file\r\nPASS invalid_top\r\nPASS expect12\r\nPASS expect11\r\nPASS negative_count\r\nPASS settings_cli_priority\r\nPASS xilinx_settings\r\nPASS path_environment\r\nPASS no_tools\r\nPASS source_scratch_rejected\r\nPASS scratch_cli_priority\r\nPASS missing_top\r\nPASS unsafe_top\r\nPASS zero_count\r\nPASS expect_offset\r\nPASS direct_batch_requires_isolated_launcher\r\nPASS batch_template_ascii_crlf\r\nPASS checkout_retains_batch_crlf\r\nPASS source_checkout_unchanged\r\n46/46 PASS; evidence: C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\r\n",
+  "stdout_tail": "PASS healthy\r\nPASS second_run_is_distinct_and_preserves_first\r\nPASS mixed\r\nPASS compile\r\nPASS elaborate\r\nPASS engine\r\nPASS engine_caps\r\nPASS bracket_error\r\nPASS fatal\r\nPASS lower_fatal\r\nPASS error\r\nPASS x_chinese\r\nPASS x_numeric\r\nPASS no_x_check\r\nPASS no_done\r\nPASS nonzero\r\nPASS timeout\r\nPASS no_output\r\nPASS no_csv\r\nPASS empty_csv\r\nPASS csv_x\r\nPASS duplicate\r\nPASS gap\r\nPASS reverse\r\nPASS bad_bytes\r\nPASS missing_settings\r\nPASS failed_settings\r\nPASS scratch_file\r\nPASS invalid_top\r\nPASS expect12\r\nPASS expect11\r\nPASS negative_count\r\nPASS settings_cli_priority\r\nPASS xilinx_settings\r\nPASS path_environment\r\nPASS no_tools\r\nPASS source_scratch_rejected\r\nPASS scratch_cli_priority\r\nPASS missing_top\r\nPASS unsafe_top\r\nPASS zero_count\r\nPASS expect_offset\r\nPASS direct_batch_requires_isolated_launcher\r\nPASS batch_template_ascii_crlf\r\nPASS checkout_retains_batch_crlf\r\nPASS source_checkout_unchanged\r\n46/46 PASS; evidence: <DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\runner\r\n",
   "stderr_tail": ""
 }

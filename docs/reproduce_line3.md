@@ -29,14 +29,14 @@ python -X utf8 build/scripts/check_doc_commands.py --self-test
 在上述会话中设置真实Vivado位置，要求完整帧集合的示例如下。期望集合来源需要先核对testbench与模型；不要按观察到的输出反推验收数量。
 
 ```powershell
-$vivadoSettings = 'D:\AMD2025.2\2025.2\Vivado\settings64.bat'
+$vivadoSettings = '<DRIVE>/AMD2025.2\2025.2\Vivado\settings64.bat'
 python -X utf8 build/scripts/run_sim.py --vivado-settings "$vivadoSettings" --scratch-root "$evidenceRoot/rtl_default" --expect-frames 12
 ```
 
 默认 testbench 已按结果计数自动收尾。独立适配器仍要求新的纯英文绝对路径；以下路径只适用于本机：
 
 ```powershell
-$asciiScratch = 'D:/666666/Temp/line3_rerun_' + $runId
+$asciiScratch = '<DRIVE>/666666/Temp/line3_rerun_' + $runId
 python -X utf8 sim/line3/run_rtl.py --settings "$vivadoSettings" --out "$asciiScratch/fd" --evidence "$evidenceRoot/rtl_fd" --mode framediff
 python -X utf8 sim/line3/run_rtl.py --settings "$vivadoSettings" --out "$asciiScratch/bg" --evidence "$evidenceRoot/rtl_bg" --mode bg
 ```

@@ -1,11 +1,11 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/regs.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/regs.v" into library work
 INFO: [VRFC 10-311] analyzing module regs
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/sim/tb/tb_regs.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/tb/tb_regs.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_regs
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_regs -s check 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_regs -s check 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -31,6 +31,6 @@ Time resolution is 1 ps
 source finish.tcl
 ## run 20 ms
 === PASS：regs 仿真全部通过（6 位地址 + 快照 + STATUS 位表）===
-$finish called at time : 706 ns : File "D:/line3_verify_cleanup_20261013_01/source/sim/tb/tb_regs.v" Line 152
+$finish called at time : 706 ns : File "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/tb/tb_regs.v" Line 152
 ## quit
 INFO: [Common 17-206] Exiting xsim at Tue Oct 13 16:43:01 2026...

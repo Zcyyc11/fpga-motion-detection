@@ -1,4 +1,4 @@
-数据根目录：D:\cdnet2014_line3_20261010_1700\dataset
+数据根目录：<DRIVE>/cdnet2014_line3_20261010_1700\dataset
   来源：命令行 --data-root
 ==================================================================================================
 CDnet 官方口径（整段汇总 + 类别平均）｜ ★ = 该序列在官方口径下的最佳变体
@@ -28,4 +28,4 @@ CDnet 官方口径（整段汇总 + 类别平均）｜ ★ = 该序列在官方�
   V46 V43+初始背景取前12帧最小                   0.946     0.946
   V47 V43+初始背景取前20帧最小                   0.946     0.946
 
-结果已写出: D:\line3_closeout_20261011_1000_work\native_v2\baseline__office\cdnet_official_results_r12.csv
+结果已写出: <DRIVE>/line3_closeout_20261011_1000_work\native_v2\baseline__office\cdnet_official_results_r12.csv

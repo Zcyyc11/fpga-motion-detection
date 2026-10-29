@@ -1,17 +1,17 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/threshold.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/threshold.v" into library work
 INFO: [VRFC 10-311] analyzing module threshold
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/morph_open.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/morph_open.v" into library work
 INFO: [VRFC 10-311] analyzing module morph_open
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/morph3x3.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/morph3x3.v" into library work
 INFO: [VRFC 10-311] analyzing module morph3x3
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/pattern_gen.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/pattern_gen.v" into library work
 INFO: [VRFC 10-311] analyzing module pattern_gen
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/tb_contracts.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/tb_contracts.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_contracts
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_contracts -s contracts 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_contracts -s contracts 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -39,7 +39,7 @@ source xsim.dir/contracts/xsim_script.tcl
 Time resolution is 1 ps
 run -all
 Fatal: MORPH domain x=8 y=1
-Time: 890 ns  Iteration: 0  Process: /tb_contracts/Always36_6  Scope: tb_contracts  File: D:/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/tb_contracts.v Line: 42
+Time: 890 ns  Iteration: 0  Process: /tb_contracts/Always36_6  Scope: tb_contracts  File: <DRIVE>/666666/Temp/codex_repair_20261010_final01/contracts/morph_shift/tb_contracts.v Line: 42
 $finish called at time : 890 ns
 exit
 INFO: [Common 17-206] Exiting xsim at Sat Oct 10 10:48:40 2026...

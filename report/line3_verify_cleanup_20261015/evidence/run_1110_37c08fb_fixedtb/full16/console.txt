@@ -1,15 +1,15 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/FPGA/verify16_final2_1015_1110/source/src/rtl/multi_bbox.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<PROJECT_ROOT>/verify16_final2_1015_1110/source/src/rtl/multi_bbox.v" into library work
 INFO: [VRFC 10-311] analyzing module multi_bbox
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/FPGA/verify16_final2_1015_1110/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<PROJECT_ROOT>/verify16_final2_1015_1110/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_multi_bbox_limits
 Vivado Simulator v2026.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMDDesignTools/2026.1/Vivado/bin/unwrapped/win64.o/xelab.exe tb_multi_bbox_limits -s check 
+Running: <VIVADO_INSTALL>Tools/2026.1/Vivado/bin/unwrapped/win64.o/xelab.exe tb_multi_bbox_limits -s check 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3645] port 'o_overflow' remains unconnected for this instance [D:/FPGA/verify16_final2_1015_1110/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v:11]
+WARNING: [VRFC 10-3645] port 'o_overflow' remains unconnected for this instance [<PROJECT_ROOT>/verify16_final2_1015_1110/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v:11]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -48,6 +48,6 @@ BOX 13 54 2 55 3 4 0
 BOX 14 58 2 59 3 4 0
 BOX 15 62 2 63 3 4 1
 VERIFY_DONE bbox
-$finish called at time : 45580 ns : File "D:/FPGA/verify16_final2_1015_1110/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" Line 35
+$finish called at time : 45580 ns : File "<PROJECT_ROOT>/verify16_final2_1015_1110/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" Line 35
 ## quit
 INFO: [Common 17-206] Exiting xsim at Thu Oct 15 18:31:58 2026...

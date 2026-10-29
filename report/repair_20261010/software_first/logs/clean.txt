@@ -17,10 +17,10 @@
 滞留超时              : 0 次
 告警流水（前 12 条）:
 Traceback (most recent call last):
-  File "C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\src\ps\multi_track.py", line 638, in <module>
+  File "<DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\src\ps\multi_track.py", line 638, in <module>
     sys.exit(main())
              ~~~~^^
-  File "C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\src\ps\multi_track.py", line 612, in main
+  File "<DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\src\ps\multi_track.py", line 612, in main
     % (ev["frame"], ev["tid"], ev["cx"], ev["cy"], ev["secs"]))
                                                    ~~^^^^^^^^
 KeyError: 'secs'

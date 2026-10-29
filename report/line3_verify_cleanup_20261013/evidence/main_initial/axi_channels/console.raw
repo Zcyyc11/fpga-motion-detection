@@ -1,11 +1,11 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/board/axi_lite_slave.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/board/axi_lite_slave.v" into library work
 INFO: [VRFC 10-311] analyzing module axi_lite_slave
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_axi_channels_verify.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_axi_channels_verify.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_axi_channels_verify
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_axi_channels_verify -s check 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_axi_channels_verify -s check 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -50,6 +50,6 @@ PASS read held under backpressure
 PASS read held under backpressure
 PASS read held under backpressure
 VERIFY_DONE axi errors=4
-$finish called at time : 810 ns : File "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_axi_channels_verify.v" Line 53
+$finish called at time : 810 ns : File "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_axi_channels_verify.v" Line 53
 ## quit
 INFO: [Common 17-206] Exiting xsim at Tue Oct 13 16:42:31 2026...

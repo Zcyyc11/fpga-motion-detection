@@ -35,4 +35,4 @@ options:
                         警戒线哪一侧算'里'（禁入区）
   --zone ZONE           重点区域 x0,y0,x1,y1；留空=全画面
   --dwell DWELL         停留多少秒算滞留
-Failed to find real location of D:\666666\Anaconda\python.exe
+Failed to find real location of <DRIVE>/666666\Anaconda\python.exe

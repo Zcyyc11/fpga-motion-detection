@@ -21,5 +21,5 @@ RTL 硬件模型参考  dx=16, frames=12, h=180, obj_h=30, obj_w=40, w=320, x0=4
      10      1 (   92,   40)-(  119,   54)      240
      11      1 (  100,   40)-(  127,   54)      240
 
-已写出: C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\line3_20261009\tool_acceptance_02\software_rerun\framediff.csv
-Failed to find real location of D:\666666\Anaconda\python.exe
+已写出: <DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料\captain_repo\report\line3_20261009\tool_acceptance_02\software_rerun\framediff.csv
+Failed to find real location of <DRIVE>/666666\Anaconda\python.exe

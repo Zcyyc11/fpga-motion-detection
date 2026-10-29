@@ -8,8 +8,8 @@
     ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source check.tcl
-# open_checkpoint {D:/line3_closeout_20261011_1000_work/board_integrated_mode1/build/vivado/fpga_motion_detection.runs/impl_1/board_top_routed.dcp}
-Command: open_checkpoint D:/line3_closeout_20261011_1000_work/board_integrated_mode1/build/vivado/fpga_motion_detection.runs/impl_1/board_top_routed.dcp
+# open_checkpoint {<DRIVE>/line3_closeout_20261011_1000_work/board_integrated_mode1/build/vivado/fpga_motion_detection.runs/impl_1/board_top_routed.dcp}
+Command: open_checkpoint <DRIVE>/line3_closeout_20261011_1000_work/board_integrated_mode1/build/vivado/fpga_motion_detection.runs/impl_1/board_top_routed.dcp
 
 Starting open_checkpoint Task
 
@@ -52,15 +52,15 @@ INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum o
 Command: report_methodology -file methodology.rpt
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 INFO: [DRC 23-133] Running Methodology with 2 threads
-INFO: [Vivado_Tcl 2-1520] The results of Report Methodology are in file D:/line3_closeout_20261011_1000_work/board_integrated_mode1/postroute_diagnostics/methodology.rpt.
+INFO: [Vivado_Tcl 2-1520] The results of Report Methodology are in file <DRIVE>/line3_closeout_20261011_1000_work/board_integrated_mode1/postroute_diagnostics/methodology.rpt.
 report_methodology completed successfully
 # report_drc -file drc.rpt
 Command: report_drc -file drc.rpt
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/AMD2025.2/2025.2/Vivado/data/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '<DRIVE>/AMD2025.2/2025.2/Vivado/data/ip'.
 INFO: [DRC 23-27] Running DRC with 2 threads
-INFO: [Vivado_Tcl 2-168] The results of DRC are in file D:/line3_closeout_20261011_1000_work/board_integrated_mode1/postroute_diagnostics/drc.rpt.
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file <DRIVE>/line3_closeout_20261011_1000_work/board_integrated_mode1/postroute_diagnostics/drc.rpt.
 report_drc completed successfully
 # report_clocks -file clocks.rpt
 INFO: [Timing 38-35] Done setting XDC timing constraints.

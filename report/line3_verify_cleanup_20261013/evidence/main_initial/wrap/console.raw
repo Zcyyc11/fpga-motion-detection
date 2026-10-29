@@ -1,13 +1,13 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/track.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/track.v" into library work
 INFO: [VRFC 10-311] analyzing module track
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/alarm.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/alarm.v" into library work
 INFO: [VRFC 10-311] analyzing module alarm
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_track_id_wrap.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_track_id_wrap.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_track_id_wrap
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_track_id_wrap -s check 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_track_id_wrap -s check 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -37,6 +37,6 @@ EVENT 0 1 60
 FAIL new lifetime must not inherit old left position
 EVENT 0 1 60
 VERIFY_DONE wrap errors=1
-$finish called at time : 1057850 ns : File "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_track_id_wrap.v" Line 40
+$finish called at time : 1057850 ns : File "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_track_id_wrap.v" Line 40
 ## quit
 INFO: [Common 17-206] Exiting xsim at Tue Oct 13 16:42:10 2026...

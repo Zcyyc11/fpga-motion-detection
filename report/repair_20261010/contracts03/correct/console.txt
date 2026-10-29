@@ -1,17 +1,17 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_contracts03/correct/threshold.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_contracts03/correct/threshold.v" into library work
 INFO: [VRFC 10-311] analyzing module threshold
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_contracts03/correct/morph_open.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_contracts03/correct/morph_open.v" into library work
 INFO: [VRFC 10-311] analyzing module morph_open
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_contracts03/correct/morph3x3.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_contracts03/correct/morph3x3.v" into library work
 INFO: [VRFC 10-311] analyzing module morph3x3
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_contracts03/correct/pattern_gen.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_contracts03/correct/pattern_gen.v" into library work
 INFO: [VRFC 10-311] analyzing module pattern_gen
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/666666/Temp/codex_repair_20261010_contracts03/correct/tb_contracts.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/666666/Temp/codex_repair_20261010_contracts03/correct/tb_contracts.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_contracts
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_contracts -s contracts 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_contracts -s contracts 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -39,6 +39,6 @@ source xsim.dir/contracts/xsim_script.tcl
 Time resolution is 1 ps
 run -all
 CONTRACTS_DONE threshold=6 pattern=384
-$finish called at time : 18470 ns : File "D:/666666/Temp/codex_repair_20261010_contracts03/correct/tb_contracts.v" Line 102
+$finish called at time : 18470 ns : File "<DRIVE>/666666/Temp/codex_repair_20261010_contracts03/correct/tb_contracts.v" Line 102
 exit
 INFO: [Common 17-206] Exiting xsim at Sat Oct 10 10:38:40 2026...

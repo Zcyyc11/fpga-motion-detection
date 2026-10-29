@@ -1,6 +1,6 @@
 {
-  "settings": "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
-  "scratch": "D:\\666666\\Temp\\codex_repair_20261010_final01\\compat_scratch",
+  "settings": "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+  "scratch": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\compat_scratch",
   "mode": "framediff",
   "exit_code": 0,
   "timed_out": false,

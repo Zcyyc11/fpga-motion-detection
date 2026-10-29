@@ -29,7 +29,7 @@ Parameter INPUT_SEL bound to: 1 - type: integer
 
 ## 已验证的效果
 
-- **测试环境**：Vivado 2026.1（`D:\AMDDesignTools\2026.1\Vivado`）；PYNQ-Z2（XC7Z020-1CLG400C）；`build/scripts/build_vivado.tcl`
+- **测试环境**：Vivado 2026.1（`<VIVADO_INSTALL>Tools\2026.1\Vivado`）；PYNQ-Z2（XC7Z020-1CLG400C）；`build/scripts/build_vivado.tcl`
 - **结果**：对"自测/真实 HDMI 输入"两版固件做三种传参格式对比实测——
   - 逗号格式：`EFFECTIVE_GENERIC=MODE_BG=0,INPUT_SEL=1`（整串被当单个 generic 名）+ `MODE_BG bound to: EL=1`（垃圾值）→ **两版功能同为默认配置**（坏 bit 哈希 `2B620F4D69AB...`）
   - 空格格式：`MODE_BG bound to: 0`、`INPUT_SEL bound to: 1` 真绑定 → 自测版哈希 `5937D6602BF5...`、HDMI 版 `83613671915C...`（时序 WNS 均收敛）

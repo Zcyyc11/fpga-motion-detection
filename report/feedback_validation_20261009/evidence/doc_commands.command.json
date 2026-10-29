@@ -1,11 +1,11 @@
 {
   "argv": [
-    "D:\\666666\\Anaconda\\python.exe",
+    "<DRIVE>/\666666\\Anaconda\\python.exe",
     "-X",
     "utf8",
     "build/scripts/check_doc_commands.py"
   ],
-  "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+  "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
   "started": "2026-10-10T10:15:44.065856+08:00",
   "seconds": 4.924,
   "returncode": 0

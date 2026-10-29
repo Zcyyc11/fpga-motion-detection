@@ -83,7 +83,7 @@
       "pass": true
     }
   ],
-  "run": "D:\\line3_cdnet_20261010_1700\\evaluation02",
+  "run": "<DRIVE>/\line3_cdnet_20261010_1700\\evaluation02",
   "source_sha": "ae5a7d8f77abe577a165b015a83d087f9cb65457",
   "comparator_sha256": "d891bbd3c67f5df3be8e45c0b772a236403a4bb581b48af31a73ee8d2a91aaf1",
   "comparator_exit_code": 0,
@@ -163,7 +163,7 @@
     }
   },
   "archive": {
-    "file": "D:\\line3_cdnet_20261010_1700\\final_audit02\\evaluation02_complete_evidence.zip",
+    "file": "<DRIVE>/\line3_cdnet_20261010_1700\\final_audit02\\evaluation02_complete_evidence.zip",
     "bytes": 1932832,
     "sha256": "611701c3b429083f68dfe073118eaae4dc2ff491b6c476a69aafaa9c6bbed5af"
   }

@@ -1,14 +1,14 @@
 {
   "command_argv": [
-    "D:/line3_cdnet_20261010_1700/tools/run_observed.py",
+    "<DRIVE>/line3_cdnet_20261010_1700/tools/run_observed.py",
     "--source",
-    "D:/line3_cdnet_20261010_1700/source",
+    "<DRIVE>/line3_cdnet_20261010_1700/source",
     "--data-root",
-    "D:/cdnet2014_line3_20261010_1700/dataset",
+    "<DRIVE>/cdnet2014_line3_20261010_1700/dataset",
     "--out",
-    "D:/line3_cdnet_20261010_1700/evaluation01"
+    "<DRIVE>/line3_cdnet_20261010_1700/evaluation01"
   ],
-  "source": "D:\\line3_cdnet_20261010_1700\\source",
+  "source": "<DRIVE>/\line3_cdnet_20261010_1700\\source",
   "source_sha": "ae5a7d8f77abe577a165b015a83d087f9cb65457",
   "git_status_before": "",
   "source_hashes": {
@@ -168,7 +168,7 @@
     ]
   ],
   "loader": "lazy per-frame, LRU 8; original algorithms unchanged",
-  "data_root": "D:\\cdnet2014_line3_20261010_1700\\dataset",
+  "data_root": "<DRIVE>/\cdnet2014_line3_20261010_1700\\dataset",
   "dataset_verification_sha256": "bbe2223d9505643b331f00c76a185a65c0a7295c2c85949be730d61680a84551",
   "wrapper_sha256": "ca046a69fdcc4e66cf74ce9795257c667dcbfce02d0464ba54d2ab723979f49c",
   "sequence_plans": {
@@ -274,9 +274,9 @@
     }
   ],
   "official_argv": [
-    "D:\\line3_cdnet_20261010_1700\\source\\src\\ps\\cdnet_official.py",
+    "<DRIVE>/\line3_cdnet_20261010_1700\\source\\src\\ps\\cdnet_official.py",
     "--data-root",
-    "D:\\cdnet2014_line3_20261010_1700\\dataset",
+    "<DRIVE>/\cdnet2014_line3_20261010_1700\\dataset",
     "--set",
     "r12",
     "--seq",

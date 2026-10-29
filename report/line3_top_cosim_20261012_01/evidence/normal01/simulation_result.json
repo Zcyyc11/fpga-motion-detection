@@ -6,7 +6,7 @@
     "cmd.exe",
     "/d",
     "/c",
-    "D:\\line3_top_cosim_20261012_01\\normal01\\run.bat"
+    "<DRIVE>/\line3_top_cosim_20261012_01\\normal01\\run.bat"
   ],
   "status": "finished",
   "exit_code": 0,

@@ -1,37 +1,37 @@
 === xvlog ===
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/bbox.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/bbox.v" into library work
 INFO: [VRFC 10-311] analyzing module bbox
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/diff_stage.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/diff_stage.v" into library work
 INFO: [VRFC 10-311] analyzing module diff_stage
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/downsample2x2.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/downsample2x2.v" into library work
 INFO: [VRFC 10-311] analyzing module downsample2x2
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/frame_buf.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/frame_buf.v" into library work
 INFO: [VRFC 10-311] analyzing module frame_buf
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/md_pipeline.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/md_pipeline.v" into library work
 INFO: [VRFC 10-311] analyzing module md_pipeline
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/morph3x3.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/morph3x3.v" into library work
 INFO: [VRFC 10-311] analyzing module morph3x3
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/morph_open.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/morph_open.v" into library work
 INFO: [VRFC 10-311] analyzing module morph_open
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/overlay.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/overlay.v" into library work
 INFO: [VRFC 10-311] analyzing module overlay
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/pattern_gen.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/pattern_gen.v" into library work
 INFO: [VRFC 10-311] analyzing module pattern_gen
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/threshold.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/threshold.v" into library work
 INFO: [VRFC 10-311] analyzing module threshold
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/video_timing.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/src/rtl/video_timing.v" into library work
 INFO: [VRFC 10-311] analyzing module video_timing
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/sim/tb/tb_md_pipeline.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/sim/tb/tb_md_pipeline.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_md_pipeline
 === xelab ===
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical -timescale 1ns/1ps tb_md_pipeline -s sim_tb_md_pipeline 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical -timescale 1ns/1ps tb_md_pipeline -s sim_tb_md_pipeline 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3645] port 'vhs' remains unconnected for this instance [C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/sim/tb/tb_md_pipeline.v:65]
+WARNING: [VRFC 10-3645] port 'vhs' remains unconnected for this instance [<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/sim/tb/tb_md_pipeline.v:65]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -76,6 +76,6 @@ t=6865535000  ç¬¬ 9 å¸§æ£€æµ‹: bbox=(84,40)-(111,54)  cnt=240  valid=1
 t=7549535000  ç¬¬ 10 å¸§æ£€æµ‹: bbox=(92,40)-(119,54)  cnt=240  valid=1
 ---- ä»¿çœŸç»“æŸï¼šå…±è·‘ 13 ä¸ªè§†é¢‘å¸§ï¼Œbbox è§ wave/bbox_rtl.csv ----
 ---- X æ£€æŸ¥ï¼šæ©ç æµæœªå‡ºç°æœªçŸ¥æ€ï¼ˆx_hits=0ï¼‰----
-$finish called at time : 8210215 ns : File "C:/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/sim/tb/tb_md_pipeline.v" Line 203
+$finish called at time : 8210215 ns : File "<DRIVE>/Users/ËïÎ°²©/Desktop/FPGA´óÈü×ÊÁÏ/repair_20261009_round1/runner_live_final/ÍêÕûĞÔ¼ì²é_runs/run_20261009T114634Z_uf_nz9m0/sim/tb/tb_md_pipeline.v" Line 203
 exit
 INFO: [Common 17-206] Exiting xsim at Fri Oct  9 19:46:44 2026...

@@ -12,7 +12,7 @@ import time
 p=argparse.ArgumentParser()
 p.add_argument('--repo',required=True);p.add_argument('--ref',default='HEAD')
 p.add_argument('--out',required=True);p.add_argument('--jobs',default='all')
-p.add_argument('--settings',default='D:/AMD2025.2/2025.2/Vivado/settings64.bat')
+p.add_argument('--settings',default='<DRIVE>/AMD2025.2/2025.2/Vivado/settings64.bat')
 a=p.parse_args();repo=Path(a.repo).resolve();out=Path(a.out).resolve();here=Path(__file__).resolve().parent
 out.mkdir(parents=True,exist_ok=False)
 def git(*args):return subprocess.check_output(['git','-C',str(repo),*args])

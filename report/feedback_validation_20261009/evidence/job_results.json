@@ -4,14 +4,14 @@
   },
   "software": {
     "argv": [
-      "D:\\666666\\Anaconda\\python.exe",
+      "<DRIVE>/\666666\\Anaconda\\python.exe",
       "-X",
       "utf8",
       "sim/line3/run.py",
       "--out",
-      "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\line3"
+      "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\line3"
     ],
-    "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+    "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
     "started": "2026-10-10T10:11:13.472530+08:00",
     "seconds": 46.558,
     "returncode": 2
@@ -19,62 +19,62 @@
   "rtl": [
     {
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/run_sim.py",
         "--vivado-settings",
-        "D:/AMD2025.2/2025.2/Vivado/settings64.bat",
+        "<DRIVE>/AMD2025.2/2025.2/Vivado/settings64.bat",
         "--scratch-root",
-        "D:\\666666\\Temp\\codex_feedback_20261010_rtl_r2\\default",
+        "<DRIVE>/\666666\\Temp\\codex_feedback_20261010_rtl_r2\\default",
         "--expect-frames",
         "12"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
       "started": "2026-10-10T10:11:13.474173+08:00",
       "seconds": 39.104,
       "returncode": 2
     },
     {
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/run_rtl.py",
         "--settings",
-        "D:/AMD2025.2/2025.2/Vivado/settings64.bat",
+        "<DRIVE>/AMD2025.2/2025.2/Vivado/settings64.bat",
         "--out",
-        "D:\\666666\\Temp\\codex_feedback_20261010_rtl_r2\\drained_framediff",
+        "<DRIVE>/\666666\\Temp\\codex_feedback_20261010_rtl_r2\\drained_framediff",
         "--evidence",
-        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\rtl_drained_framediff",
+        "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\rtl_drained_framediff",
         "--mode",
         "framediff",
         "--drain-frames",
         "1"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
       "started": "2026-10-10T10:11:52.581247+08:00",
       "seconds": 19.613,
       "returncode": 0
     },
     {
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/run_rtl.py",
         "--settings",
-        "D:/AMD2025.2/2025.2/Vivado/settings64.bat",
+        "<DRIVE>/AMD2025.2/2025.2/Vivado/settings64.bat",
         "--out",
-        "D:\\666666\\Temp\\codex_feedback_20261010_rtl_r2\\drained_bg",
+        "<DRIVE>/\666666\\Temp\\codex_feedback_20261010_rtl_r2\\drained_bg",
         "--evidence",
-        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\rtl_drained_bg",
+        "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\rtl_drained_bg",
         "--mode",
         "bg",
         "--drain-frames",
         "1"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
       "started": "2026-10-10T10:12:12.196776+08:00",
       "seconds": 19.54,
       "returncode": 0
@@ -83,73 +83,73 @@
   "suites": [
     {
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/test_verification_boundaries.py",
         "--repo",
-        "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+        "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
         "--out",
-        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\boundaries"
+        "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\boundaries"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
       "started": "2026-10-10T10:11:13.475991+08:00",
       "seconds": 167.965,
       "returncode": 0
     },
     {
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/test_sim_runner.py",
         "--repo",
-        "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+        "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
         "--out",
-        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner"
+        "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\runner"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
       "started": "2026-10-10T10:14:01.457193+08:00",
       "seconds": 49.6,
       "returncode": 0
     },
     {
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/check_tools.py",
         "--out",
-        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\tools"
+        "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\tools"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
       "started": "2026-10-10T10:14:51.061887+08:00",
       "seconds": 33.738,
       "returncode": 0
     },
     {
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/test_data_guard.py",
         "--tmpdir",
-        "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\data_guard",
+        "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\feedback_validation_20261009\\run_20261010_r2\\data_guard",
         "--keep"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
       "started": "2026-10-10T10:15:24.803282+08:00",
       "seconds": 19.259,
       "returncode": 0
     },
     {
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/check_doc_commands.py"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_feedback_20261009_2148\\clone",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_feedback_20261009_2148\\clone",
       "started": "2026-10-10T10:15:44.065856+08:00",
       "seconds": 4.924,
       "returncode": 0

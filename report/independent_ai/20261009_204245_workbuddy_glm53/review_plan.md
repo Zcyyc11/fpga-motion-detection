@@ -2,7 +2,7 @@
 
 - 审查者：WorkBuddy（底层模型 GLM，Z.ai；版本号按系统声明为 GLM-5.3，无法独立验证）
 - 计划落笔时间：2026-10-09 20:42:45 +0800（此时**尚未**运行任何复现命令，**尚未**读取作者汇总类文档）
-- 受测版本：仓库 `C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo`，
+- 受测版本：仓库 `<DRIVE>/Users\孙伟博\Desktop\FPGA大赛资料\captain_repo`，
   分支 `codex/line3-review-20261009`，提交 `783cd7c49f474bab711671ed1dc644a0f58386ea`（工作区干净，git diff HEAD 为空）
 
 ## 0. 已读材料与接触顺序声明（防"先看答案"）
@@ -81,7 +81,7 @@
 3. 与原仓库参考文件逐字节比对（framediff.csv vs sim/wave/bbox_rtl.csv 0..10 帧；
    algo 输出 vs multi_track_results_algo.csv / alarm_events_algo.csv）。
 4. RTL 仿真：用本机 Vivado 2025.2（与推荐 2026.1 不同，记录差异）跑 build/scripts/run_sim.py。
-5. CDnet：数据不在本机（已搜 D:\ 与桌面，未发现）→ 尝试作者文档指路的复现入口，如不可得则记未执行。
+5. CDnet：数据不在本机（已搜 <DRIVE>/ 与桌面，未发现）→ 尝试作者文档指路的复现入口，如不可得则记未执行。
 6. 故障注入（在克隆体）：分别改 multi_track 阈值/坐标、rtl_golden 边界、compare 容差，
    验证 sim/line3 测试是否报警。
 7. 证据对应抽查 + 视频可解码抽查（cv2 逐帧哈希、尺寸、事件帧红框）。

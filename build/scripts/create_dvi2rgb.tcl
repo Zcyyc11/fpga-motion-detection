@@ -3,7 +3,7 @@
 #
 #  用法（在已打开工程的 Vivado 里，或由 build 流程 source）：
 #     source create_dvi2rgb.tcl
-#   需要先有 IP 仓库（MOTION_IP_REPO 环境变量或 D:/FPGA/libs/vivado-library），
+#   需要先有 IP 仓库（MOTION_IP_REPO 环境变量或 <VIVADO_LIB_REPO>），
 #   与 build_vivado.tcl 同一套路径纪律：不写死机器路径。
 #
 #  为什么这些参数是这些值（每个都有出处，不是拍的）：

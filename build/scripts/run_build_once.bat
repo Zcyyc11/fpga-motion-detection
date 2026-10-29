@@ -14,8 +14,8 @@ rem blocks PowerShell from spawning cmd.exe, and Register-ScheduledTask rejects
 rem LogonType=ServiceAccount on this box, so the SYSTEM/non-interactive route
 rem (Plan A) is infeasible. `start` is a cmd builtin and runs cleanly under the
 rem scheduled task with no PowerShell in the build path.
-set VIVADO_SETTINGS=D:\AMDDesignTools\2026.1\Vivado\settings64.bat
-set MOTION_IP_REPO=D:\FPGA\libs\vivado-library
+set VIVADO_SETTINGS=<VIVADO_INSTALL>Tools\2026.1\Vivado\settings64.bat
+set MOTION_IP_REPO=<VIVADO_LIB_REPO>
 cd /d %~dp0
 rem Launch build_vivado.bat (MODE_BG=0 frame-diff, INPUT_SEL=1 real HDMI, STAGE=all)
 rem in a detached minimized window / new process group.

@@ -20,6 +20,6 @@
   帧   34  离开  id1   位置( 691.6, 359.7)  vx=+40.0
   帧   43  闯入  id2   位置( 632.0, 356.0)  vx=-12.0
   帧  102  闯入  id1   位置( 628.0, 360.0)  vx=-16.0
-告警流水          : D:\666666\Temp\codex_repair_20261010_final01\tools\software_rerun\algo_observed\alarm_events_algo.csv
-逐帧结果          : D:\666666\Temp\codex_repair_20261010_final01\tools\software_rerun\algo_observed\multi_track_results_algo.csv
-可视化            : D:\666666\Temp\codex_repair_20261010_final01\tools\software_rerun\algo_observed\track_result_algo.mp4（绿细框=真值，红粗框=我们检出的，带 id 与瞬时速度）
+告警流水          : <DRIVE>/666666\Temp\codex_repair_20261010_final01\tools\software_rerun\algo_observed\alarm_events_algo.csv
+逐帧结果          : <DRIVE>/666666\Temp\codex_repair_20261010_final01\tools\software_rerun\algo_observed\multi_track_results_algo.csv
+可视化            : <DRIVE>/666666\Temp\codex_repair_20261010_final01\tools\software_rerun\algo_observed\track_result_algo.mp4（绿细框=真值，红粗框=我们检出的，带 id 与瞬时速度）

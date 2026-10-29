@@ -1,14 +1,14 @@
 {
   "argv": [
-    "D:/666666/Anaconda/python.exe",
+    "<DRIVE>/666666/Anaconda/python.exe",
     "-I",
     "-B",
     "-X",
     "utf8",
-    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\line3_closeout_20261011_1000\\board_build_v2.py",
+    "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\line3_closeout_20261011_1000\\board_build_v2.py",
     "0"
   ],
-  "cwd": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料",
+  "cwd": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料",
   "start_utc": "2026-10-11T02:07:39.673603+00:00",
   "exit_code": 0,
   "seconds": 708.828,

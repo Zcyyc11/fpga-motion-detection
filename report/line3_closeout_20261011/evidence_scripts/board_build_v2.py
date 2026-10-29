@@ -34,7 +34,7 @@ ipsha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ip,text=True).strip
 save(f'board_mode{mode}_inputs.json',dict(source_sha=CANDIDATE,mode=mode,files=manifest,ip_sha=ipsha,ip_url='https://github.com/Digilent/vivado-library',
     source_tree=str(d),clock='125 MHz external; generated 74.25 MHz pixel clock',scope='board_top internal pattern + HDMI output; no HDMI input, no hardware test',
     adaptations=['limit jobs to 2','remove create_project -force in fresh directory']))
-rec,txt=run(f'board_integrated_mode{mode}',[Path('D:/AMD2025.2/2025.2/Vivado/bin/vivado.bat'),'-mode','batch','-source',tcl,'-nojournal','-log',d/'vivado.log','-tclargs',str(mode)],d,env={'MOTION_IP_REPO':str(ip)},timeout=5400)
+rec,txt=run(f'board_integrated_mode{mode}',[Path('<DRIVE>/AMD2025.2/2025.2/Vivado/bin/vivado.bat'),'-mode','batch','-source',tcl,'-nojournal','-log',d/'vivado.log','-tclargs',str(mode)],d,env={'MOTION_IP_REPO':str(ip)},timeout=5400)
 out=OUT/f'board_mode{mode}';out.mkdir()
 for p in (d/'build/reports').glob('*'):
     if p.is_file():shutil.copy2(p,out/p.name)

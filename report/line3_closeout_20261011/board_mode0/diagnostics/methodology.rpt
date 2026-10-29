@@ -411,7 +411,7 @@ Related violations: <none>
 XDCB-5#1 Warning
 Runtime inefficient way to find pin objects  
 The option '-through : [get_pins -filter {NAME =~ *SyncAsync*/oSyncStages_reg[0]/D} -hier]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '2' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
-Current XDC: D:/line3_closeout_20261011_1000_work/board_integrated_mode0/build/vivado/fpga_motion_detection.gen/sources_1/ip/rgb2dvi_0/src/rgb2dvi.xdc (Line: 5)
+Current XDC: <DRIVE>/line3_closeout_20261011_1000_work/board_integrated_mode0/build/vivado/fpga_motion_detection.gen/sources_1/ip/rgb2dvi_0/src/rgb2dvi.xdc (Line: 5)
 Related violations: <none>
 
 

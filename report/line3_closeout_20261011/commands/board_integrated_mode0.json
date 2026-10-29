@@ -1,17 +1,17 @@
 {
   "argv": [
-    "D:\\AMD2025.2\\2025.2\\Vivado\\bin\\vivado.bat",
+    "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\bin\\vivado.bat",
     "-mode",
     "batch",
     "-source",
-    "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode0\\build\\scripts\\build_vivado.tcl",
+    "<DRIVE>/\line3_closeout_20261011_1000_work\\board_integrated_mode0\\build\\scripts\\build_vivado.tcl",
     "-nojournal",
     "-log",
-    "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode0\\vivado.log",
+    "<DRIVE>/\line3_closeout_20261011_1000_work\\board_integrated_mode0\\vivado.log",
     "-tclargs",
     "0"
   ],
-  "cwd": "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode0",
+  "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\board_integrated_mode0",
   "start_utc": "2026-10-11T02:07:40.913608+00:00",
   "exit_code": 0,
   "seconds": 707.474,
