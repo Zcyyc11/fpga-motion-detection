@@ -1,0 +1,3 @@
+seq,fd_prec,fd_rec,fd_f1,bg_prec,bg_rec,bg_f1,thresh,ksize,alpha
+pedestrians,0.5249,0.1110,0.1714,0.4949,0.6966,0.5596,70,3,0.02
+canoe,0.4015,0.0159,0.0282,0.3698,0.3647,0.3565,70,3,0.02

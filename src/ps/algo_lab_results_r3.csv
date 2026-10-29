@@ -1,0 +1,64 @@
+seq,variant,precision,recall,f1
+baseline/highway,V0 现役 α.02 thr70 open3,0.5430,0.7401,0.5947
+baseline/highway,V7 V4+双速率α(背1/64·前1/1024),0.5095,0.8461,0.5982
+baseline/highway,V7a 双速率(背1/32·前1/1024),0.5156,0.8452,0.6023
+baseline/highway,V7b 双速率(背1/128·前1/2048),0.4787,0.8463,0.5751
+baseline/highway,V7c 双速率(背1/64·前1/4096),0.4750,0.8463,0.5719
+baseline/highway,V8a 阴影闸门(0.75~0.95),0.5018,0.7001,0.5501
+baseline/highway,V8b 阴影闸门(0.60~0.90),0.4618,0.5069,0.4529
+baseline/office,V0 现役 α.02 thr70 open3,0.6123,0.3635,0.3523
+baseline/office,V7 V4+双速率α(背1/64·前1/1024),0.7571,0.8942,0.8069
+baseline/office,V7a 双速率(背1/32·前1/1024),0.7797,0.8774,0.8128
+baseline/office,V7b 双速率(背1/128·前1/2048),0.7730,0.9275,0.8297
+baseline/office,V7c 双速率(背1/64·前1/4096),0.8828,0.9277,0.8981
+baseline/office,V8a 阴影闸门(0.75~0.95),0.7618,0.8601,0.7943
+baseline/office,V8b 阴影闸门(0.60~0.90),0.7555,0.7483,0.7348
+baseline/pedestrians,V0 现役 α.02 thr70 open3,0.4949,0.6974,0.5600
+baseline/pedestrians,V7 V4+双速率α(背1/64·前1/1024),0.7656,0.6984,0.7279
+baseline/pedestrians,V7a 双速率(背1/32·前1/1024),0.7667,0.6973,0.7278
+baseline/pedestrians,V7b 双速率(背1/128·前1/2048),0.7645,0.6987,0.7276
+baseline/pedestrians,V7c 双速率(背1/64·前1/4096),0.7652,0.6987,0.7279
+baseline/pedestrians,V8a 阴影闸门(0.75~0.95),0.7636,0.5473,0.6299
+baseline/pedestrians,V8b 阴影闸门(0.60~0.90),0.7071,0.3608,0.4624
+cameraJitter/badminton,V0 现役 α.02 thr70 open3,0.4688,0.7244,0.5442
+cameraJitter/badminton,V7 V4+双速率α(背1/64·前1/1024),0.3721,0.7986,0.4819
+cameraJitter/badminton,V7a 双速率(背1/32·前1/1024),0.3880,0.7961,0.4952
+cameraJitter/badminton,V7b 双速率(背1/128·前1/2048),0.3362,0.8001,0.4505
+cameraJitter/badminton,V7c 双速率(背1/64·前1/4096),0.3416,0.7990,0.4557
+cameraJitter/badminton,V8a 阴影闸门(0.75~0.95),0.4419,0.7118,0.5215
+cameraJitter/badminton,V8b 阴影闸门(0.60~0.90),0.5275,0.6283,0.5514
+cameraJitter/traffic,V0 现役 α.02 thr70 open3,0.2189,0.6909,0.2980
+cameraJitter/traffic,V7 V4+双速率α(背1/64·前1/1024),0.3608,0.7132,0.4338
+cameraJitter/traffic,V7a 双速率(背1/32·前1/1024),0.3735,0.7127,0.4442
+cameraJitter/traffic,V7b 双速率(背1/128·前1/2048),0.3569,0.7147,0.4293
+cameraJitter/traffic,V7c 双速率(背1/64·前1/4096),0.3626,0.7128,0.4342
+cameraJitter/traffic,V8a 阴影闸门(0.75~0.95),0.3922,0.6779,0.4501
+cameraJitter/traffic,V8b 阴影闸门(0.60~0.90),0.4209,0.6073,0.4472
+dynamicBackground/canoe,V0 现役 α.02 thr70 open3,0.3692,0.3663,0.3569
+dynamicBackground/canoe,V7 V4+双速率α(背1/64·前1/1024),0.5707,0.5534,0.5586
+dynamicBackground/canoe,V7a 双速率(背1/32·前1/1024),0.5857,0.5547,0.5674
+dynamicBackground/canoe,V7b 双速率(背1/128·前1/2048),0.5557,0.5540,0.5512
+dynamicBackground/canoe,V7c 双速率(背1/64·前1/4096),0.5726,0.5551,0.5606
+dynamicBackground/canoe,V8a 阴影闸门(0.75~0.95),0.5949,0.5018,0.5431
+dynamicBackground/canoe,V8b 阴影闸门(0.60~0.90),0.5895,0.3735,0.4535
+intermittentObjectMotion/streetLight,V0 现役 α.02 thr70 open3,0.1204,0.0686,0.0660
+intermittentObjectMotion/streetLight,V7 V4+双速率α(背1/64·前1/1024),0.5619,0.4540,0.4930
+intermittentObjectMotion/streetLight,V7a 双速率(背1/32·前1/1024),0.5612,0.4447,0.4865
+intermittentObjectMotion/streetLight,V7b 双速率(背1/128·前1/2048),0.5744,0.5007,0.5285
+intermittentObjectMotion/streetLight,V7c 双速率(背1/64·前1/4096),0.5736,0.5028,0.5285
+intermittentObjectMotion/streetLight,V8a 阴影闸门(0.75~0.95),0.3557,0.2124,0.2583
+intermittentObjectMotion/streetLight,V8b 阴影闸门(0.60~0.90),0.0922,0.0519,0.0644
+shadow/busStation,V0 现役 α.02 thr70 open3,0.6121,0.3483,0.3548
+shadow/busStation,V7 V4+双速率α(背1/64·前1/1024),0.7817,0.6084,0.6566
+shadow/busStation,V7a 双速率(背1/32·前1/1024),0.7809,0.5963,0.6492
+shadow/busStation,V7b 双速率(背1/128·前1/2048),0.8002,0.6240,0.6800
+shadow/busStation,V7c 双速率(背1/64·前1/4096),0.8328,0.6187,0.6955
+shadow/busStation,V8a 阴影闸门(0.75~0.95),0.7827,0.5464,0.6165
+shadow/busStation,V8b 阴影闸门(0.60~0.90),0.7783,0.4277,0.5195
+shadow/peopleInShade,V0 现役 α.02 thr70 open3,0.4349,0.5049,0.4047
+shadow/peopleInShade,V7 V4+双速率α(背1/64·前1/1024),0.5105,0.5993,0.5330
+shadow/peopleInShade,V7a 双速率(背1/32·前1/1024),0.5002,0.5983,0.5276
+shadow/peopleInShade,V7b 双速率(背1/128·前1/2048),0.5023,0.6014,0.5262
+shadow/peopleInShade,V7c 双速率(背1/64·前1/4096),0.5249,0.6008,0.5431
+shadow/peopleInShade,V8a 阴影闸门(0.75~0.95),0.5608,0.5902,0.5657
+shadow/peopleInShade,V8b 阴影闸门(0.60~0.90),0.5526,0.5663,0.5477

@@ -1,0 +1,73 @@
+seq,variant,perframe_f1,official_f1
+badWeather/snowFall,V0 现役 α.02 thr70 open3,0.0617,0.5463
+badWeather/snowFall,V12 快背景1/32+冻结前景 ★现冠军,0.0926,0.8086
+badWeather/snowFall,V38 V12+自适应局部阈值(12%~30%),0.0956,0.7976
+badWeather/snowFall,V39 V29+全局补偿 R2,0.0918,0.8070
+badWeather/snowFall,V40 V38+全局补偿 R2,0.0956,0.7976
+badWeather/snowFall,V41 V38+全局补偿 R4,0.0956,0.7976
+baseline/highway,V0 现役 α.02 thr70 open3,0.5947,0.5915
+baseline/highway,V12 快背景1/32+冻结前景 ★现冠军,0.5688,0.6487
+baseline/highway,V38 V12+自适应局部阈值(12%~30%),0.5448,0.6147
+baseline/highway,V39 V29+全局补偿 R2,0.5620,0.6396
+baseline/highway,V40 V38+全局补偿 R2,0.5448,0.6147
+baseline/highway,V41 V38+全局补偿 R4,0.5454,0.6151
+baseline/office,V0 现役 α.02 thr70 open3,0.3523,0.4012
+baseline/office,V12 快背景1/32+冻结前景 ★现冠军,0.9288,0.9512
+baseline/office,V38 V12+自适应局部阈值(12%~30%),0.9239,0.9464
+baseline/office,V39 V29+全局补偿 R2,0.9242,0.9465
+baseline/office,V40 V38+全局补偿 R2,0.9239,0.9464
+baseline/office,V41 V38+全局补偿 R4,0.9239,0.9464
+baseline/pedestrians,V0 现役 α.02 thr70 open3,0.5600,0.6904
+baseline/pedestrians,V12 快背景1/32+冻结前景 ★现冠军,0.7280,0.9372
+baseline/pedestrians,V38 V12+自适应局部阈值(12%~30%),0.7167,0.9275
+baseline/pedestrians,V39 V29+全局补偿 R2,0.6977,0.9096
+baseline/pedestrians,V40 V38+全局补偿 R2,0.7167,0.9275
+baseline/pedestrians,V41 V38+全局补偿 R4,0.7167,0.9275
+cameraJitter/badminton,V0 现役 α.02 thr70 open3,0.5442,0.5534
+cameraJitter/badminton,V12 快背景1/32+冻结前景 ★现冠军,0.4640,0.4618
+cameraJitter/badminton,V38 V12+自适应局部阈值(12%~30%),0.4854,0.4820
+cameraJitter/badminton,V39 V29+全局补偿 R2,0.5418,0.5529
+cameraJitter/badminton,V40 V38+全局补偿 R2,0.5452,0.5535
+cameraJitter/badminton,V41 V38+全局补偿 R4,0.5464,0.5553
+cameraJitter/traffic,V0 现役 α.02 thr70 open3,0.2980,0.3619
+cameraJitter/traffic,V12 快背景1/32+冻结前景 ★现冠军,0.4444,0.5486
+cameraJitter/traffic,V38 V12+自适应局部阈值(12%~30%),0.4583,0.5800
+cameraJitter/traffic,V39 V29+全局补偿 R2,0.4034,0.5388
+cameraJitter/traffic,V40 V38+全局补偿 R2,0.4556,0.5950
+cameraJitter/traffic,V41 V38+全局补偿 R4,0.4074,0.5399
+dynamicBackground/canoe,V0 现役 α.02 thr70 open3,0.3569,0.5547
+dynamicBackground/canoe,V12 快背景1/32+冻结前景 ★现冠军,0.5713,0.9067
+dynamicBackground/canoe,V38 V12+自适应局部阈值(12%~30%),0.5706,0.9013
+dynamicBackground/canoe,V39 V29+全局补偿 R2,0.5805,0.9240
+dynamicBackground/canoe,V40 V38+全局补偿 R2,0.5706,0.9013
+dynamicBackground/canoe,V41 V38+全局补偿 R4,0.5556,0.8818
+dynamicBackground/fountain02,V0 现役 α.02 thr70 open3,0.1365,0.6293
+dynamicBackground/fountain02,V12 快背景1/32+冻结前景 ★现冠军,0.1544,0.8055
+dynamicBackground/fountain02,V38 V12+自适应局部阈值(12%~30%),0.1607,0.7851
+dynamicBackground/fountain02,V39 V29+全局补偿 R2,0.1556,0.7982
+dynamicBackground/fountain02,V40 V38+全局补偿 R2,0.1607,0.7851
+dynamicBackground/fountain02,V41 V38+全局补偿 R4,0.1607,0.7851
+intermittentObjectMotion/streetLight,V0 现役 α.02 thr70 open3,0.0660,0.1358
+intermittentObjectMotion/streetLight,V12 快背景1/32+冻结前景 ★现冠军,0.5380,0.8803
+intermittentObjectMotion/streetLight,V38 V12+自适应局部阈值(12%~30%),0.5314,0.8772
+intermittentObjectMotion/streetLight,V39 V29+全局补偿 R2,0.5308,0.8769
+intermittentObjectMotion/streetLight,V40 V38+全局补偿 R2,0.5314,0.8772
+intermittentObjectMotion/streetLight,V41 V38+全局补偿 R4,0.5314,0.8772
+nightVideos/busyBoulvard,V0 现役 α.02 thr70 open3,0.0845,0.2962
+nightVideos/busyBoulvard,V12 快背景1/32+冻结前景 ★现冠军,0.0724,0.2623
+nightVideos/busyBoulvard,V38 V12+自适应局部阈值(12%~30%),0.0809,0.3040
+nightVideos/busyBoulvard,V39 V29+全局补偿 R2,0.0807,0.3078
+nightVideos/busyBoulvard,V40 V38+全局补偿 R2,0.0809,0.3040
+nightVideos/busyBoulvard,V41 V38+全局补偿 R4,0.0809,0.3040
+shadow/busStation,V0 现役 α.02 thr70 open3,0.3548,0.4825
+shadow/busStation,V12 快背景1/32+冻结前景 ★现冠军,0.7021,0.8183
+shadow/busStation,V38 V12+自适应局部阈值(12%~30%),0.7442,0.8396
+shadow/busStation,V39 V29+全局补偿 R2,0.7314,0.8304
+shadow/busStation,V40 V38+全局补偿 R2,0.7442,0.8396
+shadow/busStation,V41 V38+全局补偿 R4,0.7442,0.8396
+shadow/peopleInShade,V0 现役 α.02 thr70 open3,0.4047,0.5295
+shadow/peopleInShade,V12 快背景1/32+冻结前景 ★现冠军,0.5585,0.8453
+shadow/peopleInShade,V38 V12+自适应局部阈值(12%~30%),0.5978,0.9055
+shadow/peopleInShade,V39 V29+全局补偿 R2,0.5847,0.8971
+shadow/peopleInShade,V40 V38+全局补偿 R2,0.5978,0.9055
+shadow/peopleInShade,V41 V38+全局补偿 R4,0.5978,0.9055

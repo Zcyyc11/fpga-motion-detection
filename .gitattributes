@@ -1,0 +1,30 @@
+# 文本按 LF 归一（tcl / xdc 尤其重要，CRLF 有时会导致解析异常）
+* text=auto eol=lf
+*.v      text eol=lf
+*.sv     text eol=lf
+*.vhd    text eol=lf
+*.vhdl   text eol=lf
+*.xdc    text eol=lf
+*.tcl    text eol=lf
+*.py     text eol=lf
+*.md     text eol=lf
+*.ipynb  text eol=lf
+*.csv    text eol=lf
+*.bat text eol=crlf
+*.raw binary
+
+# 二进制：不做任何行尾转换
+*.bit    binary
+*.bin    binary
+*.bmp    binary
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.pdf    binary
+*.dcp    binary
+*.xsa    binary
+*.zip    binary
+
+# 语言统计
+*.v      linguist-language=Verilog

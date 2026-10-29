@@ -1,0 +1,46 @@
+seq,variant,perframe_f1,official_f1
+baseline/highway,V0 现役 α.02 thr70 open3,0.5947,0.5915
+baseline/highway,V1 只调 α→.005,0.5609,0.5980
+baseline/highway,V4 V2+V3,0.5654,0.6450
+baseline/highway,V7 V4+双速率α(背1/64·前1/1024),0.5982,0.6793
+baseline/highway,V8 V4+阴影抑制(比值0.55~0.98),0.4062,0.4760
+baseline/office,V0 现役 α.02 thr70 open3,0.3523,0.4012
+baseline/office,V1 只调 α→.005,0.5556,0.5557
+baseline/office,V4 V2+V3,0.8131,0.8041
+baseline/office,V7 V4+双速率α(背1/64·前1/1024),0.8069,0.8130
+baseline/office,V8 V4+阴影抑制(比值0.55~0.98),0.7658,0.7485
+baseline/pedestrians,V0 现役 α.02 thr70 open3,0.5600,0.6904
+baseline/pedestrians,V1 只调 α→.005,0.7353,0.9344
+baseline/pedestrians,V4 V2+V3,0.7274,0.9357
+baseline/pedestrians,V7 V4+双速率α(背1/64·前1/1024),0.7279,0.9368
+baseline/pedestrians,V8 V4+阴影抑制(比值0.55~0.98),0.3931,0.5802
+cameraJitter/badminton,V0 现役 α.02 thr70 open3,0.5442,0.5534
+cameraJitter/badminton,V1 只调 α→.005,0.5161,0.5192
+cameraJitter/badminton,V4 V2+V3,0.4207,0.4191
+cameraJitter/badminton,V7 V4+双速率α(背1/64·前1/1024),0.4819,0.4774
+cameraJitter/badminton,V8 V4+阴影抑制(比值0.55~0.98),0.5034,0.5187
+cameraJitter/traffic,V0 现役 α.02 thr70 open3,0.2980,0.3619
+cameraJitter/traffic,V1 只调 α→.005,0.3339,0.4043
+cameraJitter/traffic,V4 V2+V3,0.4177,0.5082
+cameraJitter/traffic,V7 V4+双速率α(背1/64·前1/1024),0.4338,0.5344
+cameraJitter/traffic,V8 V4+阴影抑制(比值0.55~0.98),0.4212,0.5190
+dynamicBackground/canoe,V0 现役 α.02 thr70 open3,0.3569,0.5547
+dynamicBackground/canoe,V1 只调 α→.005,0.4300,0.6614
+dynamicBackground/canoe,V4 V2+V3,0.5363,0.8584
+dynamicBackground/canoe,V7 V4+双速率α(背1/64·前1/1024),0.5586,0.8944
+dynamicBackground/canoe,V8 V4+阴影抑制(比值0.55~0.98),0.3794,0.6130
+intermittentObjectMotion/streetLight,V0 现役 α.02 thr70 open3,0.0660,0.1358
+intermittentObjectMotion/streetLight,V1 只调 α→.005,0.1934,0.2851
+intermittentObjectMotion/streetLight,V4 V2+V3,0.5622,0.9068
+intermittentObjectMotion/streetLight,V7 V4+双速率α(背1/64·前1/1024),0.4930,0.5966
+intermittentObjectMotion/streetLight,V8 V4+阴影抑制(比值0.55~0.98),0.2231,0.4157
+shadow/busStation,V0 现役 α.02 thr70 open3,0.3548,0.4825
+shadow/busStation,V1 只调 α→.005,0.5443,0.5860
+shadow/busStation,V4 V2+V3,0.7226,0.8359
+shadow/busStation,V7 V4+双速率α(背1/64·前1/1024),0.6566,0.7206
+shadow/busStation,V8 V4+阴影抑制(比值0.55~0.98),0.5453,0.6487
+shadow/peopleInShade,V0 现役 α.02 thr70 open3,0.4047,0.5295
+shadow/peopleInShade,V1 只调 α→.005,0.5016,0.6594
+shadow/peopleInShade,V4 V2+V3,0.4985,0.6293
+shadow/peopleInShade,V7 V4+双速率α(背1/64·前1/1024),0.5330,0.7773
+shadow/peopleInShade,V8 V4+阴影抑制(比值0.55~0.98),0.5820,0.9273

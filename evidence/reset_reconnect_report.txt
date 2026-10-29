@@ -1,0 +1,42 @@
+=== 复位/断开重连测试报告 ===
+{"phase": "baseline", "row": {"t": 1793248134.4, "frames": 31, "fps": 30.14, "bright": 125.1, "motion": 1.29, "red_ratio": 1.0, "max_red": 6322}}
+{"phase": "input_disconnect_reconnect", "off_row": {"t": 1793248134.4, "frames": 31, "fps": 30.14, "bright": 125.1, "motion": 1.29, "red_ratio": 1.0, "max_red": 6322}, "reconnect_seconds": 0.00022602081298828125, "on_row": {"t": 1793248134.4, "frames": 31, "fps": 30.14, "bright": 125.1, "motion": 1.29, "red_ratio": 1.0, "max_red": 6322}, "verdict": "RECOVERED"}
+{"phase": "board_reset_recovery", "board_down_ts": 1793248152.548765, "board_up_ts": 1793248293.3086607, "rearm_out": "{\n  \"bit_sha256\": \"e4f1e25c0d3a71b6f126fa7e2f7fff248a9e4b267c932b641a2016aaf46d6559\",\n  \"clocks\": [\n    125.0,\n    100.0\n  ],\n  \"before\": {\n    \"0x0\": 70,\n    \"0x8\": 5,\n    \"0xc\": 640,\n    \"0x10\": 90,\n    \"0x14\": 0\n  },\n  \"after\": {\n    \"0x0\": 70,\n    \"0x8\": 6,\n    \"0xc\": 320,\n    \"0x10\": 90,\n    \"0x14\": 1\n  },\n  \"status\": 0,\n  \"frame_idx\": 0,\n  \"obj_count\": 0,\n  \"b_valid\": 0,\n  \"uart_drop\": 0\n}", "display_back": true, "recovery_seconds_after_rearm": 0.0007109642028808594, "on_row": {"t": 1793248134.4, "frames": 31, "fps": 30.14, "bright": 125.1, "motion": 1.29, "red_ratio": 1.0, "max_red": 6322}, "verdict": "RECOVERED"}
+[12:28:39] PHASE0: start feeder, baseline 15s
+[12:28:54] baseline: {'t': 1793248134.4, 'frames': 31, 'fps': 30.14, 'bright': 125.1, 'motion': 1.29, 'red_ratio': 1.0, 'max_red': 6322}
+[12:28:54] PHASE1: stop feeder 10s (J10 失源)
+[12:29:04] input-off last row: {'t': 1793248134.4, 'frames': 31, 'fps': 30.14, 'bright': 125.1, 'motion': 1.29, 'red_ratio': 1.0, 'max_red': 6322}
+[12:29:04] PHASE1: restart feeder, wait recovery
+[12:29:04] input reconnected: dt=0.0s row={'t': 1793248134.4, 'frames': 31, 'fps': 30.14, 'bright': 125.1, 'motion': 1.29, 'red_ratio': 1.0, 'max_red': 6322}
+[12:29:04] PHASE2: stop feeder, ssh sudo reboot
+[12:29:12] board down at: 12:29:12
+[12:31:33] board up at: 12:31:33
+[12:31:54] rearm out: {
+  "bit_sha256": "e4f1e25c0d3a71b6f126fa7e2f7fff248a9e4b267c932b641a2016aaf46d6559",
+  "clocks": [
+    125.0,
+    100.0
+  ],
+  "before": {
+    "0x0": 70,
+    "0x8": 5,
+    "0xc": 640,
+    "0x10": 90,
+    "0x14": 0
+  },
+  "after": {
+    "0x0": 70,
+    "0x8": 6,
+    "0xc": 320,
+    "0x10": 90,
+    "0x14": 1
+  },
+  "status": 0,
+  "frame_idx": 0,
+  "obj_count": 0,
+  "b_valid": 0,
+  "uart_drop": 0
+}
+[12:31:54] display back: True
+[12:31:54] PHASE2: restart feeder, wait recovery
+[12:31:54] board reset recovered: dt=0.0s row={'t': 1793248134.4, 'frames': 31, 'fps': 30.14, 'bright': 125.1, 'motion': 1.29, 'red_ratio': 1.0, 'max_red': 6322}
