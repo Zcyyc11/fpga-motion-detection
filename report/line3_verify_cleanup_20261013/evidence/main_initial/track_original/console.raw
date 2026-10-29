@@ -1,13 +1,13 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/track.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/track.v" into library work
 INFO: [VRFC 10-311] analyzing module track
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/alarm.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/alarm.v" into library work
 INFO: [VRFC 10-311] analyzing module alarm
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/sim/tb/tb_track_alarm.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/tb/tb_track_alarm.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_track_alarm
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_track_alarm -s check 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_track_alarm -s check 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -51,6 +51,6 @@ source finish.tcl
 [f9] track id=0 x=150..180 dwell=9       
 [f9] track id=2 x=135..165 dwell=1 (last)
 === PASS：track+alarm 联合仿真全部通过 ===
-$finish called at time : 2225 ns : File "D:/line3_verify_cleanup_20261013_01/source/sim/tb/tb_track_alarm.v" Line 199
+$finish called at time : 2225 ns : File "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/tb/tb_track_alarm.v" Line 199
 ## quit
 INFO: [Common 17-206] Exiting xsim at Tue Oct 13 16:42:51 2026...

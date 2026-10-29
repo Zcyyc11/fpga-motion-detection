@@ -4,8 +4,8 @@
     "errors": [
       "ValueError: duplicate target id"
     ],
-    "capture_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\capture",
-    "summary_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\capture\\summary.json",
+    "capture_path": "<DRIVE>/\line3_top_cosim_20261012_01\\normal_check02\\capture",
+    "summary_path": "<DRIVE>/\line3_top_cosim_20261012_01\\normal_check02\\capture\\summary.json",
     "summary_sha256": "71b7426a729afacc85d1300b61434f7ef87dc11cbf40043e0272bc3b393f52da",
     "source": "simulated",
     "capture_metadata": {
@@ -30,8 +30,8 @@
     "errors": [
       "ValueError: duplicate target id"
     ],
-    "capture_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\capture",
-    "summary_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\capture\\summary.json",
+    "capture_path": "<DRIVE>/\line3_top_cosim_20261012_01\\normal_check02\\capture",
+    "summary_path": "<DRIVE>/\line3_top_cosim_20261012_01\\normal_check02\\capture\\summary.json",
     "summary_sha256": "71b7426a729afacc85d1300b61434f7ef87dc11cbf40043e0272bc3b393f52da",
     "source": "simulated",
     "capture_metadata": {
@@ -64,8 +64,8 @@
       "errors": [
         "ValueError: duplicate target id"
       ],
-      "capture_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\corrupt_capture",
-      "summary_path": "D:\\line3_top_cosim_20261012_01\\normal_check02\\corrupt_capture\\summary.json",
+      "capture_path": "<DRIVE>/\line3_top_cosim_20261012_01\\normal_check02\\corrupt_capture",
+      "summary_path": "<DRIVE>/\line3_top_cosim_20261012_01\\normal_check02\\corrupt_capture\\summary.json",
       "summary_sha256": "905c0914b7d0be9b175e98bb8f3b09c121074d537a02870060860181617b064c",
       "source": "simulated",
       "capture_metadata": {},

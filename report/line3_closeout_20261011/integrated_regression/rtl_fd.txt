@@ -1,6 +1,6 @@
 {
-  "settings": "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
-  "scratch": "D:\\line3_closeout_20261011_1000_work\\integrated_regression\\fd_scratch",
+  "settings": "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+  "scratch": "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression\\fd_scratch",
   "mode": "framediff",
   "exit_code": 0,
   "timed_out": false,

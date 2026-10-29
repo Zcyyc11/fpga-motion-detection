@@ -16,10 +16,10 @@
     "日志中存在 ERROR/FATAL",
     "没有本次仿真结束标记",
     "缺少 x_hits 检查结果",
-    "CSV 校验失败：[Errno 2] No such file or directory: 'C:\\\\Users\\\\孙伟博\\\\Desktop\\\\FPGA大赛资料\\\\repair_20261009_round1\\\\runner_live_final\\\\编译错误_runs\\\\run_20261009T114645Z_ntmk_2qo\\\\sim\\\\wave\\\\bbox_rtl.csv'"
+    "CSV 校验失败：[Errno 2] No such file or directory: '<DRIVE>/\\\Users\\\\孙伟博\\\\Desktop\\\\FPGA大赛资料\\\\repair_20261009_round1\\\\runner_live_final\\\\编译错误_runs\\\\run_20261009T114645Z_ntmk_2qo\\\\sim\\\\wave\\\\bbox_rtl.csv'"
   ],
   "csv_frames": [],
-  "csv_error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\孙伟博\\\\Desktop\\\\FPGA大赛资料\\\\repair_20261009_round1\\\\runner_live_final\\\\编译错误_runs\\\\run_20261009T114645Z_ntmk_2qo\\\\sim\\\\wave\\\\bbox_rtl.csv'",
+  "csv_error": "[Errno 2] No such file or directory: '<DRIVE>/\\\Users\\\\孙伟博\\\\Desktop\\\\FPGA大赛资料\\\\repair_20261009_round1\\\\runner_live_final\\\\编译错误_runs\\\\run_20261009T114645Z_ntmk_2qo\\\\sim\\\\wave\\\\bbox_rtl.csv'",
   "completeness": {
     "checked": false,
     "expected_count": null,
@@ -30,7 +30,7 @@
     "passed": null
   },
   "golden_comparison_performed": false,
-  "run_dir": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\编译错误_runs\\run_20261009T114645Z_ntmk_2qo",
+  "run_dir": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\runner_live_final\\编译错误_runs\\run_20261009T114645Z_ntmk_2qo",
   "seconds": 1.759,
   "log_encodings": [
     "gb18030",

@@ -6,7 +6,7 @@
     "--count",
     "origin/main...origin/codex/verified-repairs-20261010"
   ],
-  "cwd": "D:\\line3_closeout_20261011_1000_work\\remote",
+  "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\remote",
   "start_utc": "2026-10-11T02:03:08.700010+00:00",
   "exit_code": 0,
   "seconds": 0.061,

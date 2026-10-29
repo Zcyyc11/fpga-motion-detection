@@ -1,17 +1,17 @@
 {
   "argv": [
-    "D:/666666/Anaconda/python.exe",
+    "<DRIVE>/666666/Anaconda/python.exe",
     "-I",
     "-B",
     "-X",
     "utf8",
-    "D:\\line3_closeout_20261011_1000_work\\integration\\sim\\line3\\run_repair_regressions.py",
+    "<DRIVE>/\line3_closeout_20261011_1000_work\\integration\\sim\\line3\\run_repair_regressions.py",
     "--out",
-    "D:\\line3_closeout_20261011_1000_work\\integrated_regression",
+    "<DRIVE>/\line3_closeout_20261011_1000_work\\integrated_regression",
     "--settings",
-    "D:/AMD2025.2/2025.2/Vivado/settings64.bat"
+    "<DRIVE>/AMD2025.2/2025.2/Vivado/settings64.bat"
   ],
-  "cwd": "D:\\line3_closeout_20261011_1000_work\\integration",
+  "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\integration",
   "start_utc": "2026-10-11T02:30:58.793147+00:00",
   "exit_code": 0,
   "seconds": 337.336,

@@ -69,7 +69,7 @@
   ],
   "ip_sha": "f4613fff005b098065fd5d619a2b88e55720a423",
   "ip_url": "https://github.com/Digilent/vivado-library",
-  "source_tree": "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode1",
+  "source_tree": "<DRIVE>/\line3_closeout_20261011_1000_work\\board_integrated_mode1",
   "clock": "125 MHz external; generated 74.25 MHz pixel clock",
   "scope": "board_top internal pattern + HDMI output; no HDMI input, no hardware test",
   "adaptations": [

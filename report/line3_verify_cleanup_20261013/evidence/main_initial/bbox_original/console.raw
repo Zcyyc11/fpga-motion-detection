@@ -1,11 +1,11 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/multi_bbox.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/multi_bbox.v" into library work
 INFO: [VRFC 10-311] analyzing module multi_bbox
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/sim/tb/tb_multi_bbox.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/tb/tb_multi_bbox.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_multi_bbox
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_multi_bbox -s check 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_multi_bbox -s check 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -36,6 +36,6 @@ source finish.tcl
 [frame 3] target id=0  x1=20 y1=20 x2=59 y2=49 cnt=1200        
 [frame 3] target id=1  x1=100 y1=80 x2=139 y2=109 cnt=1200  (last)
 === PASS：多目标连通域仿真全部通过（两个框）===
-$finish called at time : 2304365 ns : File "D:/line3_verify_cleanup_20261013_01/source/sim/tb/tb_multi_bbox.v" Line 170
+$finish called at time : 2304365 ns : File "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/tb/tb_multi_bbox.v" Line 170
 ## quit
 INFO: [Common 17-206] Exiting xsim at Tue Oct 13 16:43:11 2026...

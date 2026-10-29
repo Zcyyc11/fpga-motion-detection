@@ -4,7 +4,7 @@
     "keys": 6,
     "exit_code": 0,
     "csv_sha256": "0b33601cba4bb0ded1200ac110f947bafce215887937a9dc76a27bdea1e68a69",
-    "csv": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\audit_astra_20261010_214132\\unwrapped_baseline__pedestrians.csv",
+    "csv": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\audit_astra_20261010_214132\\unwrapped_baseline__pedestrians.csv",
     "command": "commands/unwrapped_baseline__pedestrians.json",
     "freshly_rechecked": true,
     "newly_executed_this_turn": false
@@ -14,7 +14,7 @@
     "keys": 6,
     "exit_code": 0,
     "csv_sha256": "9117361e1761c5cfb80651219e9b7ba7d9a9bbc3f3e474dc1b92b8af82b6bfc6",
-    "csv": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\audit_astra_20261010_214132\\unwrapped_dynamicBackground__canoe.csv",
+    "csv": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\audit_astra_20261010_214132\\unwrapped_dynamicBackground__canoe.csv",
     "command": "commands/unwrapped_dynamicBackground__canoe.json",
     "freshly_rechecked": true,
     "newly_executed_this_turn": false
@@ -24,7 +24,7 @@
     "keys": 6,
     "exit_code": 0,
     "csv_sha256": "9cdc4d52496e080ba41b4699cbc5b900b19cfb0da5b997f4781a1ed642ad0512",
-    "csv": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\audit_astra_20261010_214132\\unwrapped_dynamicBackground__fountain02.csv",
+    "csv": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\audit_astra_20261010_214132\\unwrapped_dynamicBackground__fountain02.csv",
     "command": "commands/unwrapped_dynamicBackground__fountain02.json",
     "freshly_rechecked": true,
     "newly_executed_this_turn": false

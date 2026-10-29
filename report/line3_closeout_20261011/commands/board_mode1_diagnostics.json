@@ -1,6 +1,6 @@
 {
   "argv": [
-    "D:/AMD2025.2/2025.2/Vivado/bin/vivado.bat",
+    "<DRIVE>/AMD2025.2/2025.2/Vivado/bin/vivado.bat",
     "-mode",
     "batch",
     "-source",
@@ -9,7 +9,7 @@
     "-log",
     "vivado.log"
   ],
-  "cwd": "D:\\line3_closeout_20261011_1000_work\\board_integrated_mode1\\postroute_diagnostics",
+  "cwd": "<DRIVE>/\line3_closeout_20261011_1000_work\\board_integrated_mode1\\postroute_diagnostics",
   "start_utc": "2026-10-11T02:30:31.760077+00:00",
   "exit_code": 0,
   "seconds": 44.166,

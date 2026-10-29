@@ -1,11 +1,11 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/src/rtl/multi_bbox.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/src/rtl/multi_bbox.v" into library work
 INFO: [VRFC 10-311] analyzing module multi_bbox
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_multi_bbox_limits
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_multi_bbox_limits -s check 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe tb_multi_bbox_limits -s check 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -47,6 +47,6 @@ BOX 13 54 2 55 3 4 0
 BOX 14 58 2 59 3 4 0
 BOX 15 62 2 63 3 4 1
 VERIFY_DONE bbox
-$finish called at time : 8700 ns : File "D:/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" Line 34
+$finish called at time : 8700 ns : File "<DRIVE>/line3_verify_cleanup_20261013_01/source/sim/line3/verify_cleanup/tb_multi_bbox_limits.v" Line 34
 ## quit
 INFO: [Common 17-206] Exiting xsim at Tue Oct 13 16:41:22 2026...

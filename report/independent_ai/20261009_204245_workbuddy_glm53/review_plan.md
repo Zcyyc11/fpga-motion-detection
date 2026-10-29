@@ -81,7 +81,7 @@
 3. 与原仓库参考文件逐字节比对（framediff.csv vs sim/wave/bbox_rtl.csv 0..10 帧；
    algo 输出 vs multi_track_results_algo.csv / alarm_events_algo.csv）。
 4. RTL 仿真：用本机 Vivado 2025.2（与推荐 2026.1 不同，记录差异）跑 build/scripts/run_sim.py。
-5. CDnet：数据不在本机（已搜 D:\ 与桌面，未发现）→ 尝试作者文档指路的复现入口，如不可得则记未执行。
+5. CDnet：数据不在本机（已搜 <DRIVE>/ 与桌面，未发现）→ 尝试作者文档指路的复现入口，如不可得则记未执行。
 6. 故障注入（在克隆体）：分别改 multi_track 阈值/坐标、rtl_golden 边界、compare 容差，
    验证 sim/line3 测试是否报警。
 7. 证据对应抽查 + 视频可解码抽查（cv2 逐帧哈希、尺寸、事件帧红框）。

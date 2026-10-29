@@ -1,6 +1,6 @@
 {
-  "settings": "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
-  "scratch": "D:\\666666\\Temp\\line3_xsim_20261009_fd01",
+  "settings": "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+  "scratch": "<DRIVE>/\666666\\Temp\\line3_xsim_20261009_fd01",
   "mode": "framediff",
   "exit_code": 0,
   "seconds": 27.435,

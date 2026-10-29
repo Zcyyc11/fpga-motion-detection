@@ -1,8 +1,8 @@
 [
   {
     "name": "unicode_abs_utf8",
-    "root": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程1",
-    "command": "\"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程1\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程1\\sim\\files.f\"",
+    "root": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程1",
+    "command": "\"<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程1\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程1\\sim\\files.f\"",
     "rc": 2,
     "seconds": 3.96,
     "filelist_encoding": "utf-8",
@@ -23,8 +23,8 @@
   },
   {
     "name": "unicode_quoted_utf8",
-    "root": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程2",
-    "command": "\"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程2\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程2\\sim\\files.f\"",
+    "root": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程2",
+    "command": "\"<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程2\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程2\\sim\\files.f\"",
     "rc": 2,
     "seconds": 1.66,
     "filelist_encoding": "utf-8",
@@ -45,8 +45,8 @@
   },
   {
     "name": "unicode_relative_ascii",
-    "root": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程3",
-    "command": "\"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程3\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程3\\sim\\files.f\"",
+    "root": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程3",
+    "command": "\"<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程3\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程3\\sim\\files.f\"",
     "rc": 0,
     "seconds": 17.68,
     "filelist_encoding": "ascii",
@@ -93,8 +93,8 @@
   },
   {
     "name": "unicode_quoted_gbk",
-    "root": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程4",
-    "command": "\"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程4\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程4\\sim\\files.f\"",
+    "root": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程4",
+    "command": "\"<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程4\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\repair_20261009_round1\\vivado_probe1\\中文工程4\\sim\\files.f\"",
     "rc": 0,
     "seconds": 9.97,
     "filelist_encoding": "gbk",
@@ -141,8 +141,8 @@
   },
   {
     "name": "ascii_space_quoted",
-    "root": "D:\\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project space",
-    "command": "\"D:\\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project space\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"D:\\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project space\\sim\\files.f\"",
+    "root": "<DRIVE>/\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project space",
+    "command": "\"<DRIVE>/\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project space\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"<DRIVE>/\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project space\\sim\\files.f\"",
     "rc": 0,
     "seconds": 8.49,
     "filelist_encoding": "utf-8",
@@ -188,8 +188,8 @@
   },
   {
     "name": "ascii_relative",
-    "root": "D:\\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project_ascii",
-    "command": "\"D:\\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project_ascii\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"D:\\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project_ascii\\sim\\files.f\"",
+    "root": "<DRIVE>/\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project_ascii",
+    "command": "\"<DRIVE>/\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project_ascii\\sim\\run_sim.bat\" tb_md_pipeline sim_tb_md_pipeline \"<DRIVE>/\666666\\Temp\\fpga_fix_vivado_probe_20261009_r1\\project_ascii\\sim\\files.f\"",
     "rc": 0,
     "seconds": 8.33,
     "filelist_encoding": "ascii",

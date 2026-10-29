@@ -1,8 +1,8 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/alarm.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/alarm.v" into library work
 INFO: [VRFC 10-311] analyzing module alarm
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox.v" into library work
 INFO: [VRFC 10-311] analyzing module bbox
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v" into library work
 INFO: [VRFC 10-311] analyzing module bbox_snapshot
-ERROR: [VRFC 10-3380] identifier 'ack' is used before its declaration [D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v:101]
-ERROR: [VRFC 10-8530] module 'bbox_snapshot' is ignored due to previous errors [D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v:27]
+ERROR: [VRFC 10-3380] identifier 'ack' is used before its declaration [<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v:101]
+ERROR: [VRFC 10-8530] module 'bbox_snapshot' is ignored due to previous errors [<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v:27]

@@ -1,48 +1,48 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/alarm.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/alarm.v" into library work
 INFO: [VRFC 10-311] analyzing module alarm
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox.v" into library work
 INFO: [VRFC 10-311] analyzing module bbox
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v" into library work
 INFO: [VRFC 10-311] analyzing module bbox_snapshot
-WARNING: [VRFC 10-3380] identifier 'ack' is used before its declaration [D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v:101]
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/diff_stage.v" into library work
+WARNING: [VRFC 10-3380] identifier 'ack' is used before its declaration [<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/bbox_snapshot.v:101]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/diff_stage.v" into library work
 INFO: [VRFC 10-311] analyzing module diff_stage
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/downsample2x2.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/downsample2x2.v" into library work
 INFO: [VRFC 10-311] analyzing module downsample2x2
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/frame_buf.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/frame_buf.v" into library work
 INFO: [VRFC 10-311] analyzing module frame_buf
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/md_pipeline.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/md_pipeline.v" into library work
 INFO: [VRFC 10-311] analyzing module md_pipeline
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/morph3x3.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/morph3x3.v" into library work
 INFO: [VRFC 10-311] analyzing module morph3x3
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/morph_open.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/morph_open.v" into library work
 INFO: [VRFC 10-311] analyzing module morph_open
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/multi_bbox.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/multi_bbox.v" into library work
 INFO: [VRFC 10-311] analyzing module multi_bbox
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/overlay.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/overlay.v" into library work
 INFO: [VRFC 10-311] analyzing module overlay
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/pattern_gen.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/pattern_gen.v" into library work
 INFO: [VRFC 10-311] analyzing module pattern_gen
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/regs.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/regs.v" into library work
 INFO: [VRFC 10-311] analyzing module regs
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/threshold.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/threshold.v" into library work
 INFO: [VRFC 10-311] analyzing module threshold
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/track.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/track.v" into library work
 INFO: [VRFC 10-311] analyzing module track
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/uart_tx.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/uart_tx.v" into library work
 INFO: [VRFC 10-311] analyzing module uart_tx
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/video_timing.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/video_timing.v" into library work
 INFO: [VRFC 10-311] analyzing module video_timing
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/sim/tb/tb_md_pipeline_full.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/sim/tb/tb_md_pipeline_full.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_md_pipeline_full
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical -timescale 1ns/1ps tb_md_pipeline_full -s cosim 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical -timescale 1ns/1ps tb_md_pipeline_full -s cosim 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3645] port 'rx_de' remains unconnected for this instance [D:/line3_top_cosim_20261012_01/rtl_source/sim/tb/tb_md_pipeline_full.v:56]
+WARNING: [VRFC 10-3645] port 'rx_de' remains unconnected for this instance [<DRIVE>/line3_top_cosim_20261012_01/rtl_source/sim/tb/tb_md_pipeline_full.v:56]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -110,7 +110,7 @@ PASS: S5 STATUS bit0 = 0
 PASS:  THRESH=\xff\xff\xff\xe6\xff\xff\xff\xa4\xff\xff\xff\x8e\xff\xff\xff\xe6\xff\xff\xff\x81\xff\xff\xff\x8d
 PASS: \xff\xff\xff\xe5\xff\xff\xff▼ UA\xff\xff\xff\xe6\xff\xff\xff\xa4\xff\xff\xff\xa5
 ==== PASS：tb_md_pipeline_full 集成全链通过 ====
-$finish called at time : 19821785 ns : File "D:/line3_top_cosim_20261012_01/rtl_source/sim/tb/tb_md_pipeline_full.v" Line 297
+$finish called at time : 19821785 ns : File "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/sim/tb/tb_md_pipeline_full.v" Line 297
 run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:11 . Memory (MB): peak = 227.035 ; gain = 0.000
 exit
 INFO: xsimkernel Simulation Memory Usage: 12664 KB (Peak: 12664 KB), Simulation CPU Usage: 10061 ms

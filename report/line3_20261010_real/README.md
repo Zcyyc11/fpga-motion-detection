@@ -43,15 +43,15 @@ V43的逐段结果如下；“一致”指两项CSV分数均一致，完整6变�
 | shadow/busStation | 951 | 0.83961308 | 0.8396 | 一致 |
 | shadow/peopleInShade | 950 | 0.90549724 | 0.9055 | 一致 |
 
-最终运行目录 `D:/line3_cdnet_20261010_1700/evaluation02`，受测源码 `ae5a7d8f77abe577a165b015a83d087f9cb65457`。原入口退出码 **0**，独立比较器退出码 **0**，运行用时1370.0秒（含等价检查、数据预检和评分）。stderr为空；源码及全部历史CSV前后哈希一致，冻结checkout干净。最终核验20/20项通过。
+最终运行目录 `<DRIVE>/line3_cdnet_20261010_1700/evaluation02`，受测源码 `ae5a7d8f77abe577a165b015a83d087f9cb65457`。原入口退出码 **0**，独立比较器退出码 **0**，运行用时1370.0秒（含等价检查、数据预检和评分）。stderr为空；源码及全部历史CSV前后哈希一致，冻结checkout干净。最终核验20/20项通过。
 
 最终运行命令：
 
 ```powershell
-& 'D:/666666/Anaconda/python.exe' -X utf8 D:/line3_cdnet_20261010_1700/tools/run_observed.py --source D:/line3_cdnet_20261010_1700/source --data-root D:/cdnet2014_line3_20261010_1700/dataset --out D:/line3_cdnet_20261010_1700/evaluation02
+& '<DRIVE>/666666/Anaconda/python.exe' -X utf8 <DRIVE>/line3_cdnet_20261010_1700/tools/run_observed.py --source <DRIVE>/line3_cdnet_20261010_1700/source --data-root <DRIVE>/cdnet2014_line3_20261010_1700/dataset --out <DRIVE>/line3_cdnet_20261010_1700/evaluation02
 ```
 
-等待器在评分进程结束后调用核验脚本，独立比较实际使用 `--run D:/line3_cdnet_20261010_1700/evaluation02`。命令、原始stdout/stderr、run.json、逐帧gzip、成绩CSV与comparison目录完整保存在 `evidence/evaluation02_complete_evidence.zip`。ZIP已逐项核对内容哈希并通过CRC检查；SHA256 `611701c3b429083f68dfe073118eaae4dc2ff491b6c476a69aafaa9c6bbed5af`。
+等待器在评分进程结束后调用核验脚本，独立比较实际使用 `--run <DRIVE>/line3_cdnet_20261010_1700/evaluation02`。命令、原始stdout/stderr、run.json、逐帧gzip、成绩CSV与comparison目录完整保存在 `evidence/evaluation02_complete_evidence.zip`。ZIP已逐项核对内容哈希并通过CRC检查；SHA256 `611701c3b429083f68dfe073118eaae4dc2ff491b6c476a69aafaa9c6bbed5af`。
 
 最终核验详情在 `evidence/evaluation02_final_audit.json`，摘要在 `evidence/evaluation02_comparison_summary.json`，各类分数在 `evidence/evaluation02_category_summary.csv`。本轮收尾工具及合成测试生成脚本另存 `evidence/completion_tools_20261010.zip`。下文保留中断过程与原始运行方式，结论以本节为准。
 
@@ -61,7 +61,7 @@ V43的逐段结果如下；“一致”指两项CSV分数均一致，完整6变�
 
 原目录未修改，逐文件哈希与现场记录见 `evidence/interruption_20261010_1925.json`，原始日志和不完整逐帧文件原样保存于 `evidence/evaluation01_interrupted.zip`。ZIP容器CRC通过不代表内部未完成的gzip可当完整评测证据。
 
-替代运行于19:25:31启动，PID **27788**。源码仍为下文相同的 `ae5a7d8`，同一个运行器、同一组参数，唯一更换的参数是输出路径 `--out D:/line3_cdnet_20261010_1700/evaluation02`。后续比较命令应将 `--run` 改为此新目录；正在运行时不编辑运行器或读取未完成gzip来判定成败。
+替代运行于19:25:31启动，PID **27788**。源码仍为下文相同的 `ae5a7d8`，同一个运行器、同一组参数，唯一更换的参数是输出路径 `--out <DRIVE>/line3_cdnet_20261010_1700/evaluation02`。后续比较命令应将 `--run` 改为此新目录；正在运行时不编辑运行器或读取未完成gzip来判定成败。
 
 结果比较器的合成测试为 **17/17通过**：完整111,498行正例，以及漏帧、重复帧、错误编号、负计数、真值计数不符、逐帧率不符、缺/多/重复CSV键、汇总错误、历史分数差异、源码/参考变化、脏工作区和失败退出码等反例。测试输入与原始输出保存在 `evidence/comparator_test01_synthetic.zip`，摘要为 `evidence/comparator_tests_synthetic.json`。这是比较器测试，不是真实检测成绩。
 
@@ -69,7 +69,7 @@ V43的逐段结果如下；“一致”指两项CSV分数均一致，完整6变�
 
 原包：`<USER_HOME>/孙伟博/Desktop/dataset2014.zip`，3,918,467,615字节。SHA256为 `05c6d0dd64858b094cb0d309e5b63be42de52f2b5c5adff4a65e6a640dfd2a84`。旧会话已完成全包CRC检查；本轮重新计算原包SHA256，并对选中的每个文件重新读取、验证、落盘复读和解码。
 
-解压根目录为 `D:/cdnet2014_line3_20261010_1700`，实际评测数据根为其下的 `dataset`。未覆盖原包、历史CSV或旧证据。
+解压根目录为 `<DRIVE>/cdnet2014_line3_20261010_1700`，实际评测数据根为其下的 `dataset`。未覆盖原包、历史CSV或旧证据。
 
 本轮提取每段所有 `input`、`groundtruth`、`temporalROI.txt`、`ROI.bmp`，共505,521,999字节。交接中505,942,828字节还包括12张辅助 `ROI.jpg`，本轮未提取这420,829字节；差异逐项列在 `evidence/excluded_ancillary_members.json`，不存在漏计分帧。
 
@@ -83,7 +83,7 @@ V43的逐段结果如下；“一致”指两项CSV分数均一致，完整6变�
 
 ## 真实评测如何运行
 
-固定源码：`ae5a7d8f77abe577a165b015a83d087f9cb65457`，隔离目录 `D:/line3_cdnet_20261010_1700/source`。`src/ps`算法源码和历史结果均不修改，wrapper与输出位于仓库外。
+固定源码：`ae5a7d8f77abe577a165b015a83d087f9cb65457`，隔离目录 `<DRIVE>/line3_cdnet_20261010_1700/source`。`src/ps`算法源码和历史结果均不修改，wrapper与输出位于仓库外。
 
 本机16GB内存，启动前可用约2.3GB。原入口缓存完整序列会占用较多内存，因此观察运行器只替换帧的存储/读取方式：按原来的BGR→灰度→2×2求和逻辑按需取帧，保留小缓存。原 `frame_metrics` 与 `cdnet_official.main` 仍执行，参数没有调整。
 
@@ -92,7 +92,7 @@ V43的逐段结果如下；“一致”指两项CSV分数均一致，完整6变�
 初次运行的历史命令（2026-10-10 16:53:06，PID 32740，已中断；成功运行使用上方evaluation02）：
 
 ```powershell
-& 'D:/666666/Anaconda/python.exe' -X utf8 D:/line3_cdnet_20261010_1700/tools/run_observed.py --source D:/line3_cdnet_20261010_1700/source --data-root D:/cdnet2014_line3_20261010_1700/dataset --out D:/line3_cdnet_20261010_1700/evaluation01
+& '<DRIVE>/666666/Anaconda/python.exe' -X utf8 <DRIVE>/line3_cdnet_20261010_1700/tools/run_observed.py --source <DRIVE>/line3_cdnet_20261010_1700/source --data-root <DRIVE>/cdnet2014_line3_20261010_1700/dataset --out <DRIVE>/line3_cdnet_20261010_1700/evaluation01
 ```
 
 运行器调用的原入口参数是 `--set r12 --seq all`、默认预热100、`--frames 0`完整ROI。r12为V0/V12/V43/V45/V46/V47；每个变体配置、Python/NumPy/OpenCV版本、源码哈希和CSV前后哈希都写入 `run.json`。仅重定向原入口的输出位置，不覆盖原来的 `src/ps/cdnet_official_results_r12.csv`。
@@ -100,7 +100,7 @@ V43的逐段结果如下；“一致”指两项CSV分数均一致，完整6变�
 成功运行的日志位于 `evaluation02/stdout.log` 和 `stderr.log`，退出码在该目录的 `run.json`。`per_frame.csv.gz`记录每段、每变体、每帧的P/R/F1、TP/FP/FN和真值前景数。本轮实际比较命令如下（已执行，勿对同一comparison目录重复运行）：
 
 ```powershell
-& 'D:/666666/Anaconda/python.exe' -X utf8 D:/line3_cdnet_20261010_1700/tools/compare_observed.py --run D:/line3_cdnet_20261010_1700/evaluation02 --reference D:/line3_cdnet_20261010_1700/source/src/ps/cdnet_official_results.csv
+& '<DRIVE>/666666/Anaconda/python.exe' -X utf8 <DRIVE>/line3_cdnet_20261010_1700/tools/compare_observed.py --run <DRIVE>/line3_cdnet_20261010_1700/evaluation02 --reference <DRIVE>/line3_cdnet_20261010_1700/source/src/ps/cdnet_official_results.csv
 ```
 
 比较器重新从逐帧计数聚合分数，核对12×6完整键集合、每帧编号覆盖、每段四位小数结果与逐帧平均，不以总分相等代替逐项核对。汇总按类内平均后再对7类平均。若不同，保存差异并诊断，不调参追分。
@@ -110,7 +110,7 @@ V43的逐段结果如下；“一致”指两项CSV分数均一致，完整6变�
 用法与待确认协议在 `../../docs/line3_pc_receiver_proposal.md`。最终测试命令为：
 
 ```powershell
-& 'D:/666666/Anaconda/python.exe' -X utf8 sim/line3/check_pc_receiver.py --out D:/line3_cdnet_20261010_1700/receiver_test02
+& '<DRIVE>/666666/Anaconda/python.exe' -X utf8 sim/line3/check_pc_receiver.py --out <DRIVE>/line3_cdnet_20261010_1700/receiver_test02
 ```
 
 实际退出码0，23/23通过。测试包括拆包/粘包、UTF-8错误、重复键、缺字段、非法坐标/编号、空流、缺帧、重复帧、乱序、截断、超长行恢复、磁盘增长限制、坐标边界和真实本机TCP。`evidence/receiver_test02.zip`保留完整原始流、输入、接收结果、拒收记录、命令/退出码及输出图片，已检查ZIP CRC。摘要为 `evidence/receiver_tests.json`。

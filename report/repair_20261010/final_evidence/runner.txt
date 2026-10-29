@@ -44,4 +44,4 @@ PASS direct_batch_requires_isolated_launcher
 PASS batch_template_ascii_crlf
 PASS checkout_retains_batch_crlf
 PASS source_checkout_unchanged
-46/46 PASS; evidence: D:\666666\Temp\codex_repair_20261010_final01\runner
+46/46 PASS; evidence: <DRIVE>/666666\Temp\codex_repair_20261010_final01\runner

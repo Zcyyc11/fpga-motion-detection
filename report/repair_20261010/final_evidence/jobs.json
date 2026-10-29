@@ -4,190 +4,190 @@
     {
       "name": "boundaries",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/test_verification_boundaries.py",
         "--out",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\boundaries"
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\boundaries"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 140.572
     },
     {
       "name": "runner",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/test_sim_runner.py",
         "--out",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\runner"
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\runner"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 58.747
     },
     {
       "name": "tools",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/check_tools.py",
         "--out",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\tools"
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\tools"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 31.445
     },
     {
       "name": "repairs",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/check_repairs.py",
         "--out",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\repairs"
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\repairs"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 2.55
     },
     {
       "name": "docs",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/check_doc_commands.py"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 5.634
     },
     {
       "name": "docs_self",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/check_doc_commands.py",
         "--self-test"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 1.527
     },
     {
       "name": "rtl_default",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "build/scripts/run_sim.py",
         "--vivado-settings",
-        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
         "--scratch-root",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\rtl_default",
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\rtl_default",
         "--expect-frames",
         "12"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 9.664
     },
     {
       "name": "rtl_fd",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/run_rtl.py",
         "--settings",
-        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
         "--out",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\fd_scratch",
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\fd_scratch",
         "--evidence",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\rtl_fd"
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\rtl_fd"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 8.367
     },
     {
       "name": "rtl_bg",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/run_rtl.py",
         "--settings",
-        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
         "--mode",
         "bg",
         "--out",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\bg_scratch",
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\bg_scratch",
         "--evidence",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\rtl_bg"
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\rtl_bg"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 12.436
     },
     {
       "name": "rtl_compat",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/run_rtl.py",
         "--settings",
-        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
         "--drain-frames",
         "1",
         "--out",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\compat_scratch",
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\compat_scratch",
         "--evidence",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\rtl_compat"
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\rtl_compat"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 17.068
     },
     {
       "name": "contracts",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
         "sim/line3/check_rtl_contracts.py",
         "--settings",
-        "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+        "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
         "--out",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\contracts"
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\contracts"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 64.165
     },
     {
       "name": "data_guard",
       "argv": [
-        "D:\\666666\\Anaconda\\python.exe",
+        "<DRIVE>/\666666\\Anaconda\\python.exe",
         "-X",
         "utf8",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\preserve_worker.py",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout\\build\\scripts\\test_data_guard.py",
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\preserve_worker.py",
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01",
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout\\build\\scripts\\test_data_guard.py",
         "--tmpdir",
-        "D:\\666666\\Temp\\codex_repair_20261010_final01\\data_guard",
+        "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\data_guard",
         "--keep"
       ],
-      "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+      "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
       "exit_code": 0,
       "seconds": 14.865
     }

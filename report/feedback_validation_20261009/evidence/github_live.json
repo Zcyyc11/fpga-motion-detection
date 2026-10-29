@@ -3,7 +3,7 @@
   "argv": [
     "git",
     "-C",
-    "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
+    "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo",
     "ls-remote",
     "origin",
     "refs/heads/main",

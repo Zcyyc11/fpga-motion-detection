@@ -15,7 +15,7 @@
 
 新回归：`python -X utf8 sim/line3/check_uart_type1.py --out <全新目录>`。
 现有回归：`check_uart_receiver.py --out <全新目录>`、`check_uart_evidence.py --out <全新目录>`。
-运行环境 Python 3.13.5、pyserial 3.5；本机PYTHONPATH=D:/line3_uart_20261012/deps。
+运行环境 Python 3.13.5、pyserial 3.5；本机PYTHONPATH=<DRIVE>/line3_uart_20261012/deps。
 
 | 本轮执行 | 结果 | 保存证据 |
 |---|---|---|
@@ -24,7 +24,7 @@
 | 证据对照与关闭异常 | 19/19，退出0 | evidence/evidence_checks.json |
 | 最终源码SHA256 | 明确列出受测文件 | evidence/source_hashes.json |
 
-完整本机输出：D:/line3_uart_20261012/type1_20261012_01/，其中tests01、receiver01、evidence01各自独立。
+完整本机输出：<DRIVE>/line3_uart_20261012/type1_20261012_01/，其中tests01、receiver01、evidence01各自独立。
 旧JSONL/TCP工具未改动，其23/23为此前版本证据，本轮未重复执行。未重跑CDnet或整机Vivado。
 
 ## 复核范围与缺口

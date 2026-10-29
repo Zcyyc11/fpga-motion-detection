@@ -1,6 +1,6 @@
 # UART 协议专项独立复核
 
-范围：D:/line3_uart_20261012/work 相对 4e075bf17be99e72b0804376aaf60d7eb0bb3fdf 的 uart_protocol.py、uart_receiver.py、verify_uart_capture.py；对照 docs/protocol_and_interface_requirements.md 与线二 22e881d:src/rtl/uart_tx.v。未修改源码，未删除文件，未发布评论。
+范围：<DRIVE>/line3_uart_20261012/work 相对 4e075bf17be99e72b0804376aaf60d7eb0bb3fdf 的 uart_protocol.py、uart_receiver.py、verify_uart_capture.py；对照 docs/protocol_and_interface_requirements.md 与线二 22e881d:src/rtl/uart_tx.v。未修改源码，未删除文件，未发布评论。
 
 ## 结论
 
@@ -23,7 +23,7 @@
 - mixed_order_capture/：接收原始字节、包、帧、事件、摘要。
 - reference.jsonl / missing_event_reference.jsonl：成功和失败的对照输入。
 
-执行：PYTHONPATH=D:/line3_uart_20261012/deps，使用 D:/666666/Anaconda/python.exe 运行 protocol_review_repro.py。退出码 0；12/12 通过。
+执行：PYTHONPATH=<DRIVE>/line3_uart_20261012/deps，使用 <DRIVE>/666666/Anaconda/python.exe 运行 protocol_review_repro.py。退出码 0；12/12 通过。
 
 ## Skill 范围说明
 

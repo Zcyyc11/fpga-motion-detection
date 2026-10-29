@@ -4,11 +4,11 @@ import datetime, hashlib, json, os, subprocess, time
 
 OUT = Path(__file__).resolve().parent
 BASE = OUT.parent
-WORK = Path('D:/line3_closeout_20261011_1000_work')
-PY = 'D:/666666/Anaconda/python.exe'
+WORK = Path('<DRIVE>/line3_closeout_20261011_1000_work')
+PY = '<DRIVE>/666666/Anaconda/python.exe'
 FROZEN = 'b4bf9300ac7f499f0c1c72ed3ef28317066f49a5'
 CANDIDATE = 'dc9f05fab3b625f962c4b40ffc70e7d4054a21ac'
-DATA = Path('D:/cdnet2014_line3_20261010_1700/dataset')
+DATA = Path('<DRIVE>/cdnet2014_line3_20261010_1700/dataset')
 
 def save(name, value):
     p = OUT / name

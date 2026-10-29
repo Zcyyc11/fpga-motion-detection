@@ -10,4 +10,4 @@ options:
   --out-csv OUT_CSV
   --compare COMPARE     RTL 仿真导出的 bbox csv，逐帧对比
   --report REPORT       把本报告另存一份（UTF-8）
-Failed to find real location of D:\666666\Anaconda\python.exe
+Failed to find real location of <DRIVE>/666666\Anaconda\python.exe

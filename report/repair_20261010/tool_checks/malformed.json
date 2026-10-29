@@ -1,6 +1,6 @@
 [
   {
     "kind": "invalid_input",
-    "error": "Malformed CSV row: C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\repair_20261010\\tool_checks\\malformed.csv"
+    "error": "Malformed CSV row: <DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料\\captain_repo\\report\\repair_20261010\\tool_checks\\malformed.csv"
   }
 ]

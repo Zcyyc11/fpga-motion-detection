@@ -7,13 +7,13 @@
 
 | 项目 | 本次使用 |
 |---|---|
-| Python | `D:/666666/Anaconda/python.exe`；实际命令使用 UTF-8 和禁止 pyc 写入选项 |
-| Vivado | `D:/AMD2025.2/2025.2/Vivado`，2025.2 |
-| 数据 | `D:/cdnet2014_line3_20261010_1700/dataset`，选定 12 段 |
-| 整合检出 | `D:/line3_closeout_20261011_1000_work/integration` |
-| HDL IP | `D:/line3_closeout_20261011_1000_work/vivado-library`，SHA `f4613fff005b098065fd5d619a2b88e55720a423` |
-| 原入口副本 | `D:/line3_closeout_20261011_1000_work/native_v2` |
-| 板级副本 | `D:/line3_closeout_20261011_1000_work/board_integrated_mode0`、`board_integrated_mode1` |
+| Python | `<DRIVE>/666666/Anaconda/python.exe`；实际命令使用 UTF-8 和禁止 pyc 写入选项 |
+| Vivado | `<DRIVE>/AMD2025.2/2025.2/Vivado`，2025.2 |
+| 数据 | `<DRIVE>/cdnet2014_line3_20261010_1700/dataset`，选定 12 段 |
+| 整合检出 | `<DRIVE>/line3_closeout_20261011_1000_work/integration` |
+| HDL IP | `<DRIVE>/line3_closeout_20261011_1000_work/vivado-library`，SHA `f4613fff005b098065fd5d619a2b88e55720a423` |
+| 原入口副本 | `<DRIVE>/line3_closeout_20261011_1000_work/native_v2` |
+| 板级副本 | `<DRIVE>/line3_closeout_20261011_1000_work/board_integrated_mode0`、`board_integrated_mode1` |
 
 这些是本次机器的实际位置，换机器应填写自己的路径。详细命令、工作目录、退出码与耗时见 `commands/*.json`。大体量 Vivado 工程与 checkpoint 保存在本地工作目录，未上传 GitHub。
 

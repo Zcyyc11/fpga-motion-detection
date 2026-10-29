@@ -1,11 +1,11 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/rtl_source/src/rtl/track.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/rtl_source/src/rtl/track.v" into library work
 INFO: [VRFC 10-311] analyzing module track
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/line3_top_cosim_20261012_01/tb_track_duplicate.v" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "<DRIVE>/line3_top_cosim_20261012_01/tb_track_duplicate.v" into library work
 INFO: [VRFC 10-311] analyzing module tb_track_duplicate
 Vivado Simulator v2025.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical -timescale 1ns/1ps tb_track_duplicate -s cosim 
+Running: <DRIVE>/AMD2025.2/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical -timescale 1ns/1ps tb_track_duplicate -s cosim 
 Multi-threading is on. Using 22 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -37,6 +37,6 @@ FAR target=2 id=1 dwell=1
 PASS: LINE3_FAR_CONTROL_UNIQUE
 FAIL: LINE3_NEAR_DUPLICATE nc=2 ids=0,0
 LINE3_TRACK_PROBE_DONE
-$finish called at time : 170 ns : File "D:/line3_top_cosim_20261012_01/tb_track_duplicate.v" Line 45
+$finish called at time : 170 ns : File "<DRIVE>/line3_top_cosim_20261012_01/tb_track_duplicate.v" Line 45
 exit
 INFO: [Common 17-206] Exiting xsim at Mon Oct 12 20:04:24 2026...

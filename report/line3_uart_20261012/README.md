@@ -41,9 +41,9 @@
 以下命令均从仓库根目录执行，输出目录每次取新名字。
 
 ```powershell
-python -X utf8 sim/line3/check_uart_receiver.py --out D:/uart_check_new
-python -X utf8 sim/line3/check_uart_evidence.py --out D:/uart_evidence_check_new
-python -X utf8 sim/line3/check_pc_receiver.py --out D:/legacy_receiver_check_new
+python -X utf8 sim/line3/check_uart_receiver.py --out <DRIVE>/uart_check_new
+python -X utf8 sim/line3/check_uart_evidence.py --out <DRIVE>/uart_evidence_check_new
+python -X utf8 sim/line3/check_pc_receiver.py --out <DRIVE>/legacy_receiver_check_new
 ```
 
 | 检查 | 结果 | 证据 |

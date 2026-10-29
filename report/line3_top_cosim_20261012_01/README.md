@@ -8,7 +8,7 @@
 
 - 线二：line2/top-integration，`15e8e21ed253ff3e5fa9a44a972ece189495bd02`。
 - 线三接收器：`e30c456e8232be286ed195481608e0c5bb429ab3`；本轮未修改接收器或产品RTL。
-- 原始Git blob快照与SHA256：`evidence/source_manifest.json`；本机快照在D:/line3_top_cosim_20261012_01/。
+- 原始Git blob快照与SHA256：`evidence/source_manifest.json`；本机快照在<DRIVE>/line3_top_cosim_20261012_01/。
 - Vivado 2025.2 xsim；320×180内部pattern_gen，像素时钟100MHz，UART分频50，即2 Mbaud加速仿真。
 - 测试从md_pipeline开始，不含真实板卡、HDMI PHY、USB-UART、电平、实测115200或真人视频帧对应。
 - 参考表只证明发送前tk/al元数据与串行字节相符，不证明检测算法对真实图像的准确性。
@@ -73,7 +73,7 @@ python -X utf8 verify_cosim.py --run events_new --out events_check_new
 python -X utf8 run_simulation.py --name track_probe_new --scenario track
 ```
 
-本机依赖D:/AMD2025.2/2025.2/Vivado/settings64.bat；脚本使用D:/line3_top_cosim_20261012_01冻结目录。
+本机依赖<DRIVE>/AMD2025.2/2025.2/Vivado/settings64.bat；脚本使用<DRIVE>/line3_top_cosim_20261012_01冻结目录。
 远端最小复现不需要整个视频顶层：用固定线二提交的`src/rtl/track.v`与随附`tb_track_duplicate.v`
 执行xvlog --relax -sv、xelab tb_track_duplicate、xsim -runall，检查FAIL而非只看退出码。
 原始串口数据可直接用线三`uart_receiver.py --file duplicate_frame4.bin --source simulated --save-images 0 --out <新目录>`重放。

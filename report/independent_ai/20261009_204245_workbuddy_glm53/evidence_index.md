@@ -31,11 +31,11 @@
 | E15 | `build/scripts/check_doc_commands.py` | 0 | 36 命令全部有效 | `raw/doccheck.log` |
 | E16 | `sim/line3/check_tools.py --out <tempfile 目录>` | 0 | **18/18** | 执行日志 §6 |
 | E17 | `src/ps/cdnet_official.py --set r12 --seq all`（无数据） | 1 | 明确报错"[数据未就绪]"，不产空表 | `raw/cdnet_nodata.log` |
-| E18 | `src/ps/algo_lab.py --data-root C:/不存在… --list` | 1 | 明确报错路径不存在 | `raw/cdnet_bogus.log` |
-| E19 | CDnet 数据集本机搜索（D:\ 两级、桌面三级、temporalROI 特征） | — | **未发现数据集**；CDNET_ROOT 未设 → 0.737 复现未执行 | 执行日志 §0 |
+| E18 | `src/ps/algo_lab.py --data-root <DRIVE>/不存在… --list` | 1 | 明确报错路径不存在 | `raw/cdnet_bogus.log` |
+| E19 | CDnet 数据集本机搜索（<DRIVE>/ 两级、桌面三级、temporalROI 特征） | — | **未发现数据集**；CDNET_ROOT 未设 → 0.737 复现未执行 | 执行日志 §0 |
 | E20 | 归档 CSV 结构审计（E11 内置 cdnet_audit） | — | 6 变体×12 段，无重复/非法行；V43 宏均值 0.7367 | `raw/line3_run_results.json` |
 
-## 3. 真实 RTL 仿真（Vivado 2025.2，`--vivado-settings D:\AMD2025.2\2025.2\Vivado\settings64.bat`）
+## 3. 真实 RTL 仿真（Vivado 2025.2，`--vivado-settings <DRIVE>/AMD2025.2\2025.2\Vivado\settings64.bat`）
 
 | # | 命令 | 退出码 | 关键结果 | 原始证据 |
 |---|---|---|---|---|
@@ -43,7 +43,7 @@
 | E22 | 同上（第二遍，新 scratch） | 2 | 同样 11 条 + 0xC0000409（可复现） | `raw/run_sim2.log` |
 | E23 | 同上（非沙箱运行） | 2 | 同样 11 条 + 0xC0000409（排除沙箱因素） | `raw/run_sim_nosandbox.log` |
 | E24 | 排空实验：克隆体 tb 改 `while (vframe <= FRAMES + 1)` 后 run_sim.py | 2（退出码同上） | **12 条记录帧 0..11**，CSV 与作者 `rtl_drained_framediff/expected.csv` **逐字节一致**（帧 11=(100,40)-(127,54) cnt=240）；实验后 tb 已还原 | `raw/run_sim_drained.log` |
-| E25 | `build/scripts/verify_runner_live.py --repo clone --out … --ascii-root D:/666666/Temp/ind_review_ascii --settings …` | 1 | 7 项真实 Vivado 运行：compile_error/x_state 反例**被正确拒绝**；expect12 **正确失败**（缺帧 11）；4 项路径变体均因 0xC0000409 判失败（作者环境为通过） | `raw/runner_live.log` |
+| E25 | `build/scripts/verify_runner_live.py --repo clone --out … --ascii-root <DRIVE>/666666/Temp/ind_review_ascii --settings …` | 1 | 7 项真实 Vivado 运行：compile_error/x_state 反例**被正确拒绝**；expect12 **正确失败**（缺帧 11）；4 项路径变体均因 0xC0000409 判失败（作者环境为通过） | `raw/runner_live.log` |
 
 ## 4. 故障注入（均在克隆体，原仓库未动；注入后均已还原并 git status 复核干净）
 

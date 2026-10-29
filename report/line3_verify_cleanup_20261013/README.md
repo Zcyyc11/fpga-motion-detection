@@ -42,14 +42,14 @@ Arm IHI0022H A3.3明确说明写数据与写地址可以不同周期到达，不
 在独立检出中使用Python及Vivado，输出必须是新的ASCII目录：
 
 ```powershell
-python -X utf8 sim/line3/verify_cleanup/run_verify_cleanup.py --repo . --ref HEAD --out D:/line3_verify_new --settings D:/AMD2025.2/2025.2/Vivado/settings64.bat
+python -X utf8 sim/line3/verify_cleanup/run_verify_cleanup.py --repo . --ref HEAD --out <DRIVE>/line3_verify_new --settings <DRIVE>/AMD2025.2/2025.2/Vivado/settings64.bat
 ```
 
 最小单项使用 `--jobs full16_64`、`--jobs wrap`、`--jobs cfg` 或 `--jobs axi_channels`。候选版本通过 `--ref <固定SHA>` 选择，测试夹具取运行器同目录的当前版本。每次都保存测试文件哈希，便于同台比较。
 首轮证据在 `evidence/main_initial`；面积门限64和增强游程检查在 `evidence/main_supplement`；阶段版在 `evidence/line2_stage`。输出含命令、原始日志、明确完成标记、退出码及比对结果；即使xsim退出0，FAIL也判失败。
 两个版本的同名文件可能有不同哈希：首轮bbox台MIN_CNT=1固定，后补为可传MINIMUM，正式满配传64；两轮原始文件均保留在证据包，未覆盖失败证据。
 
-原本机运行目录分别为 `D:/line3_verify_cleanup_20261013_01`、`D:/line3_verify_cleanup_20261013_02`、`D:/line3_verify_cleanup_line2_20261013_01`。各目录process.json记录完成状态。仓库提交保留小体积证据；完整源快照与运行器版本在本地ZIP中。
+原本机运行目录分别为 `<DRIVE>/line3_verify_cleanup_20261013_01`、`<DRIVE>/line3_verify_cleanup_20261013_02`、`<DRIVE>/line3_verify_cleanup_line2_20261013_01`。各目录process.json记录完成状态。仓库提交保留小体积证据；完整源快照与运行器版本在本地ZIP中。
 
 ## 互验与后续门槛
 

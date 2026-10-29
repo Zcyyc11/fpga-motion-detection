@@ -44,7 +44,7 @@ tb 修复见提交 99f0129（flush 256→4096）。
 在仓库根目录（Python + Vivado，输出必须是新的 ASCII 目录）：
 
 ```powershell
-python -X utf8 sim/line3/verify_cleanup/run_verify_cleanup.py --repo . --ref <SHA> --out D:/line3_verify_new --settings <VIVADO_INSTALL>Tools/2026.1/Vivado/settings64.bat
+python -X utf8 sim/line3/verify_cleanup/run_verify_cleanup.py --repo . --ref <SHA> --out <DRIVE>/line3_verify_new --settings <VIVADO_INSTALL>Tools/2026.1/Vivado/settings64.bat
 ```
 
 最小单项：`--jobs full16` / `--jobs label_full` / `--jobs wrap` / `--jobs cfg` / `--jobs axi_channels`。

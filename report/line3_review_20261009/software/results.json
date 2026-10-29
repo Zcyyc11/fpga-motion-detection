@@ -1108,8 +1108,8 @@
     "passed": true,
     "detail": {
       "target": 5,
-      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_long\\data\\baseline\\pedestrians\\input\\in000005.jpg",
-      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_long\\data\\golden\\five_steps_pedestrians_f5.png",
+      "last_read": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_long\\data\\baseline\\pedestrians\\input\\in000005.jpg",
+      "image": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_long\\data\\golden\\five_steps_pedestrians_f5.png",
       "shape": [
         819,
         1989,
@@ -1122,8 +1122,8 @@
     "passed": true,
     "detail": {
       "target": 5,
-      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_default\\data\\baseline\\pedestrians\\input\\in000005.jpg",
-      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_default\\data\\golden\\five_steps_pedestrians_f5.png",
+      "last_read": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_default\\data\\baseline\\pedestrians\\input\\in000005.jpg",
+      "image": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_default\\data\\golden\\five_steps_pedestrians_f5.png",
       "shape": [
         819,
         1989,
@@ -1136,8 +1136,8 @@
     "passed": true,
     "detail": {
       "target": 5,
-      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_short\\data\\baseline\\pedestrians\\input\\in000005.jpg",
-      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_short\\data\\golden\\five_steps_pedestrians_f5.png",
+      "last_read": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_short\\data\\baseline\\pedestrians\\input\\in000005.jpg",
+      "image": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_early_short\\data\\golden\\five_steps_pedestrians_f5.png",
       "shape": [
         819,
         1989,
@@ -1150,8 +1150,8 @@
     "passed": true,
     "detail": {
       "target": 10,
-      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_late\\data\\baseline\\pedestrians\\input\\in000010.jpg",
-      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_late\\data\\golden\\five_steps_pedestrians_f10.png",
+      "last_read": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_late\\data\\baseline\\pedestrians\\input\\in000010.jpg",
+      "image": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_late\\data\\golden\\five_steps_pedestrians_f10.png",
       "shape": [
         819,
         1989,
@@ -1192,8 +1192,8 @@
     "passed": true,
     "detail": {
       "target": 6,
-      "last_read": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_auto\\data\\baseline\\pedestrians\\input\\in000006.jpg",
-      "image": "C:\\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_auto\\data\\golden\\five_steps_pedestrians_f6.png",
+      "last_read": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_auto\\data\\baseline\\pedestrians\\input\\in000006.jpg",
+      "image": "<DRIVE>/\Users\\孙伟博\\Desktop\\FPGA大赛资料_清理备份_20261009_2004\\current_checks\\software\\five_auto\\data\\golden\\five_steps_pedestrians_f6.png",
       "shape": [
         819,
         1989,

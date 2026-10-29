@@ -20,7 +20,7 @@ for p in sorted(set(files)):
     q.parent.mkdir(parents=True,exist_ok=True)
     shutil.copy2(p,q)
     manifest.append({'source':str(p),'evidence':q.relative_to(root).as_posix(),'bytes':q.stat().st_size,'sha256':hashlib.sha256(q.read_bytes()).hexdigest()})
-for p in Path('D:/666666/Temp/codex_feedback_20261010_rtl_r2/default').glob('run_*/result.json'):
+for p in Path('<DRIVE>/666666/Temp/codex_feedback_20261010_rtl_r2/default').glob('run_*/result.json'):
     for rel in ['result.json','manifest.json','sim/wave/bbox_rtl.csv','sim/logs/sim_run.log']:
         source = p.parent/rel
         q = dest/'rtl_default'/rel

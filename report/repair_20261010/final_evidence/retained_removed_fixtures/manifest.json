@@ -1,26 +1,26 @@
 [
   {
-    "source": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout\\src\\ps\\cdnet_official_results_r5.csv",
-    "retained": "D:\\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\0_cdnet_official_results_r5.csv"
+    "source": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout\\src\\ps\\cdnet_official_results_r5.csv",
+    "retained": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\0_cdnet_official_results_r5.csv"
   },
   {
-    "source": "D:\\666666\\Temp\\codex_repair_20261010_final01\\data_guard\\official_1\\tcat\\tseq\\input\\in000005.jpg",
-    "retained": "D:\\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\1_in000005.jpg"
+    "source": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\data_guard\\official_1\\tcat\\tseq\\input\\in000005.jpg",
+    "retained": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\1_in000005.jpg"
   },
   {
-    "source": "D:\\666666\\Temp\\codex_repair_20261010_final01\\data_guard\\official_4\\tcat\\tseq\\groundtruth\\gt000005.png",
-    "retained": "D:\\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\2_gt000005.png"
+    "source": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\data_guard\\official_4\\tcat\\tseq\\groundtruth\\gt000005.png",
+    "retained": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\2_gt000005.png"
   },
   {
-    "source": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout\\src\\ps\\cdnet_official_results_r5.csv",
-    "retained": "D:\\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\3_cdnet_official_results_r5.csv"
+    "source": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout\\src\\ps\\cdnet_official_results_r5.csv",
+    "retained": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\3_cdnet_official_results_r5.csv"
   },
   {
-    "source": "D:\\666666\\Temp\\codex_repair_20261010_final01\\data_guard\\lab_1\\tcat\\tseq\\input\\in000005.jpg",
-    "retained": "D:\\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\4_in000005.jpg"
+    "source": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\data_guard\\lab_1\\tcat\\tseq\\input\\in000005.jpg",
+    "retained": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\4_in000005.jpg"
   },
   {
-    "source": "D:\\666666\\Temp\\codex_repair_20261010_final01\\data_guard\\lab_4\\tcat\\tseq\\groundtruth\\gt000005.png",
-    "retained": "D:\\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\5_gt000005.png"
+    "source": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\data_guard\\lab_4\\tcat\\tseq\\groundtruth\\gt000005.png",
+    "retained": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\retained_removed_fixtures\\5_gt000005.png"
   }
 ]

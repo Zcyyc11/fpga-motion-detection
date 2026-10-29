@@ -55,7 +55,7 @@ def software():
     return py('line3', 'sim/line3/run.py', '--out', out/'line3')
 
 def rtl():
-    settings = 'D:/AMD2025.2/2025.2/Vivado/settings64.bat'
+    settings = '<DRIVE>/AMD2025.2/2025.2/Vivado/settings64.bat'
     results = [py('rtl_default', 'build/scripts/run_sim.py', '--vivado-settings', settings, '--scratch-root', scratch/'default', '--expect-frames', '12')]
     for mode in ('framediff', 'bg'):
         results.append(py('rtl_drained_'+mode, 'sim/line3/run_rtl.py', '--settings', settings, '--out', scratch/('drained_'+mode), '--evidence', out/('rtl_drained_'+mode), '--mode', mode, '--drain-frames', '1'))

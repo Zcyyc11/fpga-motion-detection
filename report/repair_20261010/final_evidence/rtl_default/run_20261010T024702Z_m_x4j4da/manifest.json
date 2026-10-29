@@ -1,6 +1,6 @@
 {
-  "source_root": "D:\\666666\\Temp\\codex_repair_20261010_final01\\checkout",
-  "run_dir": "D:\\666666\\Temp\\codex_repair_20261010_final01\\rtl_default\\run_20261010T024702Z_m_x4j4da",
+  "source_root": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\checkout",
+  "run_dir": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\rtl_default\\run_20261010T024702Z_m_x4j4da",
   "sources": {
     "src/rtl/bbox.v": "19a6b0c3ece4b32446a515ef8343cf44d3986738b17e51555ff1114b53e2b0fc",
     "src/rtl/diff_stage.v": "39a64d6b44855c7f762fe57c71cd9d717bf612496c35cda04708333c31b9839c",
@@ -23,16 +23,16 @@
   },
   "created_utc": "2026-10-10T02:47:03.374427+00:00",
   "command": "call run_sim.bat \"tb_md_pipeline\" \"sim_tb_md_pipeline\" \"files.f\"",
-  "cwd": "D:\\666666\\Temp\\codex_repair_20261010_final01\\rtl_default\\run_20261010T024702Z_m_x4j4da\\sim",
+  "cwd": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\rtl_default\\run_20261010T024702Z_m_x4j4da\\sim",
   "arguments": {
     "top": "tb_md_pipeline",
-    "vivado_settings": "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
-    "scratch_root": "D:\\666666\\Temp\\codex_repair_20261010_final01\\rtl_default",
+    "vivado_settings": "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+    "scratch_root": "<DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\rtl_default",
     "expect_frames": 12,
     "first_frame": 0
   },
   "settings_source": "--vivado-settings",
-  "settings": "D:\\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
+  "settings": "<DRIVE>/\AMD2025.2\\2025.2\\Vivado\\settings64.bat",
   "settings_sha256": "da47c1887abd80a2527acf6b512bb7a2ee96a00d512b14840dd2f86b8e2f4ba3",
   "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
   "filelist_encoding": "ascii",

@@ -20,7 +20,7 @@ check_timing -verbose -file check_timing.rpt
 exit
 ''' % checkpoint.as_posix()
     (check/'check.tcl').write_text(script,encoding='ascii')
-    rec,txt=run(f'board_mode{mode}_diagnostics',['D:/AMD2025.2/2025.2/Vivado/bin/vivado.bat','-mode','batch','-source','check.tcl','-nojournal','-log','vivado.log'],check,timeout=600)
+    rec,txt=run(f'board_mode{mode}_diagnostics',['<DRIVE>/AMD2025.2/2025.2/Vivado/bin/vivado.bat','-mode','batch','-source','check.tcl','-nojournal','-log','vivado.log'],check,timeout=600)
     target=OUT/f'board_mode{mode}'/'diagnostics';target.mkdir(parents=True)
     for p in check.glob('*.rpt'):shutil.copy2(p,target/p.name)
     print(txt[-1500:])

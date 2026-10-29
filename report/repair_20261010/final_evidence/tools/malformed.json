@@ -1,6 +1,6 @@
 [
   {
     "kind": "invalid_input",
-    "error": "Malformed CSV row: D:\\666666\\Temp\\codex_repair_20261010_final01\\tools\\malformed.csv"
+    "error": "Malformed CSV row: <DRIVE>/\666666\\Temp\\codex_repair_20261010_final01\\tools\\malformed.csv"
   }
 ]
