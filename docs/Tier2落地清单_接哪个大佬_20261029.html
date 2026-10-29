@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  body { font-family: "Microsoft YaHei", "SimSun", sans-serif; font-size: 11pt; line-height: 1.6; }
+  h1 { color: #1F4E79; font-size: 18pt; text-align: center; }
+  h2 { color: #2E75B6; font-size: 14pt; border-bottom: 2px solid #2E75B6; padding-bottom: 3px; }
+  h3 { color: #2E75B6; font-size: 12pt; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; }
+  td, th { border: 1px solid #555; padding: 6px 9px; vertical-align: top; font-size: 10.5pt; }
+  th { background-color: #DEEAF6; font-weight: bold; }
+  .key { background-color: #FCE4D6; font-weight: bold; }
+  blockquote { border-left: 4px solid #2E75B6; margin: 8px 0; padding: 6px 14px; background-color: #F2F7FC; color: #444; }
+  b { color: #1F4E79; }
+</style>
+</head>
+<body>
+
+<h1>阶段二（Tier2）落地清单 · 接哪个大佬 / 怎么接</h1>
+<p style="text-align:center;color:#666;">团队 GGBOND · 给孙伟博的设备码落地指引 · 2026-10-29</p>
+
+<blockquote><b>定位：</b>阶段二是“拿成熟开源管线接上”，不是从零造。PL 现状（帧差/红框/HDMI/UART）不动，新增 VDMA+DDR 把背景模型放外部 DDR，解锁真 ViBe/GMM。设备码（RTL/综合/上板）归伟博，本清单只给“接谁、接哪、接口怎么对”。</blockquote>
+
+<h2>一、要接的三大成熟块（都有实证）</h2>
+<table>
+<tr><th>模块</th><th>接哪个大佬（开源）</th><th>用途</th></tr>
+<tr><td>VDMA + DDR 桥</td><td>PYNQ 自带 <code>pynq.lib.video.AxiVDMA</code>（framecount=4）；RTL 参考 Ssingh5535/FPGA_OV7670_HDMI、Sreeram-Ramesh/zynq-axi-dma-test、hyojun01/PYNQ_Z2_FMCW_Radar</td><td>S2MM 抓帧进 DDR，背景模型存 DDR，MM2S 读回送显示</td></tr>
+<tr><td>HDMI 进/出</td><td>现有 <code>dvi2rgb</code>（已在用）+ 现有 HDMI OUT 逻辑直接复用</td><td>不动，避免重造</td></tr>
+<tr><td>背景建模算法（ViBe/GMM）</td><td><b>无现成 HDL 可抄</b>：算法思想来自 IEEE TVLSI（Virtex-6 GMM）、HotEdgeVideo'19（ZCU102）、2024《舰船电子工程》（同芯片 ViBe，放 DDR）</td><td>在 PS/软件侧或 PL 软逻辑实现，模型权重存 DDR</td></tr>
+</table>
+
+<h2>二、接口怎么对（关键映射）</h2>
+<ul>
+<li><b>PL→DDR：</b>现有视频管线输出帧，经 VDMA S2MM 写 DDR（HP0 端口），不要手撸 AXI。</li>
+<li><b>背景模型：</b>ViBe/GMM 样本集（标准 N=20 ≈ 46Mb）放 DDR，不再占 BRAM（BRAM 仅 4.9Mb，纯 PL 放不下是共性约束）。</li>
+<li><b>DDR→显示：</b>VDMA MM2S 读回处理后的帧，接现有 HDMI OUT。</li>
+<li><b>PS 角色：</b>用 PYNQ Python 驱动 VDMA + 在线调参；PS FCLK 已是系统时钟（阶段一已治时钟坑）。</li>
+</ul>
+
+<h2>三、风险点（伟博综合/上板时盯）</h2>
+<table>
+<tr><th>风险</th><th>说明</th></tr>
+<tr><td class="key">DDR 带宽</td><td>720p@60fps 读写带宽，确认 HP 端口位宽/突发够用</td></tr>
+<tr><td class="key">VDMA 握手</td><td>S2MM/MM2S 同步、framecount 缓冲，避免撕裂/丢帧</td></tr>
+<tr><td class="key">综合资源</td><td>加 VDMA+DDR 后的 LUT/ BRAM/ DSP 占用，留余量</td></tr>
+<tr><td class="key">算法正确性</td><td>ViBe/GMM 在软件/软逻辑实现，先离线对齐再上板</td></tr>
+</table>
+
+<h2>四、验收标准（上板过这几条才算 Tier2 收口）</h2>
+<ul>
+<li>上板跑通：VDMA+DDR 链路稳定，无 DDR 错。</li>
+<li>效果提升：相比纯 PL 帧差，真背景建模在静止背景/弱小目标上明显更稳（肉眼 + 截图对比）。</li>
+<li>资源报告：综合后资源占用给出，证明未超限。</li>
+<li>材料回填：Tier2 验收记录 + 对比截图进交付包，更新设计报告“实测”章节。</li>
+</ul>
+
+<blockquote>注：Tier3（DSP+OpenCV 黄金参考）基本现成可裁剪，暂不优先；Tier2 收口后按需。</blockquote>
+
+</body>
+</html>
