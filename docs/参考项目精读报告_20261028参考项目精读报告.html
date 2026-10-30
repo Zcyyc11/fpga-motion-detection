@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; line-height: 1.7; color:#1a1a1a; max-width: 1100px; margin: 0 auto; padding: 24px; }
+  h1 { font-size: 26px; border-bottom: 3px solid #c0392b; padding-bottom: 8px; }
+  h2 { font-size: 20px; color:#c0392b; margin-top: 32px; border-left: 5px solid #c0392b; padding-left: 10px; }
+  h3 { font-size: 16px; margin-top: 20px; color:#2c3e50; }
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 13px; }
+  th, td { border: 1px solid #bbb; padding: 7px 9px; text-align: left; vertical-align: top; }
+  th { background:#2c3e50; color:#fff; }
+  tr:nth-child(even) { background:#f4f6f8; }
+  .ok { color:#1e8449; font-weight: bold; }
+  .no { color:#c0392b; font-weight: bold; }
+  .partial { color:#b9770e; font-weight: bold; }
+  .verdict { display:inline-block; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:bold; }
+  .v-full { background:#1e8449; color:#fff; }
+  .v-partial { background:#b9770e; color:#fff; }
+  .v-template { background:#7f8c8d; color:#fff; }
+  .callout { background:#fef9e7; border:1px solid #f1c40f; border-radius:6px; padding:12px 16px; margin:16px 0; }
+  .callout.red { background:#fdedec; border-color:#c0392b; }
+  code { background:#eee; padding:1px 5px; border-radius:3px; font-family: Consolas, monospace; }
+  .small { font-size:12px; color:#666; }
+</style>
+</head>
+<body>
+
+<h1>开源 PYNQ-Z2 参考项目精读报告</h1>
+<p class="small">团队 GGBOND · 线一（主城要） · 2026-10-28 · 12 个项目已全部下载至 <code>D:\FPGA\ref_projects\</code> 并通读</p>
+
+<div class="callout red">
+<strong>一句话结论（用户原话"他们一定解决了你说的那些问题"——已被实证）：</strong><br>
+12 个项目中，<strong>时钟/FCLK、VDMA+DDR、HDMI 这三个"硬墙"全部被多个独立前辈项目完整、可复现地解决</strong>；
+背景建模（L2 ViBe/GMM）确实没有任何一个现成项目做到——但 <strong>2cc2ic 正是我们算法的直系血统</strong>（帧差+2×2压缩+灰度域中值），
+且其余项目已把承载真背景建模所需的 <strong>VDMA+DDR 地基</strong> 全部验证成熟。即：三道墙是"已有人铺好的路"，第四道（真背景建模）才是我们 Tier2 要填的、且站在巨人肩膀上的真增量。
+</div>
+
+<h2>一、四道目标问题 · 跨项目证据汇总</h2>
+
+<table>
+<tr><th>目标问题</th><th>是否被现成项目解决</th><th>证据项目（数量）</th><th>关键证据</th></tr>
+<tr>
+  <td><strong>时钟坑（黑屏）</strong><br>纯 PL 用以太网 PHY 125MHz → 不插网线黑屏</td>
+  <td><span class="verdict v-full">已解决·铁证</span></td>
+  <td>wgq18、xflorentw、nick-nuti、al-nafisah、leonardopennino、Kumaylb、ZeroX29a（≥7）</td>
+  <td>全部用 <code>FCLK_CLK0</code>（Zynq PS 内部 IO PLL 产生）作 PL 时钟，<u>无一人用 PHY 125MHz</u>。ZeroX29a 的 <code>PYNQ-Z2 v1.0.xdc</code> 把 125MHz 明确标注为"以太网 PHY 时钟"并注释掉 <code>create_clock</code>，从官方约束层面证实"该时钟本就不该当视频主时钟"。</td>
+</tr>
+<tr>
+  <td><strong>VDMA + DDR 帧缓冲</strong><br>背景模型放外部 DDR 解锁 BRAM 枷锁</td>
+  <td><span class="verdict v-full">已解决·成熟</span></td>
+  <td>wgq18、al-nafisah、leonardopennino、nick-nuti、Kumaylb（≥5，含 AXI DMA 变体）</td>
+  <td><code>axi_vdma</code> S2MM 抓帧进 DDR、MM2S 读回是标准写法；wgq18 双向双工、leonardopennino 含 VDMA/AXI-DMA 两套参考。背景模型"外部 DDR 化"的工程前提已坐实。</td>
+</tr>
+<tr>
+  <td><strong>HDMI 进/出链路</strong><br>dvi2rgb + rgb2dvi + 时序</td>
+  <td><span class="verdict v-full">已解决·多版</span></td>
+  <td>wgq18（进+出）、al-nafisah（进+出）、leonardopennino（进+出）、xflorentw（出）、nick-nuti（出）（≥5）</td>
+  <td>标准管线 <code>dvi2rgb(IN) → v_tc → axi_dynclk → rgb2dvi(OUT)</code> 被反复复刻；<code>FCLK_CLK2=200MHz</code> 作 dvi2rgb RefClk 是统一约定。wgq18 / leonardopennino 直接带可用 .bit。</td>
+</tr>
+<tr>
+  <td><strong>真背景建模（ViBe/GMM）</strong><br>我们 Tier2 的核心增量</td>
+  <td><span class="verdict v-template">无现成·待我做</span></td>
+  <td>2cc2ic（直系血统，仅 L0/L1）</td>
+  <td>12 个项目<strong>无一</strong>做到 L2 真背景建模。但 2cc2ic 的帧差+2×2压缩+灰度域中值正是我们现有算法（THRESH=70 同源）；在它基础上换用 VDMA+DDR 地基即可升到 L2——这就是我们 30 分创新点的真实抓手，而非"从零发明"。</td>
+</tr>
+</table>
+
+<div class="callout">
+<strong>对"比赛创新 30 分"的再定位：</strong> 不要宣称"我做了 HDMI/VDMA/PS-FCLK 这些别人没做的"——它们是开源常识。
+我们的创新叙事应落在：<strong>① 在开源成熟地基（FCLK+VDMA+DDR）上，把"纯 PL 帧差入门级"重构为"PS/PL 协同的真背景建模（L2）"，并诚实度量资源/精度权衡；② 工程上把"不插网线黑屏"这类 PYNQ-Z2 怪癖作为设计约束显性处理。</strong> 这比"发明轮子"更值钱，也经得起评委追问。
+</div>
+
+<h2>二、12 个项目逐一审读（结构 / 解决项 / 可复现性）</h2>
+
+<h3>1. 2cc2ic / Motion-Detection-System（45★）— 我们的算法直系血统</h3>
+<p><strong>结构：</strong>完整源码（Verilog IP + 裸机 PS C + 工程）。OV7725 摄像头 → Video-In AXI4-Stream → 自定义 IP（灰度→灰度域 3×3 中值→2×2 累加压缩→缓存背景帧→帧差 THRESH&gt;70→展开→包围盒）→ AXI DMA 三缓冲到 DDR3 → AXI4-Stream-to-Video-Out → HDMI。</p>
+<p><strong>解决项：</strong> 背景帧用 BRAM FIFO（36 块 BRAM 存 320×240×10bit）；2×2 压缩省 BRAM；<span class="ok">明确写道"以后采用 VDMA""PS 端尚待开垦"</span>。这正是我们 THRESH=70 与 2×2 压缩的出处。<br>
+<span class="no">关键对照：</span>它做<strong>灰度域</strong> 3×3 中值（正确），我们是<strong>二值域</strong> 3×3 开运算（=红框乱象病根）。修 bug 的方向由此锁定。</p>
+<p><strong>可复现：</strong> <span class="verdict v-full">完整源码可建</span>。无预编译 bit，但 RTL+PS 齐全。</p>
+
+<h3>2. wgq18 / img_defog — 开箱即用最佳范本</h3>
+<p><strong>结构：</strong><code>bit流文件/</code>（base_wrapper.bit+.hwh+.tcl+start_defog.ipynb）、<code>c++源代码/</code>（img_defog.cpp HLS 暗通道去雾）。</p>
+<p><strong>解决项：</strong> 基于 PYNQ 标准 base video overlay；<span class="ok">clk_100M←FCLK_CLK0、clk_142M←FCLK_CLK1、clk_200M←FCLK_CLK2（dvi2rgb RefClk），完全无 PHY 125MHz</span>；<code>axi_vdma</code> 双向双工帧缓冲（HDMI-IN→S2MM→DDR→MM2S→去雾 IP→HDMI-OUT）。</p>
+<p><strong>可复现：</strong> <span class="verdict v-full">直接带 .bit</span>，Overlay 即跑（需 PYNQ Linux 镜像）。重建文档略缺，但 .tcl 完整。</p>
+
+<h3>3. xflorentw / Pynq-Z2-Video — 最干净的可重建 HDMI 输出模板</h3>
+<p><strong>结构：</strong>Makefile + .gitmodules（Digilent vivado-library）+ hw/（create_proj.tcl, bd.tcl, constr）+ baremetal/（Vitis 驱动）。</p>
+<p><strong>解决项：</strong> TPG → v_tc → v_axi4s_vid_out → rgb2dvi → HDMI；<code>FCLK_CLK0(100M)→clk_wiz_0→74.25M</code> 驱动视频；动态重配时钟支持多分辨率。<span class="no">无 VDMA/DDR（TPG 直连）</span>。</p>
+<p><strong>可复现：</strong> <span class="verdict v-full">脚本齐全可重建</span>（Vivado 2023.2 + 板文件 + 子模块）。无预编译 bit。</p>
+
+<h3>4. nick-nuti / HDMI_OUT_PYNQ_Z2 — 含 VDMA 帧缓冲的输出模板</h3>
+<p><strong>结构：</strong>design_1.tcl + pynqz2_pinout.xdc + vitis/（display_ctrl.c/h、dynclk.c/h、vga_modes.h 等）。</p>
+<p><strong>解决项：</strong> PS 写 DDR 帧缓冲 → axi_vdma(MM2S) → v_axi4s_vid_out → rgb2dvi → HDMI（1080p@60）；<code>REF_CLK_I←FCLK_CLK0</code>，HP0 用 FCLK_CLK1。经典 Zynq 帧缓冲显示驱动模板。</p>
+<p><strong>可复现：</strong> <span class="verdict v-partial">可构建模板</span>，需手动建工程 + 外部 Digilent IP 库；无预编译 bit。</p>
+
+<h3>5. al-nafisah / fpga-video-classifier（123★-级 CNN）— 最强 VDMA+HDMI 全栈范本</h3>
+<p><strong>结构：</strong>bitstream/（finn_hdmi.bit+.hwh）+ board/（PYNQ Python pipeline）+ build/（FINN 流 + Vivado tcl）。</p>
+<p><strong>解决项：</strong> HDMI-IN(dvi2rgb) → FINN 二值 CNN(w1a1, CIFAR-10) → HDMI-OUT(rgb2dvi)；<code>FCLK_CLK0=100 / CLK1=142.857 / CLK2=200→dvi2rgb</code>；<code>overlay.video.axi_vdma</code> 帧缓冲进 DDR + <code>axi_dma_0</code> 张量 I/O。三时钟域全齐。</p>
+<p><strong>可复现：</strong> <span class="verdict v-full">带 .bit + 完整 FINN/Vivado 重建</span>（重但完整）。</p>
+
+<h3>6. leonardopennino / PYNQ-Z2-IMPROC — 带 3 个 .bit 的 HLS 图像处理</h3>
+<p><strong>结构：</strong>HLS/（CANNY-DMA, SOBEL-VDMA .cpp）+ IP/（SOBEL-NMS.bit, SOBELONLY.bit, canny_dma.bit+.hwh）+ IPYTHON NOTEBOOKS/。</p>
+<p><strong>解决项：</strong> HDMI-IN → HLS Canny/Sobel → HDMI-OUT；<code>FCLK_CLK0=100MHz</code>（PL 时钟，ENET0 125 仅 MAC PLL，不驱动 PL）；SOBEL 用 VDMA 直连、CANNY 用 AXI DMA 经 DDR。3×3 linebuffer HLS 范式可直接借。</p>
+<p><strong>可复现：</strong> <span class="verdict v-full">带 3 个 .bit + HLS 源 + .tcl</span>。</p>
+
+<h3>7. Kumaylb / PYNQ-Z2-Image-Processing — 带 .bit 的静态图过滤</h3>
+<p><strong>结构：</strong>Image_Processing.ipynb + hardware/（VHDL 过滤器）+ filters/（.bit+.hwh）。</p>
+<p><strong>解决项：</strong> 静态图（非视频）；PS Python + PL VHDL AXI-Stream 过滤器；<code>FCLK_CLK0=100M</code> + AXI DMA 经 DDR。<span class="no">无 HDMI、无 VDMA、无背景建模</span>。</p>
+<p><strong>可复现：</strong> <span class="verdict v-partial">带 .bit 可跑 notebook，但无 Vivado 源工程</span>，无法从源码重建。</p>
+
+<h3>8. WangHaoZhe / PYNQ-Tutorial（38★）— 完整 Vivado 工程教程</h3>
+<p><strong>结构：</strong>完整 Tutorial.xpr + srcs/runs/gen + 板卡文件 preset.xml + XDC + 35 张步骤图。</p>
+<p><strong>解决项：</strong> 仅 half_adder 教学，无视频/HDMI；但其 <code>preset.xml</code> 含标准 <code>FCLK0_PERIPHERAL_DIVISOR0=10→100MHz</code> PS FCLK 预设，是可复用的板级起点。</p>
+<p><strong>可复现：</strong> <span class="verdict v-full">完整工程 100% 可重建烧录</span>（教学级）。</p>
+
+<h3>9. ZeroX29a / PynqZ2 — 板文件/XDC 资源集合（时钟坑官方证据）</h3>
+<p><strong>结构：</strong>Board files/（board.xml=xc7z020clg400-1, preset.xml, part0_pins.xml）+ xdc/（PYNQ-Z2 v1.0.tcl/.xdc）+ Books/（数据手册/原理图）。</p>
+<p><strong>解决项：</strong> <span class="ok">preset.xml 设 FCLK_CLK0_BUF=TRUE、DIVISOR0=5（100MHz）作 PL 标准时钟</span>；<code>.xdc</code> 把 125MHz 标注为"以太网 PHY 时钟"并注释掉 create_clock——<strong>从官方约束证明"视频主时钟不该用 PHY 125MHz"</strong>。HDMI 引脚约束齐备。</p>
+<p><strong>可复现：</strong> <span class="verdict v-template">纯资源集合</span>，无自有设计，但板文件/XDC 可直接复用。</p>
+
+<h3>10. andre1araujo / YOLO-on-PYNQ-Z2（123★）— 带可启动 SD 镜像的 DPU 检测</h3>
+<p><strong>结构：</strong>DPU implementation/（BOOT.BIN 内嵌 bitstream + image.ub + DNNDK v3.1）+ Deployment/（yolo_video.cpp 等）。</p>
+<p><strong>解决项：</strong> YOLOv3 目标检测；PL=DPU（深度学习核，由 FCLK_CLK0 驱动），PS=PetaLinux+OpenCV；USB 摄像头→DPU→HDMI 显示。<strong>重度用 DDR</strong>（DPU 张量驻留），但走 DPU 专用接口非 VDMA；无背景建模。</p>
+<p><strong>可复现：</strong> <span class="verdict v-partial">带可启动 BOOT.BIN（含 bit）直接烧录跑；但 Vivado .xpr 不在仓库</span>（README 说太大走 Google Drive），无法仅凭仓库重建。</p>
+
+<h3>11. HANLIN-zeng / defect_detection — 仅 1 个 Python 脚本（名不副实）</h3>
+<p><strong>结构：</strong>detaction.py + detaction.rar。无 HDL/bit/工程。PC 端 OpenCV（Canny+convexityDefects）缺陷检测。</p>
+<p><strong>解决项：</strong> <span class="no">纯软件，无 PS-PL 拆分、无时钟/VDMA/HDMI/背景建模</span>。"OpenCV 50+ 硬件函数"宣传无实证。</p>
+<p><strong>可复现：</strong> <span class="verdict v-template">模板级</span>，仅作 PS 端算法参考。</p>
+
+<h3>12. Maciej-Klobukowski / pynq2-snake — 仅论文 PDF + 空模板</h3>
+<p><strong>结构：</strong>README 是未填的课程模板、CHECKLIST 模板、docs/ 空。唯一实质物是 <code>Abstract_HDMI-UDP-systeem.pdf</code>（290KB 论文）。</p>
+<p><strong>解决项：</strong> <span class="no">仓库内无任何 .bit/.tcl/.xpr/.c，HDMI+UDP+FreeRTOS 设计只存在于 PDF 描述</span>，无法判断时钟/VDMA/帧缓冲方案。</p>
+<p><strong>可复现：</strong> <span class="verdict v-template">模板级</span>，不可用。</p>
+
+<h2>三、对我们的 Tier1 / Tier2 / Tier3 落地启示</h2>
+<table>
+<tr><th>我们的层</th><th>前辈项目给出的"可直接抄"的证据</th><th>我们据此要做的</th></tr>
+<tr><td><strong>Tier1</strong><br>上 PS + FCLK 治时钟坑</td><td>wgq18 / xflorentw / nick-nuti / al-nafisah / leonardopennino / Kumaylb / ZeroX29a 全部用 FCLK_CLK0；ZeroX29a XDC 把 125MHz 标为 PHY 时钟并注释。孙伟博 PR#3（FCLK0=125/FCLK1=100, AXI 0x43C00000）方向完全正确、符合主流。</td><td>把 PR#3 上板验"拔网线仍出图"作为 Tier1 唯一硬判据。不必自创，照开源范式收口。</td></tr>
+<tr><td><strong>Tier2</strong><br>VDMA+DDR 真背景建模</td><td>wgq18（VDMA 双工）/ al-nafisah（VDMA+DMA）/ leonardopennino（VDMA/AXI-DMA 双参考）已验证 DDR 帧缓冲链路；2cc2ic 证明帧差算法在 Z2 可跑并明示"以后 VDMA / PS 待开垦"。</td><td>在 VDMA+DDR 地基上把 2cc2ic 的帧差（L0）升到 ViBe/GMM（L2），背景模型存 DDR 解 BRAM 枷锁。这是真增量、也是 30 分创新落点。</td></tr>
+<tr><td><strong>Tier3</strong><br>DSP+OpenCV 黄金参考</td><td>YOLO-on-PYNQ / defect_detection（软件）/ al-nafisah CNN 均用 OpenCV+PS 做黄金参考或前处理。</td><td>基本现成，可砍。用软件 OpenCV 出"地面真值"对标 PL 精度即可。</td></tr>
+</table>
+
+<div class="callout red">
+<strong>纪律提醒（呼应 MEMORY"不许凭记忆说话"）：</strong> 以上每条"解决项/可复现性"均来自对仓库 README 与关键代码（.tcl/.hwh/.cpp/.v/.ipynb）的实际通读，非估测。落地任何一块前，先 <code>grep</code> 对应项目的具体文件名再下结论；引用 SHA/路径以实际文件为准。
+</div>
+
+<p class="small">附：12 个项目的压缩包与解压目录均保留在 <code>D:\FPGA\ref_projects\</code>，可按表索骥直接取用相关 .tcl / .hwh / IP 源码。</p>
+
+</body>
+</html>
