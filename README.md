@@ -2,6 +2,13 @@
 
 # fpga-motion-detection
 
+**作品名称**：基于FPGA的运动目标检测
+**赛事**：全国大学生嵌入式芯片与系统设计竞赛 2026 · FPGA创新设计赛道（AMD）· 3.3 自主选题 · 初级组
+**目标器件**：`XC7Z020-1CLG400C`　**开发板**：PYNQ-Z2（Zynq-7000 SoC，双核 Cortex-A9 + 可编程逻辑）
+**工具版本**：Vivado / Vitis 2026.1　**作品须在真实硬件上跑通，本仓库的 board/logs 与 evidence/ 为板端实测输出**
+
+---
+
 2026 FPGA竞赛项目，团队GGBOND。当前主线 `main`（2026-10-12），**多目标+UART 回传全链已并线**（`0a778c8` 顶层接线 / `2505417` 线一收尾 / `9f7173a` 线三接收端三笔合并），线三交付（codex 分支）、线一 HDMI 输入通路、AXI-Lite 寄存器接口均已合入；分工表修订版见 `docs/team_division_20261011.md`。
 
 **12 段 CDnet 子集的原入口成绩复现已完成，板级顶层两种模式布局布线通过，两版固件为正确配置（自测 INPUT_SEL=0、HDMI 输入 INPUT_SEL=1，WNS 收敛、DRC 干净），回传协议与接口设计已定稿（f15fbce），HDMI 输入版上板实测已 PASS（37c1d2c：强运动检出率 89%、静止误检率 0%、单框确认）。** 未闭合项收窄为：多目标 bit 构建与上板实测、全链真回传实测（UART 接收端已就绪 `sim/line3/uart_receiver.py`；甲通路默认 INCLUDE_PS=0 关闭，需另出 INCLUDE_PS=1 版）、18 分钟帧号回绕长测、他人评审——不能称为整体验收通过。
