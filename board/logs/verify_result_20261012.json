@@ -1,0 +1,17 @@
+{
+  "fps": 28.4,
+  "avg_bright": 112.1,
+  "motion_th": 1.5,
+  "motion_frames": 86,
+  "still_frames": 34,
+  "detect_rate_pct": 58.1,
+  "false_alarm_rate_pct": 0.0,
+  "tp": 50,
+  "fn": 36,
+  "fp": 0,
+  "tn": 34,
+  "avg_boxes_per_frame": 1.0,
+  "video": "vehicles.mp4",
+  "resolution": "1280x720",
+  "time": "2026-10-12 17:03:30"
+}
