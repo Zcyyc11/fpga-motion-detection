@@ -259,7 +259,11 @@ PYNQ-Z2 的 PL 独立 125 MHz 时钟（H16 引脚）来自板载以太网 PHY（
 
 ### 3.4 PS 侧设计
 
-当前版本 PS 侧为**可选路径**（默认 `INCLUDE_PS=0` 关闭），职责是：
+**当前状态（如实说明）**：PS 侧控制通路的**接口设计与 RTL 实现已完成**——`axi_lite_slave.v`（AXI-Lite 从机）、`regs.v`（寄存器组）、`mmio_readout.py`（PS 侧读取脚本）、`tb_axi_lite_slave.v`（仿真）均已就位，寄存器表见 3.5 节 I4。
+
+**但尚未接入 PS 主机**：`board_top.v` 中 `INCLUDE_PS` 硬编码为 0，AXI 口悬空；工程内无 PS7 实例、无 Block Design、无 `.hwh` 文件。接入方案与施工步骤已写成 `docs/axi_ps_integration_recipe.md`，**属"零件齐、未组装"状态，不是"没做"**。
+
+接入后 PS 侧的职责是：
 
 - 通过 AXI4-Lite 读写 PL 寄存器（阈值、学习率、警戒线、停留帧数）
 - 读取目标快照（BBOX_X1/Y1/X2/Y2/CNT/FRAME）
