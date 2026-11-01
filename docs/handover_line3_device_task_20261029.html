@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8">
+<style>
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;line-height:1.65;color:#1a1a1a;max-width:900px;margin:0 auto;padding:22px;}
+h1{font-size:23px;border-bottom:3px solid #c0392b;padding-bottom:6px;}
+h2{font-size:17px;color:#c0392b;margin-top:20px;border-left:5px solid #c0392b;padding-left:9px;}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:13px;}
+th,td{border:1px solid #bbb;padding:6px 8px;text-align:left;vertical-align:top;}
+th{background:#c0392b;color:#fff;}
+tr:nth-child(even){background:#f4f6f8;}
+code{background:#eee;padding:1px 4px;border-radius:3px;font-family:Consolas,monospace;}
+.callout{background:#fdedec;border:1px solid #c0392b;border-radius:6px;padding:10px 14px;margin:12px 0;}
+.small{font-size:12px;color:#666;}
+ul,ol{margin:6px 0;}
+</style></head>
+<body>
+
+<h1>明日交接 · 线三（孙伟博）设备码任务书</h1>
+<p class="small">团队 GGBOND · 线一（主城要）交办 · 2026-10-29 · 你负责 BD / RTL / 出 bit / 板验</p>
+
+<h2>一句话目标</h2>
+<p>把"背景帧缓冲"从 <strong>BRAM 搬到外部 DDR</strong>，解开 BRAM 枷锁（现在 1 帧就占 45%，放不下真 ViBe）；顺带用 <strong>PS FCLK 替掉 PHY 125MHz</strong>，把"不插网线就黑屏"这个坑彻底治死。</p>
+
+<h2>你要搭的 BD（Block Design）</h2>
+<table>
+<tr><th>大块</th><th>谁</th><th>怎么连</th></tr>
+<tr><td>Zynq PS7</td><td>主控</td><td>FCLK_CLK0→PL 像素时钟 / FCLK_CLK1→AXI；GP0→AXI-Lite 桥→md_pipeline 的 <code>ps_*</code> 钩子</td></tr>
+<tr><td>AXI VDMA</td><td>内存搬运</td><td>S2MM 把进帧写 DDR、MM2S 把背景样本读回；走 <strong>HP0</strong> 高带宽口</td></tr>
+<tr><td>DDR3 控制器</td><td>PS 内</td><td>背景模型 + 帧缓冲 都住这</td></tr>
+</table>
+
+<h2>抄谁（仓库地址 + 版本，按此拉取）</h2>
+<table>
+<tr><th>要抄什么</th><th>仓库地址</th><th>版本(commit)</th><th>仓内文件</th></tr>
+<tr><td>VDMA 帧缓冲最干净模板</td><td><code>https://github.com/nick-nuti/HDMI_OUT_PYNQ_Z2</code></td><td><code>75dda6a</code></td><td>design_1.tcl</td></tr>
+<tr><td>咱血统的帧管线结构（AXI-DMA 版，改 VDMA 即可）</td><td><code>https://github.com/2cc2ic/Motion-Detection-System-Based-On-Background-Reconstruction</code></td><td><code>a8a1184</code></td><td>IP/image_process_1.0/bd/bd.tcl</td></tr>
+<tr><td>FCLK 预设（FCLK0 DIVISOR0=5→100MHz）</td><td><code>https://github.com/ZeroX29a/PynqZ2</code></td><td><code>6f7131b</code></td><td>Board files/preset.xml</td></tr>
+</table>
+<p class="small">拉取：<code>git clone &lt;仓库地址&gt; &amp;&amp; git checkout &lt;commit前7位&gt;</code>。全是公开库，无需授权。</p>
+
+<h2>接线钩子（已经给你留好了，不用改顶层架构）</h2>
+<p><code>src/rtl/md_pipeline.v</code> 已有 6 位地址的 <code>ps_en / ps_we / ps_addr / ps_wdata / ps_rdata</code> + <code>clk_axi</code>，当前悬空（<code>INCLUDE_PS=0</code>）——接上 AXI-Lite 桥就通。<code>MODE_BG</code> 参数切帧差/背景建模。</p>
+
+<h2>踩雷清单（前期排过，别再踩）</h2>
+<ul>
+<li>GP0 不接时钟 → BD 报 <strong>41-758</strong>；</li>
+<li>FCLK 从 PS 引出到顶层再用 → <strong>DRC NSTD-1 / UCIO-1 拒 bitgen</strong>，应在 BD 内直连；</li>
+<li>VDMA 必须走 <strong>HP0</strong>（不是 GP），背景模型大流量要带宽；</li>
+<li>dvi2rgb 的 RefClk 仍要 <strong>200MHz 独立 MMCM</strong>，别蹭像素时钟 VCO。</li>
+</ul>
+
+<h2>验收门（Tier2 算"整完"的硬判据）</h2>
+<ol>
+<li><strong>拔掉 RJ45 网线 → 屏仍出图</strong>（FCLK 生效，时钟坑根治）；</li>
+<li>VDMA 通：S2MM 写 DDR ≥ 60fps@720p 无丢帧，MM2S 回读背景样本正确；</li>
+<li><strong>BRAM 占用回落 &lt; 10%</strong>（背景模型真在 DDR 了）；</li>
+<li>出 bit + 上板测，回传 bit SHA / HDMI 截图 / 验收表。</li>
+</ol>
+
+<div class="callout">
+<strong>不越界：</strong> 算法内核（ViBe/GMM）是徐的活，你只需把"背景样本存取走 DDR"的通路 + 检测通路搭好，把接口给徐。改接口前群里确认。
+</div>
+
+<p class="small">参考：Tier2 整体骨架见分支 PR#5 的 <code>docs/Tier2接入骨架_线一手搓版_20261029.md</code>。</p>
+
+</body></html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  body { font-family: "Microsoft YaHei", "SimSun", sans-serif; font-size: 11pt; line-height: 1.5; }
+  h1 { color: #1F4E79; font-size: 18pt; text-align: center; }
+  h2 { color: #2E75B6; font-size: 14pt; border-bottom: 2px solid #2E75B6; padding-bottom: 3px; }
+  h3 { color: #2E75B6; font-size: 12pt; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; }
+  td, th { border: 1px solid #555; padding: 5px 8px; vertical-align: top; font-size: 10.5pt; }
+  th { background-color: #DEEAF6; font-weight: bold; }
+  .key { background-color: #FCE4D6; font-weight: bold; }
+  .tag { color: #C00000; font-weight: bold; }
+  .ok { background-color: #E2EFDA; font-weight: bold; }
+  blockquote { border-left: 4px solid #2E75B6; margin: 8px 0; padding: 4px 12px; background-color: #F2F7FC; color: #444; }
+  b { color: #1F4E79; }
+  ol li, ul li { margin: 3px 0; }
+</style>
+</head>
+<body>
+
+<h1>Tier1 落地执行与验收清单</h1>
+<p style="text-align:center;color:#666;">团队 GGBOND · 线一（主城要）· Day1 对齐 + Day2 验收 · 2026-10-28</p>
+
+<blockquote>
+<b>核心认知：</b>伟博 PR #3 就是 Tier1 的实体。把"方向 → 实现 → 验收"这条链锁死，<b>你（线一）上板验 Tier1，本质上就是验你自己的方向</b>——方向对不对，板子说了算。
+</blockquote>
+
+<h2>一、Tier1 HOW 对齐问题清单（发给伟博 / 徐一夫）</h2>
+<table>
+<tr><th style="width:22%">事项</th><th style="width:40%">待确认问题</th><th style="width:18%">建议负责人</th><th style="width:20%">截止</th></tr>
+<tr><td class="key">设备代码收尾</td><td>PR #3 的 Tier1 bit（tier1/board_top_tier1.bit，SHA e4f1e25c…）还差什么？谁收尾？</td><td>伟博</td><td>排期会议定</td></tr>
+<tr><td class="key">排期</td><td>Tier1 上板验的时间窗口？与 P0 报告/视频如何错峰？</td><td>伟博 + 持板队员</td><td>排期会议定</td></tr>
+<tr><td class="key">SD 启动</td><td>PYNQ 镜像（pynq_z2_v3.1.1.img）烧写 + 启动谁负责？本机已有镜像，10-03 bringup 六步全通，流程可复用。</td><td>持板队员</td><td>板测前</td></tr>
+<tr><td class="key">FCLK 验证</td><td>125MHz 输出怎么测？（示波器 / 逻辑分析仪 / 软件读时钟状态寄存器）</td><td>伟博</td><td>板测时</td></tr>
+<tr><td class="key">验收 owner</td><td>谁判 Tier1 过没过？按下方三条判据。</td><td>线一（主城要）</td><td>板测后</td></tr>
+</table>
+
+<h2>二、方向 → 实现 → 验收 链（锁死）</h2>
+<table>
+<tr><td class="key" style="width:18%">方向</td><td>治本时钟坑（<b>不插网线也出图</b>）+ 利用 PS/DDR 为后续 Tier2 铺路。解决纯 PL 依赖 PHY 时钟的黑屏硬约束。</td></tr>
+<tr><td class="key" style="width:18%">实现</td><td>PR #3 = Tier1 实体：PS FCLK0=125 / FCLK1=100，AXI 0x43C00000，<b>不含 DDR/ViBe</b>，board_test:false / human_signoff:false（未实板验）。源 commit ae169d9a（Vivado 2025.2）。</td></tr>
+<tr><td class="key" style="width:18%">验收判据</td><td>三条<b>全过</b>才算 Tier1 过（见下）。</td></tr>
+</table>
+
+<h3>验收判据（三条全过）</h3>
+<table>
+<tr><th style="width:8%">序号</th><th style="width:22%">判据</th><th>通过标准</th></tr>
+<tr><td class="ok">1</td><td><b>pynq 起来</b></td><td>FSBL + U-Boot + Linux 启动成功，串口（115200）能登录；判据 ip_blocks=21 / fpga0/state=operating / 4 LED 闪 4 下。</td></tr>
+<tr><td class="ok">2</td><td><b>FCLK 有输出</b></td><td>测 PS 引出的 FCLK_CLK0 确实 125MHz 有效（示波器 / 逻辑仪，或软件读时钟状态寄存器）。</td></tr>
+<tr><td class="ok">3</td><td><b>画面正常</b></td><td>HDMI 出图、不黑屏；<span class="tag">且 RJ45 不插网线也能出图</span>（证明不再依赖 PHY 时钟，黑屏坑根治）。</td></tr>
+</table>
+
+<blockquote>注意：验收判据③ 的"拔网线仍出图"是 Tier1 的<b>核心判据</b>，直接对应方向是否达成。达不到③，Tier1 不算过。</blockquote>
+
+<h2>三、上板验 Tier1 可直接用的 Checklist</h2>
+<ol>
+<li><b>准备物料</b>：PYNQ 镜像 SD 卡、12V 3A 电源（J9）、Micro-USB（烧录/串口）、HDMI 线、示波器 / 逻辑分析仪、采集卡。</li>
+<li><b>核对 bit</b>：烧录前 Get-FileHash 核对 tier1/board_top_tier1.bit = e4f1e25c0d3a71b6f126fa7e2f7fff248a9e4b267c932b641a2016aaf46d6559。</li>
+<li><b>SD 启动</b>：插好镜像 SD 卡，上电，串口 115200 看能否进 PYNQ（自动登录）。</li>
+<li><b>测时钟</b>：启动后读时钟状态 / 用仪器测 FCLK_CLK0 引脚，确认 125MHz 有效。</li>
+<li><b>送视频</b>：电脑 Win+P 复制，输出必须 1280×720；HDMI OUT（J11）接采集卡，看是否出图。</li>
+<li><b>拔网线测试（核心）</b>：拔掉 RJ45 网线，确认仍稳定出图、不黑屏。</li>
+<li><b>记录回传</b>：bit SHA + 照片/视频 + 串口启动日志 + FCLK 测量值 + HDMI 视频/截图 + 运行时长 + 验收结论。</li>
+</ol>
+
+<blockquote>回传四件套（给线一核对 SHA + 给徐一夫做效果复核输入）：bit SHA、HDMI 视频、原始串口流（raw_stream.bin + frames.jsonl）、验收汇总。物理板测归持板队员，线一只备清单 / 核对 / 解码说明。</blockquote>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+scene: vehicles_final
+video: test_videos/vehicles.mp4
+device: 1 (MSMF)
+negotiated: 640x480
+duration: 60s
+captured frames: 1376
+written to video: 1376
+capture fps: 22.9
+video file: output\evidence\vehicles_final\vehicles_final_hdmi_out.mp4
+brightness avg: 111.5
+lit frames (>=20): 1359 / 1376 (99%)
+motion avg diff: 2.02 max: 109.56
+verdict: MOVING
+red frames: 1292 / 1376 (94%) max_red_px: 9227
+color frames(px>40): 1351 / 1376 max_color_px: 35036
+captured at: 2026-10-29 10:54:22

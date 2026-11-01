@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  :root {
+    --text: #1a1a1a;
+    --heading: #1f3864;
+    --accent: #2e5c8a;
+    --muted: #555555;
+  }
+  body {
+    font-family: "宋体", SimSun, "Songti SC", serif;
+    font-size: 11pt;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0;
+  }
+  h1 {
+    font-family: "黑体", SimHei, "Heiti SC", sans-serif;
+    color: var(--heading);
+    font-size: 18pt;
+    text-align: center;
+    margin: 6pt 0 2pt 0;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 10.5pt;
+    margin-bottom: 14pt;
+  }
+  h2 {
+    font-family: "黑体", SimHei, "Heiti SC", sans-serif;
+    color: var(--heading);
+    font-size: 13.5pt;
+    border-bottom: 1px solid #c9d3e0;
+    padding-bottom: 3pt;
+    margin-top: 16pt;
+  }
+  h3 {
+    font-family: "黑体", SimHei, "Heiti SC", sans-serif;
+    color: var(--accent);
+    font-size: 11.5pt;
+    margin-top: 10pt;
+  }
+  p { margin: 6pt 0; text-align: justify; }
+  ul, ol { margin: 4pt 0 4pt 0; padding-left: 22pt; }
+  li { margin: 2pt 0; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 10pt;
+    margin: 8pt 0;
+  }
+  th, td {
+    border: 1px solid #8a8a8a;
+    padding: 4pt 6pt;
+    vertical-align: top;
+    text-align: left;
+  }
+  th { background: #eef2f8; font-family: "黑体", SimHei, sans-serif; }
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: #f3f7fb;
+    padding: 8pt 11pt;
+    margin: 9pt 0;
+    border-radius: 2px;
+  }
+  .callout strong { color: var(--accent); }
+  .small { font-size: 9.5pt; color: var(--muted); }
+  code {
+    font-family: "Consolas", "Courier New", monospace;
+    background: #f0f0f0;
+    padding: 0 3pt;
+    font-size: 9.5pt;
+  }
+  hr { border: none; border-top: 1px solid #d0d0d0; margin: 12pt 0; }
+</style>
+</head>
+<body>
+
+<h1>设计边界与局限性</h1>
+<div class="subtitle">《基于 FPGA 的运动目标检测系统》设计报告 · 第六章</div>
+
+<div class="callout">
+<strong>系统定位（先讲清楚，防误读）。</strong>本系统定位为<strong>面向固定摄像机与中等复杂背景的 FPGA 实时运动目标检测系统</strong>，并非通用目标识别系统，也不声称是高可靠智能视觉系统。核心交付是 HDMI 实时叠加红色包围框的视觉检测结果；UART 仅用于辅助遥测。本章对算法层级、通信带宽、多目标模块、分辨率压缩、标识同步及纯 PL 无 DDR 架构的硬约束逐条给出量化边界与诚实声明，所有数字均来自板端实测、资源报告或 RTL 源码核实，非缺陷隐瞒。
+</div>
+
+<h2>6.1 算法层级与设计定位</h2>
+<p>检测流水线为：<code>帧间差分 → 阈值(THRESH=70) → 二值域 3×3 开运算 → 游程编码(RLE)+并查集(CCL)连通域 → 包围盒</code>。在算法技术分层中属于 <strong>L0 教学级（帧间差分法）</strong>；若开启 <code>MODE_BG=1</code> 均值背景建模，则抬升至 L1 背景建模思想层，但仍非 L2 学术工业主流的 GMM/ViBe。</p>
+<p>与主流方案的差异点：主流去噪多在<strong>灰度域</strong>做 3×3 中值滤波，本系统在<strong>二值（运动）域</strong>做 3×3 开运算——这正是红框乱象（一物多框、远处漏检）的病根，已在算法路线中如实记录。</p>
+<p>帧间差分法在以下场景会明显变弱，属教科书级固有弱点，本系统不做掩盖：</p>
+<ul>
+  <li>摄像机抖动、全局光照变化；</li>
+  <li>水面、树叶等动态背景（项目已用 CDnet 的 canoe 动态背景场景自测，暴露了帧差法误检，说明作者对局限清楚）；</li>
+  <li>目标阴影、目标互相遮挡、目标粘连；</li>
+  <li>低对比度目标、目标快速进出画面。</li>
+</ul>
+<p>算法谱系（报告可引，支撑"算法有据/主流"评分项）：游程编码+并查集连通域标记源自 Appiah2010（CVIU，RLE-based CCL 与背景差分集成）与北京理工大学学报 2010（RLE+并查集 CCL，O(nα(n))）；同板参考为 2cc2ic 的 PYNQ-Z2 运动检测开源项目（帧差法同口径 <code>if(abs_data&gt;70)</code>）。</p>
+
+<h2>6.2 通信带宽边界（UART，设计限制 A2）</h2>
+<p>UART 配置为 <code>115200-8N1</code>，有效吞吐约 <strong>11520 字节/秒</strong>。每个目标元数据约 14.3 字节，则：</p>
+<table>
+  <tr><th>目标数 / 帧</th><th>所需带宽（60fps）</th><th>与 11520 B/s 的关系</th></tr>
+  <tr><td>约 13 目标</td><td>≈ 11154 B/s</td><td>接近不丢包上限</td></tr>
+  <tr><td>16 目标（满载）</td><td>≈ 13740 B/s</td><td>超出约 19.7%，持续满配必丢包</td></tr>
+</table>
+<p>结论：UART 适合<strong>低目标密度、事件与抽样结果</strong>回传，不适合高密度目标的完整逐帧回传。设计应对：FIFO 满时允许整帧丢弃，但<strong>必须置状态位（<code>o_overflow</code>）并报告帧号缺口</strong>；且<strong>主输出是 HDMI 实时红框叠加（视觉）</strong>，UART 仅为辅助遥测，故带宽瓶颈不削弱核心交付。</p>
+<div class="callout">
+<strong>后续增强方向（留作规划，非本版交付）。</strong>提高波特率；改用 USB / 以太网 / AXI DMA；对多目标做压缩编码；只回传事件而非逐帧全目标；对输出做限频与优先级调度。其中 AXI DMA 与 Tier2 的 VDMA 共用 PS↔DDR 的 HP0 通路，是架构上最一致的升级。
+</div>
+
+<h2>6.3 多目标检测模块的设计边界（multi_bbox）</h2>
+<p>多目标模块（<code>src/rtl/multi_bbox.v</code>）基于游程编码+并查集连通域标记（RLE+CCL），算法本身属主流正统，非野路子。但其 FPGA 实现存在以下<strong>必须经核实的硬限制</strong>，必须在报告中写为"设计边界"而非只写"支持 16 目标"：</p>
+<table>
+  <tr><th>参数（源码核实）</th><th>取值</th><th>含义与后果</th></tr>
+  <tr><td><code>MAX_LABEL</code></td><td>16（实际可用 15）</td><td>因 5'h1F 哨兵与 id15 重码，第 16 个标签永远匹配不上；一帧最多输出 15 个目标，标签表满后新游程被丢弃（漏检）。</td></tr>
+  <tr><td><code>MAX_RUN</code></td><td>16</td><td>每行最多 16 个"上一行游程"参与匹配，超出部分丢弃。</td></tr>
+  <tr><td><code>SF_DEPTH</code></td><td>512</td><td>输入 FIFO 固定深度；满则丢样但锁 <code>o_overflow</code> 状态位（非静默丢失，可供 PS 按帧感知）。</td></tr>
+  <tr><td>结构性上限</td><td>full16_64</td><td>16 目标×32 行、行行 16 游程时，串行匹配净欠约 7800 拍，<strong>任何 FIFO 深度都救不了</strong>，属串行化结构性上限。</td></tr>
+</table>
+<p>失效机制：标签表满→新游程丢弃（漏检）；union-find 误并（目标合并）；FIFO 丢样（目标断裂/丢失）。工程取舍背景：为把 LUT 从 182% 压到 35.8%，将 16 路并行匹配改为串行匹配，从而引入 FIFO——FIFO 静默丢样正是该取舍的副产物，已用 <code>o_overflow</code> 可见化。</p>
+
+<h2>6.4 分辨率压缩的精度代价（2×2 大像素）</h2>
+<p>为节省 BRAM，输入 1280×720 经 2×2 累加压缩为 <strong>640×360 大像素</strong>（8bit→10bit）。单帧缓存 <code>640×360×10bit = 2.2Mb ≈ 45%</code> 的 BRAM 总量（≈4.9Mb）。</p>
+<table>
+  <tr><th>收益</th><th>代价</th></tr>
+  <tr><td>帧缓存资源占用下降；逻辑吞吐压力下降；更易满足时序。</td><td>小目标（亚 2×2）被削弱或消失；包围盒坐标精度下降（±2 原生像素）；细运动检测能力下降；目标边界出现量化误差。</td></tr>
+</table>
+<p>适用性：适合较大的运动目标，<strong>不适合远距离小目标检测</strong>，与 CDnet canoe 小目标误检自测结论一致。根因：这是"纯 PL、无 DDR"架构逼出的 BRAM 妥协；治本路径在 Tier2 接入 DDR，可跑满 720p 甚至更高分辨率。</p>
+
+<h2>6.5 目标标识与帧同步边界（设计限制 A1）</h2>
+<ul>
+  <li><strong>track id 8 位回绕</strong>：持续运行时目标标识会回绕，长时跟踪需注意标识复用。</li>
+  <li><strong>串口帧号 = 采集窗口号</strong>：异步链路下不能断言串口帧号与视频帧严格同帧，比对时需按窗口对齐而非逐帧对齐。</li>
+</ul>
+
+<h2>6.6 纯 PL 无 DDR 架构约束（时钟坑与资源坑）</h2>
+<p><strong>时钟坑（设计级硬约束）</strong>：PL 的 125MHz（H16）并非独立晶振，而是以太网 PHY（U5，RTL8211E）输出的 CLK125。当 RJ45 未 link 时 PHY 停/抖时钟 → <code>clock_200m</code> 失锁 → <code>dvi2rgb</code> 永久复位 → 输出 720p 黑屏时序。判据为板子 RJ45 link 灯常亮（网线另一端须接通电设备真 link up）。这是 INCLUDE_PS=0 纯 PL 架构的硬约束，必须在材料中说明。</p>
+<p><strong>资源坑</strong>：BRAM 总量 ≈ 4.9Mb，当前帧差/均值背景占用 45%；标准 ViBe（N=20）需 46Mb（≈940%）在物理上放不进——"纯 PL + 无 DDR + 720p"下标准 ViBe/GMM 不可行。</p>
+<div class="callout">
+<strong>已规划的升级路径（诚实交代，非本版交付）。</strong>Tier1：上 PS + FCLK_CLK0，治本时钟坑；Tier2：VDMA + DDR（PS 侧 512MB），把背景模型移出 BRAM，解锁真 ViBe/GMM（L2）；Tier3：PS 跑 OpenCV 黄金参考比对。该路线已有 PYNQ 官方驱动（<code>pynq.lib.video.AxiVDMA</code>）与同芯片 GitHub 实证支撑。
+</div>
+
+<h2>6.7 诚实声明与局限性小结</h2>
+<table>
+  <tr><th>边界类别</th><th>量化结论</th><th>已在设计中处理 / 报告中声明</th></tr>
+  <tr><td>算法层级</td><td>L0 帧差（L1 可选均值背景），非通用识别</td><td>定位声明 + 文献谱系</td></tr>
+  <tr><td>UART 带宽（A2）</td><td>13 目标/帧临界，16 目标超 19.7%</td><td>o_overflow + 帧号缺口；主输出为 HDMI</td></tr>
+  <tr><td>multi_bbox（A3）</td><td>≤15 可用标签、≤16 游程/行、FIFO 深度 512</td><td>须写为设计边界（非"支持16目标"）</td></tr>
+  <tr><td>分辨率压缩</td><td>720p→360p 大像素，小目标弱化</td><td>根因说明 + Tier2 治本路径</td></tr>
+  <tr><td>标识/同步（A1）</td><td>track id 8 位回绕；帧号=窗口号</td><td>比对按窗口对齐</td></tr>
+  <tr><td>纯 PL 架构</td><td>125MHz 来自 PHY（黑屏约束）；BRAM 4.9Mb</td><td>时钟坑声明 + Tier1/Tier2 升级路径</td></tr>
+</table>
+<p class="small">诚实声明：本系统适用于固定摄像机、中等复杂背景的实时运动目标检测；不适用于剧烈场景变化、强动态背景或高可靠要求的通用智能视觉任务。上述边界已在设计中显式处理或在报告中如实声明，不存在缺陷隐瞒。</p>
+
+<hr>
+<p class="small"><strong>主要参考文献与实证来源。</strong>Appiah K. et al., CVIU 2010（RLE-based CCL 与背景差分集成）；北京理工大学学报 2010（RLE+并查集 CCL）；MDPI Algorithms 2025, 18(6):344；2cc2ic/Motion-Detection-System-Based-On-Background-Reconstruction（GitHub，PYNQ-Z2 同板参考）；Genovese &amp; Napoli, IEEE Trans. VLSI（GMM 1080p@91fps, 3% 逻辑）；2024《舰船电子工程》（国自然 51705475，Zynq-7020 改进 ViBe）；AMD PG020 AXI VDMA 产品指南；PYNQ 官方文档 <code>pynq.lib.video.AxiVDMA</code>；Xilinx PYNQ-Z2 官方参考手册 v1.0 §5（CLK125/PHY 时钟关系）。</p>
+
+</body>
+</html>

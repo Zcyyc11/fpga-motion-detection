@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  body { font-family: "Microsoft YaHei", "SimSun", sans-serif; font-size: 11pt; line-height: 1.5; }
+  h1 { color: #1F4E79; font-size: 18pt; text-align: center; }
+  h2 { color: #2E75B6; font-size: 14pt; border-bottom: 2px solid #2E75B6; padding-bottom: 3px; }
+  h3 { color: #2E75B6; font-size: 12pt; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; }
+  td, th { border: 1px solid #555; padding: 5px 8px; vertical-align: top; font-size: 10.5pt; }
+  th { background-color: #DEEAF6; font-weight: bold; }
+  .key { background-color: #FCE4D6; font-weight: bold; }
+  .tag { color: #C00000; font-weight: bold; }
+  blockquote { border-left: 4px solid #2E75B6; margin: 8px 0; padding: 4px 12px; background-color: #F2F7FC; color: #444; }
+  b { color: #1F4E79; }
+</style>
+</head>
+<body>
+
+<h1>设计报告 · 创新点章节草案</h1>
+<p style="text-align:center;color:#666;">团队 GGBOND · 线一（主城要）· Day3（2026-10-28）· 对应评分"创新性"30 分</p>
+
+<blockquote>
+<b>章节定位：</b>创新点章节对应评分"创新性"30 分。我们的创新<b>不在"发明新 CV 算法"</b>，而在<b>工程层面的架构推理与资源约束下的务实落地</b>——这正是评审看重的"为什么撞墙、怎么绕"。
+</blockquote>
+
+<h2>一、创新点一：PS/PL 协同架构 + FCLK 根治时钟坑</h2>
+<ul>
+<li><b>指出问题（有官方出处）：</b>纯 PL 架构 125MHz 来自以太网 PHY（网口芯片），官方参考手册 v1.0 §5 铁证——RJ45 不 link 即 PHY 停 CLK125，导致 dvi2rgb 永久复位、整板黑屏。这是设计级硬约束。</li>
+<li><b>创新做法：</b>引入 PS 的 FCLK 作为系统时钟源，彻底解耦"出图"与"网线"；并让 PS 接管 track / 告警 / 串口 / 在线调参，把利用率 0% 的 PS/DDR 用起来。</li>
+<li><b>价值：</b>治本黑屏、为后续背景建模铺路，且符合 PYNQ 社区主流 HDMI 设计惯例。</li>
+</ul>
+
+<h2>二、创新点二：资源约束下的背景建模务实落地</h2>
+<ul>
+<li><b>指出矛盾（有数据）：</b>BRAM 4.9Mb 与标准 ViBe（N=20 需 46Mb，940%）的物理矛盾——这是 FPGA 跑背景建模的<b>共性约束，非板子独有</b>。</li>
+<li><b>务实路线：</b>先用 <b>MODE_BG=1 均值背景</b>（零 BRAM 增量，把系统从 L0 帧差抬到 L2 思想层）；中长期用 VDMA+DDR 把背景模型放外部 DDR，解锁真 ViBe/GMM。</li>
+<li><b>诚实标注：</b>算法血统来自 2cc2ic 开源（THRESH=70、2×2 累加压缩），我们在其基础上做<b>资源约束下的落地与工程改造</b>（非原始创新）。</li>
+</ul>
+
+<h2>三、创新点三：分层渐进验证与开源复用工程方法</h2>
+<ul>
+<li><b>方法：</b>Tier1/2/3 分期 = 借成熟开源块（PYNQ 社区 VDMA/DDR 多例实证）<b>增量集成 + 逐层上板验</b>，按依赖顺序控风险。</li>
+<li><b>强调：</b>同板（PYNQ-Z2 / xc7z020）已有成熟开源方案与同芯片 ViBe 论文（2024《舰船电子工程》）。我们做的是"<b>复用 + 自主集成 + 验证</b>"，而非从零造轮子。</li>
+</ul>
+
+<h2>四、参考文献与出处（必须写，诚实）</h2>
+<table>
+<tr><th style="width:30%">来源</th><th>用途</th></tr>
+<tr><td>PYNQ-Z2 参考手册 v1.0 §5</td><td>时钟源（125MHz 来自 PHY）铁证，支撑创新点一。</td></tr>
+<tr><td>2cc2ic/Motion-Detection-System-Based-On-Background-Reconstruction（GitHub 45★）</td><td>算法血统（THRESH=70、2×2 累加压缩），支撑创新点二出处。</td></tr>
+<tr><td>IEEE Trans. VLSI（Virtex-6 上 GMM）、HotEdgeVideo'19（ZCU102）、2024《舰船电子工程》（同芯片 ViBe）</td><td>背景模型放外部 DDR 的共性解，支撑"墙①非独有"。</td></tr>
+<tr><td>PYNQ 社区 VDMA/DDR 实证：Ssingh5535/FPGA_OV7670_HDMI、Sreeram-Ramesh/zynq-axi-dma-test、hyojun01/PYNQ_Z2_FMCW_Radar</td><td>同芯片 VDMA+DDR 已踩通，支撑 Tier2 可行性。</td></tr>
+<tr><td>大连理工《Xilinx ZYNQ嵌入式开发》讲义（夏书峰）</td><td>Tier1 实现手册（时钟源 / BD 流程 / AXI-Lite 例）。</td></tr>
+</table>
+
+<h2>五、注意事项（别踩雷）</h2>
+<table>
+<tr><td class="key">不夸大</td><td>CV 算法非原创，创新点是<b>工程架构与落地方法</b>，绝不说成"提出新算法"。</td></tr>
+<tr><td class="key">开源复用说清出处 + 自有贡献</td><td>评审最忌"拿别人的当自己的"。每处复用必须标来源，并写明我们做了什么改造 / 集成 / 验证。</td></tr>
+<tr><td class="key">局限性同步写</td><td>与"局限性"章节呼应：算法传统、UART 瓶颈（=A2）、multi_bbox 通用性受限、2×2 压缩牺牲细节。</td></tr>
+</table>
+
+<blockquote>落纸面即交材料：本草案直接并入设计报告"创新点"章节，既把"未来方向"正式写进比赛材料，又让评委看得见工程推理（创新 30 分），且不与 P0 报告主线冲突。</blockquote>
+
+</body>
+</html>

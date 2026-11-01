@@ -1,0 +1,14 @@
+scene: ce621313_ms
+video: D:\FPGA\test_videos\market-square.mp4
+device: 1 (MSMF)
+negotiated: 640x480
+duration: 45s
+frames: 1303
+fps: 28.8
+brightness avg: 41.7
+lit frames (>=20): 1303 / 1303 (100%)
+motion avg diff: 1.17 max: 13.80
+verdict: MOVING
+red frames: 2 / 1303 (0%) max_red_px: 1447
+color frames(px>40): 2 / 1303 max_color_px: 1890
+captured at: 2026-10-21 19:48:25
