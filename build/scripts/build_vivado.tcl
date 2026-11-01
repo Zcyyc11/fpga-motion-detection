@@ -130,12 +130,12 @@ proc stage_setup {} {
 
         add_files -norecurse [concat [glob -nocomplain [file join $RTL_DIR *.v]] \
                                       [glob -nocomplain [file join $RTL_BOARD *.v]]]
-        # 约束只加真正生效的那两份：pynq_z2_hdmi_out.xdc（HDMI 输出 J11）+
-        # pynq_z2_hdmi_in.xdc（HDMI 输入 J10）。board/ 下那份官方完整留存
-        # 整份都是注释行，是逐条对照用的，不是生效约束，不塞进工程。
+        # ★ 整机版（HDMI 输入 + Attach 全部外设）：用一份合并约束
+        #   pynq_z2_attach_full.xdc 包住 主板(时钟/LED/按键/拨码/三色灯/HDMI 收发/UART)
+        #   + Attach(数码管/WS2812/蜂鸣器/LCD/触摸)。Attach 管脚读自 RevD 原理图，
+        #   数码管与 WS2812 已实物验证。
         add_files -fileset constrs_1 -norecurse [list \
-            [file join $BOARD_DIR pynq_z2_hdmi_out.xdc] \
-            [file join $BOARD_DIR pynq_z2_hdmi_in.xdc]]
+            [file join $BOARD_DIR pynq_z2_attach_full.xdc]]
     }
     # ★ IP 缓存：工程一打开就挂上共享缓存目录（create/open 两条路都要走这）
     file mkdir $IP_CACHE_DIR
