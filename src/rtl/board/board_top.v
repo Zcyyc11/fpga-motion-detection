@@ -28,7 +28,26 @@ module board_top #(
 )(
     input  wire       sys_clk,             // 125 MHz，H16
     output wire [3:0] led,                 // LED0..LED3，高电平点亮
-    output wire       uart_txd,            // ★线二回传：PL 侧 UART（协议 v0.2，115200-8-N-1），PMOD A ja[0]
+    output wire       uart_txd,            // ★线二回传：PL 侧 UART（协议 v0.2），★改到 PMOD B（原 PMOD A/Y18 已被 Attach 占用）
+    // ---- 板载按键/拨码（W1/W4 场景与模式切换）----
+    input  wire [3:0] btn,
+    input  wire [1:0] sw,
+    // ---- 板载三色灯 LD4 / LD5（经三极管，反相；本模块内部已取反）----
+    output wire       led4_r, led4_g, led4_b,
+    output wire       led5_r, led5_g, led5_b,
+    // ---- Attach-Z2 外设（W5–W9）----
+    output wire       buzzer,              // 无源蜂鸣器
+    output wire [6:0] attach_seg,          // 数码管段选 A..G
+    output wire [8:0] attach_digit,        // 数码管位选 DIG1..DIG9
+    output wire       attach_ws2812_din,   // WS2812 单线数据
+    output wire       attach_lcd_sck,
+    output wire       attach_lcd_mosi,
+    output wire       attach_lcd_cs_n,
+    output wire       attach_lcd_dc,
+    output wire       attach_lcd_rst_n,
+    output wire       attach_lcd_bkl,
+    output wire       attach_touch_scl,
+    output wire       attach_touch_sda,
     output wire       hdmi_tx_clk_p,       // HDMI J11（source）
     output wire       hdmi_tx_clk_n,
     output wire [2:0] hdmi_tx_d_p,
@@ -181,6 +200,9 @@ module board_top #(
     wire [15:0] b_x1, b_y1, b_x2, b_y2, b_cnt;
     wire        b_valid;
     wire [7:0]  b_obj_count;
+    wire        alarm_evt;                 // ★从 md_pipeline 引出（原来悬空）
+    wire [15:0] ext_thresh;                // ★按键设定的阈值，覆盖编译期 THRESH
+    wire        ext_thresh_en;
     wire        m_valid, m_bit;
     wire [15:0] m_x, m_y;
     wire [15:0] frame_idx;
@@ -198,6 +220,7 @@ module board_top #(
         .clk(clk_pipe), .rst_n(rst_n),
         .rx_de(g_vde), .rx_hs(in_hs), .rx_vs(in_vs), .rx_sof(in_sof),
         .rx_x(g_x), .rx_y(g_y), .rx_gray(g_gray),
+        .ext_thresh(ext_thresh), .ext_thresh_en(ext_thresh_en),
         .vde(vde), .vx(vx), .vy(vy), .vhs(vhs), .vvs(vvs),
         .vr(vr), .vg(vg), .vb(vb),
         .b_x1(b_x1), .b_y1(b_y1), .b_x2(b_x2), .b_y2(b_y2),
@@ -208,7 +231,61 @@ module board_top #(
         .clk_axi(1'b0), .rst_n_axi(1'b0),
         .ps_en(1'b0), .ps_we(1'b0), .ps_addr(6'd0), .ps_wdata(32'd0),
         .ps_rdata(),
-        .uart_txd(uart_txd), .uart_drop(), .alarm_evt()
+        .uart_txd(uart_txd), .uart_drop(), .alarm_evt(alarm_evt)
+    );
+
+    // ---------------- ⑤B 人机交互 + Attach-Z2 外设（W1–W9）----------------
+    // 按键 BTN0-3 选四档场景 → 直接覆盖阈值（改了就立刻生效，不用重烧）
+    // 三色灯 LD4/LD5 经三极管反相，所以输出取反；板载 LED0-3 在下面另有定义。
+    reg  [1:0]  scene;
+    reg  [3:0]  btn_d;
+    reg  [19:0] dbnc;
+    wire [15:0] thr_sel;
+    always @(posedge clk_pipe or negedge rst_n) begin
+        if (!rst_n) begin
+            scene <= 2'd0; btn_d <= 4'd0; dbnc <= 20'd0;
+        end else begin
+            btn_d <= btn;
+            if (dbnc != 20'd0) dbnc <= dbnc - 1'b1;
+            else if (btn[0] && !btn_d[0]) begin scene <= 2'd0; dbnc <= 20'hFFFFF; end
+            else if (btn[1] && !btn_d[1]) begin scene <= 2'd1; dbnc <= 20'hFFFFF; end
+            else if (btn[2] && !btn_d[2]) begin scene <= 2'd2; dbnc <= 20'hFFFFF; end
+            else if (btn[3] && !btn_d[3]) begin scene <= 2'd3; dbnc <= 20'hFFFFF; end
+        end
+    end
+    // 四档：周界(70) / 室内(90) / 夜间(45) / 高灵敏(35)
+    assign thr_sel = (scene == 2'd0) ? 16'd70 :
+                     (scene == 2'd1) ? 16'd90 :
+                     (scene == 2'd2) ? 16'd45 : 16'd35;
+    assign ext_thresh    = thr_sel;
+    assign ext_thresh_en = 1'b1;          // 常开：始终用按键设定的值
+
+    // 三色灯：红=越界，绿=有目标，蓝=正常。板上三极管反相 ⇒ 输出取反。
+    assign led4_r = ~alarm_evt;
+    assign led4_g = ~(b_valid && !alarm_evt);
+    assign led4_b = 1'b1;                 // 常灭（反相后）
+    assign led5_r = ~alarm_evt;
+    assign led5_g = ~(!alarm_evt && !b_valid);
+    assign led5_b = ~(b_valid && !alarm_evt);
+
+    attach_z2_interaction #(.CLK_HZ(125_000_000)) u_attach (
+        .clk(clk_pipe), .rst_n(rst_n),
+        .target_count(b_obj_count),       // ★真实目标数（不是 0/1）
+        .threshold(thr_sel), .mode(scene),
+        .fps(16'd60),
+        .violation_count(alarm_evt ? 16'd1 : 16'd0),
+        .target_present(b_valid), .violation_event(alarm_evt),
+        .light_dark(sw[1]),
+        .enc_a(1'b0), .enc_b(1'b0), .enc_push(1'b0),   // 编码器暂未接（管脚留空）
+        .fiveway(5'b00001),
+        .threshold_delta(), .night_mode(),
+        .seg(attach_seg), .digit(attach_digit),
+        .ws2812_din(attach_ws2812_din),
+        .lcd_sck(attach_lcd_sck), .lcd_mosi(attach_lcd_mosi),
+        .lcd_cs_n(attach_lcd_cs_n), .lcd_dc(attach_lcd_dc),
+        .lcd_rst_n(attach_lcd_rst_n), .lcd_bkl(attach_lcd_bkl),
+        .buzzer(buzzer),
+        .touch_scl(attach_touch_scl), .touch_sda(attach_touch_sda)
     );
 
     // ---------------- ⑥ HDMI 输出：TMDS 编码 + 串化 ----------------
