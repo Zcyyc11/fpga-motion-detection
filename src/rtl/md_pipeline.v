@@ -64,6 +64,10 @@ module md_pipeline #(
     input  wire [15:0] rx_x,
     input  wire [15:0] rx_y,
     input  wire [7:0]  rx_gray,
+    // ---- 外部阈值覆盖：纯 PL 构建下由按键/编码器驱动（INCLUDE_PS=0 时生效）----
+    //      ext_thresh_en=0 时退回编译期 THRESH，行为与原来完全一致。
+    input  wire [15:0] ext_thresh,
+    input  wire        ext_thresh_en,
     // ---- 输出视频（像素坐标，已叠加包围盒）----
     output wire        vde,
     output wire [15:0] vx,
@@ -447,14 +451,15 @@ module md_pipeline #(
                     dwell_q1  <= r_dwell;   dwell_q2  <= dwell_q1;
                 end
             end
-            assign cfg_thresh = thresh_q2;
+            assign cfg_thresh = ext_thresh_en ? ext_thresh : thresh_q2;
             assign cfg_shift  = shift_q2;
             assign cfg_enable = enable_q2;
             assign cfg_line_x = line_x_q2;
             assign cfg_dwell  = dwell_q2;
         end else begin : g_nops
             // 纯 PL 构建：编译期参数直通（INCLUDE_PS=0，当前 10/13 bit 用这个）
-            assign cfg_thresh = THRESH[15:0];
+            // 外部覆盖优先：按键/编码器改了阈值就立刻生效，不改则退回 THRESH。
+            assign cfg_thresh = ext_thresh_en ? ext_thresh : THRESH[15:0];
             assign cfg_shift  = SHIFT[4:0];
             assign cfg_enable = MODE_BG[0];
             assign cfg_line_x = LINE_X_DEFAULT[10:0];
