@@ -1,0 +1,145 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Mon Nov  2 23:06:22 2026
+| Host         : LAPTOP-RRVGFMON running 64-bit major release  (build 9200)
+| Command      : check_timing -verbose -file C:/Users/zcy/WorkBuddy/2026-11-02-22-49-51/work/FPGA_Tier1_AttachZ2_HDMI_r2/build/r3_fix_digits/reports/check_timing.rpt
+| Design       : combined_top
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Physopt postRoute
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock (0)
+2. checking constant_clock (0)
+3. checking pulse_width_clock (0)
+4. checking unconstrained_internal_endpoints (0)
+5. checking no_input_delay (9)
+6. checking no_output_delay (34)
+7. checking multiple_clock (0)
+8. checking generated_clocks (0)
+9. checking loops (0)
+10. checking partial_input_delay (0)
+11. checking partial_output_delay (0)
+12. checking latch_loops (0)
+
+1. checking no_clock (0)
+------------------------
+ There are 0 register/latch pins with no clock.
+
+
+2. checking constant_clock (0)
+------------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock (0)
+---------------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints (0)
+------------------------------------------------
+ There are 0 pins that are not constrained for maximum delay.
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay (9)
+------------------------------
+ There are 5 input ports with no input delay specified. (HIGH)
+
+hdmi_rx_d_p[0]
+hdmi_rx_d_p[1]
+hdmi_rx_d_p[2]
+hdmi_rx_scl
+hdmi_rx_sda
+
+ There are 4 input ports with no input delay but user has a false path constraint. (MEDIUM)
+
+btn[0]
+btn[1]
+btn[2]
+btn[3]
+
+
+6. checking no_output_delay (34)
+--------------------------------
+ There are 5 ports with no output delay specified. (HIGH)
+
+hdmi_rx_sda
+hdmi_tx_clk_p
+hdmi_tx_d_p[0]
+hdmi_tx_d_p[1]
+hdmi_tx_d_p[2]
+
+ There are 29 ports with no output delay but user has a false path constraint (MEDIUM)
+
+attach_digit[0]
+attach_digit[1]
+attach_digit[2]
+attach_digit[3]
+attach_digit[4]
+attach_digit[5]
+attach_digit[6]
+attach_digit[7]
+attach_digit[8]
+attach_lcd_dc
+attach_lcd_rst_n
+attach_seg[0]
+attach_seg[1]
+attach_seg[2]
+attach_seg[3]
+attach_seg[4]
+attach_seg[5]
+attach_seg[6]
+attach_ws2812_din
+buzzer
+led4_g
+led4_r
+led5_b
+led5_g
+led5_r
+led[0]
+led[1]
+led[2]
+led[3]
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock (0)
+------------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks (0)
+--------------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops (0)
+---------------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay (0)
+------------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay (0)
+-------------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops (0)
+----------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+

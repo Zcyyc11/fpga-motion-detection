@@ -1,0 +1,9 @@
+{
+  "rtl_token_equivalent": 27,
+  "xdc_active_lines_identical": 2,
+  "third_party_byte_identical": 54,
+  "ip_reference_files_present": 63,
+  "python_ast_passed": 7,
+  "bitstream_original_r3_sha256": "c3c3a16c91e31a8044704aa959cbbbcf55844f9e3aa4e343b5abe8c246c8e8c8",
+  "scope": "source package review only; no physical build or hardware test"
+}
