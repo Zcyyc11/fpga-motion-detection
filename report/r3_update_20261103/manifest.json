@@ -552,5 +552,6 @@
       "bytes": 22,
       "sha256": "69351334b941f5912806bba069a004284a349da2eb7d2a0689d43d9470bea678"
     }
-  ]
+  ],
+  "official_package_confirmation": "official_package_confirmation.json"
 }
