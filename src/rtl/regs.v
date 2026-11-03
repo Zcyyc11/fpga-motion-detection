@@ -1,45 +1,42 @@
 `timescale 1ns / 1ps
-// -----------------------------------------------------------------------------
-// regs —— 线二任务：参数控制寄存器堆（接口冻结表 I4 的 RTL 落地）
 //
-// 作用：PS 侧（Python）运行时读写阈值/警戒线/学习率等参数，PL 侧流水线
-//   拿到的是普通线网 —— 改参数不用重新烧板。
+// regs：参数控制及检测快照寄存器
 //
-// 寄存器映射（字节地址，4 字节对齐，小端；0x1C 起为 bbox 快照，见
-// docs/line1_uart_field_table_draft.md，线一 2026-10-12 确认）：
-//   0x00 THRESH      16  复位 70   绝对阈值（和域）        读写
-//   0x04 THRESH_REL  16  复位 15   相对阈值百分比          读写
-//   0x08 ALPHA_SHIFT  5  复位 5    背景学习率 = 1/2^SHIFT  读写
-//   0x0C LINE_X      11  复位 640  警戒线 X（大像素域）    读写
-//   0x10 DWELL       16  复位 90   停留告警帧数            读写
-//   0x14 ENABLE       1  复位 0    1=背景建模 0=帧差法     读写
-//   0x18 STATUS      32  只读      见下方位分配
-//   0x1C BBOX_X1     16  只读      包围盒左上 X（大像素域，帧快照）
-//   0x20 BBOX_Y1     16  只读      左上 Y
-//   0x24 BBOX_X2     16  只读      右下 X
-//   0x28 BBOX_Y2     16  只读      右下 Y
-//   0x2C BBOX_CNT    16  只读      前景像素计数（16 位饱和）
-//   0x30 BBOX_VALID   1  只读      快照所属帧有目标
-//   0x34 BBOX_FRAME  16  只读      快照所属帧号（与快照同拍锁存）
+// PS 侧运行时读写阈值、警戒线和学习率等参数。
 //
-// STATUS 位分配（线一 2026-10-12 冻结）：
-//   bit0    = b_valid    快照所属帧有目标（bbox_snapshot 副本）
-//   bit1    = alarm      快照所属帧内发生过告警（帧级粘存，方案 A，
-//                        帧边界随快照刷新；事件本身是单拍脉冲，
-//                        直接接 PS 轮询读不到）
-//   bit7:2  = 保留
-//   bit15:8 = obj_count  快照所属帧目标数
-//   bit30:16= frame_idx 低 15 位镜像（16 位 @60fps 约 18.2 分钟回绕）
-//   bit31   = UART 丢包粘存位（i_uart_drop 置位，PS 写 STATUS 清除）
+// 寄存器映射（字节地址，4 字节对齐，小端；0x1C 起为检测快照）：
+// 0x00 THRESH      16  复位 70   绝对阈值（和域）        读写
+// 0x04 THRESH_REL  16  复位 15   相对阈值百分比          读写
+// 0x08 ALPHA_SHIFT  5  复位 5    背景学习率 = 1/2^SHIFT  读写
+// 0x0C LINE_X      11  复位 640  警戒线 X（大像素域）    读写
+// 0x10 DWELL       16  复位 90   停留告警帧数            读写
+// 0x14 ENABLE       1  复位 0    1=背景建模 0=帧差法     读写
+// 0x18 STATUS      32  只读      见下方位分配
+// 0x1C BBOX_X1     16  只读      包围盒左上 X（大像素域，帧快照）
+// 0x20 BBOX_Y1     16  只读      左上 Y
+// 0x24 BBOX_X2     16  只读      右下 X
+// 0x28 BBOX_Y2     16  只读      右下 Y
+// 0x2C BBOX_CNT    16  只读      前景像素计数（16 位饱和）
+// 0x30 BBOX_VALID   1  只读      快照所属帧有目标
+// 0x34 BBOX_FRAME  16  只读      快照所属帧号（与快照同拍锁存）
 //
-// ps_addr 为 6 位字节地址（0x00..0x34）：与 src/rtl/board/axi_lite_slave.v
-// 的 ADDR_W=6 输出对齐；此前 [4:0] 会把 0x20+ 截断错位（静默错），已加宽。
+// STATUS 位分配：
+// bit0    = b_valid    快照所属帧有目标（bbox_snapshot 副本）
+// bit1    = alarm      快照所属帧内发生过告警（帧级粘存，
+// 帧边界随快照刷新；事件本身是单拍脉冲，
+// 直接接 PS 轮询读不到）
+// bit7:2  = 保留
+// bit15:8 = obj_count  快照所属帧目标数
+// bit30:16= frame_idx 低 15 位镜像（16 位 @60fps 约 18.2 分钟回绕）
+// bit31   = UART 丢包粘存位（i_uart_drop 置位，PS 写 STATUS 清除）
+//
+// ps_addr 为 6 位字节地址，覆盖 0x00..0x34。
 //
 // 快照来源：bbox_snapshot.v 在像素钟域帧边界连同 frame_idx 一起锁存并经
 // 四段握手 CDC 送入 AXI 钟域稳定副本 —— 本模块只读副本，无跨钟逻辑。
-// PS 总线保持瘦（en/we/addr/wdata/rdata），AXI 协议层由 axi_lite_slave 承担。
+// 寄存器接口为 en/we/addr/wdata/rdata，AXI 协议由上层桥接模块处理。
 // 写在第 1 拍生效；读为寄存输出（第 2 拍有效），综合时序友好。
-// -----------------------------------------------------------------------------
+//
 module regs (
     input  wire        clk,           // AXI 钟域
     input  wire        rst_n,
@@ -106,7 +103,6 @@ module regs (
             o_line_x      <= 11'd640;
             o_dwell       <= 16'd90;
             o_enable      <= 1'b0;
-            uart_drop_sticky <= 1'b0;
             ps_rdata      <= 32'd0;
         end else begin
             if (ps_en && ps_we) begin

@@ -1,10 +1,12 @@
 `timescale 1ns/1ps
-// Attach-Z2 W5-W9 display/interaction layer.
-// Metrics are supplied by the vehicle detector; this block owns only external peripherals.
+// Attach-Z2 显示与交互模块。
+// 接收检测器提供的指标，控制数码管、按键响应及外部指示接口。
 module attach_z2_interaction #(
   parameter integer CLK_HZ=125_000_000,
-  parameter integer WS_T0H=25, parameter integer WS_T1H=50,
-  parameter integer WS_BIT=125
+  // Worldsemi WS2812B-2020 V1.3: 0H~300ns, 1H~650ns, bit~1.28us.
+  parameter integer WS_T0H=(CLK_HZ*64'd300)/1_000_000_000,
+  parameter integer WS_T1H=(CLK_HZ*64'd650)/1_000_000_000,
+  parameter integer WS_BIT=(CLK_HZ*64'd1280)/1_000_000_000
 )(
   input wire clk,input wire rst_n,
   input wire [7:0] target_count,input wire [15:0] threshold,input wire [1:0] mode,
@@ -21,13 +23,16 @@ module attach_z2_interaction #(
   output reg buzzer,
   output wire touch_scl,output wire touch_sda
 );
-  localparam integer SCAN_DIV=CLK_HZ/9000;
-  localparam integer BZ_LEN=CLK_HZ/10;
+  localparam integer SCAN_DIV=(CLK_HZ/9000 < 3) ? 3 : CLK_HZ/9000;
+  localparam integer BZ_LEN=(CLK_HZ/10 < 1) ? 1 : CLK_HZ/10;
+  localparam integer BZ_HALF=(CLK_HZ/4000 < 1) ? 1 : CLK_HZ/4000;
+  localparam integer BZ_W=($clog2(BZ_LEN+1)<1)?1:$clog2(BZ_LEN+1);
+  localparam integer WS_RESET=(CLK_HZ*64'd300+999_999)/1_000_000;
   reg [15:0] scan_cnt; reg [3:0] scan_idx;
   reg [7:0] disp_digit[0:8]; reg [7:0] enc_prev; reg enc_push_d;
-  reg [15:0] bz_cnt; reg violation_d;
-  reg [31:0] light_cnt;
-  reg [2:0] ws_bit_idx; reg [3:0] ws_led_idx; reg [1:0] ws_phase; reg [23:0] ws_shift;
+  reg [BZ_W-1:0] bz_cnt; reg [31:0] bz_tone_cnt; reg violation_d;
+  reg [4:0] ws_bit_idx; reg [3:0] ws_led_idx; reg [23:0] ws_shift,ws_color;
+  reg [31:0] ws_reset_cnt;
   reg [15:0] ws_cnt;
   reg ws_active;
   assign lcd_bkl=1'b1;
@@ -49,11 +54,16 @@ module attach_z2_interaction #(
     disp_digit[7]=violation_count/10; disp_digit[8]=violation_count%10;
   end
   always @(posedge clk or negedge rst_n) begin
-    if(!rst_n) begin scan_cnt<=0;scan_idx<=0;seg<=7'h7f;digit<=9'h1ff; end
-    else if(scan_cnt==SCAN_DIV-1) begin
-      scan_cnt<=0; scan_idx<=(scan_idx==8)?0:scan_idx+1'b1;
-      digit<=~(9'b1<<((scan_idx==8)?0:scan_idx)); seg<=hex7(disp_digit[(scan_idx==8)?0:scan_idx][3:0]);
-    end else scan_cnt<=scan_cnt+1'b1;
+    if(!rst_n) begin scan_cnt<=0;scan_idx<=0;seg<=7'h7f;digit<=9'd0; end
+    else begin
+      // Break before make: turn all NMOS digit switches off, update PMOS
+      // segment gates, then select exactly one digit on the following clock.
+      if(scan_cnt==0) begin digit<=9'd0;seg<=hex7(disp_digit[scan_idx][3:0]);end
+      else if(scan_cnt==1) digit<=9'b1<<scan_idx;
+      if(scan_cnt==SCAN_DIV-1) begin
+        scan_cnt<=0;scan_idx<=(scan_idx==8)?0:scan_idx+1'b1;
+      end else scan_cnt<=scan_cnt+1'b1;
+    end
   end
 
   // Encoder: signed one-step threshold trim, latched for the detector bridge.
@@ -71,29 +81,37 @@ module attach_z2_interaction #(
     end
   end
 
-  // One short beep per new violation event.
+  // One 100 ms, 2 kHz tone per rising violation event (Rev.D passive beeper).
   always @(posedge clk or negedge rst_n) begin
-    if(!rst_n) begin violation_d<=0;buzzer<=0;bz_cnt<=0;end
+    if(!rst_n) begin violation_d<=0;buzzer<=0;bz_cnt<=0;bz_tone_cnt<=0;end
     else begin
       violation_d<=violation_event;
-      if(violation_event && !violation_d) begin buzzer<=1'b1;bz_cnt<=BZ_LEN-1;end
-      else if(buzzer && bz_cnt!=0) bz_cnt<=bz_cnt-1'b1;
-      else buzzer<=1'b0;
+      if(violation_event && !violation_d) begin
+        buzzer<=1'b1;bz_cnt<=BZ_LEN-1;bz_tone_cnt<=BZ_HALF-1;
+      end else if(bz_cnt!=0) begin
+        bz_cnt<=bz_cnt-1'b1;
+        if(bz_tone_cnt==0) begin buzzer<=~buzzer;bz_tone_cnt<=BZ_HALF-1;end
+        else bz_tone_cnt<=bz_tone_cnt-1'b1;
+      end else begin buzzer<=1'b0;bz_tone_cnt<=0;end
     end
   end
 
-  // WS2812 serializer: GRB, 8 LEDs, 24 bits each. Idle low between frames.
+  // WS2812 serializer: GRB, 8 LEDs, 24 bits each; >=300us reset low.
+  wire [23:0] status_color=violation_event?24'h004000:(target_present?24'h404000:24'h400000);
   always @(posedge clk or negedge rst_n) begin
-    if(!rst_n) begin ws_cnt<=0;ws_bit_idx<=0;ws_led_idx<=0;ws_phase<=0;ws_shift<=0;ws2812_din<=0;ws_active<=0;end
+    if(!rst_n) begin ws_cnt<=0;ws_bit_idx<=0;ws_led_idx<=0;ws_shift<=0;ws_color<=0;ws2812_din<=0;ws_active<=0;ws_reset_cnt<=0;end
     else if(!ws_active) begin
-      ws_active<=1'b1;ws_led_idx<=0;ws_bit_idx<=0;ws_shift<=
-        violation_event ? 24'h400000 : (target_present ? 24'h404000 : 24'h004000); ws_cnt<=0;ws2812_din<=1'b0;
+      ws2812_din<=0;
+      if(ws_reset_cnt==WS_RESET-1) begin
+        ws_active<=1'b1;ws_led_idx<=0;ws_bit_idx<=0;
+        ws_shift<=status_color;ws_color<=status_color;ws_cnt<=0;ws_reset_cnt<=0;
+      end else ws_reset_cnt<=ws_reset_cnt+1'b1;
     end else if(ws_cnt==WS_BIT-1) begin
       ws_cnt<=0; ws2812_din<=0;
       if(ws_bit_idx==23) begin
         ws_bit_idx<=0;
         if(ws_led_idx==7) begin ws_active<=0; ws_led_idx<=0; end
-        else begin ws_led_idx<=ws_led_idx+1'b1; ws_shift<=violation_event?24'h400000:(target_present?24'h404000:24'h004000); end
+        else begin ws_led_idx<=ws_led_idx+1'b1; ws_shift<=ws_color; end
       end else begin ws_bit_idx<=ws_bit_idx+1'b1; ws_shift<={ws_shift[22:0],1'b0}; end
     end else begin
       ws_cnt<=ws_cnt+1'b1;

@@ -1,21 +1,8 @@
 `timescale 1ns / 1ps
-// -----------------------------------------------------------------------------
-// pattern_gen — 复刻 PC 端 make_test_clip.py 的合成片段，作为 RTL 仿真的激励
-//
-// 规则（与 make_test_clip.py / src/ps/rtl_golden.py 逐条对齐，改一端必须同步改另一端）：
-//   黑底 + 纯白矩形，矩形尺寸 OBJ_W x OBJ_H，垂直不动，每帧水平右移 DX 像素。
-//   第 i 帧左边缘的移动公式：x = (x + DX + OBJ_W > H_ACTIVE) ? X0 : x + DX
-//   （第 0 帧左边缘 = X0，顶边 = Y0）
-//
-// ★ 回绕（三端统一定义，别处不许另写一套）：
-//     只要"再走一步"不会让矩形右边缘越出画面，就往前走一步；否则左边缘回到 X0。
-//     于是矩形**永远完整留在画面内**，可以无限跑下去。
-//   为什么必须回绕：板上是连续跑的，不回绕的话白块 1.3 s 就走出画面，
-//   之后一整分钟黑屏 —— 演示和"连续检出"都无从谈起。
-//   原始程序中矩形覆盖 [x, x+OBJ_W-1] x [Y0, Y0+OBJ_H-1]，共 OBJ_W*OBJ_H 个白像素。
-//
-// 输出全部**寄存一拍**（vde/pixel/x_o/y_o 同拍对齐），下游按同一节拍处理。
-// -----------------------------------------------------------------------------
+// pattern_gen：生成黑底白色矩形的测试视频。
+// 矩形为 OBJ_W×OBJ_H，首帧位置为 (X0,Y0)，每帧向右移动 DX 像素。
+// 下一步将越过右边界时回到 X0；输出像素、坐标和有效信号同步寄存。
+// 运动规则与 PC 端 make_test_clip.py 和 rtl_golden.py 参考模型对应。
 module pattern_gen #(
     parameter integer H_ACTIVE = 1280,
     parameter integer V_ACTIVE = 720,
@@ -52,7 +39,7 @@ module pattern_gen #(
     // 只有复位后第一个 sof 才允许初始化 obj_x，此后回绕不再影响位置。
     reg obj_init_done;
 
-    // ---- 帧号与目标左边缘：每帧首推进 ----
+    // 帧号与目标左边缘：每帧首推进
     // 第 0 帧 obj_x = X0；此后每帧 +DX，走不动了就回绕到 X0（见文件头"回绕"）。
     // 用累加实现，避免乘法。
     always @(posedge clk or negedge rst_n) begin
@@ -72,12 +59,12 @@ module pattern_gen #(
         end
     end
 
-    // ---- 是否落在矩形内（组合判断，与注册输出同拍）----
+    // 是否落在矩形内（组合判断，与注册输出同拍）
     wire in_x = (x >= obj_x) && (x < (obj_x + OBJ_W16));
     wire in_y = (y >= Y0_16) && (y < (Y0_16 + OBJ_H16));
     wire is_obj = de && in_x && in_y;
 
-    // ---- 寄存输出，保持 vde/pixel/x_o/y_o 同步 ----
+    // 寄存输出，保持 vde/pixel/x_o/y_o 同步
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             vde   <= 1'b0;
