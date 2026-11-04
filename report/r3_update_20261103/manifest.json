@@ -1,0 +1,557 @@
+{
+  "version": "Tier1 Attach-Z2 HDMI r3 digitfix",
+  "published_snapshot_date": "2026-11-03",
+  "source_archive": "FPGA_Tier1_AttachZ2_HDMI_r3_digitfix.zip",
+  "source_archive_sha256": "13c055ed738360acbbbb460a91110ce0d8cc4396bdf77905c6c2d939a0168e94",
+  "submission_archive": "FPGA_All_Code_r3.rar",
+  "submission_archive_sha256": "32a263d8819c16b0737cacae5964ea0268bcf8f13c72f65b77e06aa3c871df06",
+  "payload_root": "deliverables/tier1_attach_hdmi_r3",
+  "payload_file_count": 105,
+  "payload_preserved_byte_for_byte": true,
+  "bitstream_sha256": "c3c3a16c91e31a8044704aa959cbbbcf55844f9e3aa4e343b5abe8c246c8e8c8",
+  "r3_build_tool_version": "Vivado 2026.1",
+  "r3_build_gate": {
+    "wns": 0.107,
+    "whs": 0.013,
+    "blocking_drc": 0,
+    "passed": true,
+    "board_verified": false
+  },
+  "r3_cdc_summary": {
+    "unsafe": 2,
+    "unknown": 3,
+    "no_async_reg": 0
+  },
+  "board_verified": false,
+  "board_note": "Original r3 README reports JTAG startup HIGH; independent functional and stability acceptance not established.",
+  "stale_original_manifest": "Original root manifest.json describes r2 and must not identify r3 firmware or timing.",
+  "full_build_rerun_for_this_github_update": false,
+  "files": [
+    {
+      "path": "FPGA/bitstream/combined_top.bit",
+      "bytes": 4045767,
+      "sha256": "c3c3a16c91e31a8044704aa959cbbbcf55844f9e3aa4e343b5abe8c246c8e8c8"
+    },
+    {
+      "path": "FPGA/board/pynq_z2_combined.xdc",
+      "bytes": 8274,
+      "sha256": "991659dd11eb23fdac0f1a4b577240b5668e303b495cbd40f6d857b5bfaeb501"
+    },
+    {
+      "path": "FPGA/board/pynq_z2_hdmi_out.xdc",
+      "bytes": 1725,
+      "sha256": "6b8f174f07bba2551ee43dc5f51c21ba2a99273f5410c3490ebef1862de757f5"
+    },
+    {
+      "path": "FPGA/build/scripts/build_vivado.tcl",
+      "bytes": 4604,
+      "sha256": "4f5b5ed3a8377438ee716079b3d91b9b486938f520e68fc9e3666a1dafc4f1ef"
+    },
+    {
+      "path": "FPGA/build/scripts/create_project.tcl",
+      "bytes": 1762,
+      "sha256": "dddfc7b8feaf6a1c23e7444a7e932b5444028e7a8118594b72ec31a2ee690533"
+    },
+    {
+      "path": "FPGA/build/scripts/run_gated_build.py",
+      "bytes": 2979,
+      "sha256": "9f30c71ece9d99d40a9c7f1dc983e23bb8aabc6ee736783bd2e447c2bcc07aa2"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/.gitignore",
+      "bytes": 171,
+      "sha256": "2bc2ece0f73a2a18539d2d27fd57be1c7d26dcff719d5f8e41898e16ef22f9f8"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/component.xml",
+      "bytes": 62319,
+      "sha256": "a72a127bb49c96453fa9feef9ae43cce939d4f164201bb2bf8e645e6868483a0"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/docs/Advantiv_DGL_1080P_CEA.dat",
+      "bytes": 1060,
+      "sha256": "a8fbbd8627e5a624c5169f7da8d9ae4aac1c1d8dab49486b8ce947f4ef88d716"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/docs/Advantiv_DGL_1280_1024_CEA.dat",
+      "bytes": 1060,
+      "sha256": "3b415e2790a1e9756aad7aaa9a1262e2466e2dffbb3a15fb3befa4f588221538"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/docs/Advantiv_DGL_720P_CEA.dat",
+      "bytes": 1060,
+      "sha256": "25d48c9070585248b7732716d240fe8d4b3748bdea4bfa9a6155140489eb4cb2"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/docs/dvi2rgb.pdf",
+      "bytes": 325152,
+      "sha256": "2c211e49ce222b298f50447ef562ceaed917b7594de16867250f1a971557c68c"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/gui/dvi2rgb_v1_0.gtcl",
+      "bytes": 139,
+      "sha256": "037dd7e14e7a8a8c7c4739d495d236f4ac49fc1577176d24e72562d3d183e2a6"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/ChannelBond.vhd",
+      "bytes": 6985,
+      "sha256": "72a210fd52f9508a30b11fcc73a377df36fb1b447133488048eecbe98700fbd2"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/dgl_1080p_cea.data",
+      "bytes": 2560,
+      "sha256": "2ba99a2fa70ed761ab1cf76c218fbd7562f012a8c8402ec34e3d091dffa2354a"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/dgl_1280_1024_cea.data",
+      "bytes": 2560,
+      "sha256": "d5e714a1b6726989d6bdcc3076c69b1bc540f972f805a5619bf3a453da09eba2"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/dgl_720p_cea.data",
+      "bytes": 2560,
+      "sha256": "2352e0f68730c26c82caf4ed2b1dbe68ac1a87521cb377939511410459328f81"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/dvi2rgb.vhd",
+      "bytes": 14630,
+      "sha256": "aa9e005a424f5f87df9147b00c5d233b642a21e9c9512f3ebe2f6ec95ac254fd"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/dvi2rgb.xdc",
+      "bytes": 959,
+      "sha256": "b5bda7beec9e9170c751156a68ffef367d160adfc79e4af6d1f7443fca1d5ba7"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/dvi2rgb_ooc.xdc",
+      "bytes": 96,
+      "sha256": "5895036095dc111614c098c6e9c0e3c4cbfea9f998d732d2302e92bdbf424488"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/DVI_Constants.vhd",
+      "bytes": 3220,
+      "sha256": "4f634d35e638f89040a0c58a199a13ced67cd757a36763e98c75acd2edebc863"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/EEPROM_8b.vhd",
+      "bytes": 8640,
+      "sha256": "7f4cb0cd12ecd16ebbfc4efe412cf5f74c048360c0bb7c96febd4a3e674a1934"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/GlitchFilter.vhd",
+      "bytes": 4020,
+      "sha256": "4cfde53d70b5831a6572fa50750b3c58926f3c30194523751dc0d008234050a0"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/ila_pixclk/ila_pixclk.xci",
+      "bytes": 417103,
+      "sha256": "e553b74251d2ba3ddf58478e2954df97f50d1f4c22db4184f6f9da4cf7c0c068"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/ila_refclk/ila_refclk.xci",
+      "bytes": 415697,
+      "sha256": "5a252301dcb190602f1dda2394dcaabfb6ebcd043552d812d4774df804fc3848"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/ila_timing_workaround.xdc",
+      "bytes": 3848,
+      "sha256": "f63e8af2957f48297b2afd50b744ff3b924d61e7ee4b790e708cab06a0e9cb98"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/InputSERDES.vhd",
+      "bytes": 10282,
+      "sha256": "d788e6578790ce0d8b2bc81f06727d0b1f0e1a576ee2ca0cc29e8bf09ebb11ae"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/PhaseAlign.vhd",
+      "bytes": 14870,
+      "sha256": "4b0c017052671b280ba18ab612568f8f28fff607aceadc2115cc4227cd4ca36f"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/ResyncToBUFG.vhd",
+      "bytes": 3821,
+      "sha256": "b98ab8ec334c3afb42d14e9bfc2bbef2d4d60217f848c3ce4b20f407b865c8e3"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/SyncAsync.vhd",
+      "bytes": 3815,
+      "sha256": "8c226a1121313391bf99c207857632f5883938f1d9c7856c8310c41af1596cbe"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/SyncAsyncReset.vhd",
+      "bytes": 3824,
+      "sha256": "09d342d737f70901cba6236f7ead07afa29a4de8b8b78c3b3237900a0a2a61d7"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/SyncBase.vhd",
+      "bytes": 3954,
+      "sha256": "af14273064f187680f6a8f4a1610f5118abc270899392035641e8fc6948cf5de"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/TMDS_Clocking.vhd",
+      "bytes": 12561,
+      "sha256": "86165be9e7cd8f3c22295a5b27a0849b96d4c87f67e2eab5b34c1c2dcbeef222"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/TMDS_Decoder.vhd",
+      "bytes": 11252,
+      "sha256": "e33e12d538665c65bcad326345535e3f64084668724ccb6e5e525a35802542f9"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/src/TWI_SlaveCtl.vhd",
+      "bytes": 11686,
+      "sha256": "b41d81da5efe92536b57971763d1e1d6331b9e2e093dca4e62de324970b405b9"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/xgui/dvi2rgb_v1_3.tcl",
+      "bytes": 3549,
+      "sha256": "eb960af47c61adcc838e56830455683c3d4b680dd5597648ea1252a9abb8bfab"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/xgui/dvi2rgb_v1_4.tcl",
+      "bytes": 4491,
+      "sha256": "c11102178cfed6fd6ce7aea5028ac23ebb043d31a74ea55ca36b7d7253862c31"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/xgui/dvi2rgb_v1_5.tcl",
+      "bytes": 5255,
+      "sha256": "39728ff78c1a46cdf12f3eb21f166d2211a7f0effd0d3d61cc045600c50c7f14"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/xgui/dvi2rgb_v1_6.tcl",
+      "bytes": 5884,
+      "sha256": "161658a500b2030c2d226069df0360cad33590ddb0cb0b74aad7bf330b30c048"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/xgui/dvi2rgb_v1_7.tcl",
+      "bytes": 5884,
+      "sha256": "161658a500b2030c2d226069df0360cad33590ddb0cb0b74aad7bf330b30c048"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/xgui/dvi2rgb_v1_8.tcl",
+      "bytes": 6575,
+      "sha256": "033eef7d452ed4ea2ee2da5bad91a01e8bc18515abc59060c305b2ff3b00b6ab"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/xgui/dvi2rgb_v1_9.tcl",
+      "bytes": 6575,
+      "sha256": "033eef7d452ed4ea2ee2da5bad91a01e8bc18515abc59060c305b2ff3b00b6ab"
+    },
+    {
+      "path": "FPGA/ip_repository/dvi2rgb/xgui/dvi2rgb_v2_0.tcl",
+      "bytes": 6684,
+      "sha256": "86a21a9db1df3ef96e0c151ecd32333e1cbd4ef5f54e0488e578be8655453d69"
+    },
+    {
+      "path": "FPGA/ip_repository/License.txt",
+      "bytes": 1084,
+      "sha256": "7b7368b2937cdbe48fc09712273770f58f88abbec54673d33c9284e8bbe088d3"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/component.xml",
+      "bytes": 37086,
+      "sha256": "74d0e3a5bed164f964113fb77abc0bafef47311413df5de3bfaa9669de1239ae"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/docs/rgb2dvi.pdf",
+      "bytes": 562709,
+      "sha256": "cb0f2492f587bc453aec91df91c83f7f108c84b1478d42de77c752c8dc2d2dc8"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/src/ClockGen.vhd",
+      "bytes": 11083,
+      "sha256": "3c0e051da8b76d1996980a16c7a09a6120ce70516e40f5611ff8b502c170aa0f"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/src/DVI_Constants.vhd",
+      "bytes": 3220,
+      "sha256": "4f634d35e638f89040a0c58a199a13ced67cd757a36763e98c75acd2edebc863"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/src/OutputSERDES.vhd",
+      "bytes": 8556,
+      "sha256": "8145971992829bc520cd1c82dbb78a54d2ea91146417bd69cb62af1e158c76f6"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/src/rgb2dvi.vhd",
+      "bytes": 9000,
+      "sha256": "0d3b820a350f5e4bdc2256c7b8e376987836248b3c015fa74ad852629da81385"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/src/rgb2dvi.xdc",
+      "bytes": 296,
+      "sha256": "5263196a2c78a5c1818991c9372d8be2e1e905c7dc7c66e2098ed1c4b16208e4"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/src/rgb2dvi_clocks.xdc",
+      "bytes": 147,
+      "sha256": "c4000cd15bebbe58173441e638df21bdc07ac21094883d9a12d19413aa7140eb"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/src/rgb2dvi_ooc.xdc",
+      "bytes": 137,
+      "sha256": "f568c86aadff12555ded6d5913c970304c28534d8c07844b1a28f8c775cd0038"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/src/SyncAsync.vhd",
+      "bytes": 3815,
+      "sha256": "8c226a1121313391bf99c207857632f5883938f1d9c7856c8310c41af1596cbe"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/src/SyncAsyncReset.vhd",
+      "bytes": 3824,
+      "sha256": "09d342d737f70901cba6236f7ead07afa29a4de8b8b78c3b3237900a0a2a61d7"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/src/TMDS_Encoder.vhd",
+      "bytes": 8053,
+      "sha256": "a92ae95220730c43fb5a806714aa8f0076936c301dcf15b321206ac8d8b28748"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/xgui/rgb2dvi_v1_1.tcl",
+      "bytes": 2990,
+      "sha256": "ef2af323b6752addcf17239fae91ded5375573098e3e6945b2bb526daca33142"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/xgui/rgb2dvi_v1_2.tcl",
+      "bytes": 3455,
+      "sha256": "ed0db4c4b53c11e5539966b87a6d374b81b132de87f21daaf537b043d6d2ab3e"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/xgui/rgb2dvi_v1_3.tcl",
+      "bytes": 6338,
+      "sha256": "5f8ea6718a7c36cf7e366b9fa74f97c3e19dc390934417b1fd8233232cdac708"
+    },
+    {
+      "path": "FPGA/ip_repository/rgb2dvi/xgui/rgb2dvi_v1_4.tcl",
+      "bytes": 6319,
+      "sha256": "669c0d21ca2cca055bc7872add54e08cb3a5a295ad188b9a94380bc91cc27f27"
+    },
+    {
+      "path": "FPGA/README.md",
+      "bytes": 1861,
+      "sha256": "28693c9c5f36f65a3a00adcdc9e3766377f4301708807a17b03c0e5aca57d895"
+    },
+    {
+      "path": "FPGA/sim/hdmi_boundary_stubs.sv",
+      "bytes": 1564,
+      "sha256": "975e38ab2b565d067fa84b83a52f9c3e722236251d2964b2e7073bdc1a19d2be"
+    },
+    {
+      "path": "FPGA/sim/run_attach_protocol.py",
+      "bytes": 2517,
+      "sha256": "3f430e46be9e59546efb93224d57e9bd419b5af08ded4b8f46fb0dc7ba7b0330"
+    },
+    {
+      "path": "FPGA/sim/run_combined_checks.py",
+      "bytes": 2648,
+      "sha256": "31548c43c68308852641fcfc865581bed222bab47d426e1f3799bbc3641c15d0"
+    },
+    {
+      "path": "FPGA/sim/tb_attach_protocol.sv",
+      "bytes": 5972,
+      "sha256": "dbc4806bea28a82476da5b586ce0374085495e3af01fb63a589ada17bef311aa"
+    },
+    {
+      "path": "FPGA/sim/tb_attach_z2_interaction.sv",
+      "bytes": 678,
+      "sha256": "9fb0bdd2cbb215dec8570e48b134c2d59e1c24930f567dc68ba1aedaff62e823"
+    },
+    {
+      "path": "FPGA/sim/tb_combined_bridge.sv",
+      "bytes": 1928,
+      "sha256": "21b837041a2a56b24b7e9a2b12639b3555e4991a03af8249a8824b0d4c219490"
+    },
+    {
+      "path": "FPGA/sim/tb_hdmi_restore.sv",
+      "bytes": 1680,
+      "sha256": "ef7201fb1501c56ad2a71cc37547d69987eb1eeab1f237570c26b7b9775d8c15"
+    },
+    {
+      "path": "FPGA/sim/tb_md_pipeline.v",
+      "bytes": 8890,
+      "sha256": "dc0da97288f8cdce08c88480ea3d6d38db19a3a6a6e126513aca3b44acc69882"
+    },
+    {
+      "path": "FPGA/sim/tb_pipeline_r1.sv",
+      "bytes": 668,
+      "sha256": "b81e062df3d666b6d134fd963dfd53a01e1358211408a5d2d2115d409cb65715"
+    },
+    {
+      "path": "FPGA/src/rtl/alarm.v",
+      "bytes": 1975,
+      "sha256": "328e9ec23fbd5bfdb9dfec347a723106b941fc025da7ef57246ef0ef813b811a"
+    },
+    {
+      "path": "FPGA/src/rtl/attach_z2_interaction.v",
+      "bytes": 6047,
+      "sha256": "ed96b6039be15de78381fcd7924ec6a32f24835536f9c6c9813cb4e5ac79793e"
+    },
+    {
+      "path": "FPGA/src/rtl/background_fixed.v",
+      "bytes": 1823,
+      "sha256": "ed4005d6d27787984b3c700d625ec1a30206340719d29b3b413521dcb37162c1"
+    },
+    {
+      "path": "FPGA/src/rtl/background_fixed_pipe.v",
+      "bytes": 1964,
+      "sha256": "6bfd8bfb1b028611cb583c9507c2c29749c25bb0d1d0d5b676a4af38d11a24f8"
+    },
+    {
+      "path": "FPGA/src/rtl/bbox.v",
+      "bytes": 2272,
+      "sha256": "8a3fbd47ab4b714bbac9946768039210c30698752b6e26ee8691600681d0e838"
+    },
+    {
+      "path": "FPGA/src/rtl/bbox_snapshot.v",
+      "bytes": 5320,
+      "sha256": "4de27d1c837e2057108b4378addf19a6cd09e2b5ac6eb9b08f55c219f7cd67a2"
+    },
+    {
+      "path": "FPGA/src/rtl/board/clock_200m.v",
+      "bytes": 1248,
+      "sha256": "99a1993064913702deed16b3118bed9693ab1416526d7a93c02c02e316521f7c"
+    },
+    {
+      "path": "FPGA/src/rtl/board/clock_74m25.v",
+      "bytes": 1268,
+      "sha256": "2a0673d1246ea99c2906f13612ff91d3f6d0723416e2cabe40dfaa801c64b7cd"
+    },
+    {
+      "path": "FPGA/src/rtl/board/combined_top.v",
+      "bytes": 7976,
+      "sha256": "648011ffb6eaac6cccca69d1ea46885c56f5cfcbf5a0ebb332d48cabfefbef47"
+    },
+    {
+      "path": "FPGA/src/rtl/board/gray_conv.v",
+      "bytes": 1351,
+      "sha256": "11a41ae16a4d16b77c3d652cbcb8bf667d13639a58a822b938ffca8467474a5d"
+    },
+    {
+      "path": "FPGA/src/rtl/board/hdmi_in_ctrl.v",
+      "bytes": 2070,
+      "sha256": "2bbe3a9edb44fed7dd08804ee3d1bd4e58d9efc44529cf7f3509b7f696119e9d"
+    },
+    {
+      "path": "FPGA/src/rtl/diff_stage.v",
+      "bytes": 1831,
+      "sha256": "84b592ab8db87959898fdb24645f5adbc7d6c3b3948edd989ce293e243aa5303"
+    },
+    {
+      "path": "FPGA/src/rtl/downsample2x2.v",
+      "bytes": 2691,
+      "sha256": "8ce59e2d63b8523f393c0112297977df40ae811114b54bfd70aea2dbaf50e5e9"
+    },
+    {
+      "path": "FPGA/src/rtl/frame_buf.v",
+      "bytes": 894,
+      "sha256": "92e2bccabfe4e68b2cfbcd0a78e3378873d8fc996ce332e12c2aeb09b4dbfd30"
+    },
+    {
+      "path": "FPGA/src/rtl/md_pipeline.v",
+      "bytes": 2852,
+      "sha256": "632fcecd2e9a0e6a6b025b029866e90aebc937467ca71fb7b34770b2a10946a6"
+    },
+    {
+      "path": "FPGA/src/rtl/morph3x3.v",
+      "bytes": 4049,
+      "sha256": "6c5faf7915f5f5e3ec970c4c6abf08ff115e6795bbc55b989a87bab2128518ae"
+    },
+    {
+      "path": "FPGA/src/rtl/morph_open.v",
+      "bytes": 1307,
+      "sha256": "5d5d6f60c26cc3f96531368358cea429b4d91990bc9736216104d2fd83dc8b35"
+    },
+    {
+      "path": "FPGA/src/rtl/multi_bbox.v",
+      "bytes": 23254,
+      "sha256": "58203a9de12d1bdd5d62fa1b3df15b0638d2e0b16f9f6470fb6377250247115e"
+    },
+    {
+      "path": "FPGA/src/rtl/overlay.v",
+      "bytes": 1831,
+      "sha256": "c85a589c1eca363669544bc7e4cae73f564ed7cad7c7814edad3c06917393b08"
+    },
+    {
+      "path": "FPGA/src/rtl/overlay_multi.v",
+      "bytes": 6032,
+      "sha256": "93789bce2ada432f5144ad36e210240e55fdf95950da038c4a740937b68a1663"
+    },
+    {
+      "path": "FPGA/src/rtl/pattern_gen.v",
+      "bytes": 3245,
+      "sha256": "ca1b1bc37e3ae4ed41095496d979583bfd2edb4acebc5a40655d3a6920f10f43"
+    },
+    {
+      "path": "FPGA/src/rtl/regs.v",
+      "bytes": 6139,
+      "sha256": "c5a2fd0e5239b51c5e5a0e6c983e825cc818cdad055872a61a1cc1f6b791d971"
+    },
+    {
+      "path": "FPGA/src/rtl/threshold.v",
+      "bytes": 862,
+      "sha256": "efd60abd958f1eb7f452ca4b0d43093d6cf794a98d5e878158d8745a8c43808c"
+    },
+    {
+      "path": "FPGA/src/rtl/tier1_md_pipeline.v",
+      "bytes": 22538,
+      "sha256": "4e889f06c098391362fd975240dd1198eed62ddb9977c52878bf3ff259abee18"
+    },
+    {
+      "path": "FPGA/src/rtl/track.v",
+      "bytes": 8433,
+      "sha256": "6d1c7a0737455ff4f95de9314df427e3948505d7d86cd56a27102599863e8e8d"
+    },
+    {
+      "path": "FPGA/src/rtl/uart_tx.v",
+      "bytes": 5672,
+      "sha256": "d51aee8efda3015f5f71a45bd0037f59fe98118fd49c9e38e1b2f4c5400877d0"
+    },
+    {
+      "path": "FPGA/src/rtl/video_timing.v",
+      "bytes": 2298,
+      "sha256": "2c8dba1a2f2bde1b58e6e322f385f26888c23266ad86dadca668b5a3cc99542e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2618,
+      "sha256": "8d3eb8d504359cdedc0b5485ad1579b8a415f0e0afc8635a0d16a302b05048b6"
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "bytes": 10993,
+      "sha256": "c8eed0a2e06e7ba170bb49d973f81626167a34032d675890e5c5730704a5e622"
+    },
+    {
+      "path": "VideoTools/check_hdmi_input.py",
+      "bytes": 6643,
+      "sha256": "b0af497816cd6c34e55f06bb15b240fb6fe7f536d830ba521eedb051b325df60"
+    },
+    {
+      "path": "VideoTools/live_view_board.py",
+      "bytes": 5236,
+      "sha256": "f0a6dc077aaa928322fcf113d76f5a846d7937a2d8f3a936ac940cf45bf6d2f1"
+    },
+    {
+      "path": "VideoTools/play_test_video.py",
+      "bytes": 6258,
+      "sha256": "e2b1c4bba6aa8dbaacbc2bb1bab786a9f69776d0814a2f196f91982ba35c40eb"
+    },
+    {
+      "path": "VideoTools/preview_capture.py",
+      "bytes": 3992,
+      "sha256": "f0debbdd5128a45a9bd1a9f6ee3fd1d23a4c6e8de0907f560b0e245b7593bfe2"
+    },
+    {
+      "path": "VideoTools/README.md",
+      "bytes": 1905,
+      "sha256": "4b5c6958246ccd1d6d7a1627fbabb9780a5c11ca61502891e3b5d9c560218d5b"
+    },
+    {
+      "path": "VideoTools/requirements.txt",
+      "bytes": 22,
+      "sha256": "69351334b941f5912806bba069a004284a349da2eb7d2a0689d43d9470bea678"
+    }
+  ],
+  "official_package_confirmation": "official_package_confirmation.json"
+}

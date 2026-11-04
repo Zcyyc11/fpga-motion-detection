@@ -1,0 +1,12 @@
+{
+  "vivado_version": "2025.2",
+  "returncode": 0,
+  "project": "D:\\fpga_code_submission_check_20261103\\FPGA\\project\\combined_pynq_attach.xpr",
+  "project_created": true,
+  "critical_warnings": [
+    "CRITICAL WARNING: [IP_Flow 19-4965] IP ila_pixclk was packaged with board value 'digilentinc.com:zybo-z7-10:part0:1.0'. Current project's board value is unset. Please update the project settings to match the packaged IP.",
+    "CRITICAL WARNING: [IP_Flow 19-4965] IP ila_refclk was packaged with board value 'digilentinc.com:zybo-z7-10:part0:1.0'. Current project's board value is unset. Please update the project settings to match the packaged IP."
+  ],
+  "full_synthesis_implementation_run": false,
+  "board_test": false
+}
