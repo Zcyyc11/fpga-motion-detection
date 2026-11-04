@@ -1011,7 +1011,7 @@ python src\ps\cdnet_official.py
 | WNS +0.107 ns / WHS +0.013 ns | `build/reports/r3/impl_timing_summary.rpt` |
 | BRAM 占用 82.86%（主要约束之一） | `build/reports/r3/impl_utilization.rpt` |
 | DRC Warning 26 项 / 阻断级 0 | `build/reports/r3/impl_drc.rpt` |
-| 时钟 125 MHz / 74.25 MHz / 371.25 MHz | `build/reports/synth_clocks.rpt` |
+| 时钟 125 MHz / 74.25 MHz / 371.25 MHz | `build/reports/r3/synth_timing_summary.rpt`（Clock Summary：sys_clk_pin 125.000 / hdmi_rx_clk_p 74.250 / CLK_OUT_5x_hdmi_clk 371.250 MHz） |
 | CDnet 原Q4/当前 = 0.627490/0.690056（开发段，同范围复算） | `src/ps/cdnet_official_results.csv` |
 | 板级确认 61/61 帧全亮、亮度 126.5–131.5、10 分钟连续运行 | `board/logs/board_test_20261020.md`（团队确认） |
 | 插网线后 61/61 帧、亮度 126.5–131.5 | `board/logs/board_test_20261020.md` |
