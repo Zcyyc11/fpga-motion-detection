@@ -57,12 +57,16 @@ class InputChunks:
             resource.close()
 
 
-def serial_chunks(port, duration=60.0, idle_timeout=5.0, factory=None):
+def serial_chunks(port, duration=60.0, idle_timeout=5.0, factory=None, baudrate=115200):
     """No reconnect/reset: each connection has a distinct output directory."""
+    if not isinstance(baudrate, int) or baudrate <= 0:
+        raise ValueError("baudrate must be a positive integer")
     def opener():
-        import serial
-        constructor = factory or serial.Serial
-        return constructor(port=port, baudrate=115200, bytesize=8, parity="N", stopbits=1,
+        constructor = factory
+        if constructor is None:
+            import serial
+            constructor = serial.Serial
+        return constructor(port=port, baudrate=baudrate, bytesize=8, parity="N", stopbits=1,
                            timeout=.1, xonxoff=False, rtscts=False, dsrdtr=False)
 
     def reader(device):
@@ -247,6 +251,7 @@ def main():
     ap.add_argument("--out", type=Path, help="必须是尚不存在的目录")
     ap.add_argument("--source", choices=["simulated", "board-unverified"], default="board-unverified")
     ap.add_argument("--duration", type=positive, default=60.0)
+    ap.add_argument("--baud", type=int, default=115200, help="must match the bitstream; default 115200")
     ap.add_argument("--idle-timeout", type=positive, default=5.0)
     ap.add_argument("--show", action="store_true")
     ap.add_argument("--save-images", type=int, default=100)
@@ -268,9 +273,9 @@ def main():
         if not isinstance(metadata, dict):
             raise ValueError("metadata must be a JSON object")
         metadata = {"supplied": metadata, "transport": "serial" if args.port else "file",
-                    "input": args.port or str(args.file), "baud": 115200 if args.port else None,
+                    "input": args.port or str(args.file), "baud": args.baud if args.port else None,
                     "duration": args.duration if args.port else None}
-        chunks = serial_chunks(args.port, args.duration, args.idle_timeout) if args.port else file_chunks(args.file)
+        chunks = serial_chunks(args.port, args.duration, args.idle_timeout, baudrate=args.baud) if args.port else file_chunks(args.file)
         result = receive(chunks, args.out, args.source, args.show, args.save_images,
                          args.max_frames, args.max_bytes, metadata, args.max_error_details)
         print(json.dumps(result, ensure_ascii=False))

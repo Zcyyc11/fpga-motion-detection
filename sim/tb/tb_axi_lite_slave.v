@@ -57,32 +57,38 @@ module tb_axi_lite_slave;
     // 真实 PS 主控不会这样。
     task axi_write(input [31:0] a, input [31:0] d);
         begin
-            @(posedge aclk);
-            awaddr = a; wdata = d; awvalid = 1; wvalid = 1; bready = 0;
-            @(posedge aclk);
-            while (!(awready === 1'b1 && wready === 1'b1)) @(posedge aclk);
-            awvalid = 0; wvalid = 0;      // 从机已在本沿接受
-            bready = 1;                   // 先备好 bready（下一沿从机采样）
-            @(posedge aclk);              // 该沿从机见 BVALID&&BREADY → 清 BVALID
-            while (bvalid) @(posedge aclk); // 等 BVALID 实际清除，再撤 bready
-            bready = 0;
+            fork
+                begin
+                    @(negedge aclk); awaddr=a; awvalid=1;
+                    @(posedge aclk); while(!awready) @(posedge aclk);
+                    @(negedge aclk); awvalid=0;
+                end
+                begin
+                    @(negedge aclk); wdata=d; wvalid=1;
+                    @(posedge aclk); while(!wready) @(posedge aclk);
+                    @(negedge aclk); wvalid=0;
+                end
+            join
+            @(negedge aclk); bready=1;
+            @(posedge aclk); while(!bvalid) @(posedge aclk);
+            if(bresp!==0) $fatal(1,"FAIL write response");
+            @(negedge aclk); bready=0;
         end
     endtask
 
     task axi_read(input [31:0] a, output [31:0] d);
         begin
-            @(posedge aclk);
-            araddr = a; arvalid = 1; rready = 0;
-            @(posedge aclk);
-            while (!(arready === 1'b1)) @(posedge aclk);
-            arvalid = 0;                  // 从机已在本沿接受读地址
-            while (!rvalid) @(posedge aclk);
-            d = rdata;                    // rvalid 高电平期间 rdata 已寄存稳定
-            rready = 1;
-            @(posedge aclk);
-            rready = 0;
+            @(negedge aclk); araddr=a; arvalid=1;
+            @(posedge aclk); while(!arready) @(posedge aclk);
+            @(negedge aclk); arvalid=0; rready=1;
+            @(posedge aclk); while(!rvalid) @(posedge aclk);
+            d=rdata;
+            if(rresp!==0) $fatal(1,"FAIL read response");
+            @(negedge aclk); rready=0;
         end
     endtask
+
+    initial begin #200000; $fatal(1,"FAIL AXI test timeout"); end
 
     // ---- 测试序列 ----
     reg [31:0] rd;

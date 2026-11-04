@@ -34,6 +34,9 @@ set RTL_DIR    [file join $ROOT src rtl]
 set RTL_BOARD  [file join $ROOT src rtl board]
 set BOARD_DIR  [file join $ROOT board]
 set BUILD_DIR  [file join $ROOT build]
+if {[info exists ::env(MOTION_BUILD_DIR)]} {
+    set BUILD_DIR [file normalize $::env(MOTION_BUILD_DIR)]
+}
 set PROJ_DIR   [file join $BUILD_DIR vivado]
 set REPORT_DIR [file join $BUILD_DIR reports]
 set CKPT_DIR   [file join $BUILD_DIR checkpoints]
@@ -63,7 +66,7 @@ if {$argc >= 3} { set STAGE [lindex $argv 2] }
 if {$STAGE ni {all setup synth impl bit}} { error "STAGE must be all|setup|synth|impl|bit" }
 
 set PART xc7z020clg400-1
-set TOP  board_top
+set TOP  board_top_legacy
 
 # 综合线程数：本机 24 逻辑核，Vivado synth 多线程收益实测约 2 倍（同规模
 # Zynq-7020 设计 8 线程 vs 默认）。留一部分核给系统和磁盘 IO。
@@ -104,6 +107,10 @@ proc stage_setup {} {
         open_project $XPR
     } else {
         create_project -force fpga_motion_detection $PROJ_DIR -part $PART
+        # Board metadata must be selected BEFORE creating board-aware HDMI IP.
+        if {[info exists ::env(MOTION_BOARD_PART)]} {
+            set_property board_part $::env(MOTION_BOARD_PART) [current_project]
+        }
         set_property target_language Verilog [current_project]
         # 允许在 xdc 里用 TMDS_33 这类差分电平（部分版本默认禁止）
         catch { set_property enable_vhdl_2008 1 [current_project] }
@@ -137,6 +144,14 @@ proc stage_setup {} {
             [file join $BOARD_DIR pynq_z2_hdmi_out.xdc] \
             [file join $BOARD_DIR pynq_z2_hdmi_in.xdc]]
     }
+    # Reconcile RTL membership on BOTH new and reused projects.
+    # Existing IP products stay intact; newly added modules must not be skipped.
+    foreach src [concat [glob -nocomplain [file join $RTL_DIR *.v]] \
+                        [glob -nocomplain [file join $RTL_BOARD *.v]]] {
+        if {[llength [get_files -quiet $src]] == 0} {
+            add_files -norecurse $src
+        }
+    }
     # ★ IP 缓存：工程一打开就挂上共享缓存目录（create/open 两条路都要走这）
     file mkdir $IP_CACHE_DIR
     set_property ip_output_repo $IP_CACHE_DIR [current_project]
@@ -144,7 +159,11 @@ proc stage_setup {} {
     set_property top $TOP [current_fileset]
     # ★ 2026.1 实测：fileset 的 generic 用【空格】分隔，逗号分隔会把整个串
     #   解析成一个 generic 名。旧版本是逗号。
-    set_property generic [format "MODE_BG=%d INPUT_SEL=%d" $MODE_BG $INPUT_SEL] [current_fileset]
+    set BG_FRAC_BITS 0
+    if {[info exists ::env(MOTION_BG_FRAC_BITS)]} { set BG_FRAC_BITS $::env(MOTION_BG_FRAC_BITS) }
+    set BG_SHIFT 6
+    if {[info exists ::env(MOTION_BG_SHIFT)]} { set BG_SHIFT $::env(MOTION_BG_SHIFT) }
+    set_property generic [format "MODE_BG=%d INPUT_SEL=%d BG_SHIFT=%d BG_FRAC_BITS=%d" $MODE_BG $INPUT_SEL $BG_SHIFT $BG_FRAC_BITS] [current_fileset]
     update_compile_order -fileset sources_1
     puts "setup 完成：工程就绪（top=$TOP, generic=MODE_BG=$MODE_BG INPUT_SEL=$INPUT_SEL）"
     close_project
@@ -200,11 +219,11 @@ proc stage_impl {} {
     # impl 正常路径：不 reset，已开始的 run 从最后一个完成的 step 续跑
     # （opt→place→route 每步 checkpoint 在 runs/impl_1 下）。
     # 兜底：若 run 状态不允许直接 launch（报 17-69），reset 后从头 impl。
-    if {[catch {launch_runs impl_1 -to_step write_bitstream -jobs 1} err]} {
+    if {[catch {launch_runs impl_1 -to_step route_design -jobs 1} err]} {
         if {[string match "*needs to be reset*" $err]} {
             puts "impl_1 需要 reset（$err），从头 impl"
             reset_run impl_1
-            launch_runs impl_1 -to_step write_bitstream -jobs 1
+            launch_runs impl_1 -to_step route_design -jobs 1
         } else {
             error $err
         }
@@ -214,30 +233,42 @@ proc stage_impl {} {
         error "实现失败。若已到 place/route，可直接重跑 impl 阶段从断点续；日志：runs/impl_1/runme.log"
     }
     close_project
-    puts "impl 完成：bit 已在 runs/impl_1 下生成"
+    puts "impl complete: routed design retained; bit stage must validate timing first"
 }
 
 # ---------------------------------------------------------------- bit 阶段
 proc stage_bit {} {
-    global XPR PROJ_DIR TOP BUILD_DIR REPORT_DIR
+    global XPR PROJ_DIR TOP BUILD_DIR REPORT_DIR SCRIPT_DIR
     open_project $XPR
     open_run impl_1
+    # Use the project top for resumed bit-only builds, not the default PL top.
+    set TOP [get_property TOP [get_filesets sources_1]]
+    if {$TOP eq "board_top_tier1"} {
+        source [file join $SCRIPT_DIR tier1_cdc_gate.tcl]
+    }
     # bitstream 落到不会被清理的交付位置：build/vivado 是工作目录，不能当交付。
-    set BIT_SRC [file join $PROJ_DIR fpga_motion_detection.runs impl_1 ${TOP}.bit]
     set BIT_DIR [file join $BUILD_DIR bitstream]
     set BIT_DST [file join $BIT_DIR ${TOP}.bit]
-    file mkdir $BIT_DIR
-    if {[file exists $BIT_SRC]} {
-        file copy -force $BIT_SRC $BIT_DST
-    } else {
-        error "没有生成 bitstream：$BIT_SRC"
-    }
     report_utilization       -file [file join $REPORT_DIR impl_utilization.rpt]
     report_timing_summary    -file [file join $REPORT_DIR impl_timing_summary.rpt]
     report_clock_interaction -file [file join $REPORT_DIR impl_clock_interaction.rpt]
     report_drc               -file [file join $REPORT_DIR impl_drc.rpt]
     set WNS [get_property SLACK [get_timing_paths -max_paths 1 -setup]]
     set WHS [get_property SLACK [get_timing_paths -max_paths 1 -hold]]
+    # Fail closed: no deliverable bit before setup/hold and implementation DRC.
+    if {![string is double -strict $WNS] || ![string is double -strict $WHS]} {
+        error "Missing setup/hold timing paths; bit delivery blocked"
+    }
+    if {$WNS < 0 || $WHS < 0} {
+        error "Timing failed: WNS=$WNS WHS=$WHS; no deliverable bit written"
+    }
+    set BAD_DRC [get_drc_violations -quiet -filter {SEVERITY == Error || SEVERITY == {Critical Warning}}]
+    if {[llength $BAD_DRC] != 0} {
+        error "Implementation DRC errors/critical warnings: $BAD_DRC"
+    }
+    if {[file exists $BIT_DST]} { error "Refusing to overwrite existing bit: $BIT_DST" }
+    file mkdir $BIT_DIR
+    write_bitstream $BIT_DST
     puts "=============================================================="
     puts " 综合实现结果"
     puts "   时序  WNS(setup) = $WNS ns   WHS(hold) = $WHS ns"
@@ -246,16 +277,11 @@ proc stage_bit {} {
     puts "=============================================================="
     close_design
     close_project
-    # bit 已经落盘；时序没收敛只是警告级——先拿到 baseline QoR，
-    # 再决定是否换 IMPL_DIRECTIVE=Explore 精修。
-    if {($WNS < 0) || ($WHS < 0)} {
-        puts "!! 注意：时序未收敛（WNS=$WNS WHS=$WHS）。bit 已生成但别直接上板，先修时序。"
-    } else {
-        puts "时序收敛：所有用户约束均满足。"
-    }
+    puts "Timing and DRC gates passed; hardware behavior still requires board evidence."
 }
 
 # ---------------------------------------------------------------- 调度
+if {![info exists ::env(MOTION_BUILD_LIBRARY)]} {
 switch $STAGE {
     setup { stage_setup }
     synth { stage_synth }
@@ -265,3 +291,5 @@ switch $STAGE {
 }
 
 exit 0
+
+}

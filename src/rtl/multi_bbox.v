@@ -59,6 +59,7 @@ module multi_bbox #(
     //   「16 目标满配 PASS」（docs/handoff_code_fixes_20261013.md）。
     //   MAX_RUN 只影响匹配时长（16 拍）与 FIFO 积压（约 18 拍），不增 LUT。
     parameter integer MAX_LABEL = 16,   // 并查集标签容量（一帧最多 MAX_LABEL 个目标）
+    parameter integer SF_DEPTH = 4096,  // bounded sample backlog, mapped to block RAM
     parameter integer MAX_RUN   = 16    // 上一行参与匹配的最大游程数
 )(
     input  wire        clk,
@@ -106,6 +107,11 @@ module multi_bbox #(
         end
     endfunction
 
+    function [15:0] sat_add(input [15:0] a, input [16:0] b);
+        reg [17:0] sum;
+        begin sum={2'b0,a}+{1'b0,b}; sat_add=(sum>65535)?16'hffff:sum[15:0]; end
+    endfunction
+
     // ---------------- 上一行 / 当前行的游程表 ----------------
     reg [15:0] pr_s [0:MAX_RUN-1];      // 上一行游程起点
     reg [15:0] pr_e [0:MAX_RUN-1];      // 上一行游程终点
@@ -124,26 +130,23 @@ module multi_bbox #(
     reg [15:0] px;                      // 上一个有效样本的 x
     reg        seen_any;                // 是否已见过第一个有效样本
 
-    // ---------------- 输入缓存 FIFO（治本第 2 步新增）----------------
-    // ST_MATCH/ST_ALLOC/ST_FINISH 期间上游来的 in_valid 样本缓存于此。
-    // 深度 512（2026-10-15 full16 定位实测：256 仍不够——串行 ST_MATCH 每关一个
-    // 游程要 MAX_RUN+2≈18 拍，一行 16 游程净欠 ~336 拍，FIFO 峰值积压 ~336 > 256
-    // → 溢出丢样（丢行/帧边界样本）→ 永不结算 → 0 框，full16/label_full 复现；
-    // bridge/reuse/overflow(MAX_RUN=4) 欠账小所以过。512 覆盖 full16/label_full
-    // 峰值积压并留余量。已知局限：full16_64（16 目标×32 行、行行 16 游程）净欠
-    // ~7800 拍，任何可行深度都救不了，属串行化结构性上限，见
-    // docs/multibbox_16_vs_mainstream_20261015.md）。宽度 {valid,x,y,mask}=34bit。
-    localparam integer SF_DEPTH = 512;
-    reg [33:0] sf [0:SF_DEPTH-1];
-    reg [8:0]  sf_wr, sf_rd;            // 0..SF_DEPTH-1（512 需 9 位）
-    reg [9:0]  sf_cnt;                  // 0..SF_DEPTH（512 需 10 位）
-    reg        fifo_overflow;           // 满仍要写=静默丢样时粘存（不再静默，供 PS 读）
+    // Synchronous simple-dual-port sample FIFO, plus one prefetched item.
+    // 4096 samples cover the 76x36 dense MIN_CNT64 test frame. Real 640-wide
+    // input has >=2 clocks/sample plus blanking; arbitrary sustained input
+    // beyond the serial service rate remains bounded and raises o_overflow.
+    localparam integer SF_AW = $clog2(SF_DEPTH);
+    (* ram_style="block" *) reg [33:0] sf [0:SF_DEPTH-1];
+    reg [SF_AW-1:0] sf_wr, sf_rd;
+    reg [SF_AW:0] sf_cnt;
+    reg [33:0] sf_data;
+    reg sf_valid;
+    reg fifo_overflow;
 
     // ---------------- 匹配状态机（治本第 2 步）----------------
     localparam [2:0] ST_IDLE   = 3'd0,  // 正常流式（处理 FIFO/in_valid/pending）
                      ST_MATCH  = 3'd1,  // 串行匹配上一行游程，每拍 1 个
                      ST_ALLOC  = 3'd2,  // 分配新标签 + 写 bbox + 写当前行表
-                     ST_FINISH = 3'd3;  // 收尾：转表/结算/开新行/开新帧
+                     ST_FINISH = 3'd3, ST_COLLECT=3'd4, ST_PUBLISH=3'd5, ST_CLEAR=3'd6;  // 收尾：转表/结算/开新行/开新帧
     reg [2:0]  state;
 
     reg [5:0]  mk;                      // 匹配游标 0..MAX_RUN
@@ -172,15 +175,17 @@ module multi_bbox #(
             if (pend_valid) begin
                 cur_valid = 1'b1;  cur_x = pend_x;  cur_y = pend_y;  cur_mask = pend_mask;
                 cur_from_fifo = 1'b0;
-            end else if (sf_cnt > 0) begin
-                cur_valid = sf[sf_rd][33];
-                cur_x     = sf[sf_rd][32:17];
-                cur_y     = sf[sf_rd][16:1];
-                cur_mask  = sf[sf_rd][0];
+            end else if (sf_valid) begin
+                cur_valid = sf_data[33];
+                cur_x     = sf_data[32:17];
+                cur_y     = sf_data[16:1];
+                cur_mask  = sf_data[0];
                 cur_from_fifo = 1'b1;
-            end else begin
+            end else if (sf_cnt == 0) begin
                 cur_valid = in_valid; cur_x = in_x; cur_y = in_y; cur_mask = in_mask;
                 cur_from_fifo = 1'b0;
+            end else begin
+                cur_valid=0;cur_x=0;cur_y=0;cur_mask=0;cur_from_fifo=0;
             end
         end else begin
             cur_valid = 1'b0; cur_x = 16'd0; cur_y = 16'd0; cur_mask = 1'b0;
@@ -191,17 +196,14 @@ module multi_bbox #(
     wire new_frame = cur_valid && seen_any && (cur_y < prow);
     wire new_row   = cur_valid && seen_any && !new_frame && (cur_y != prow);
 
-    // ★ 统一 FIFO 读写使能（修复 sf_cnt NBA 冲突：原写与排 FIFO 同拍对 sf_cnt
-    //   重复 NBA 赋值，last-write-wins 导致指针/计数不同步、样本乱序）
-    reg fifo_we, fifo_re;
-    always @(*) begin
-        fifo_we = 1'b0;
-        // 写：非「ST_IDLE 直处理 in_valid」时都缓存
-        if (in_valid && (sf_cnt < SF_DEPTH) &&
-            (state != ST_IDLE || pend_valid || (sf_cnt > 0)))
-            fifo_we = 1'b1;
-        // 读：ST_IDLE 排 FIFO（cur 来自 FIFO）时出队
-        fifo_re = (state == ST_IDLE) && cur_valid && cur_from_fifo;
+    wire fifo_consume = (state==ST_IDLE) && cur_valid && cur_from_fifo;
+    wire fifo_re = (sf_cnt!=0) && (!sf_valid || fifo_consume);
+    wire must_queue = (state!=ST_IDLE) || pend_valid || sf_valid || (sf_cnt!=0);
+    wire fifo_we = in_valid && must_queue && ((sf_cnt<SF_DEPTH) || fifo_re);
+    // Memory has no asynchronous reset. Reset invalidates pointers and cache.
+    always @(posedge clk) begin
+        if(rst_n && fifo_we) sf[sf_wr] <= {1'b1,in_x,in_y,in_mask};
+        if(rst_n && fifo_re) sf_data <= sf[sf_rd];
     end
 
     // ---------------- 结算输出区 ----------------
@@ -210,8 +212,9 @@ module multi_bbox #(
     reg [15:0] out_x2 [0:MAX_LABEL-1];
     reg [15:0] out_y2 [0:MAX_LABEL-1];
     reg [15:0] out_cnt[0:MAX_LABEL-1];
-    integer    out_n;
-    integer    out_k;
+    reg [5:0] out_n;
+    reg [5:0] collect_k;
+    reg [5:0] out_k;
 
     integer i, j;
     reg [4:0] lj, lo, hi;
@@ -245,11 +248,11 @@ module multi_bbox #(
             o_valid <= 1'b0; o_x1 <= 0; o_y1 <= 0; o_x2 <= 0; o_y2 <= 0;
             o_cnt <= 0; o_id <= 0; o_last <= 1'b0;
             pr_n <= 0; cr_n <= 0;
-            sf_wr <= 0; sf_rd <= 0; sf_cnt <= 0; fifo_overflow <= 1'b0; o_overflow <= 1'b0;
+            sf_wr <= 0; sf_rd <= 0; sf_cnt <= 0; sf_valid <= 0; fifo_overflow <= 1'b0; o_overflow <= 1'b0;
             mk <= 0; mroot <= 4'h0; mfound <= 1'b0;
             close_s <= 0; close_e <= 0; close_row <= 0; close_type <= CL_SAME;
             pend_valid <= 1'b0; pend_x <= 0; pend_y <= 0; pend_mask <= 1'b0;
-            out_n = 0; out_k = 0;
+            out_n = 0; out_k = 0; collect_k<=0;
             for (i = 0; i < MAX_LABEL; i = i + 1) begin
                 parent[i] <= i[4:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
                 lab_mnx[i] <= 16'hFFFF; lab_mny[i] <= 16'hFFFF;
@@ -263,16 +266,21 @@ module multi_bbox #(
             // ★ 统一 FIFO 读写指针/计数更新（fifo_we/fifo_re 在组合 always 里算）
             //   修复原写与排 FIFO 同拍对 sf_cnt 冲突 NBA（last-write-wins）
             if (fifo_we) begin
-                sf[sf_wr] <= {1'b1, in_x, in_y, in_mask};
-                sf_wr <= (sf_wr == SF_DEPTH-1) ? 9'd0 : sf_wr + 9'd1;
+                sf_wr <= (sf_wr == SF_DEPTH-1) ? 0 : sf_wr + 1'b1;
             end
             if (fifo_re) begin
-                sf_rd <= (sf_rd == SF_DEPTH-1) ? 9'd0 : sf_rd + 9'd1;
+                sf_rd <= (sf_rd == SF_DEPTH-1) ? 0 : sf_rd + 1'b1;
             end
-            sf_cnt <= sf_cnt + (fifo_we ? 10'd1 : 10'd0) - (fifo_re ? 10'd1 : 10'd0);
+            case ({fifo_we,fifo_re})
+              2'b10: sf_cnt<=sf_cnt+1'b1;
+              2'b01: sf_cnt<=sf_cnt-1'b1;
+              default: sf_cnt<=sf_cnt;
+            endcase
+            if(fifo_re) sf_valid<=1;
+            else if(fifo_consume) sf_valid<=0;
             // 溢出粘存：FIFO 满仍要写 = 静默丢样，锁存标志（不再静默丢失）
             if (new_frame) fifo_overflow <= 1'b0;        // 每帧开始清，PS 按帧感知
-            if (in_valid && (sf_cnt == SF_DEPTH)) fifo_overflow <= 1'b1;
+            if (in_valid && must_queue && !fifo_we) fifo_overflow <= 1'b1;
             o_overflow <= fifo_overflow;
 
             case (state)
@@ -295,32 +303,9 @@ module multi_bbox #(
                                 // 出队（若来自 FIFO）
                                 // 出队由 fifo_re 统一处理（治本第 2 步重构）
                             end else begin
-                                // 无末行游程 → 直接结算 + 清表 + 开新帧
-                                out_n = 0;
-                                for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                    if (used[i] && (parent[i] == i[4:0]) &&
-                                        (lab_cnt[i] >= MIN_CNT[15:0]) &&
-                                        (lab_mnx[i] <= lab_mxx[i]) && (lab_mny[i] <= lab_mxy[i])) begin
-                                        out_x1[out_n] = lab_mnx[i]; out_y1[out_n] = lab_mny[i];
-                                        out_x2[out_n] = lab_mxx[i]; out_y2[out_n] = lab_mxy[i];
-                                        out_cnt[out_n] = lab_cnt[i];
-                                        out_n = out_n + 1;
-                                    end
-                                end
-                                out_k = 0;
-                                for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                    parent[i] <= i[4:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
-                                    lab_mnx[i] <= 16'hFFFF; lab_mny[i] <= 16'hFFFF;
-                                    lab_mxx[i] <= 16'd0;    lab_mxy[i] <= 16'd0;
-                                end
-                                pr_n <= 0; cr_n <= 0;
-                                prow <= cur_y; px <= cur_x;
-                                if (cur_mask) begin
-                                    run_open <= 1'b1; rs <= cur_x;
-                                end else begin
-                                    run_open <= 1'b0;
-                                end
-                                // 出队由 fifo_re 统一处理（治本第 2 步重构）
+                                // Retain boundary sample while serial frame finalization runs.
+                                pend_valid<=1;pend_x<=cur_x;pend_y<=cur_y;pend_mask<=cur_mask;
+                                collect_k<=0;out_n=0;out_k=0;state<=ST_COLLECT;
                             end
                         end
                         // ---------- 行边界 ----------
@@ -389,19 +374,27 @@ module multi_bbox #(
                         hit = (pr_lab[mk] != 5'h1F) &&
                               (pr_s[mk] <= close_e) && (pr_e[mk] >= close_s);
                         if (hit) begin
-                            lj = find_root(pr_lab[mk]);
+                            lj = pr_lab[mk];
                             if (!mfound) begin
                                 mroot <= lj; mfound <= 1'b1;
                             end else if (lj != mroot) begin
                                 // 合并：小 id 吸收大 id
                                 if (mroot < lj) begin lo = mroot; hi = lj; end
                                 else            begin lo = lj;    hi = mroot; end
+                                // Canonicalize every live alias before hi is made reusable.
+                                // Run labels always name roots; no parent chain survives a merge.
+                                for (j=0;j<MAX_RUN;j=j+1) begin
+                                    if(pr_lab[j]==hi) pr_lab[j]<=lo;
+                                    if(cr_lab[j]==hi) cr_lab[j]<=lo;
+                                end
+                                for (j=0;j<MAX_LABEL;j=j+1)
+                                    if(parent[j]==hi) parent[j]<=lo;
                                 parent[hi] <= lo;
                                 if (lab_mnx[hi] < lab_mnx[lo]) lab_mnx[lo] <= lab_mnx[hi];
                                 if (lab_mny[hi] < lab_mny[lo]) lab_mny[lo] <= lab_mny[hi];
                                 if (lab_mxx[hi] > lab_mxx[lo]) lab_mxx[lo] <= lab_mxx[hi];
                                 if (lab_mxy[hi] > lab_mxy[lo]) lab_mxy[lo] <= lab_mxy[hi];
-                                lab_cnt[lo] <= lab_cnt[lo] + lab_cnt[hi];
+                                lab_cnt[lo] <= sat_add(lab_cnt[lo],{1'b0,lab_cnt[hi]});
                                 lab_cnt[hi] <= 16'd0; used[hi] <= 1'b0;
                                 mroot <= lo;
                             end
@@ -423,7 +416,7 @@ module multi_bbox #(
                             lab_mny[first_free_lbl] <= close_row;
                             lab_mxx[first_free_lbl] <= close_e;
                             lab_mxy[first_free_lbl] <= close_row;
-                            lab_cnt[first_free_lbl] <= close_e - close_s + 16'd1;
+                            lab_cnt[first_free_lbl] <= sat_add(16'd0,{1'b0,close_e}-{1'b0,close_s}+17'd1);
                             mroot <= first_free_lbl; mfound <= 1'b1;
                         end
                         // else 标签表满，丢弃（见头部限制说明）
@@ -433,7 +426,7 @@ module multi_bbox #(
                         if (close_row < lab_mny[mroot]) lab_mny[mroot] <= close_row;
                         if (close_e   > lab_mxx[mroot]) lab_mxx[mroot] <= close_e;
                         if (close_row > lab_mxy[mroot]) lab_mxy[mroot] <= close_row;
-                        lab_cnt[mroot] <= lab_cnt[mroot] + (close_e - close_s + 16'd1);
+                        lab_cnt[mroot] <= sat_add(lab_cnt[mroot],{1'b0,close_e}-{1'b0,close_s}+17'd1);
                     end
                     // 写当前行表
                     if (cr_n < MAX_RUN) begin
@@ -476,52 +469,48 @@ module multi_bbox #(
                             state <= ST_IDLE;
                         end
                         CL_FRAME: begin
-                            // 结算上一帧
-                            out_n = 0;
-                            for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                if (used[i] && (parent[i] == i[4:0]) &&
-                                    (lab_cnt[i] >= MIN_CNT[15:0]) &&
-                                    (lab_mnx[i] <= lab_mxx[i]) && (lab_mny[i] <= lab_mxy[i])) begin
-                                    out_x1[out_n] = lab_mnx[i]; out_y1[out_n] = lab_mny[i];
-                                    out_x2[out_n] = lab_mxx[i]; out_y2[out_n] = lab_mxy[i];
-                                    out_cnt[out_n] = lab_cnt[i];
-                                    out_n = out_n + 1;
-                                end
-                            end
-                            out_k = 0;
-                            // 清表
-                            for (i = 0; i < MAX_LABEL; i = i + 1) begin
-                                parent[i] <= i[4:0]; used[i] <= 1'b0; lab_cnt[i] <= 16'd0;
-                                lab_mnx[i] <= 16'hFFFF; lab_mny[i] <= 16'hFFFF;
-                                lab_mxx[i] <= 16'd0;    lab_mxy[i] <= 16'd0;
-                            end
-                            pr_n <= 0; cr_n <= 0;
-                            // 消费 pending 开新帧
-                            prow <= pend_y; px <= pend_x;
-                            if (pend_mask) begin
-                                run_open <= 1'b1; rs <= pend_x;
-                            end else begin
-                                run_open <= 1'b0;
-                            end
-                            pend_valid <= 1'b0;
-                            state <= ST_IDLE;
+                            collect_k<=0;out_n=0;out_k=0;state<=ST_COLLECT;
                         end
                         default: state <= ST_IDLE;
                     endcase
+                end
+
+                ST_COLLECT: begin
+                    if(collect_k<MAX_LABEL)begin
+                        if(used[collect_k] && parent[collect_k]==collect_k &&
+                           lab_cnt[collect_k]>=MIN_CNT &&
+                           lab_mnx[collect_k]<=lab_mxx[collect_k] && lab_mny[collect_k]<=lab_mxy[collect_k])begin
+                            out_x1[out_n]<=lab_mnx[collect_k];out_y1[out_n]<=lab_mny[collect_k];
+                            out_x2[out_n]<=lab_mxx[collect_k];out_y2[out_n]<=lab_mxy[collect_k];
+                            out_cnt[out_n]<=lab_cnt[collect_k];out_n=out_n+1'b1;
+                        end
+                        collect_k<=collect_k+1'b1;
+                    end else begin out_k=0;state<=ST_PUBLISH;end
+                end
+                ST_PUBLISH: if(out_k==out_n)begin collect_k<=0;state<=ST_CLEAR;end
+                ST_CLEAR: begin
+                    if(collect_k<MAX_LABEL)begin
+                        parent[collect_k]<=collect_k;used[collect_k]<=0;lab_cnt[collect_k]<=0;
+                        lab_mnx[collect_k]<=16'hffff;lab_mny[collect_k]<=16'hffff;
+                        lab_mxx[collect_k]<=0;lab_mxy[collect_k]<=0;collect_k<=collect_k+1'b1;
+                    end else begin
+                        pr_n<=0;cr_n<=0;prow<=pend_y;px<=pend_x;
+                        run_open<=pend_mask;rs<=pend_x;pend_valid<=0;state<=ST_IDLE;
+                    end
                 end
 
                 default: state <= ST_IDLE;
             endcase
 
             // ---------- 输出：把结算列表逐拍发出去 ----------
-            if (out_k < out_n) begin
+            if (state==ST_PUBLISH && out_k < out_n) begin
                 o_valid <= 1'b1;
                 o_x1  <= out_x1[out_k];
                 o_y1  <= out_y1[out_k];
                 o_x2  <= out_x2[out_k];
                 o_y2  <= out_y2[out_k];
                 o_cnt <= out_cnt[out_k];
-                o_id  <= out_k[7:0];
+                o_id  <= {2'b00,out_k};
                 o_last <= (out_k == out_n - 1);
                 out_k = out_k + 1;
             end

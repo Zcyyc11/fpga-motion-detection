@@ -1,0 +1,28 @@
+{
+  "status": "board_candidate_not_board_verified",
+  "rtl_commit": "02fce44d12bcdc4626aab349c07ed78faf80e69e",
+  "source_checkpoint": "04a11f3e0c256845997fd0b445b19c5d32ffdec2",
+  "bit_sha256": "67bbe9a10108b13d70b49740b3a85b8723a00bc101ed6468e6f763f81a793af3",
+  "bit_bytes": 4045685,
+  "tool": "Vivado 2025.2",
+  "part": "xc7z020clg400-1",
+  "mode_bg": 0,
+  "input_sel": 1,
+  "include_ps": 0,
+  "uart_baud_div": 645,
+  "uart_nominal_baud": 115200,
+  "wns_ns": 0.475,
+  "whs_ns": 0.033,
+  "lut": 17475,
+  "ff": 15435,
+  "bram36_equivalent": 85.5,
+  "dsp": 1,
+  "board_test": false,
+  "limitations": [
+    "115200 full16 at 60fps drops complete UART frames",
+    "display uses delayed metadata",
+    "optional PS snapshot label is current fid, not the source-content frame",
+    "external positional multi_bbox parameters need named conversion",
+    "no teammate sign-off or physical board evidence"
+  ]
+}

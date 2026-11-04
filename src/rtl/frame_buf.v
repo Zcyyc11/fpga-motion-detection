@@ -16,18 +16,19 @@
 // -----------------------------------------------------------------------------
 module frame_buf #(
     parameter integer DEPTH = 640 * 360,
-    parameter integer AW    = 18
+    parameter integer AW    = 18,
+    parameter integer DW = 10
 )(
     input  wire          clk,
     input  wire          re,
     input  wire [AW-1:0] raddr,
-    output reg  [9:0]    dout,
+    output reg  [DW-1:0]    dout,
     input  wire          we,
     input  wire [AW-1:0] waddr,
-    input  wire [9:0]    din
+    input  wire [DW-1:0]    din
 );
 
-    (* ram_style = "block" *) reg [9:0] mem [0:DEPTH-1];
+    (* ram_style = "block" *) reg [DW-1:0] mem [0:DEPTH-1];
 
     // 读在前、写在后：同地址同时读写时综合成 READ_FIRST，读到旧值
     always @(posedge clk) begin

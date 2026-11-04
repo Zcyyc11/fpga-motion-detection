@@ -1,0 +1,119 @@
+{
+  "threshold_range_green": {
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "seconds": 9.01,
+    "board_test": false
+  },
+  "hdmi_coordinates_green": {
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "seconds": 8.93,
+    "board_test": false
+  },
+  "board_sync_green": {
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "seconds": 11.49,
+    "board_test": false
+  },
+  "q4_narrow_arithmetic": {
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "seconds": 8.89,
+    "board_test": false
+  },
+  "q4_pipe_arithmetic": {
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "seconds": 17.27,
+    "board_test": false
+  },
+  "q4_pipe_mask_strict": {
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "seconds": 14.8,
+    "board_test": false
+  },
+  "uart_source_0": {
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "seconds": 15.85,
+    "board_test": false
+  },
+  "uart_source_1": {
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "seconds": 13.27,
+    "board_test": false
+  },
+  "uart_source_2": {
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "seconds": 12.53,
+    "board_test": false
+  },
+  "uart_source_1_pipe": {
+    "passed": true,
+    "returncode": 0,
+    "failures": [],
+    "seconds": 12.42,
+    "board_test": false
+  },
+  "tier1_reset_1_v4": {
+    "passed": true,
+    "rc": 0,
+    "board_test": false
+  },
+  "setup_reuse_red": {
+    "passed": false,
+    "parser": "actual output lines, ignoring Tcl command echo",
+    "board_test": false
+  },
+  "setup_reuse_green": {
+    "passed": true,
+    "parser": "actual output lines, ignoring Tcl command echo",
+    "board_test": false
+  },
+  "metrics": {
+    "development_macro": {
+      "baseline_diff70_open": 0.16537385416438147,
+      "integer_bg70_s8": 0.29075265424403557,
+      "q4_t70_s6_fg10": 0.59396364069996,
+      "opencv_mog2": 0.5286225037140936
+    },
+    "tail_macro": {
+      "baseline_diff70_open": 0.10441301683833026,
+      "q4_t70_s6_fg10": 0.5325842519961588,
+      "opencv_mog2": 0.3839314145714844
+    },
+    "board_test": false
+  },
+  "regs_post_synthesis_red": {
+    "passed": false,
+    "rc": 0,
+    "post_synthesis": true,
+    "board_test": false
+  },
+  "regs_post_synthesis_green": {
+    "passed": true,
+    "rc": 0,
+    "post_synthesis": true,
+    "board_test": false
+  },
+  "pl_bit": {
+    "sha256": "648c16a7a8b528e0e2cdae504714d36a79e2d147172a93e44f6b12886cb0bf74",
+    "wns_ns": 0.073,
+    "whs_ns": 0.05,
+    "board_test": false
+  }
+}

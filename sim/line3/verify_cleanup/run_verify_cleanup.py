@@ -67,7 +67,7 @@ for name in selected:
  tb=out/'source/sim/line3/verify_cleanup'/f'{top}.v'
  if not tb.exists():tb=out/'source/sim/tb'/f'{top}.v'
  (d/'files.f').write_text('\n'.join('"'+f.as_posix()+'"' for f in rtl_files+[tb])+'\n',encoding='utf-8')
- (d/'finish.tcl').write_text('run 20 ms\nquit\n',encoding='ascii')
+ (d/'finish.tcl').write_text(('run 110 ms\n' if name=='wrap' else 'run 20 ms\n')+'quit\n',encoding='ascii')
  generic=''.join(' -generic_top "'+g+'"' for g in generics)
  # All command paths are locally configured; reject cmd metacharacters.
  for path in [str(d),a.settings]:

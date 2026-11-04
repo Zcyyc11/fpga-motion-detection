@@ -12,7 +12,7 @@
 // ★ 2026-10-12 线二接入改动：THRESH 由编译期参数改为**运行时输入端口**
 //   （阈值来自 regs 寄存器堆 0x00，PS 运行时可改，见接口冻结表 I4 与
 //   docs/line2_integration_guide.md §1.3）。仅实例化方（md_pipeline）与 tb_contracts 需要
-//   同步改动；比较语义不变。输入 16 位，实际与 absdiff（11 位）比较取低 10 位。
+//   同步改动；比较语义不变。完整 16 位阈值与零扩展 absdiff 比较，避免高位截断后回绕。
 // -----------------------------------------------------------------------------
 module threshold (
     input  wire        clk,
@@ -30,7 +30,7 @@ module threshold (
             mask      <= 1'b0;
         end else begin
             out_valid <= in_valid;
-            mask      <= (absdiff > thresh[10:0]);
+            mask      <= ({5'd0, absdiff} > thresh);
         end
     end
 

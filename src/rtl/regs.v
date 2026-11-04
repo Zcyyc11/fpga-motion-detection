@@ -106,7 +106,6 @@ module regs (
             o_line_x      <= 11'd640;
             o_dwell       <= 16'd90;
             o_enable      <= 1'b0;
-            uart_drop_sticky <= 1'b0;
             ps_rdata      <= 32'd0;
         end else begin
             if (ps_en && ps_we) begin

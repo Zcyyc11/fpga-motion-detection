@@ -31,7 +31,7 @@ module tb_multi_bbox_limits;
  // The final empty row has y>0; wrap to flush the complete tested frame.
  @(negedge clk);x=0;y=0;m=0;v=1;
  @(negedge clk);v=0;
- repeat(4096) @(negedge clk);  // 2026-10-15: 256 不够——full16 串行处理净欠 ~304 拍，结算发生在窗口外
+ repeat(16384) @(negedge clk);  // Bound includes 32 rows x 16 serialized runs; original 4096 insufficient for dense64.
  $display("VERIFY_DONE bbox");$finish;
  end
  initial begin #2000000;$fatal(1,"FAIL timeout bbox");end

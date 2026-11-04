@@ -52,6 +52,8 @@ module md_pipeline #(
     parameter integer INCLUDE_PS   = 0,  // 1 = 例化 regs+bbox_snapshot（接 AXI）；0 = 纯 PL
     parameter integer UART_BAUD_DIV = 645, // uart_tx 分频：74.25MHz/115200 ≈ 645
     parameter integer LINE_X_DEFAULT = 640, // INCLUDE_PS=0 时的警戒线（大像素域）
+    parameter integer BG_FRAC_BITS = 0,
+    parameter integer BG_FG_SHIFT = 10,
     parameter integer DWELL_DEFAULT  = 90    // INCLUDE_PS=0 时的停留告警帧数
 )(
     input  wire        clk,
@@ -107,6 +109,8 @@ module md_pipeline #(
     localparam integer BW = H_ACTIVE / 2;      // 大像素宽 640
     localparam integer BH = V_ACTIVE / 2;      // 大像素高 360
     localparam integer AW = $clog2(BW * BH);   // 帧缓存地址位宽 18
+
+    localparam integer FW=10+BG_FRAC_BITS;
 
     // ======================= ① 时序 =======================
     // 自测模式用内部 video_timing 生成；HDMI 输入模式用外部恢复的同步信号。
@@ -195,16 +199,16 @@ module md_pipeline #(
     wire [10:0] cfg_line_x;
     wire [15:0] cfg_dwell;
 
-    wire [9:0]  ref_px;              // 读出的旧值（上一帧 / 背景图）
+    wire [FW-1:0] ref_px;              // 读出的旧值（上一帧 / 背景图）
     wire [10:0] absdiff;
-    wire [9:0]  wr_data;
-    reg  [9:0]  wr_data_r;
+    wire [FW-1:0] wr_data;
+    reg [FW-1:0] wr_data_r;
 
     // 帧号：HDMI 输入没有 pattern_gen 的 frame_idx，统一用 sof 计帧（两种模式都准）。
     reg [15:0] frame_cnt;
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n)   frame_cnt <= 16'd0;
-        else if (sof) frame_cnt <= frame_cnt + 16'd1;
+        else if (frame_tick) frame_cnt <= frame_cnt + 16'd1;
     end
     wire [15:0] fid = INPUT_SEL ? frame_cnt : pat_frame_idx;
 
@@ -218,6 +222,14 @@ module md_pipeline #(
     end
     wire init_phase = (fid <= 16'd1) & ~mask_phase;   // 首帧：缓存直接写当前帧
 
+    wire fb_write_valid;
+    wire [AW-1:0] fb_write_addr;
+    wire [FW-1:0] fb_write_data;
+    generate if(BG_FRAC_BITS==0) begin : g_legacy_background
+    assign fb_write_valid=valid_d2;
+    assign fb_write_addr=addr_d2;
+    assign fb_write_data=wr_data_r;
+
     diff_stage #() u_diff (
         .mode_bg(cfg_enable),    // 算法模式：g_nops=编译期 MODE_BG[0]；g_ps=regs 0x14 ENABLE 运行时切帧差/背景建模
         .init_phase(init_phase),
@@ -228,15 +240,27 @@ module md_pipeline #(
         .wr_data(wr_data)
     );
 
+    end else begin : g_fixed_background
+        background_fixed #(.FRAC_BITS(BG_FRAC_BITS),.FG_SHIFT(BG_FG_SHIFT)) u_diff (
+            .mode_bg(cfg_enable),.init_phase(init_phase),.shift_amt(cfg_shift),
+            .thresh(cfg_thresh),.cur(cur_d1),.ref_px(ref_px),.absdiff(absdiff),.wr_data());
+        background_fixed_pipe #(.FRAC_BITS(BG_FRAC_BITS),.FG_SHIFT(BG_FG_SHIFT),.AW(AW)) u_update (
+            .clk(clk),.rst_n(rst_n),.in_valid(valid_d1),.in_addr(addr_d1),
+            .mode_bg(cfg_enable),.init_phase(init_phase),.shift_amt(cfg_shift),
+            .thresh(cfg_thresh),.cur(cur_d1),.ref_px(ref_px),
+            .out_valid(fb_write_valid),.out_addr(fb_write_addr),.wr_data(wr_data));
+        assign fb_write_data=wr_data;
+    end endgenerate
+
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) wr_data_r <= 10'd0;
         else        wr_data_r <= wr_data;
     end
 
-    frame_buf #(.DEPTH(BW * BH), .AW(AW)) u_fb (
+    frame_buf #(.DEPTH(BW * BH), .AW(AW), .DW(FW)) u_fb (
         .clk(clk),
         .re(d_valid),   .raddr(addr),     .dout(ref_px),
-        .we(valid_d2),  .waddr(addr_d2),  .din(wr_data_r)
+        .we(fb_write_valid), .waddr(fb_write_addr), .din(fb_write_data)
     );
 
     // ======================= ⑥ 阈值 =======================
@@ -300,12 +324,22 @@ module md_pipeline #(
     // multi_bbox 目标流（I3）→ track（持续 id）→ alarm（越界/停留）→ uart_tx（打包回传）
     // 与显示链并联，原链行为不变。详见 docs/uart_json_adapter_spec.md。
     //
-    // ---- frame_tick：vsync 上升沿，每帧 1 拍 ----
-    // ★ 零目标帧也必须有 tick：否则 track 轨迹永不老化、uart_tx 帧头永不发出。
-    reg  vs_d;
-    always @(posedge clk or negedge rst_n)
-        if (!rst_n) vs_d <= 1'b0; else vs_d <= vs;
-    wire frame_tick = vs & ~vs_d;
+    // Frame boundary follows accepted active pixels, independent of VS polarity.
+    // Update y history only on DE: blanking coordinates must not create ticks.
+    // An initial top-left pixel opens the first frame; partial startup waits for wrap.
+    reg pixel_seen;
+    reg [15:0] pixel_y_prev;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            pixel_seen <= 1'b0;
+            pixel_y_prev <= 16'd0;
+        end else if (p_vde) begin
+            pixel_seen <= 1'b1;
+            pixel_y_prev <= p_y;
+        end
+    end
+    wire frame_tick = p_vde && (pixel_seen ? (p_y < pixel_y_prev) :
+                                               ((p_x == 0) && (p_y == 0)));
 
     wire        tk_valid, tk_last;
     wire [7:0]  tk_id;
