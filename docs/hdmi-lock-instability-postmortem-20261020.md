@@ -125,7 +125,7 @@ PYNQ 官方论坛 [HDMI output signal issue on the Z2](https://discuss.pynq.io/t
 - 《板端验收回填模板》八项待回填（bit SHA = `9F506BEF4132`）
 - 仓库 `private → public`（截止 2026-11-04 18:00 前必须）
 
-## 8. 附：本轮产生的工具脚本（位于本机 `D:\FPGA\output\`，未入库）
+## 8. 附：本轮产生的工具脚本（位于本机 `<WORKSPACE>\output\`，未入库）
 
 `capture_60s.py`（60 秒逐秒采样）、`stitch_contact.py`（60 帧拼总览图）、
 `scan_capture_modes.py`（采集参数矩阵扫描）、`capture_60s_v2.py`（参数化采集）。
