@@ -16,24 +16,24 @@
 
 ## 直接运行
 
-以下命令从仓库根目录运行。本机 Python 为 `D:/666666/Anaconda/python.exe`，需有 NumPy、OpenCV。输出目录必须是新的，程序不覆盖已有结果。
+以下命令从仓库根目录运行。本机 Python 为 `python`，需有 NumPy、OpenCV。输出目录必须是新的，程序不覆盖已有结果。
 
 最快检查（无需板子，不弹窗）：
 
 ```powershell
-& 'D:/666666/Anaconda/python.exe' -X utf8 sim/line3/check_pc_receiver.py --out 'D:/line3_receiver_check_new'
+& 'python' -X utf8 sim/line3/check_pc_receiver.py --out '<LINE3_WORK>'
 ```
 
 若想看到接收窗口，在第一个终端启动接收程序：
 
 ```powershell
-& 'D:/666666/Anaconda/python.exe' -X utf8 sim/line3/pc_receiver.py --listen --port 8765 --out 'D:/line3_receiver_demo_new' --show
+& 'python' -X utf8 sim/line3/pc_receiver.py --listen --port 8765 --out '<LINE3_WORK>' --show
 ```
 
 看到 `LISTENING` 后，15秒内在第二个终端发送模拟数据：
 
 ```powershell
-& 'D:/666666/Anaconda/python.exe' -X utf8 sim/line3/pc_receiver_simulate.py --port 8765 --frames 60 --record 'D:/line3_receiver_sent_new.jsonl'
+& 'python' -X utf8 sim/line3/pc_receiver_simulate.py --port 8765 --frames 60 --record '<LINE3_WORK>.jsonl'
 ```
 
 模拟器会快速发送；窗口随接收结束关闭，图片保留在输出目录。可省略 `--show` 只保存图片。也可用 `--file` 重放已保存的 JSONL 文件。
