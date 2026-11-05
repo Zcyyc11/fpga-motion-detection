@@ -12,7 +12,7 @@ except Exception:
 
 import cv2  # noqa: E402
 
-video = sys.argv[1] if len(sys.argv) > 1 else "D:/FPGA/test_videos/vehicles.mp4"
+video = sys.argv[1] if len(sys.argv) > 1 else "<WORKSPACE>/test_videos/vehicles.mp4"
 duration = float(sys.argv[2]) if len(sys.argv) > 2 else 45.0
 scene = sys.argv[3] if len(sys.argv) > 3 else "scene"
 dev = int(sys.argv[4]) if len(sys.argv) > 4 else 1
@@ -21,7 +21,7 @@ y = int(sys.argv[6]) if len(sys.argv) > 6 else 0
 
 W, H = 1280, 720
 NAME = "acceptance_feed"
-outdir = r"D:\FPGA\output\evidence\%s" % scene
+outdir = r"<WORKSPACE>\output\evidence\%s" % scene
 os.makedirs(outdir, exist_ok=True)
 
 user32 = ctypes.windll.user32
