@@ -16,7 +16,7 @@
 
 ## 本轮实跑
 
-受测整合提交：bd10e2e40a3bc0a457143992987d607a3a5a07c4。来源为线三f6f6036与修复578c90d。原main基线452075f。证据入口：[本轮记录](../report/line3_review_20261009/README.md)。
+受测整合提交：bd10e2e40a3bc0a457143992987d607a3a5a07c4。来源为线三f6f6036与修复578c90d。原main基线452075f。证据入口：`本轮记录`（原链接 `../report/line3_review_20261009/README.md`，目标已不在当前 main）。
 
 - 软件边界回归174/174；运行器构造回归46/46；线三工具检查18/18。部分测试专门确认错误能够被拒绝，不能把这些数量当产品功能全部通过。
 - 完整跟踪入口的25项小测试中20通过、5失败：exit_left、reenter_left、exit_right、dwell_non30fps、dwell_consecutive_gap。真实入口保留退出2。
