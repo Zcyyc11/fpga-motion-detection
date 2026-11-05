@@ -1,5 +1,5 @@
 scene: ce621313_pw
-video: D:\FPGA\test_videos\people-walking.mp4
+video: <WORKSPACE>\test_videos\people-walking.mp4
 device: 1 (MSMF)
 negotiated: 640x480
 duration: 45s
