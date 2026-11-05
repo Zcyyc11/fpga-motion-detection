@@ -362,7 +362,7 @@ def self_test():
         "python src/ps/multi_track.py --soruce clean",          # ① 第一个参数就拼错
         "python src/ps/multi_track.py --source clean --nonexistent-flag",  # ② 后面的参数拼错
         "python src/ps/multi_track.py --algo <!-- 反例：正确写法是 --source algo -->",  # ③ 反例
-        'python src/ps/algo_lab.py --data-root "D:\\我的 数据\\cdnet2014" --set r5',  # ④ 中文+空格路径
+        'python src/ps/algo_lab.py --data-root "<ABS>/我的 数据\\cdnet2014" --set r5',  # ④ 中文+空格路径
         "python src/ps/algo_lab.py --set r5 --seq all \\",
         "    --frames 20 --ref",                                 # ⑤ 续行
         'python src/ps/multi_track.py --outdir "我的 数据" --quoted-bad',
