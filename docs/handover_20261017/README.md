@@ -12,6 +12,6 @@
 | line_buf_fix_ba236ec.patch | line_buf 修复补丁 | downsample2x2.v 数组写拆独立同步进程；基线 556d3fa，git apply --check 已验证可干净应用；待互验签字后合入 build16 |
 
 说明：
-- 这三份 docx 此前从未入库（只在本地 D:\FPGA\output\），本次按线一决定归档到本分支；伟博 fetch 本分支即可获得原文件。
+- 这三份 docx 此前从未入库（只在本地 <WORKSPACE>\output\），本次按线一决定归档到本分支；伟博 fetch 本分支即可获得原文件。
 - 本分支不推 build16 共享分支；补丁与文档均不影响 RTL。
 - 源 HTML 与生成/校验脚本按内部流程处理，不入库。
