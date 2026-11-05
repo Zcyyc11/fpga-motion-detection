@@ -14,7 +14,7 @@ script+=f'synth_design -top {a.top} -part xc7z020clg400-1 -mode out_of_context\n
 script+=f'create_clock -name clk -period {float(a.period)} [get_ports clk]\n'
 script+='report_utilization -file utilization.rpt\nreport_utilization -hierarchical -file hierarchy.rpt\nreport_timing_summary -file timing.rpt\nwrite_checkpoint post_synth.dcp\nputs OOC_DONE\nexit\n'
 (out/'run.tcl').write_text(script,encoding='utf-8')
-(out/'run.bat').write_text('@echo off\ncall D:/AMD2025.2/2025.2/Vivado/settings64.bat\ncall vivado.bat -mode batch -source run.tcl -log vivado.log -journal vivado.jou\nexit /b %errorlevel%\n',encoding='ascii',newline='\r\n')
+(out/'run.bat').write_text('@echo off\ncall <VIVADO_2025_2>/2025.2/Vivado/settings64.bat\ncall vivado.bat -mode batch -source run.tcl -log vivado.log -journal vivado.jou\nexit /b %errorlevel%\n',encoding='ascii',newline='\r\n')
 with (out/'console.raw').open('xb') as log:
  proc=subprocess.Popen(['cmd.exe','/d','/c',str(out/'run.bat')],cwd=out,stdout=log,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW)
  (out/'process.json').write_text(json.dumps(dict(pid=proc.pid,status='running')),encoding='utf-8');rc=proc.wait()
