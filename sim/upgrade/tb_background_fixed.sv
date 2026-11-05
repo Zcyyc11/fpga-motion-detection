@@ -9,7 +9,7 @@ wire [10:0] ad;wire [13:0] wr;
 background_fixed dut(.mode_bg(mode),.init_phase(init),.shift_amt(shift),.thresh(thresh),.cur(cur),.ref_px(refpx),.absdiff(ad),.wr_data(wr));
 integer fd,n,rc,ec,er,es,et,em,ei,ead,ew,errors=0;
 initial begin
- fd=$fopen("D:/fpga_upgrade_20261022/replay/arithmetic.txt","r");
+ fd=$fopen("<ABS>/fpga_upgrade_20261022/replay/arithmetic.txt","r");
  if(!fd)$fatal(1,"FAIL missing vectors");
  for(n=0;n<10000;n=n+1)begin
   rc=$fscanf(fd,"%d %d %d %d %d %d %d %d\n",ec,er,es,et,em,ei,ead,ew);
