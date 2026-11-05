@@ -8,14 +8,15 @@
 [`deliverables/tier1_attach_hdmi_r3/`](deliverables/tier1_attach_hdmi_r3/README.md)。
 该目录是本次待评审交付；原 `src/`、`board/`、`tools/` 及其历史工程继续保留，不与 r3 混用。
 用户于 2026-11-03 确认 `FPGA_All_Code_r3.rar` 为已提交官方的代码包；本次交付与该附件哈希一致，见[核对记录](report/r3_update_20261103/official_package_confirmation.json)。
-代码已整理，r3 原包构建证据已核对；**已完成 HDMI 显示、外设接入、断线重锁与 ≥30 分钟连续运行测试**。
+代码已整理，r3 原包构建证据已核对；HDMI 演示、已接入外设与断线重锁由团队确认完成。
+**r3 bit 未做独立实板验收，30 分钟以上连续运行未验证**；验证口径见下方。
 
 | 入口 | 内容 |
 | --- | --- |
 | [r3 完整工程](deliverables/tier1_attach_hdmi_r3/README.md) | RTL、约束、HDMI IP、构建与仿真脚本、r3 bit |
 | [视频链路和电脑工具说明](docs/r3_video_and_usage.md) | J10/J11 链路、4 个 Python 脚本、命令、帧率与截图边界 |
 | [版本与验证证据](report/r3_update_20261103/README.md) | r3 哈希、时序/DRC/CDC、已有检查与未验证项目 |
-| [机器可读清单](report/r3_update_20261103/manifest.json) | 105 个交付文件的 SHA-256 与准确 r3 元数据 |
+| [机器可读清单](report/r3_update_20261103/manifest.json) | 104 个交付文件的 SHA-256（清单自身为第 105 项）与准确 r3 元数据 |
 | [旧版首页快照](docs/history/README_before_r3_20261103.md) | 旧主线、UART/AXI/PS 和历史验收叙述，非本次 r3 的验收结果 |
 
 ### 使用当前 r3
@@ -37,10 +38,24 @@ c3c3a16c91e31a8044704aa959cbbbcf55844f9e3aa4e343b5abe8c246c8e8c8
 原 r3 构建为 Vivado 2026.1，WNS +0.107 ns、WHS +0.013 ns、阻断 DRC=0；仍有 DRC Warning 和 CDC Critical。
 原包根 `manifest.json` 沿用了 r2 内容，本次提供单独核实的清单，不引用其旧 bit 哈希或旧时序数值。
 
+### 验证口径与证据边界
+
+仓库内三类记录互不替代，引用数字时请注明出处：
+
+| 记录 | 对象与时间 | 能说明什么 | 不能说明什么 |
+| --- | --- | --- | --- |
+| [r3 构建报告](report/r3_update_20261103/README.md) | r3 digitfix，2026-11-02，Vivado 2026.1 | WNS +0.107 ns、WHS +0.013 ns、阻断 DRC=0 | 不代表实板通过；`board_verified=false`，未重跑综合、未重新生成 bit |
+| [长稳实测](evidence/stability_report.json) | 2026-10-29，600.2 秒 / 17,841 帧 | 平均 29.73 fps，采集卡协商 640×480 | 记录到 1 次 >1 s 中断，判定 `UNSTABLE_interrupts=1`；**不是 30 分钟测试**，中断原因未定位 |
+| [亮度采样](board/logs/board_test_20261020.md) | 旧 bit `board_top_hdmiin.bit`，2026-10-20，60 秒 / 61 帧 | 插网线后 61/61 帧全亮、亮度 126.5–131.5、跳锁消失 | 属于旧 bit，不作为 r3 或长稳结果 |
+
+HDMI 演示、已接入外设（数码管、按键、LED、8 灯 WS2812、蜂鸣器）与断线重锁为团队确认项；
+仓库内暂无 r3 的独立烧录日志、原始录像及确切时间、操作者、信源、输出设备记录，待补入 `board/logs/`。
+`report/technical_document.pdf` 采用 10 分钟验收口径，与本节一致；
+`report/design_report_final_20261030.docx` 是历史版本，提交版为 `design_report_final_r3_20261103.docx`。
+
 ### 协作与许可
 
-本分支从 2026-11-03 查询到的 `main`（`63e0e9c`）建立，通过 PR 评审后再由有权限的队友合并。
-不会将旧分支历史合入重建后的 main；其他成员工作区与分支保持其原有安排。协作要求见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+本仓库已公开，默认分支为 `main`。协作规则（分支命名、PR 评审、换手验收）见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 交付目录包含构建所必需的 Digilent dvi2rgb/rgb2dvi IP，保留原 MIT 许可及版权；这部分是 r3 的实际依赖。
 第三方参考作品、视频素材、Vivado 生成工程和缓存未纳入本次更新。
