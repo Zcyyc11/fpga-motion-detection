@@ -7,7 +7,7 @@ p.add_argument('--label',required=True)
 p.add_argument('--tb',default='sim/takeover/track_resource_tb.sv')
 p.add_argument('--top',default='track_resource_tb')
 a=p.parse_args()
-run=Path('D:/fpga_takeover_20261017')/('track_'+a.label+'_'+datetime.datetime.now().strftime('%Y%m%d_%H%M%S'))
+run=Path('<ABS>/fpga_takeover_20261017')/('track_'+a.label+'_'+datetime.datetime.now().strftime('%Y%m%d_%H%M%S'))
 run.mkdir()
 sources=['src/rtl/track.v','src/rtl/alarm.v',a.tb]
 manifest={}
@@ -16,7 +16,7 @@ for s in sources:
     shutil.copy2(ROOT/s,dest)
     manifest[s]=hashlib.sha256(dest.read_bytes()).hexdigest()
 (run/'manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
-commands=['@echo off','call "D:/AMD2025.2/2025.2/Vivado/settings64.bat"',
+commands=['@echo off','call "<VIVADO_2025_2>/2025.2/Vivado/settings64.bat"',
           'call xvlog -sv '+' '.join('"'+Path(s).name+'"' for s in sources),
           'if errorlevel 1 exit /b 1','call xelab '+a.top+' -s snapshot',
           'if errorlevel 1 exit /b 1','call xsim snapshot -runall','exit /b %errorlevel%']
