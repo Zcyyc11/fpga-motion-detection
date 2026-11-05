@@ -29,10 +29,10 @@ always @(negedge clk) if(rst_n&&mv) begin
   if(f>=16&&mb)stop_positive=stop_positive+1;
 end
 initial begin
- $readmemh("D:/fpga_upgrade_20261022/replay/pixels.mem",pixels);
- if(FRAC) $readmemb("D:/fpga_upgrade_20261022/replay/expectedq4.mem",expected);
- else if(MODE) $readmemb("D:/fpga_upgrade_20261022/replay/expected1.mem",expected);
- else $readmemb("D:/fpga_upgrade_20261022/replay/expected0.mem",expected);
+ $readmemh("<ABS>/fpga_upgrade_20261022/replay/pixels.mem",pixels);
+ if(FRAC) $readmemb("<ABS>/fpga_upgrade_20261022/replay/expectedq4.mem",expected);
+ else if(MODE) $readmemb("<ABS>/fpga_upgrade_20261022/replay/expected1.mem",expected);
+ else $readmemb("<ABS>/fpga_upgrade_20261022/replay/expected0.mem",expected);
  repeat(8) @(negedge clk);rst_n=1;
  for(f=0;f<32;f=f+1) begin
    for(row=0;row<48;row=row+1) begin
