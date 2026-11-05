@@ -6,7 +6,7 @@
 ---
 
 ## 一、方向类（架构方向落地三件套 + 验收手册）
-目录：`D:\FPGA\output\架构方向落地三件套_20261028\`
+目录：`<WORKSPACE>\output\架构方向落地三件套_20261028\`
 
 | 文件 | 是什么 | 给谁 / 状态 |
 |---|---|---|
@@ -19,7 +19,7 @@
 ---
 
 ## 二、参考项目精读（开源 PYNQ-Z2 12 个）
-目录：`D:\FPGA\output\参考项目精读报告_20261028\`
+目录：`<WORKSPACE>\output\参考项目精读报告_20261028\`
 
 | 文件 | 内容 |
 |---|---|
@@ -28,7 +28,7 @@
 ---
 
 ## 三、伟博(PR#3)交付包（我们替伟博整的收口材料）
-目录：`D:\FPGA\output\韦博交付包_20261028\`
+目录：`<WORKSPACE>\output\韦博交付包_20261028\`
 
 | 文件 | 是什么 |
 |---|---|
@@ -42,7 +42,7 @@
 ---
 
 ## 四、板端实测证据（已随 GitHub 分支推上）
-目录：`D:\FPGA\output\evidence\vehicles_final\`
+目录：`<WORKSPACE>\output\evidence\vehicles_final\`
 - `vehicles_final_hdmi_out.mp4` + h264 + 两张 avi（连续视频）
 - `acceptance_record.json` / `stability_report.*`(长稳+功耗) / `reset_reconnect_report.*`(复位重连)
 - `HDMI_video_evidence.md` / `README.md` / 首中末+峰值红框 PNG
