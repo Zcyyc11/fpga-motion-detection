@@ -9,7 +9,7 @@ module tb_q4_pipe;
  integer fd,n,rc,ad,seen=0;
  background_fixed_pipe #(.AW(9)) dut(clk,rst_n,iv,mode,init,addr,shift,thresh,cur,refpx,ov,oa,wr);
  initial begin
-  fd=$fopen("D:/fpga_upgrade_20261022/replay/arithmetic.txt","r");
+  fd=$fopen("<ABS>/fpga_upgrade_20261022/replay/arithmetic.txt","r");
   if(!fd)$fatal(1,"FAIL missing arithmetic fixture");
   for(n=0;n<10000;n=n+1)begin
    rc=$fscanf(fd,"%d %d %d %d %d %d %d %d\n",ec[n],er[n],es[n],et[n],em[n],ei[n],ad,ew[n]);
