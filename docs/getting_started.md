@@ -287,7 +287,7 @@ python src/ps/multi_track.py --source clean --alarm --line-x 640 --outdir out_cl
 
 停留按真实帧率计时，缺一帧观测、跳过帧号或离开区域都会重置连续计时；未设区域表示全画面。跨线速度须与方向一致，状态始终跟随观测位置，线上点归右侧。视频分别显示 INTRUSION、EXIT、DWELL。
 
-`src/ps/track_result.mp4` 与 `track_result_algo.mp4` 是字节相同的旧归档，不能用来证明两种模式分别运行。保留它们用于历史追溯；修复版的独立视频、逐目标关联表与运行命令见 [修复报告](../report/repair_20261010/README.md)。
+`src/ps/track_result.mp4` 与 `track_result_algo.mp4` 是字节相同的旧归档，不能用来证明两种模式分别运行。保留它们用于历史追溯；修复版的独立视频、逐目标关联表与运行命令见 `修复报告`（原链接 `../report/repair_20261010/README.md`，目标已不在当前 main）。
 
 ---
 
