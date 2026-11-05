@@ -21,7 +21,7 @@
 
 | 项 | 实际状态 | 时间 |
 |---|---|---|
-| PYNQ-Z2 镜像 | `D:\FPGA\images\pynq_z2_v3.1.1.img`（7,951 MB）**已下好解压好** | **2026-09-28** |
+| PYNQ-Z2 镜像 | `<WORKSPACE>\images\pynq_z2_v3.1.1.img`（7,951 MB）**已下好解压好** | **2026-09-28** |
 | PYNQ bringup 六步 | **烧卡 → 跳线 → 登录 → 加载 overlay → LED 响应，一晚全通** | **2026-10-03** |
 | 证据在哪 | `report/llm_log/2026-10-03_pynq_bringup.md` + `skill/pynq_overlay_bringup/README.md`（**就在我们自己仓库里**） | 一直是 |
 
@@ -35,7 +35,7 @@
 
 ## 立的铁律（动手前必查四样）
 
-1. **全盘搜本机已有资产**（`Get-ChildItem D:\FPGA,C:\Users\zcy\Downloads -Recurse -Filter "*关键词*"`）
+1. **全盘搜本机已有资产**（`Get-ChildItem <WORKSPACE>,<HOME>\Downloads -Recurse -Filter "*关键词*"`）
 2. **查仓库 `skill/` 技能包**
 3. **查 `report/llm_log/` 历史日志**（按日期翻）
 4. **查 `MEMORY.md`**
