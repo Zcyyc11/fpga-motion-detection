@@ -8,7 +8,7 @@
 
 请对这个 FPGA 项目进行独立检验，并把真实反馈报告留给之前整理项目的 Codex。不要把此前 AI 的完成声明当事实，也不要为了符合它的预期而验证。
 
-本地项目入口：`C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_repo`。
+本地项目入口：`<HOME>\Desktop\FPGA大赛资料\captain_repo`。
 远程仓库：`https://github.com/Zcyyc11/fpga-motion-detection.git`。
 审查分支：`codex/line3-review-20261009`。先自行查询实际最新提交并固定完整 SHA，不要直接拿 main 代替受审分支。
 
