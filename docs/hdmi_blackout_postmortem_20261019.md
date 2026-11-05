@@ -27,9 +27,9 @@
 
 ## 3. 判决实验（本机同环境重建）
 
-用候选包**同款源码（34f18d9）**，在**旧 bit 的同款环境**（Vivado 2026.1 + 本机 IP 仓库 `D:\FPGA\libs\vivado-library`）重建：
+用候选包**同款源码（34f18d9）**，在**旧 bit 的同款环境**（Vivado 2026.1 + 本机 IP 仓库 `<WORKSPACE>\libs\vivado-library`）重建：
 
-- 构建产物：`D:\FPGA\rebuild_20261019\build\bitstream\board_top.bit`
+- 构建产物：`<WORKSPACE>\rebuild_20261019\build\bitstream\board_top.bit`
 - 构建结果：WNS(setup) +0.237ns / WHS(hold) +0.013ns，0 Errors、0 Critical Warnings
 - 上板实测：**亮度 27.6，实时画面正常，输入输出链路全通**
 
@@ -37,8 +37,8 @@
 
 | bit | 构建环境 | 探测亮度 |
 |---|---|---|
-| 候选包原版 bit | 线三机器：Vivado **2025.2** + IP 仓库 `D:/line3_closeout_20261011_1000_work/vivado-library` | **0.0 全黑** |
-| 本机重建 bit | 本机：Vivado **2026.1** + IP 仓库 `D:\FPGA\libs\vivado-library` | **27.6 画面正常** |
+| 候选包原版 bit | 线三机器：Vivado **2025.2** + IP 仓库 `<LINE3_WORK>/vivado-library` | **0.0 全黑** |
+| 本机重建 bit | 本机：Vivado **2026.1** + IP 仓库 `<WORKSPACE>\libs\vivado-library` | **27.6 画面正常** |
 | 旧验证 bit（10-12） | 本机：同左 | 129.1 |
 
 ## 5. 根因与修复指引
@@ -47,20 +47,20 @@
 
 **修复（二选一）**：
 
-1. 线三改用 **Vivado 2026.1** 构建，并确保 IP 仓库与本机 `D:\FPGA\libs\vivado-library` 为同一快照（建议直接拷贝该目录使用），重建后重测；
-2. 或直接采用本机重建产物（同源码 34f18d9，构建日志见 `D:\FPGA\output\rebuild_console.txt`），其 WNS +0.237ns、资源与时序均过闸。
+1. 线三改用 **Vivado 2026.1** 构建，并确保 IP 仓库与本机 `<WORKSPACE>\libs\vivado-library` 为同一快照（建议直接拷贝该目录使用），重建后重测；
+2. 或直接采用本机重建产物（同源码 34f18d9，构建日志见 `<WORKSPACE>\output\rebuild_console.txt`），其 WNS +0.237ns、资源与时序均过闸。
 
 **教训固化**：仿真过 ≠ 能上板；静态报告一致 ≠ 生成产物行为一致。新版 bit 首次上板必须与旧验证版做 A/B 对照。
 
 ## 6. 证据文件索引（本机可查）
 
-- 探测日志（含新旧两次结果）：`D:\FPGA\output\cap_probe.log`
-- 新旧首帧图：`D:\FPGA\output\probe_dev0_DSHOW_f0.png`（覆盖保存，以 log 时间戳区分）
-- A/B 烧录日志：`D:\FPGA\output\burn_ab.log`、`burn_ab2.log`
-- 本机重建构建日志：`D:\FPGA\output\rebuild_console.txt`
-- 静态对比：`D:\FPGA\output\rtl_diff.txt`、`boardtop_ip_diff.txt`、`edid_bit_compare.txt`
-- 重建工程：`D:\FPGA\rebuild_20261019\`（可用 `D:\FPGA\output\ila_probe.tcl` 插探针深挖）
-- 硬件扫描：`D:\FPGA\output\hw_scan.txt`
+- 探测日志（含新旧两次结果）：`<WORKSPACE>\output\cap_probe.log`
+- 新旧首帧图：`<WORKSPACE>\output\probe_dev0_DSHOW_f0.png`（覆盖保存，以 log 时间戳区分）
+- A/B 烧录日志：`<WORKSPACE>\output\burn_ab.log`、`burn_ab2.log`
+- 本机重建构建日志：`<WORKSPACE>\output\rebuild_console.txt`
+- 静态对比：`<WORKSPACE>\output\rtl_diff.txt`、`boardtop_ip_diff.txt`、`edid_bit_compare.txt`
+- 重建工程：`<WORKSPACE>\rebuild_20261019\`（可用 `<WORKSPACE>\output\ila_probe.tcl` 插探针深挖）
+- 硬件扫描：`<WORKSPACE>\output\hw_scan.txt`
 
 ## 7. 当前状态
 
