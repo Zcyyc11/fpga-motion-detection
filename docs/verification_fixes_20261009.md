@@ -31,17 +31,17 @@
 
 以下 PowerShell 命令从修复仓库启动。安装路径只用于本机示例，通用代码不写死路径。
 
-    Set-Location 'C:\Users\孙伟博\Desktop\FPGA大赛资料\captain_fix_20261009'
+    Set-Location '<HOME>\Desktop\FPGA大赛资料\captain_fix_20261009'
     $env:PYTHONUTF8 = '1'
     $env:PYTHONIOENCODING = 'utf-8'
     $env:PYTHONDONTWRITEBYTECODE = '1'
-    & 'D:\666666\Anaconda\python.exe' -X utf8 build/scripts/run_sim.py --vivado-settings 'D:\AMD2025.2\2025.2\Vivado\settings64.bat' --scratch-root 'D:\666666\Temp\fpga_sim_runs'
+    & 'python' -X utf8 build/scripts/run_sim.py --vivado-settings '<VIVADO_2025_2>\2025.2\Vivado\settings64.bat' --scratch-root '<TMP>\Temp\fpga_sim_runs'
 
 该命令检查仿真流程，每次新建 run_时间_随机后缀 目录，可重复运行，不覆盖旧结果。输出会明确提示帧完整性未检查，也不会声称模型一致性通过。
 
 检查预期的第 0–11 帧：
 
-    & 'D:\666666\Anaconda\python.exe' -X utf8 build/scripts/run_sim.py --vivado-settings 'D:\AMD2025.2\2025.2\Vivado\settings64.bat' --scratch-root 'D:\666666\Temp\fpga_sim_runs' --expect-frames 12
+    & 'python' -X utf8 build/scripts/run_sim.py --vivado-settings '<VIVADO_2025_2>\2025.2\Vivado\settings64.bat' --scratch-root '<TMP>\Temp\fpga_sim_runs' --expect-frames 12
 
 **当前源码下，这条命令应退出 2，并报告缺第 11 帧。** 不要改成预期 11 帧来宣称原本的 12 帧要求通过。--first-frame 可指定预期起点，必须与 --expect-frames 配合。
 
@@ -106,7 +106,7 @@ sim/run_sim.bat 是内部步骤，直接启动退出 13，提示使用 Python �
 
 - report/verification_20261009/round1：第一阶段结构化证据。
 - report/verification_20261009/runner：运行器回归、真实 Vivado 来源清单、CSV 和原始/解码日志。
-- 外层 repair_20261009_round1：完整构造数据、各轮失败及通过日志、源码副本和最终审计；英文 Vivado 测试保留在 D:/666666/Temp/fpga_runner_live_20261009_final。
+- 外层 repair_20261009_round1：完整构造数据、各轮失败及通过日志、源码副本和最终审计；英文 Vivado 测试保留在 <TMP>/Temp/fpga_runner_live_20261009_final。
 - vivado_probe1/results.json 是早期整份日志解码的失败尝试。正确路径实验见 checkpoint_checks/vivado_decoded.json；最终运行器见 runner_live_final/results.json。
 - 开工备份为 captain_before.bundle、baseline_452075f.zip、protected_before.json；本阶段修改前文件位于 runner_before。
 - 原 captain_repo 仍在 feat/line3-verification，提交 f6f6036ab44b4604897305d17d58cc71f8e089f7；main 保留 452075f727aec0f9ca6fe9404a09ac0de4361795，旧 main 备份分支也保留。
