@@ -2,6 +2,9 @@
 
 # fpga-motion-detection
 
+> 本页是 2026-11-03 之前的旧版首页快照，仅作历史留存，**不是 r3 的验收结果**。
+> 原链接按当时仓库根目录书写；现存目标已改为相对路径，已删除的目标保留路径文字但不再渲染为链接。
+
 **作品名称**：基于FPGA的运动目标检测
 **赛事**：全国大学生嵌入式芯片与系统设计竞赛 2026 · FPGA创新设计赛道（AMD）· 3.3 自主选题 · 初级组
 **目标器件**：`XC7Z020-1CLG400C`　**开发板**：PYNQ-Z2（Zynq-7000 SoC，双核 Cortex-A9 + 可编程逻辑）
@@ -35,19 +38,19 @@
 
 | 入口 | 用途 |
 | --- | --- |
-| [线三 UART 接收与样本验收](docs/line3_uart_receiver.md) | 正式三包串口/原始流接收、画框/告警、精确对照；真实板端联调待样本 |
-| [2026-10-12 UART 交付报告](report/line3_uart_20261012/README.md) | 模拟验证、独立复核问题与修复、证据边界和队友输入 |
-| [2026-10-11 当前交付](report/line3_closeout_20261011/README.md) | 原入口 72 项核验、整合回归、板级布局布线与剩余缺口 |
-| [2026-10-10 修复最终验收](report/repair_20261010/README.md) | 12 步回归通过、软件视频与真实 RTL 证据、尚未完成的硬件门槛 |
-| [2026-10-09 职责核对（历史）](docs/line3_status_20261009.md) | 对照原始职责，说明已完成与未完成 |
-| [复现说明](docs/reproduce_line3.md) | 从新输出目录运行，避免覆盖参考结果 |
-| [独立检验委托](docs/independent_review.md) | 给另一AI自行建立判据，不预定结论 |
-| [可复制提示词](docs/independent_review_prompt.md) | 新会话直接使用 |
-| [本轮新证据](report/line3_review_20261009/README.md) | 命令、退出码、数据、仿真和来源哈希 |
-| [线三报告初稿](report/line3_20261009/report_draft.md) | 历史九章初稿，缺项须补证后才能定稿 |
-| [原始分工](docs/review_inputs/team_division_20261008.txt) | 原DOCX逐段提取，完成声明仍须验证 |
-| [回传协议与接口设计（定稿）](docs/protocol_and_interface_requirements.md) | UART 三包（0x5A/0xA5/0xC3）+ AXI 寄存器表，10/12 定稿生效（f15fbce） |
-| [上板实测记录](board/logs/board_test_20261012.md) | HDMI 输入版 PASS：强运动检出 89%、静止误检 0%、单框确认（37c1d2c） |
+| [线三 UART 接收与样本验收](../../docs/line3_uart_receiver.md) | 正式三包串口/原始流接收、画框/告警、精确对照；真实板端联调待样本 |
+| `2026-10-12 UART 交付报告`（原链接 `report/line3_uart_20261012/README.md`，目标已不在当前 main） | 模拟验证、独立复核问题与修复、证据边界和队友输入 |
+| `2026-10-11 当前交付`（原链接 `report/line3_closeout_20261011/README.md`，目标已不在当前 main） | 原入口 72 项核验、整合回归、板级布局布线与剩余缺口 |
+| `2026-10-10 修复最终验收`（原链接 `report/repair_20261010/README.md`，目标已不在当前 main） | 12 步回归通过、软件视频与真实 RTL 证据、尚未完成的硬件门槛 |
+| [2026-10-09 职责核对（历史）](../../docs/line3_status_20261009.md) | 对照原始职责，说明已完成与未完成 |
+| [复现说明](../../docs/reproduce_line3.md) | 从新输出目录运行，避免覆盖参考结果 |
+| [独立检验委托](../../docs/independent_review.md) | 给另一AI自行建立判据，不预定结论 |
+| [可复制提示词](../../docs/independent_review_prompt.md) | 新会话直接使用 |
+| `本轮新证据`（原链接 `report/line3_review_20261009/README.md`，目标已不在当前 main） | 命令、退出码、数据、仿真和来源哈希 |
+| `线三报告初稿`（原链接 `report/line3_20261009/report_draft.md`，目标已不在当前 main） | 历史九章初稿，缺项须补证后才能定稿 |
+| [原始分工](../../docs/review_inputs/team_division_20261008.txt) | 原DOCX逐段提取，完成声明仍须验证 |
+| [回传协议与接口设计（定稿）](../../docs/protocol_and_interface_requirements.md) | UART 三包（0x5A/0xA5/0xC3）+ AXI 寄存器表，10/12 定稿生效（f15fbce） |
+| [上板实测记录](../../board/logs/board_test_20261012.md) | HDMI 输入版 PASS：强运动检出 89%、静止误检 0%、单框确认（37c1d2c） |
 
 PL实现是自生激励、2×2求和、差分/背景建模、阈值、形态学、多目标包围盒（multi_bbox）、跟踪/告警（track/alarm）、UART 回传及HDMI输出。原 PC 侧多目标跟踪/告警已于 2026-10-12 搬进 PL（multi_bbox/track/alarm 已接顶层）；查实际源码判断功能。
 
