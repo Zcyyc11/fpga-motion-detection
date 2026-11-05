@@ -110,7 +110,7 @@ module tb_track_alarm;
             frame_tick <= 1'b1;
             @(posedge clk);
             frame_tick <= 1'b0;
-            repeat (20) @(posedge clk);   // 输出流与告警都在这段时间发出
+            repeat (6000) @(posedge clk); // sequential track bound is 4996 clocks
         end
     endtask
 

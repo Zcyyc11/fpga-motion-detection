@@ -1,0 +1,90 @@
+{
+  "board_test": false,
+  "status": "development checkpoint; full build in progress; UART/bbox independent final review pending",
+  "evidence": [
+    {
+      "path": "D:\\fpga_takeover_20261017\\linebuf_equiv01\\result.json",
+      "sha256": "051b182ee40f2acd753a20fbb8108bbefeb0cf77624e39a4351156d5b422bc3b"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\track_review_20261017_171920\\console.log",
+      "sha256": "175561b6f0a0bfd80697c0a2e1c967a5f1c5a1b0998dec6c2f52f689c6195edd"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\track_ooc02\\utilization.rpt",
+      "sha256": "889a2b8013125caf731b455b27b424fa0dc922ffca3185016da042870ac683d5"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\track_ooc02\\timing.rpt",
+      "sha256": "789206be3ee2ba34047f06d8c48a9a765680ae17df60a496e119c67766d39df4"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\axi_legacy_green03\\summary.json",
+      "sha256": "59c557475e9db6cd08fee9a89d57b5dd9d48e4310ab3f6e6527c772b5ef2820e"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\axi_stress_green03\\result.json",
+      "sha256": "4428967f05ed604b954b405c928ea6186f613f59288e96153be5f9d6f2e1e305"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\bbox_suite_green05\\summary.json",
+      "sha256": "3f2eeba3fe669c86e16fc2123c411e5e0f89aafd286fef40bf9d6fa3463c523a"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\bbox_serial_green04\\result.json",
+      "sha256": "7df76e98bc5b043aab597441b4e338b82d8a86b5cb8b532b2d4a29c357f3947a"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\bbox_ooc05\\utilization.rpt",
+      "sha256": "4c45e55dce1862efff3727cc5790786dea1bac9f069a5d929947f10bea4b9c6e"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\bbox_ooc05\\timing.rpt",
+      "sha256": "8e945f09ffc63acbe5cfbfacff293a94e8060b06712ae5de03482e85e960b55a"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\uart_green_3\\result.json",
+      "sha256": "7028340bbe2dccf70f71a2c6d23b42c42c0fa00fc7acfdf47a370204d0195901"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\uart_default_baud_2\\result.json",
+      "sha256": "6900eec23b4a58c7818a404a92506af313a6e5cd132c1e6b08937ed6891ec5a7"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\uart_legacy\\result.json",
+      "sha256": "8f40cea13d7a56efcba2b6f87b8dbc8d4412a0f9e9a553297b78fa1058cda6f6"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\uart_ooc\\utilization.rpt",
+      "sha256": "28db7c3fc8acccf3f169d2b251e6e2132fd3f36c34410a6df5a2ed48f4a9e149"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\uart_ooc\\timing.rpt",
+      "sha256": "3a2619990e4e67e5e506ef042c2861b2808761b04e5266f51a93159a63d29e5b"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\pipeline_green05\\result.json",
+      "sha256": "fa3f62774ab81d47f6467abf395e9186069e936cca378901398b8109d0ef46f0"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\cosim_normal_check07\\comparison.json",
+      "sha256": "9313dd51eef9953cd3efc5dbf6938a4facb8c94f78648a250c37b4f14e1e5259"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\cosim_events_check07\\comparison.json",
+      "sha256": "79226fd35d27a62cb474fe92fb3ade7c634a63ce3d6509a35580cebe5054bb62"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\wrap_green06\\summary.json",
+      "sha256": "1cc4c001abf4f8b72a6c2b3d91f93054593e19d7c868d2709f641f37399ead0d"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\pc_receiver06_console.txt",
+      "sha256": "87c28aa7c0ec662c132077aaa009f2822b03ff56d4b061127be90dd97fc7f054"
+    },
+    {
+      "path": "D:\\fpga_takeover_20261017\\pc_type106_console.txt",
+      "sha256": "a13736c316a829164acd275a1ba1e26a3f1a076876adaf0f5795c7b643025d8f"
+    }
+  ]
+}

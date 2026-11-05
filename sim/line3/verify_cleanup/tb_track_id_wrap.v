@@ -22,7 +22,7 @@ module tb_track_id_wrap;
  n=0;@(negedge clk);x=pos;v=present;
  @(negedge clk);v=0;tick=1;
  @(negedge clk);tick=0;
- repeat(100)@(negedge clk);
+ repeat(6000)@(negedge clk); // sequential track bound is 4996 clocks
  end endtask
  initial begin
  repeat(4)@(negedge clk);rst_n=1;
@@ -39,5 +39,5 @@ module tb_track_id_wrap;
  check(alarms==1,"reused id real crossing exactly once");
  $display("VERIFY_DONE wrap errors=%0d",errors);$finish;
  end
- initial begin #10000000;$fatal(1,"FAIL timeout wrap");end
+ initial begin #100000000;$fatal(1,"FAIL timeout wrap");end
 endmodule

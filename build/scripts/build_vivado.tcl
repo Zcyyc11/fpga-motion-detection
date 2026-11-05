@@ -34,6 +34,9 @@ set RTL_DIR    [file join $ROOT src rtl]
 set RTL_BOARD  [file join $ROOT src rtl board]
 set BOARD_DIR  [file join $ROOT board]
 set BUILD_DIR  [file join $ROOT build]
+if {[info exists ::env(MOTION_BUILD_DIR)]} {
+    set BUILD_DIR [file normalize $::env(MOTION_BUILD_DIR)]
+}
 set PROJ_DIR   [file join $BUILD_DIR vivado]
 set REPORT_DIR [file join $BUILD_DIR reports]
 set CKPT_DIR   [file join $BUILD_DIR checkpoints]
@@ -200,11 +203,11 @@ proc stage_impl {} {
     # impl 正常路径：不 reset，已开始的 run 从最后一个完成的 step 续跑
     # （opt→place→route 每步 checkpoint 在 runs/impl_1 下）。
     # 兜底：若 run 状态不允许直接 launch（报 17-69），reset 后从头 impl。
-    if {[catch {launch_runs impl_1 -to_step write_bitstream -jobs 1} err]} {
+    if {[catch {launch_runs impl_1 -to_step route_design -jobs 1} err]} {
         if {[string match "*needs to be reset*" $err]} {
             puts "impl_1 需要 reset（$err），从头 impl"
             reset_run impl_1
-            launch_runs impl_1 -to_step write_bitstream -jobs 1
+            launch_runs impl_1 -to_step route_design -jobs 1
         } else {
             error $err
         }
@@ -214,7 +217,7 @@ proc stage_impl {} {
         error "实现失败。若已到 place/route，可直接重跑 impl 阶段从断点续；日志：runs/impl_1/runme.log"
     }
     close_project
-    puts "impl 完成：bit 已在 runs/impl_1 下生成"
+    puts "impl complete: routed design retained; bit stage must validate timing first"
 }
 
 # ---------------------------------------------------------------- bit 阶段
@@ -223,21 +226,28 @@ proc stage_bit {} {
     open_project $XPR
     open_run impl_1
     # bitstream 落到不会被清理的交付位置：build/vivado 是工作目录，不能当交付。
-    set BIT_SRC [file join $PROJ_DIR fpga_motion_detection.runs impl_1 ${TOP}.bit]
     set BIT_DIR [file join $BUILD_DIR bitstream]
     set BIT_DST [file join $BIT_DIR ${TOP}.bit]
-    file mkdir $BIT_DIR
-    if {[file exists $BIT_SRC]} {
-        file copy -force $BIT_SRC $BIT_DST
-    } else {
-        error "没有生成 bitstream：$BIT_SRC"
-    }
     report_utilization       -file [file join $REPORT_DIR impl_utilization.rpt]
     report_timing_summary    -file [file join $REPORT_DIR impl_timing_summary.rpt]
     report_clock_interaction -file [file join $REPORT_DIR impl_clock_interaction.rpt]
     report_drc               -file [file join $REPORT_DIR impl_drc.rpt]
     set WNS [get_property SLACK [get_timing_paths -max_paths 1 -setup]]
     set WHS [get_property SLACK [get_timing_paths -max_paths 1 -hold]]
+    # Fail closed: no deliverable bit before setup/hold and implementation DRC.
+    if {![string is double -strict $WNS] || ![string is double -strict $WHS]} {
+        error "Missing setup/hold timing paths; bit delivery blocked"
+    }
+    if {$WNS < 0 || $WHS < 0} {
+        error "Timing failed: WNS=$WNS WHS=$WHS; no deliverable bit written"
+    }
+    set BAD_DRC [get_drc_violations -quiet -filter {SEVERITY == Error || SEVERITY == {Critical Warning}}]
+    if {[llength $BAD_DRC] != 0} {
+        error "Implementation DRC errors/critical warnings: $BAD_DRC"
+    }
+    if {[file exists $BIT_DST]} { error "Refusing to overwrite existing bit: $BIT_DST" }
+    file mkdir $BIT_DIR
+    write_bitstream $BIT_DST
     puts "=============================================================="
     puts " 综合实现结果"
     puts "   时序  WNS(setup) = $WNS ns   WHS(hold) = $WHS ns"
@@ -246,13 +256,7 @@ proc stage_bit {} {
     puts "=============================================================="
     close_design
     close_project
-    # bit 已经落盘；时序没收敛只是警告级——先拿到 baseline QoR，
-    # 再决定是否换 IMPL_DIRECTIVE=Explore 精修。
-    if {($WNS < 0) || ($WHS < 0)} {
-        puts "!! 注意：时序未收敛（WNS=$WNS WHS=$WHS）。bit 已生成但别直接上板，先修时序。"
-    } else {
-        puts "时序收敛：所有用户约束均满足。"
-    }
+    puts "Timing and DRC gates passed; hardware behavior still requires board evidence."
 }
 
 # ---------------------------------------------------------------- 调度
