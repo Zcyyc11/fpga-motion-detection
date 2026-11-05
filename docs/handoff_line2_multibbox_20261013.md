@@ -40,4 +40,4 @@
 - 构建：`build_vivado.bat 0 1`（HDMI 输入帧差版），可设 `SYNTH_DIRECTIVE=RuntimeOptimized` 加速综合（见 build_vivado.tcl 开关）。
 - 红线：综合后必须 grep "bound to" 验证 MODE_BG=0 INPUT_SEL=1 真绑定（坏 bit 教训）。
 - 上板：`burn_jtag.tcl` 烧录；`verify_board.py` 自动视觉验证（采集卡 UGREEN 25854，1280x720）。
-- 测试视频：`D:\FPGA\test_videos\`（vehicles / people-walking / market-square）。
+- 测试视频：`<WORKSPACE>\test_videos\`（vehicles / people-walking / market-square）。
