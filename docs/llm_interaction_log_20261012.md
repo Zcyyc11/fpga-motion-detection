@@ -86,11 +86,11 @@
 
 ## 2.2 本机操作轨迹（本地残留日志提炼）
 
-`D:\FPGA` 根目录留有一批 `.workbuddy_*.txt` 操作日志（WorkBuddy 在本机直接操作该仓库时的命令输出残留，**未原样入库**，仅提炼轨迹）：
+`<WORKSPACE>` 根目录留有一批 `.workbuddy_*.txt` 操作日志（WorkBuddy 在本机直接操作该仓库时的命令输出残留，**未原样入库**，仅提炼轨迹）：
 
-- clone 诊断：WorkBuddy 曾尝试干净克隆到 `D:\FPGA\.workbuddy\fmd-fresh-clone`（PowerShell 将 git stderr 显示为错误，克隆实际可用）；
+- clone 诊断：WorkBuddy 曾尝试干净克隆到 `<WORKSPACE>\.workbuddy\fmd-fresh-clone`（PowerShell 将 git stderr 显示为错误，克隆实际可用）；
 - fetch 校验：fetch 后比对 `main...origin/main`，记录远程推进（如 `f50d5f0`）与工作区未跟踪文件；
-- merge 冲突处理：合并 main 时处理过 `build/scripts/fix_bat_eol.py` 的**硬编码路径 vs 相对路径**冲突（`ROOT = r'D:/FPGA/fpga-motion-detection'` → `os.path.dirname(...)` 相对化）；
+- merge 冲突处理：合并 main 时处理过 `build/scripts/fix_bat_eol.py` 的**硬编码路径 vs 相对路径**冲突（`ROOT = r'<WORKSPACE>/fpga-motion-detection'` → `os.path.dirname(...)` 相对化）；
 - 浅克隆判断：`git fetch --unshallow` 报 "complete repository"，确认本仓库非浅克隆；
 - git 配置诊断：`autocrlf=false` 等 config 核验。
 
@@ -113,5 +113,5 @@
 1. 能自查的事实（仓库/API/日志）不问队友、不问用户；够不着才求助。
 2. 改代码前先征得用户同意；审查与执行分离。
 3. 汇报一律大白话，数字/结论必须可溯源（哈希、日志行、文件路径）。
-4. 涉及比赛规则先查资料库（`C:\Users\zcy\Desktop\FPGA大赛资料`），不直接上网搜。
+4. 涉及比赛规则先查资料库（`<HOME>\Desktop\FPGA大赛资料`），不直接上网搜。
 5. 独立复核（WorkBuddy/Codex）与主作者会话分离，第一轮判断先存档再读作者结论。
