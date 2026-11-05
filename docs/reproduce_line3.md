@@ -51,4 +51,4 @@ python -X utf8 sim/line3/run_rtl.py --settings "$vivadoSettings" --out "$asciiSc
 
 真实CDnet输入必须另行提供；仓库CSV和构造数据不等于真实数据集。使用cdnet相关入口前阅读--help及输出路径，在隔离源码/数据副本运行，避免覆盖归档成绩。板端回传未确认协议，不提供虚构的板端复现步骤。
 
-新视频应逐帧解码，检查CSV、事件和图像的帧/坐标对应关系；新结果不能用旧inspect_media.py固定读取的历史视频替代。旧复核输出见 report/line3_review_20261009/；当前修复证据、备份和失败记录见 [修复报告](../report/repair_20261010/README.md)。
+新视频应逐帧解码，检查CSV、事件和图像的帧/坐标对应关系；新结果不能用旧inspect_media.py固定读取的历史视频替代。旧复核输出见 report/line3_review_20261009/；当前修复证据、备份和失败记录见 `修复报告`（原链接 `../report/repair_20261010/README.md`，目标已不在当前 main）。
