@@ -8,14 +8,14 @@ INFO: [Common 17-3922] A valid Vivado Design Suite ENTERPRISE license has been d
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 
-source {D:\FPGA\rebuild_20261019\burn_rebuild_ce621313.tcl}
-# set bit "D:/FPGA/rebuild_20261019/build/bitstream/board_top.bit"
+source {<WORKSPACE>\rebuild_20261019\burn_rebuild_ce621313.tcl}
+# set bit "<WORKSPACE>/rebuild_20261019/build/bitstream/board_top.bit"
 # if {![file exists $bit]} {error "missing rebuild bit: $bit"}
 # set fh [exec powershell -NoProfile -Command "Get-FileHash '$bit' -Algorithm SHA256 | Select-Object -ExpandProperty Hash"]
 # set fh [string tolower $fh]
 # puts "BIT_SHA256=$fh"
 BIT_SHA256=ce6213136aa4fce94a9ce64e06c0ee733a6277e29126efcdcad466370e9e3a06
-# if {![string match "ce621313*" $fh]} {error "HASH MISMATCH ($fh) - not the 韦博16�?�? bit, ABORT"}
+# if {![string match "ce621313*" $fh]} {error "HASH MISMATCH ($fh) - not the 韦博16�?�? bit, ABORT"}
 # open_hw_manager
 open_hw_manager: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 591.359 ; gain = 277.570
 # connect_hw_server
@@ -25,8 +25,10 @@ INFO: [Labtools 27-2221] Launch Output:
 
 ****** Xilinx hw_server v2026.1
   **** Build date : May 29 2026 at 14:55:19
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+
+
 
 INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
 INFO: [Labtools 27-3417] Launching cs_server...
@@ -47,7 +49,7 @@ INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Xilinx/12
 # set dev [lindex $devices 0]
 # current_hw_device $dev
 # puts "DEVICE=$dev BIT=$bit"
-DEVICE=xc7z020_1 BIT=D:/FPGA/rebuild_20261019/build/bitstream/board_top.bit
+DEVICE=xc7z020_1 BIT=<WORKSPACE>/rebuild_20261019/build/bitstream/board_top.bit
 # set_property PROGRAM.FILE $bit $dev
 # program_hw_devices $dev
 INFO: [Labtools 27-3164] End of startup status: HIGH
