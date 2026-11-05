@@ -50,7 +50,7 @@ c3c3a16c91e31a8044704aa959cbbbcf55844f9e3aa4e343b5abe8c246c8e8c8
 
 HDMI 演示、已接入外设（数码管、按键、LED、8 灯 WS2812、蜂鸣器）与断线重锁为团队确认项；
 仓库内暂无 r3 的独立烧录日志、原始录像及确切时间、操作者、信源、输出设备记录，待补入 `board/logs/`。
-`report/technical_document.pdf` 采用 10 分钟验收口径，与本节一致；
+`report/technical_document.pdf` 采用 10 分钟验收口径，其中的板级完成状态为团队确认记录，原始证据与边界以本节为准；
 `report/design_report_final_20261030.docx` 是历史版本，提交版为 `design_report_final_r3_20261103.docx`。
 
 ### 协作与许可
