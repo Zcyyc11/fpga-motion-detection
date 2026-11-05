@@ -4,7 +4,7 @@ Actor: Codex, following the task allocation relayed by Sun Weibo. Human signatur
 Read origin/main@3d9f411 and two_pass_opt_plan_20261013.md before work. Created line3/verify-cleanup in the clean, dedicated line-three checkout. No line-two RTL edits and no pass-two implementation.
 Authored independent tests for 16 default-capacity targets, run/label saturation, union and label reuse, natural 8-bit ID wrap, cfg_enable CDC/mode arithmetic, and AXI channel separation/backpressure. Existing testbenches are retained unchanged and rerun separately.
 Independent expected components come from a Python four-neighbor flood fill, not DUT label state. Wrap stimulus creates 257 actual lifetimes without forcing the internal ID counter. Failed runs will be retained, not treated as acceptance.
-Running the frozen main baseline in D:/line3_verify_cleanup_20261013_01. Per-job process.json and console.raw are authoritative for execution status. No board or resource claims.
+Running the frozen main baseline in <LINE3_WORK>. Per-job process.json and console.raw are authoritative for execution status. No board or resource claims.
 
 ## 实测反馈与纠正（2026-10-13，本轮执行中记录）
 
