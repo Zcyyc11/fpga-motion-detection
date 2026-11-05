@@ -12,7 +12,7 @@
 - board-test-20261021 文档实际验收 ce621313…，群消息 9f506bef… 为保底。文档分支只有证据说明，无对应完整源码，不能声称精确复刻该 bit。
 - 串口根因在详细记录中仅为嫌疑，物理通路未被纯软件排除。
 - build16 与此前 full16 修复分支在 track/uart/bbox/AXI 等有重要差异。以此前经过资源修复的 34f18d9 分支为升级基线；downsample 与 99e18f2 同内容，无需重复补丁。
-- 工作副本 D:/fpga_upgrade_20261022/work，分支 codex/effect-uart-tier1-20261022；原工作树不修改。
+- 工作副本 <ABS>/fpga_upgrade_20261022/work，分支 codex/effect-uart-tier1-20261022；原工作树不修改。
 - 本机上下文占用不可可靠读取，阶段节点提前交接，不伪报 60%。
 
 ## 方案
