@@ -8,7 +8,7 @@
 [`deliverables/tier1_attach_hdmi_r3/`](deliverables/tier1_attach_hdmi_r3/README.md)。
 该目录是本次待评审交付；原 `src/`、`board/`、`tools/` 及其历史工程继续保留，不与 r3 混用。
 用户于 2026-11-03 确认 `FPGA_All_Code_r3.rar` 为已提交官方的代码包；本次交付与该附件哈希一致，见[核对记录](report/r3_update_20261103/official_package_confirmation.json)。
-代码已整理，r3 原包构建证据已核对；**已完成 HDMI 显示、外设接入、断线重锁与 10 分钟连续运行测试**。
+代码已整理，r3 原包构建证据已核对；**已完成 HDMI 显示、外设接入、断线重锁与 ≥30 分钟连续运行测试**。
 
 | 入口 | 内容 |
 | --- | --- |
